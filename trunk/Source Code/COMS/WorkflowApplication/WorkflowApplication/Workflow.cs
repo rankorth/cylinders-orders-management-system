@@ -101,6 +101,22 @@ namespace WorkflowApplication
             }
         }
         private ObjectSet<Step> _Steps;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ActivityBlock> ActivityBlocks
+        {
+            get
+            {
+                if ((_ActivityBlocks == null))
+                {
+                    _ActivityBlocks = base.CreateObjectSet<ActivityBlock>("ActivityBlocks");
+                }
+                return _ActivityBlocks;
+            }
+        }
+        private ObjectSet<ActivityBlock> _ActivityBlocks;
 
         #endregion
         #region AddTo Methods
@@ -120,6 +136,14 @@ namespace WorkflowApplication
         {
             base.AddObject("Steps", step);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ActivityBlocks EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToActivityBlocks(ActivityBlock activityBlock)
+        {
+            base.AddObject("ActivityBlocks", activityBlock);
+        }
 
         #endregion
     }
@@ -128,6 +152,61 @@ namespace WorkflowApplication
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Workflow", Name="ActivityBlock")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ActivityBlock : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ActivityBlock object.
+        /// </summary>
+        /// <param name="activityBlockID">Initial value of the ActivityBlockID property.</param>
+        public static ActivityBlock CreateActivityBlock(global::System.Int32 activityBlockID)
+        {
+            ActivityBlock activityBlock = new ActivityBlock();
+            activityBlock.ActivityBlockID = activityBlockID;
+            return activityBlock;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ActivityBlockID
+        {
+            get
+            {
+                return _ActivityBlockID;
+            }
+            set
+            {
+                if (_ActivityBlockID != value)
+                {
+                    OnActivityBlockIDChanging(value);
+                    ReportPropertyChanging("ActivityBlockID");
+                    _ActivityBlockID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ActivityBlockID");
+                    OnActivityBlockIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ActivityBlockID;
+        partial void OnActivityBlockIDChanging(global::System.Int32 value);
+        partial void OnActivityBlockIDChanged();
+
+        #endregion
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
