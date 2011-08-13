@@ -19,6 +19,7 @@
             <End Role="Workflow" EntitySet="Workflows" />
             <End Role="Step" EntitySet="Steps" />
           </AssociationSet>
+          <EntitySet Name="ActivityBlocks" EntityType="Workflow.ActivityBlock" />
         </EntityContainer>
         <EntityType Name="Workflow">
           <Key>
@@ -39,6 +40,12 @@
           <End Type="Workflow.Workflow" Role="Workflow" Multiplicity="1" />
           <End Type="Workflow.Step" Role="Step" Multiplicity="*" />
         </Association>
+        <EntityType Name="ActivityBlock">
+          <Key>
+            <PropertyRef Name="ActivityBlockID" />
+          </Key>
+          <Property Type="Int32" Name="ActivityBlockID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -68,12 +75,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram Name="Workflow" >
-        <EntityTypeShape EntityType="Workflow.Workflow" Width="1.5" PointX="1" PointY="2.125" Height="1.59568359375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Workflow.Step" Width="1.5" PointX="3.5" PointY="2.125" Height="1.231080729166667" />
+        <EntityTypeShape EntityType="Workflow.Workflow" Width="1.5" PointX="1.625" PointY="1.375" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Workflow.Step" Width="1.5" PointX="4.125" PointY="1.375" Height="1.4033821614583339" />
         <AssociationConnector Association="Workflow.WorkflowStep">
-          <ConnectorPoint PointX="2.5" PointY="2.8266910807291667" />
-          <ConnectorPoint PointX="3.5" PointY="2.8266910807291667" />
+          <ConnectorPoint PointX="3.125" PointY="2.0766910807291667" />
+          <ConnectorPoint PointX="4.125" PointY="2.0766910807291667" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="Workflow.ActivityBlock" Width="2" PointX="1.25" PointY="3.625" Height="1.2110807291666665" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

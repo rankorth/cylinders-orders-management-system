@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStepList));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.listBoxSteps = new System.Windows.Forms.ListBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonAddStep = new System.Windows.Forms.ToolStripButton();
-            this.listBoxSteps = new System.Windows.Forms.ListBox();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -57,6 +57,16 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             // 
+            // listBoxSteps
+            // 
+            this.listBoxSteps.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxSteps.FormattingEnabled = true;
+            this.listBoxSteps.Location = new System.Drawing.Point(0, 0);
+            this.listBoxSteps.Name = "listBoxSteps";
+            this.listBoxSteps.Size = new System.Drawing.Size(342, 424);
+            this.listBoxSteps.Sorted = true;
+            this.listBoxSteps.TabIndex = 0;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -76,15 +86,6 @@
             this.toolStripButtonAddStep.Size = new System.Drawing.Size(23, 22);
             this.toolStripButtonAddStep.Text = "Add Step";
             this.toolStripButtonAddStep.Click += new System.EventHandler(this.toolStripButtonAddStep_Click);
-            // 
-            // listBoxSteps
-            // 
-            this.listBoxSteps.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxSteps.FormattingEnabled = true;
-            this.listBoxSteps.Location = new System.Drawing.Point(0, 0);
-            this.listBoxSteps.Name = "listBoxSteps";
-            this.listBoxSteps.Size = new System.Drawing.Size(342, 424);
-            this.listBoxSteps.TabIndex = 0;
             // 
             // FormStepList
             // 

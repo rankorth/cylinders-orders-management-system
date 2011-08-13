@@ -15,5 +15,18 @@ namespace WorkflowApplication
         {
             InitializeComponent();
         }
+
+        private Pen penBlack = new Pen(Color.Black);
+
+        private void panelDraw_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            DrawingBlock dbk = new DrawingBlock(g, 0, 0, "Printing");
+            dbk.drawBlock();
+
+            DrawingBlock dbk2 = new DrawingBlock(g, 120, 120, "Engraving");
+            dbk2.drawBlock();
+        }
     }
 }
