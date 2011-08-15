@@ -3278,13 +3278,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB691A601F1"
-				compartment 	(object Compartment
-				    Parent_View 	@183
-				    location   	(94, 1736)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	4
-				    max_width  	394)
 				width      	158
 				annotation 	8
 				autoResize 	TRUE)
@@ -3306,13 +3299,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB691B80208"
-				compartment 	(object Compartment
-				    Parent_View 	@184
-				    location   	(638, 1736)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	3
-				    max_width  	381)
 				width      	158
 				annotation 	8
 				autoResize 	TRUE)
@@ -3334,13 +3320,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB691D20361"
-				compartment 	(object Compartment
-				    Parent_View 	@185
-				    location   	(1150, 1736)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	3
-				    max_width  	372)
 				width      	158
 				annotation 	8
 				autoResize 	TRUE)
@@ -3362,13 +3341,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB692020221"
-				compartment 	(object Compartment
-				    Parent_View 	@186
-				    location   	(1758, 1736)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	5
-				    max_width  	484)
 				width      	158
 				annotation 	8
 				autoResize 	TRUE)
@@ -3390,13 +3362,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DDB679402B0"
-				compartment 	(object Compartment
-				    Parent_View 	@187
-				    location   	(94, 2264)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	2
-				    max_width  	338)
 				width      	158
 				annotation 	8
 				autoResize 	TRUE)
@@ -3418,13 +3383,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DDB67F403CF"
-				compartment 	(object Compartment
-				    Parent_View 	@188
-				    location   	(654, 2248)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	2
-				    max_width  	278)
 				width      	158
 				annotation 	8
 				autoResize 	TRUE)
@@ -3446,13 +3404,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DDB6849038F"
-				compartment 	(object Compartment
-				    Parent_View 	@189
-				    location   	(1150, 2248)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	5
-				    max_width  	334)
 				width      	158
 				annotation 	8
 				autoResize 	TRUE)
@@ -3474,13 +3425,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DDB68890360"
-				compartment 	(object Compartment
-				    Parent_View 	@190
-				    location   	(1774, 2280)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	2
-				    max_width  	275)
 				width      	158
 				annotation 	8
 				autoResize 	TRUE)
@@ -3502,13 +3446,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E40A0E101E4"
-				compartment 	(object Compartment
-				    Parent_View 	@191
-				    location   	(2257, 1731)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	7
-				    max_width  	159)
 				height     	154
 				autoResize 	TRUE)
 			    (object ClassView "Class" "Logical View::Business Object Model::Sales Order" @192
@@ -3529,13 +3466,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB5A0A1016D"
-				compartment 	(object Compartment
-				    Parent_View 	@192
-				    location   	(2257, 835)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	9
-				    max_width  	291)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -3581,13 +3511,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DDB66AB014D"
-				compartment 	(object Compartment
-				    Parent_View 	@196
-				    location   	(81, 1299)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	2
-				    max_width  	150)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -3654,13 +3577,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB599EB0203"
-				compartment 	(object Compartment
-				    Parent_View 	@201
-				    location   	(81, 821)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	2
-				    max_width  	150)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -3718,13 +3634,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB59CFE02C3"
-				compartment 	(object Compartment
-				    Parent_View 	@206
-				    location   	(1761, 835)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	4
-				    max_width  	194)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -3770,13 +3679,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E3D1BE30315"
-				compartment 	(object Compartment
-				    Parent_View 	@210
-				    location   	(81, 371)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	8
-				    max_width  	247)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -3822,13 +3724,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DAD926403BB"
-				compartment 	(object Compartment
-				    Parent_View 	@214
-				    location   	(625, 371)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	2
-				    max_width  	150)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -3931,13 +3826,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB5A0ED01E4"
-				compartment 	(object Compartment
-				    Parent_View 	@223
-				    location   	(625, 821)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	2
-				    max_width  	150)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -3959,13 +3847,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB5A0DF00BB"
-				compartment 	(object Compartment
-				    Parent_View 	@224
-				    location   	(625, 1299)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	6
-				    max_width  	275)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -4059,13 +3940,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB5A11F0344"
-				compartment 	(object Compartment
-				    Parent_View 	@234
-				    location   	(1761, 1299)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	2
-				    max_width  	181)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -4087,13 +3961,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB5A0B202EC"
-				compartment 	(object Compartment
-				    Parent_View 	@235
-				    location   	(1185, 371)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	4
-				    max_width  	219)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -4235,13 +4102,6 @@
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4DB5A0BC0163"
-				compartment 	(object Compartment
-				    Parent_View 	@249
-				    location   	(1185, 1301)
-				    icon_style 	"Icon"
-				    anchor     	2
-				    nlines     	3
-				    max_width  	150)
 				height     	154
 				annotation 	8
 				autoResize 	TRUE)
@@ -4336,12 +4196,12 @@
 			roles      	(list role_list
 			    (object Role "$UNNAMED$186"
 				quid       	"4E43F0700062"
-				supplier   	"Logical View::Database Design::Tables::COMS_ORDER"
+				supplier   	"Logical View::Database Design::Tables::ORDER"
 				quidu      	"4E43DB960190"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$187"
 				quid       	"4E43F0700065"
-				supplier   	"Logical View::Database Design::Tables::COMS_ORDER_DETAIL"
+				supplier   	"Logical View::Database Design::Tables::ORDER_DETAIL"
 				quidu      	"4E43EFCC00C2"
 				client_cardinality 	(value cardinality "1..n"))))
 		    (object Association "$UNNAMED$188"
@@ -4349,198 +4209,198 @@
 			roles      	(list role_list
 			    (object Role "$UNNAMED$189"
 				quid       	"4E43F1050112"
-				supplier   	"Logical View::Database Design::Tables::COMS_ORDER_DETAIL"
+				supplier   	"Logical View::Database Design::Tables::ORDER_DETAIL"
 				quidu      	"4E43EFCC00C2"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$190"
 				quid       	"4E43F1050116"
-				supplier   	"Logical View::Database Design::Tables::COMS_CYLINDER"
+				supplier   	"Logical View::Database Design::Tables::CYLINDER"
 				quidu      	"4E43F09E023A")))
 		    (object Association "placed by"
 			quid       	"4E43F16A0003"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$191"
 				quid       	"4E43F16A00AA"
-				supplier   	"Logical View::Database Design::Tables::COMS_CUSTOMER"
+				supplier   	"Logical View::Database Design::Tables::CUSTOMER"
 				quidu      	"4E43F11D00E2"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$192"
 				quid       	"4E43F16A00AE"
-				supplier   	"Logical View::Database Design::Tables::COMS_ORDER"
+				supplier   	"Logical View::Database Design::Tables::ORDER"
 				quidu      	"4E43DB960190")))
 		    (object Association "recorded for"
 			quid       	"4E43F23C0263"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$193"
 				quid       	"4E43F23C033B"
-				supplier   	"Logical View::Database Design::Tables::COMS_CYLINDER"
+				supplier   	"Logical View::Database Design::Tables::CYLINDER"
 				quidu      	"4E43F09E023A"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$194"
 				quid       	"4E43F23C033E"
-				supplier   	"Logical View::Database Design::Tables::COMS_CYLINDER_LOG"
+				supplier   	"Logical View::Database Design::Tables::CYLINDER_LOG"
 				quidu      	"4E43F21102C2")))
 		    (object Association "calculated for"
 			quid       	"4E43F4A3024B"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$195"
 				quid       	"4E43F4A3033B"
-				supplier   	"Logical View::Database Design::Tables::COMS_STEP"
+				supplier   	"Logical View::Database Design::Tables::STEP"
 				quidu      	"4E43F2AC02CA"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$196"
 				quid       	"4E43F4A3033D"
-				supplier   	"Logical View::Database Design::Tables::COMS_FORMULA"
+				supplier   	"Logical View::Database Design::Tables::FORMULA"
 				quidu      	"4E43F39C0033")))
 		    (object Association "performed at"
 			quid       	"4E43F4BD0172"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$197"
 				quid       	"4E43F4BD022A"
-				supplier   	"Logical View::Database Design::Tables::COMS_STEP"
+				supplier   	"Logical View::Database Design::Tables::STEP"
 				quidu      	"4E43F2AC02CA"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$198"
 				quid       	"4E43F4BD022E"
-				supplier   	"Logical View::Database Design::Tables::COMS_CYLINDER_LOG"
+				supplier   	"Logical View::Database Design::Tables::CYLINDER_LOG"
 				quidu      	"4E43F21102C2")))
 		    (object Association "$UNNAMED$199"
 			quid       	"4E43F4F3035A"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$200"
 				quid       	"4E43F4F401C2"
-				supplier   	"Logical View::Database Design::Tables::COMS_WORKFLOW"
+				supplier   	"Logical View::Database Design::Tables::WORKFLOW"
 				quidu      	"4E43F4C80203"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$201"
 				quid       	"4E43F4F401C5"
-				supplier   	"Logical View::Database Design::Tables::COMS_STEP"
+				supplier   	"Logical View::Database Design::Tables::STEP"
 				quidu      	"4E43F2AC02CA")))
 		    (object Association "occurs at"
 			quid       	"4E43F51D022B"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$202"
 				quid       	"4E43F51E0323"
-				supplier   	"Logical View::Database Design::Tables::COMS_WORKFLOW"
+				supplier   	"Logical View::Database Design::Tables::WORKFLOW"
 				quidu      	"4E43F4C80203"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$203"
 				quid       	"4E43F51E0327"
-				supplier   	"Logical View::Database Design::Tables::COMS_ERROR"
+				supplier   	"Logical View::Database Design::Tables::ERROR"
 				quidu      	"4E43F5060173")))
 		    (object Association "has error"
 			quid       	"4E43F525001A"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$204"
 				quid       	"4E43F5250113"
-				supplier   	"Logical View::Database Design::Tables::COMS_ERROR"
+				supplier   	"Logical View::Database Design::Tables::ERROR"
 				quidu      	"4E43F5060173"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$205"
 				quid       	"4E43F5250116"
-				supplier   	"Logical View::Database Design::Tables::COMS_CYLINDER_LOG"
+				supplier   	"Logical View::Database Design::Tables::CYLINDER_LOG"
 				quidu      	"4E43F21102C2")))
 		    (object Association "is part of"
 			quid       	"4E43F568027A"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$206"
 				quid       	"4E43F568030B"
-				supplier   	"Logical View::Database Design::Tables::COMS_DEPARTMENT"
+				supplier   	"Logical View::Database Design::Tables::DEPARTMENT"
 				quidu      	"4E43F542022B"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$207"
 				quid       	"4E43F568030D"
-				supplier   	"Logical View::Database Design::Tables::COMS_WORKFLOW"
+				supplier   	"Logical View::Database Design::Tables::WORKFLOW"
 				quidu      	"4E43F4C80203")))
 		    (object Association "works at"
 			quid       	"4E43F5A202DC"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$208"
 				quid       	"4E43F5A20372"
-				supplier   	"Logical View::Database Design::Tables::COMS_DEPARTMENT"
+				supplier   	"Logical View::Database Design::Tables::DEPARTMENT"
 				quidu      	"4E43F542022B"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$209"
 				quid       	"4E43F5A20376"
-				supplier   	"Logical View::Database Design::Tables::COMS_EMPLOYEE"
+				supplier   	"Logical View::Database Design::Tables::EMPLOYEE"
 				quidu      	"4E43F56E005A")))
 		    (object Association "performed by"
 			quid       	"4E43F5C000E2"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$210"
 				quid       	"4E43F5C00212"
-				supplier   	"Logical View::Database Design::Tables::COMS_EMPLOYEE"
+				supplier   	"Logical View::Database Design::Tables::EMPLOYEE"
 				quidu      	"4E43F56E005A"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$211"
 				quid       	"4E43F5C00215"
-				supplier   	"Logical View::Database Design::Tables::COMS_CYLINDER_LOG"
+				supplier   	"Logical View::Database Design::Tables::CYLINDER_LOG"
 				quidu      	"4E43F21102C2")))
 		    (object Association "$UNNAMED$212"
 			quid       	"4E43F621002B"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$213"
 				quid       	"4E43F62100B3"
-				supplier   	"Logical View::Database Design::Tables::COMS_EMPLOYEE"
+				supplier   	"Logical View::Database Design::Tables::EMPLOYEE"
 				quidu      	"4E43F56E005A"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$214"
 				quid       	"4E43F62100B8"
-				supplier   	"Logical View::Database Design::Tables::COMS_EMP_ROLE_RLTS"
+				supplier   	"Logical View::Database Design::Tables::EMP_ROLE_RLTS"
 				quidu      	"4E43F5CD025B")))
 		    (object Association "has role"
 			quid       	"4E43F637002C"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$215"
 				quid       	"4E43F63700D3"
-				supplier   	"Logical View::Database Design::Tables::COMS_ROLE"
+				supplier   	"Logical View::Database Design::Tables::ROLE"
 				quidu      	"4E43F62600CB"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$216"
 				quid       	"4E43F63700D5"
-				supplier   	"Logical View::Database Design::Tables::COMS_EMP_ROLE_RLTS"
+				supplier   	"Logical View::Database Design::Tables::EMP_ROLE_RLTS"
 				quidu      	"4E43F5CD025B")))
 		    (object Association "belongs to"
 			quid       	"4E43F67B0387"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$217"
 				quid       	"4E43F67C00AB"
-				supplier   	"Logical View::Database Design::Tables::COMS_ROLE"
+				supplier   	"Logical View::Database Design::Tables::ROLE"
 				quidu      	"4E43F62600CB"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$218"
 				quid       	"4E43F67C00AE"
-				supplier   	"Logical View::Database Design::Tables::COMS_ROLE_RIGHT_RLTS"
+				supplier   	"Logical View::Database Design::Tables::ROLE_RIGHT_RLTS"
 				quidu      	"4E43F65300CA")))
 		    (object Association "can access"
 			quid       	"4E43F6C90184"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$219"
 				quid       	"4E43F6C90223"
-				supplier   	"Logical View::Database Design::Tables::COMS_ACCESS_RIGHT"
+				supplier   	"Logical View::Database Design::Tables::ACCESS_RIGHT"
 				quidu      	"4E43F6BA03DA"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$220"
 				quid       	"4E43F6C90226"
-				supplier   	"Logical View::Database Design::Tables::COMS_ROLE_RIGHT_RLTS"
+				supplier   	"Logical View::Database Design::Tables::ROLE_RIGHT_RLTS"
 				quidu      	"4E43F65300CA")))
 		    (object Association "$UNNAMED$221"
 			quid       	"4E452D74016D"
 			roles      	(list role_list
 			    (object Role "$UNNAMED$222"
 				quid       	"4E452D7401F4"
-				supplier   	"Logical View::Database Design::Tables::COMS_FORMULA"
+				supplier   	"Logical View::Database Design::Tables::FORMULA"
 				quidu      	"4E43F39C0033"
 				is_navigable 	TRUE)
 			    (object Role "$UNNAMED$223"
 				quid       	"4E452D7401FB"
-				supplier   	"Logical View::Database Design::Tables::COMS_CYLINDER_LOG"
+				supplier   	"Logical View::Database Design::Tables::CYLINDER_LOG"
 				quidu      	"4E43F21102C2")))
 		    (object Class_Category "Tables"
 			quid       	"4E43DB8B0329"
 			exportControl 	"Public"
 			logical_models 	(list unit_reference_list
-			    (object Class "COMS_ORDER"
+			    (object Class "ORDER"
 				quid       	"4E43DB960190"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "orderId"
@@ -4578,7 +4438,7 @@
 					quid       	"4E43E6240040"
 					stereotype 	"FK1"
 					type       	"varchar")))
-			    (object Class "COMS_ORDER_DETAIL"
+			    (object Class "ORDER_DETAIL"
 				quid       	"4E43EFCC00C2"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "orderDetailId"
@@ -4601,7 +4461,7 @@
 				    (object ClassAttribute "colorCount"
 					quid       	"4E43F4180104"
 					type       	"int")))
-			    (object Class "COMS_CYLINDER"
+			    (object Class "CYLINDER"
 				quid       	"4E43F09E023A"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "cylinderId"
@@ -4639,7 +4499,7 @@
 				    (object ClassAttribute "area"
 					quid       	"4E43F48903C7"
 					type       	"int")))
-			    (object Class "COMS_CUSTOMER"
+			    (object Class "CUSTOMER"
 				quid       	"4E43F11D00E2"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "customerId"
@@ -4664,7 +4524,7 @@
 				    (object ClassAttribute "taxCode"
 					quid       	"4E43F15F01A5"
 					type       	"varchar")))
-			    (object Class "COMS_CYLINDER_LOG"
+			    (object Class "CYLINDER_LOG"
 				quid       	"4E43F21102C2"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "logId"
@@ -4703,7 +4563,7 @@
 					quid       	"4E43F2810117"
 					stereotype 	"FK5"
 					type       	"int")))
-			    (object Class "COMS_FORMULA"
+			    (object Class "FORMULA"
 				quid       	"4E43F39C0033"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "formulaId"
@@ -4735,7 +4595,7 @@
 				    (object ClassAttribute "updateUser"
 					quid       	"4E44D99F016B"
 					type       	"int")))
-			    (object Class "COMS_STEP"
+			    (object Class "STEP"
 				quid       	"4E43F2AC02CA"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "stepId"
@@ -4751,7 +4611,7 @@
 				    (object ClassAttribute "type"
 					quid       	"4E43F2CB0180"
 					type       	"varchar")))
-			    (object Class "COMS_WORKFLOW"
+			    (object Class "WORKFLOW"
 				quid       	"4E43F4C80203"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "workflowId"
@@ -4769,7 +4629,7 @@
 				    (object ClassAttribute "name"
 					quid       	"4E43F4EB028D"
 					type       	"varchar")))
-			    (object Class "COMS_ERROR"
+			    (object Class "ERROR"
 				quid       	"4E43F5060173"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "errorId"
@@ -4783,7 +4643,7 @@
 				    (object ClassAttribute "name"
 					quid       	"4E43F5170394"
 					type       	"varchar")))
-			    (object Class "COMS_DEPARTMENT"
+			    (object Class "DEPARTMENT"
 				quid       	"4E43F542022B"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "departmentId"
@@ -4793,7 +4653,7 @@
 				    (object ClassAttribute "name"
 					quid       	"4E43F55A00EB"
 					type       	"varchar")))
-			    (object Class "COMS_EMPLOYEE"
+			    (object Class "EMPLOYEE"
 				quid       	"4E43F56E005A"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "employeeId"
@@ -4831,22 +4691,18 @@
 				    (object ClassAttribute "updateUser"
 					quid       	"4E44D8B3024F"
 					type       	"varchar")))
-			    (object Class "COMS_EMP_ROLE_RLTS"
+			    (object Class "EMP_ROLE_RLTS"
 				quid       	"4E43F5CD025B"
 				class_attributes 	(list class_attribute_list
-				    (object ClassAttribute "relationId"
-					quid       	"4E43F604039F"
-					stereotype 	"PK"
-					type       	"int")
 				    (object ClassAttribute "employeeId"
 					quid       	"4E43F614028B"
-					stereotype 	"FK1"
+					stereotype 	"PK1"
 					type       	"int")
 				    (object ClassAttribute "roleId"
 					quid       	"4E43F6180347"
-					stereotype 	"FK2"
+					stereotype 	"PK2"
 					type       	"int")))
-			    (object Class "COMS_ROLE"
+			    (object Class "ROLE"
 				quid       	"4E43F62600CB"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "roleId"
@@ -4856,22 +4712,18 @@
 				    (object ClassAttribute "name"
 					quid       	"4E43F6300012"
 					type       	"int")))
-			    (object Class "COMS_ROLE_RIGHT_RLTS"
+			    (object Class "ROLE_RIGHT_RLTS"
 				quid       	"4E43F65300CA"
 				class_attributes 	(list class_attribute_list
-				    (object ClassAttribute "relationId"
-					quid       	"4E43F667002F"
-					stereotype 	"PK"
-					type       	"int")
 				    (object ClassAttribute "roleId"
 					quid       	"4E43F66D00A8"
-					stereotype 	"FK1"
+					stereotype 	"PK1"
 					type       	"int")
 				    (object ClassAttribute "rightId"
 					quid       	"4E43F670012D"
-					stereotype 	"FK2"
+					stereotype 	"PK2"
 					type       	"int")))
-			    (object Class "COMS_ACCESS_RIGHT"
+			    (object Class "ACCESS_RIGHT"
 				quid       	"4E43F6BA03DA"
 				class_attributes 	(list class_attribute_list
 				    (object ClassAttribute "rightId"
@@ -4892,7 +4744,7 @@
 			origin_x   	0
 			origin_y   	0
 			items      	(list diagram_item_list
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_CUSTOMER" @259
+			    (object ClassView "Class" "Logical View::Database Design::Tables::CUSTOMER" @259
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
@@ -4904,23 +4756,23 @@
 				    nlines     	1
 				    max_width  	456
 				    justify    	0
-				    label      	"COMS_CUSTOMER")
+				    label      	"CUSTOMER")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43F11D00E2"
 				compartment 	(object Compartment
 				    Parent_View 	@259
-				    location   	(1852, 1523)
+				    location   	(1852, 1526)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
 				    nlines     	8
-				    max_width  	459)
+				    max_width  	453)
 				width      	474
 				height     	486
 				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_ORDER" @260
+			    (object ClassView "Class" "Logical View::Database Design::Tables::ORDER" @260
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
@@ -4932,19 +4784,19 @@
 				    nlines     	1
 				    max_width  	562
 				    justify    	0
-				    label      	"COMS_ORDER")
+				    label      	"ORDER")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43DB960190"
 				compartment 	(object Compartment
 				    Parent_View 	@260
-				    location   	(1799, 687)
+				    location   	(1799, 690)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
 				    nlines     	12
-				    max_width  	562)
+				    max_width  	559)
 				width      	580
 				height     	686
 				autoResize 	TRUE)
@@ -4952,7 +4804,7 @@
 				location   	(2080, 1377)
 				label      	(object SegLabel @262
 				    Parent_View 	@261
-				    location   	(2178, 1366)
+				    location   	(2177, 1366)
 				    font       	(object Font
 					italics    	TRUE)
 				    anchor     	1
@@ -4986,239 +4838,95 @@
 					client     	@261
 					supplier   	@260
 					line_style 	0)))
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_ORDER_DETAIL" @265
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(2080, 240)
-				label      	(object ItemLabel
-				    Parent_View 	@265
-				    location   	(1840, 34)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	480
-				    justify    	0
-				    label      	"COMS_ORDER_DETAIL")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"4E43EFCC00C2"
-				compartment 	(object Compartment
-				    Parent_View 	@265
-				    location   	(1840, 92)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	7
-				    max_width  	484)
-				width      	498
-				height     	436
-				autoResize 	TRUE)
-			    (object AssociationViewNew "details of" @266
-				location   	(2080, 537)
-				label      	(object SegLabel @267
-				    Parent_View 	@266
-				    location   	(2178, 526)
-				    font       	(object Font
-					italics    	TRUE)
-				    anchor     	1
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	184
-				    justify    	0
-				    label      	"details of"
-				    pctDist    	2.133333
-				    height     	12
-				    orientation 	0)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"4E43F06F0372"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$186" @268
-					Parent_View 	@266
-					location   	(576, -551)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"4E43F0700062"
-					client     	@266
-					supplier   	@260
-					line_style 	0)
-				    (object RoleView "$UNNAMED$187" @269
-					Parent_View 	@266
-					location   	(576, -551)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"4E43F0700065"
-					client     	@266
-					supplier   	@265
-					line_style 	0
-					label      	(object SegLabel @270
-					    Parent_View 	@269
-					    location   	(2041, 498)
-					    anchor     	2
-					    anchor_loc 	1
-					    nlines     	1
-					    max_width  	15
-					    justify    	0
-					    label      	"1..*"
-					    pctDist    	0.493671
-					    height     	39
-					    orientation 	0))))
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_EMP_ROLE_RLTS" @271
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(320, 912)
-				label      	(object ItemLabel
-				    Parent_View 	@271
-				    location   	(55, 781)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	530
-				    justify    	0
-				    label      	"COMS_EMP_ROLE_RLTS")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"4E43F5CD025B"
-				compartment 	(object Compartment
-				    Parent_View 	@271
-				    location   	(55, 839)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	4
-				    max_width  	484)
-				width      	548
-				height     	286
-				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_ROLE" @272
+			    (object ClassView "Class" "Logical View::Database Design::Tables::ROLE" @265
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
 				location   	(320, 1280)
 				label      	(object ItemLabel
-				    Parent_View 	@272
+				    Parent_View 	@265
 				    location   	(144, 1174)
 				    fill_color 	13434879
 				    nlines     	1
 				    max_width  	352
 				    justify    	0
-				    label      	"COMS_ROLE")
+				    label      	"ROLE")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43F62600CB"
 				compartment 	(object Compartment
-				    Parent_View 	@272
-				    location   	(144, 1232)
+				    Parent_View 	@265
+				    location   	(144, 1235)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
 				    nlines     	3
-				    max_width  	356)
+				    max_width  	350)
 				width      	370
 				height     	236
 				autoResize 	TRUE)
-			    (object AssociationViewNew "has role" @273
-				location   	(320, 1108)
-				label      	(object SegLabel @274
-				    Parent_View 	@273
-				    location   	(235, 1096)
-				    font       	(object Font
-					italics    	TRUE)
-				    anchor     	1
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	158
-				    justify    	0
-				    label      	"has role"
-				    pctDist    	-0.916667
-				    height     	13
-				    orientation 	0)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"4E43F637002C"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$215" @275
-					Parent_View 	@273
-					location   	(32, -12)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"4E43F63700D3"
-					client     	@273
-					supplier   	@272
-					line_style 	0)
-				    (object RoleView "$UNNAMED$216" @276
-					Parent_View 	@273
-					location   	(32, -12)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"4E43F63700D5"
-					client     	@273
-					supplier   	@271
-					line_style 	0)))
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_ACCESS_RIGHT" @277
+			    (object ClassView "Class" "Logical View::Database Design::Tables::ACCESS_RIGHT" @266
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
 				location   	(320, 2000)
 				label      	(object ItemLabel
-				    Parent_View 	@277
-				    location   	(75, 1894)
+				    Parent_View 	@266
+				    location   	(137, 1894)
 				    fill_color 	13434879
 				    nlines     	1
-				    max_width  	490
+				    max_width  	366
 				    justify    	0
-				    label      	"COMS_ACCESS_RIGHT")
+				    label      	"ACCESS_RIGHT")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43F6BA03DA"
 				compartment 	(object Compartment
-				    Parent_View 	@277
-				    location   	(75, 1952)
+				    Parent_View 	@266
+				    location   	(137, 1955)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
 				    nlines     	3
-				    max_width  	368)
-				width      	508
+				    max_width  	363)
+				width      	384
 				height     	236
 				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_ROLE_RIGHT_RLTS" @278
+			    (object ClassView "Class" "Logical View::Database Design::Tables::ROLE_RIGHT_RLTS" @267
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
 				location   	(320, 1664)
 				label      	(object ItemLabel
-				    Parent_View 	@278
-				    location   	(41, 1533)
+				    Parent_View 	@267
+				    location   	(118, 1558)
 				    fill_color 	13434879
 				    nlines     	1
-				    max_width  	558
+				    max_width  	404
 				    justify    	0
-				    label      	"COMS_ROLE_RIGHT_RLTS")
+				    label      	"ROLE_RIGHT_RLTS")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43F65300CA"
 				compartment 	(object Compartment
-				    Parent_View 	@278
-				    location   	(41, 1591)
+				    Parent_View 	@267
+				    location   	(118, 1619)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
-				    nlines     	4
-				    max_width  	421)
-				width      	576
-				height     	286
+				    nlines     	3
+				    max_width  	384)
+				width      	422
+				height     	236
 				autoResize 	TRUE)
-			    (object AssociationViewNew "belongs to" @279
-				location   	(320, 1459)
-				label      	(object SegLabel @280
-				    Parent_View 	@279
-				    location   	(338, 1463)
+			    (object AssociationViewNew "belongs to" @268
+				location   	(320, 1471)
+				label      	(object SegLabel @269
+				    Parent_View 	@268
+				    location   	(338, 1475)
 				    font       	(object Font
 					italics    	TRUE)
 				    anchor     	1
@@ -5234,29 +4942,29 @@
 				line_color 	3342489
 				quidu      	"4E43F67B0387"
 				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$217" @281
-					Parent_View 	@279
-					location   	(32, -397)
+				    (object RoleView "$UNNAMED$217" @270
+					Parent_View 	@268
+					location   	(32, -385)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F67C00AB"
-					client     	@279
-					supplier   	@272
+					client     	@268
+					supplier   	@265
 					line_style 	0)
-				    (object RoleView "$UNNAMED$218" @282
-					Parent_View 	@279
-					location   	(32, -397)
+				    (object RoleView "$UNNAMED$218" @271
+					Parent_View 	@268
+					location   	(32, -385)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F67C00AE"
-					client     	@279
-					supplier   	@278
+					client     	@268
+					supplier   	@267
 					line_style 	0)))
-			    (object AssociationViewNew "can access" @283
-				location   	(320, 1844)
-				label      	(object SegLabel @284
-				    Parent_View 	@283
-				    location   	(318, 1837)
+			    (object AssociationViewNew "can access" @272
+				location   	(320, 1831)
+				label      	(object SegLabel @273
+				    Parent_View 	@272
+				    location   	(318, 1824)
 				    font       	(object Font
 					italics    	TRUE)
 				    anchor     	1
@@ -5272,79 +4980,223 @@
 				line_color 	3342489
 				quidu      	"4E43F6C90184"
 				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$219" @285
-					Parent_View 	@283
-					location   	(-32, 260)
+				    (object RoleView "$UNNAMED$219" @274
+					Parent_View 	@272
+					location   	(-32, 247)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F6C90223"
-					client     	@283
-					supplier   	@277
+					client     	@272
+					supplier   	@266
 					line_style 	0)
-				    (object RoleView "$UNNAMED$220" @286
-					Parent_View 	@283
-					location   	(-32, 260)
+				    (object RoleView "$UNNAMED$220" @275
+					Parent_View 	@272
+					location   	(-32, 247)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F6C90226"
-					client     	@283
-					supplier   	@278
+					client     	@272
+					supplier   	@267
 					line_style 	0)))
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_WORKFLOW" @287
+			    (object ClassView "Class" "Logical View::Database Design::Tables::ORDER_DETAIL" @276
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
-				location   	(928, 624)
+				location   	(2080, 240)
 				label      	(object ItemLabel
-				    Parent_View 	@287
-				    location   	(692, 468)
+				    Parent_View 	@276
+				    location   	(1840, 34)
 				    fill_color 	13434879
 				    nlines     	1
-				    max_width  	472
+				    max_width  	480
 				    justify    	0
-				    label      	"COMS_WORKFLOW")
+				    label      	"ORDER_DETAIL")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
-				quidu      	"4E43F4C80203"
+				quidu      	"4E43EFCC00C2"
 				compartment 	(object Compartment
-				    Parent_View 	@287
-				    location   	(692, 526)
+				    Parent_View 	@276
+				    location   	(1840, 95)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
-				    nlines     	5
-				    max_width  	475)
-				width      	490
-				height     	336
+				    nlines     	7
+				    max_width  	478)
+				width      	498
+				height     	436
 				autoResize 	TRUE)
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_DEPARTMENT" @288
+			    (object AssociationViewNew "details of" @277
+				location   	(2080, 537)
+				label      	(object SegLabel @278
+				    Parent_View 	@277
+				    location   	(2177, 526)
+				    font       	(object Font
+					italics    	TRUE)
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	184
+				    justify    	0
+				    label      	"details of"
+				    pctDist    	2.133333
+				    height     	12
+				    orientation 	0)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4E43F06F0372"
+				roleview_list 	(list RoleViews
+				    (object RoleView "$UNNAMED$186" @279
+					Parent_View 	@277
+					location   	(576, -551)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"4E43F0700062"
+					client     	@277
+					supplier   	@260
+					line_style 	0)
+				    (object RoleView "$UNNAMED$187" @280
+					Parent_View 	@277
+					location   	(576, -551)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"4E43F0700065"
+					client     	@277
+					supplier   	@276
+					line_style 	0
+					label      	(object SegLabel @281
+					    Parent_View 	@280
+					    location   	(2041, 498)
+					    anchor     	2
+					    anchor_loc 	1
+					    nlines     	1
+					    max_width  	15
+					    justify    	0
+					    label      	"1..*"
+					    pctDist    	0.493671
+					    height     	39
+					    orientation 	0))))
+			    (object ClassView "Class" "Logical View::Database Design::Tables::EMP_ROLE_RLTS" @282
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(320, 912)
+				label      	(object ItemLabel
+				    Parent_View 	@282
+				    location   	(78, 806)
+				    fill_color 	13434879
+				    nlines     	1
+				    max_width  	484
+				    justify    	0
+				    label      	"EMP_ROLE_RLTS")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4E43F5CD025B"
+				compartment 	(object Compartment
+				    Parent_View 	@282
+				    location   	(78, 867)
+				    icon_style 	"Icon"
+				    fill_color 	13434879
+				    anchor     	2
+				    nlines     	3
+				    max_width  	481)
+				width      	502
+				height     	236
+				autoResize 	TRUE)
+			    (object AssociationViewNew "has role" @283
+				location   	(320, 1095)
+				label      	(object SegLabel @284
+				    Parent_View 	@283
+				    location   	(235, 1083)
+				    font       	(object Font
+					italics    	TRUE)
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	158
+				    justify    	0
+				    label      	"has role"
+				    pctDist    	-0.916667
+				    height     	13
+				    orientation 	0)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4E43F637002C"
+				roleview_list 	(list RoleViews
+				    (object RoleView "$UNNAMED$215" @285
+					Parent_View 	@283
+					location   	(32, -25)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"4E43F63700D3"
+					client     	@283
+					supplier   	@265
+					line_style 	0)
+				    (object RoleView "$UNNAMED$216" @286
+					Parent_View 	@283
+					location   	(32, -25)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"4E43F63700D5"
+					client     	@283
+					supplier   	@282
+					line_style 	0)))
+			    (object ClassView "Class" "Logical View::Database Design::Tables::DEPARTMENT" @287
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
 				location   	(928, 128)
 				label      	(object ItemLabel
-				    Parent_View 	@288
+				    Parent_View 	@287
 				    location   	(683, 22)
 				    fill_color 	13434879
 				    nlines     	1
 				    max_width  	490
 				    justify    	0
-				    label      	"COMS_DEPARTMENT")
+				    label      	"DEPARTMENT")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43F542022B"
 				compartment 	(object Compartment
-				    Parent_View 	@288
-				    location   	(683, 80)
+				    Parent_View 	@287
+				    location   	(683, 83)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
 				    nlines     	3
-				    max_width  	493)
+				    max_width  	488)
 				width      	508
 				height     	236
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::Database Design::Tables::WORKFLOW" @288
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(928, 624)
+				label      	(object ItemLabel
+				    Parent_View 	@288
+				    location   	(692, 468)
+				    fill_color 	13434879
+				    nlines     	1
+				    max_width  	472
+				    justify    	0
+				    label      	"WORKFLOW")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4E43F4C80203"
+				compartment 	(object Compartment
+				    Parent_View 	@288
+				    location   	(692, 529)
+				    icon_style 	"Icon"
+				    fill_color 	13434879
+				    anchor     	2
+				    nlines     	5
+				    max_width  	469)
+				width      	490
+				height     	336
 				autoResize 	TRUE)
 			    (object AssociationViewNew "is part of" @289
 				location   	(928, 350)
@@ -5373,7 +5225,7 @@
 					line_color 	3342489
 					quidu      	"4E43F568030B"
 					client     	@289
-					supplier   	@288
+					supplier   	@287
 					line_style 	0)
 				    (object RoleView "$UNNAMED$207" @292
 					Parent_View 	@289
@@ -5382,9 +5234,9 @@
 					line_color 	3342489
 					quidu      	"4E43F568030D"
 					client     	@289
-					supplier   	@287
+					supplier   	@288
 					line_style 	0)))
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_CYLINDER" @293
+			    (object ClassView "Class" "Logical View::Database Design::Tables::CYLINDER" @293
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
@@ -5396,19 +5248,19 @@
 				    nlines     	1
 				    max_width  	500
 				    justify    	0
-				    label      	"COMS_CYLINDER")
+				    label      	"CYLINDER")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43F09E023A"
 				compartment 	(object Compartment
 				    Parent_View 	@293
-				    location   	(1254, 79)
+				    location   	(1254, 82)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
 				    nlines     	12
-				    max_width  	503)
+				    max_width  	497)
 				width      	518
 				height     	686
 				autoResize 	TRUE)
@@ -5425,7 +5277,7 @@
 					line_color 	3342489
 					quidu      	"4E43F1050112"
 					client     	@294
-					supplier   	@265
+					supplier   	@276
 					line_style 	0)
 				    (object RoleView "$UNNAMED$190" @296
 					Parent_View 	@294
@@ -5436,38 +5288,90 @@
 					client     	@294
 					supplier   	@293
 					line_style 	0)))
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_ERROR" @297
+			    (object ClassView "Class" "Logical View::Database Design::Tables::STEP" @297
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(1504, 1040)
+				label      	(object ItemLabel
+				    Parent_View 	@297
+				    location   	(1321, 884)
+				    fill_color 	13434879
+				    nlines     	1
+				    max_width  	366
+				    justify    	0
+				    label      	"STEP")
+				icon_style 	"Icon"
+				line_color 	3342489
+				fill_color 	13434879
+				quidu      	"4E43F2AC02CA"
+				compartment 	(object Compartment
+				    Parent_View 	@297
+				    location   	(1321, 945)
+				    icon_style 	"Icon"
+				    fill_color 	13434879
+				    anchor     	2
+				    nlines     	5
+				    max_width  	363)
+				width      	384
+				height     	336
+				autoResize 	TRUE)
+			    (object AssociationViewNew "$UNNAMED$199" @298
+				location   	(1235, 846)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"4E43F4F3035A"
+				roleview_list 	(list RoleViews
+				    (object RoleView "$UNNAMED$200" @299
+					Parent_View 	@298
+					location   	(-45, -194)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"4E43F4F401C2"
+					client     	@298
+					supplier   	@288
+					line_style 	0)
+				    (object RoleView "$UNNAMED$201" @300
+					Parent_View 	@298
+					location   	(-45, -194)
+					stereotype 	TRUE
+					line_color 	3342489
+					quidu      	"4E43F4F401C5"
+					client     	@298
+					supplier   	@297
+					line_style 	0)))
+			    (object ClassView "Class" "Logical View::Database Design::Tables::ERROR" @301
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
 				location   	(928, 1008)
 				label      	(object ItemLabel
-				    Parent_View 	@297
+				    Parent_View 	@301
 				    location   	(699, 877)
 				    fill_color 	13434879
 				    nlines     	1
 				    max_width  	458
 				    justify    	0
-				    label      	"COMS_ERROR")
+				    label      	"ERROR")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43F5060173"
 				compartment 	(object Compartment
-				    Parent_View 	@297
-				    location   	(699, 935)
+				    Parent_View 	@301
+				    location   	(699, 938)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
 				    nlines     	4
-				    max_width  	462)
+				    max_width  	456)
 				width      	476
 				height     	286
 				autoResize 	TRUE)
-			    (object AssociationViewNew "occurs at" @298
+			    (object AssociationViewNew "occurs at" @302
 				location   	(928, 828)
-				label      	(object SegLabel @299
-				    Parent_View 	@298
+				label      	(object SegLabel @303
+				    Parent_View 	@302
 				    location   	(834, 820)
 				    font       	(object Font
 					italics    	TRUE)
@@ -5484,80 +5388,80 @@
 				line_color 	3342489
 				quidu      	"4E43F51D022B"
 				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$202" @300
-					Parent_View 	@298
+				    (object RoleView "$UNNAMED$202" @304
+					Parent_View 	@302
 					location   	(256, -52)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F51E0323"
-					client     	@298
-					supplier   	@287
+					client     	@302
+					supplier   	@288
 					line_style 	0)
-				    (object RoleView "$UNNAMED$203" @301
-					Parent_View 	@298
+				    (object RoleView "$UNNAMED$203" @305
+					Parent_View 	@302
 					location   	(256, -52)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F51E0327"
-					client     	@298
-					supplier   	@297
+					client     	@302
+					supplier   	@301
 					line_style 	0)))
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_EMPLOYEE" @302
+			    (object ClassView "Class" "Logical View::Database Design::Tables::EMPLOYEE" @306
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
 				location   	(320, 352)
 				label      	(object ItemLabel
-				    Parent_View 	@302
+				    Parent_View 	@306
 				    location   	(66, 21)
 				    fill_color 	13434879
 				    nlines     	1
 				    max_width  	508
 				    justify    	0
-				    label      	"COMS_EMPLOYEE")
+				    label      	"EMPLOYEE")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43F56E005A"
 				compartment 	(object Compartment
-				    Parent_View 	@302
-				    location   	(66, 79)
+				    Parent_View 	@306
+				    location   	(66, 82)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
 				    nlines     	12
-				    max_width  	512)
+				    max_width  	506)
 				width      	526
 				height     	686
 				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$212" @303
-				location   	(320, 731)
+			    (object AssociationViewNew "$UNNAMED$212" @307
+				location   	(320, 744)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"4E43F621002B"
 				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$213" @304
-					Parent_View 	@303
-					location   	(32, -389)
+				    (object RoleView "$UNNAMED$213" @308
+					Parent_View 	@307
+					location   	(32, -376)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F62100B3"
-					client     	@303
-					supplier   	@302
+					client     	@307
+					supplier   	@306
 					line_style 	0)
-				    (object RoleView "$UNNAMED$214" @305
-					Parent_View 	@303
-					location   	(32, -389)
+				    (object RoleView "$UNNAMED$214" @309
+					Parent_View 	@307
+					location   	(32, -376)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F62100B8"
-					client     	@303
-					supplier   	@271
+					client     	@307
+					supplier   	@282
 					line_style 	0)))
-			    (object AssociationViewNew "works at" @306
+			    (object AssociationViewNew "works at" @310
 				location   	(628, 237)
-				label      	(object SegLabel @307
-				    Parent_View 	@306
+				label      	(object SegLabel @311
+				    Parent_View 	@310
 				    location   	(628, 275)
 				    font       	(object Font
 					italics    	TRUE)
@@ -5574,77 +5478,25 @@
 				line_color 	3342489
 				quidu      	"4E43F5A202DC"
 				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$208" @308
-					Parent_View 	@306
+				    (object RoleView "$UNNAMED$208" @312
+					Parent_View 	@310
 					location   	(372, -451)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F5A20372"
-					client     	@306
-					supplier   	@288
+					client     	@310
+					supplier   	@287
 					line_style 	0)
-				    (object RoleView "$UNNAMED$209" @309
-					Parent_View 	@306
+				    (object RoleView "$UNNAMED$209" @313
+					Parent_View 	@310
 					location   	(372, -451)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F5A20376"
-					client     	@306
-					supplier   	@302
+					client     	@310
+					supplier   	@306
 					line_style 	0)))
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_STEP" @310
-				ShowCompartmentStereotypes 	TRUE
-				IncludeAttribute 	TRUE
-				IncludeOperation 	TRUE
-				location   	(1504, 1040)
-				label      	(object ItemLabel
-				    Parent_View 	@310
-				    location   	(1321, 884)
-				    fill_color 	13434879
-				    nlines     	1
-				    max_width  	366
-				    justify    	0
-				    label      	"COMS_STEP")
-				icon_style 	"Icon"
-				line_color 	3342489
-				fill_color 	13434879
-				quidu      	"4E43F2AC02CA"
-				compartment 	(object Compartment
-				    Parent_View 	@310
-				    location   	(1321, 942)
-				    icon_style 	"Icon"
-				    fill_color 	13434879
-				    anchor     	2
-				    nlines     	5
-				    max_width  	368)
-				width      	384
-				height     	336
-				autoResize 	TRUE)
-			    (object AssociationViewNew "$UNNAMED$199" @311
-				location   	(1235, 846)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"4E43F4F3035A"
-				roleview_list 	(list RoleViews
-				    (object RoleView "$UNNAMED$200" @312
-					Parent_View 	@311
-					location   	(-45, -194)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"4E43F4F401C2"
-					client     	@311
-					supplier   	@287
-					line_style 	0)
-				    (object RoleView "$UNNAMED$201" @313
-					Parent_View 	@311
-					location   	(-45, -194)
-					stereotype 	TRUE
-					line_color 	3342489
-					quidu      	"4E43F4F401C5"
-					client     	@311
-					supplier   	@310
-					line_style 	0)))
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_FORMULA" @314
+			    (object ClassView "Class" "Logical View::Database Design::Tables::FORMULA" @314
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
@@ -5656,19 +5508,19 @@
 				    nlines     	1
 				    max_width  	440
 				    justify    	0
-				    label      	"COMS_FORMULA")
+				    label      	"FORMULA")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43F39C0033"
 				compartment 	(object Compartment
 				    Parent_View 	@314
-				    location   	(1300, 1489)
+				    location   	(1300, 1492)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
 				    nlines     	10
-				    max_width  	443)
+				    max_width  	438)
 				width      	458
 				height     	586
 				autoResize 	TRUE)
@@ -5676,7 +5528,7 @@
 				location   	(1510, 1313)
 				label      	(object SegLabel @316
 				    Parent_View 	@315
-				    location   	(1525, 1365)
+				    location   	(1526, 1365)
 				    font       	(object Font
 					italics    	TRUE)
 				    anchor     	1
@@ -5699,7 +5551,7 @@
 					line_color 	3342489
 					quidu      	"4E43F4A3033B"
 					client     	@315
-					supplier   	@310
+					supplier   	@297
 					line_style 	0)
 				    (object RoleView "$UNNAMED$196" @318
 					Parent_View 	@315
@@ -5710,7 +5562,7 @@
 					client     	@315
 					supplier   	@314
 					line_style 	0)))
-			    (object ClassView "Class" "Logical View::Database Design::Tables::COMS_CYLINDER_LOG" @319
+			    (object ClassView "Class" "Logical View::Database Design::Tables::CYLINDER_LOG" @319
 				ShowCompartmentStereotypes 	TRUE
 				IncludeAttribute 	TRUE
 				IncludeOperation 	TRUE
@@ -5722,19 +5574,19 @@
 				    nlines     	1
 				    max_width  	584
 				    justify    	0
-				    label      	"COMS_CYLINDER_LOG")
+				    label      	"CYLINDER_LOG")
 				icon_style 	"Icon"
 				line_color 	3342489
 				fill_color 	13434879
 				quidu      	"4E43F21102C2"
 				compartment 	(object Compartment
 				    Parent_View 	@319
-				    location   	(636, 1464)
+				    location   	(636, 1467)
 				    icon_style 	"Icon"
 				    fill_color 	13434879
 				    anchor     	2
 				    nlines     	11
-				    max_width  	587)
+				    max_width  	581)
 				width      	602
 				height     	636
 				autoResize 	TRUE)
@@ -5803,7 +5655,7 @@
 					line_color 	3342489
 					quidu      	"4E43F4BD022A"
 					client     	@324
-					supplier   	@310
+					supplier   	@297
 					line_style 	0)
 				    (object RoleView "$UNNAMED$198" @327
 					Parent_View 	@324
@@ -5818,7 +5670,7 @@
 				location   	(928, 1272)
 				label      	(object SegLabel @329
 				    Parent_View 	@328
-				    location   	(943, 1275)
+				    location   	(944, 1275)
 				    font       	(object Font
 					italics    	TRUE)
 				    anchor     	1
@@ -5841,7 +5693,7 @@
 					line_color 	3342489
 					quidu      	"4E43F5250113"
 					client     	@328
-					supplier   	@297
+					supplier   	@301
 					line_style 	0)
 				    (object RoleView "$UNNAMED$205" @331
 					Parent_View 	@328
@@ -5879,7 +5731,7 @@
 					line_color 	3342489
 					quidu      	"4E43F5C00212"
 					client     	@332
-					supplier   	@302
+					supplier   	@306
 					line_style 	0)
 				    (object RoleView "$UNNAMED$211" @335
 					Parent_View 	@332
@@ -5891,14 +5743,14 @@
 					supplier   	@319
 					line_style 	0)))
 			    (object AssociationViewNew "$UNNAMED$221" @336
-				location   	(1259, 1712)
+				location   	(1224, 1712)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"4E452D74016D"
 				roleview_list 	(list RoleViews
 				    (object RoleView "$UNNAMED$222" @337
 					Parent_View 	@336
-					location   	(331, 0)
+					location   	(296, 0)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E452D7401F4"
@@ -5907,7 +5759,7 @@
 					line_style 	0)
 				    (object RoleView "$UNNAMED$223" @338
 					Parent_View 	@336
-					location   	(331, 0)
+					location   	(296, 0)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E452D7401FB"
@@ -6200,6 +6052,7 @@
 				    anchor_loc 	3
 				    nlines     	2
 				    max_width  	441
+				    justify    	0
 				    label      	"WebService.wcs")
 				icon       	"control"
 				icon_style 	"Icon"
