@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormWorkflowEditor));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.panelDraw = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.panelDraw = new System.Windows.Forms.Panel();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -57,6 +57,20 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             // 
+            // panelDraw
+            // 
+            this.panelDraw.AllowDrop = true;
+            this.panelDraw.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDraw.Location = new System.Drawing.Point(0, 0);
+            this.panelDraw.Name = "panelDraw";
+            this.panelDraw.Size = new System.Drawing.Size(470, 446);
+            this.panelDraw.TabIndex = 0;
+            this.panelDraw.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelDraw_DragDrop);
+            this.panelDraw.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelDraw_DragEnter);
+            this.panelDraw.DragOver += new System.Windows.Forms.DragEventHandler(this.panelDraw_DragOver);
+            this.panelDraw.DragLeave += new System.EventHandler(this.panelDraw_DragLeave);
+            this.panelDraw.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDraw_Paint);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -75,15 +89,6 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "toolStripButton1";
-            // 
-            // panelDraw
-            // 
-            this.panelDraw.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDraw.Location = new System.Drawing.Point(0, 0);
-            this.panelDraw.Name = "panelDraw";
-            this.panelDraw.Size = new System.Drawing.Size(470, 446);
-            this.panelDraw.TabIndex = 0;
-            this.panelDraw.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDraw_Paint);
             // 
             // FormWorkflowEditor
             // 

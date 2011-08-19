@@ -61,6 +61,8 @@
             // 
             this.listBoxWorkflows.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxWorkflows.FormattingEnabled = true;
+            this.listBoxWorkflows.Items.AddRange(new object[] {
+            "Printing"});
             this.listBoxWorkflows.Location = new System.Drawing.Point(0, 0);
             this.listBoxWorkflows.Name = "listBoxWorkflows";
             this.listBoxWorkflows.Size = new System.Drawing.Size(342, 448);

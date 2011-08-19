@@ -12,8 +12,10 @@ namespace WorkflowApplication
 {
     public class DrawingBlock
     {
-        private const int WIDTH = 100;
-        private const int HEIGHT = 60;
+        private const int HALF_WIDTH = 50;
+        private const int HALF_HEIGHT = 30;
+        private const int WIDTH = HALF_WIDTH * 2;
+        private const int HEIGHT = HALF_HEIGHT * 2;
         
         private Graphics g_;
         private Rectangle rect_;
@@ -34,9 +36,9 @@ namespace WorkflowApplication
         public DrawingBlock(Graphics g, int top, int left, String title)
         {
             g_ = g;
-            point1_ = new Point(left, top);
-            point2_ = new Point(left + WIDTH, top + HEIGHT);
-            rect_ = new Rectangle(left, top, WIDTH, HEIGHT);
+            point1_ = new Point(left - HALF_WIDTH, top - HALF_HEIGHT);
+            point2_ = new Point(left + HALF_WIDTH, top + HALF_HEIGHT);
+            rect_ = new Rectangle(left - HALF_WIDTH, top - HALF_HEIGHT, WIDTH, HEIGHT);
             title_ = title;
         }
 
