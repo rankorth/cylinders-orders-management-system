@@ -13,6 +13,7 @@ namespace WorkflowApplication
     public partial class FormWorkflowEditor : Form
     {
         private Point tmpBlockPoint_ = new Point(0, 0);  // used for drawing any drag and drop action
+        private String tmpBlockText_ = "";
         private bool doTmpBlockDraw_ = false;       // false = don't draw
         ArrayList listOfBlocks_ = new ArrayList();
 
@@ -20,13 +21,12 @@ namespace WorkflowApplication
         {
             InitializeComponent();
 
-            DrawingBlock dbk = new DrawingBlock(50, 30, "Printing");
+            DrawingBlock dbk = new DrawingBlock(80, 30, "Printing");
             listOfBlocks_.Add(dbk);
-            
+
             DrawingBlock dbk2 = new DrawingBlock(120, 120, "Engraving");
             listOfBlocks_.Add(dbk2);
         }
-
 
         private void panelDraw_Paint(object sender, PaintEventArgs e)
         {
@@ -37,7 +37,7 @@ namespace WorkflowApplication
                 dbk.drawBlock(g);
             }
 
-            DrawingBlock dbktmp = new DrawingBlock(tmpBlockPoint_.Y, tmpBlockPoint_.X, "Engraving");
+            DrawingBlock dbktmp = new DrawingBlock(tmpBlockPoint_.Y, tmpBlockPoint_.X, tmpBlockText_);
             if (doTmpBlockDraw_) dbktmp.drawBlock(g);
         }
 
@@ -48,9 +48,19 @@ namespace WorkflowApplication
             panelDraw.Refresh();
         }
 
+        /// <summary>
+        /// Completed the drag and drop opeartion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void panelDraw_DragDrop(object sender, DragEventArgs e)
         {
-            e.Effect = DragDropEffects.Copy;
+            // add to the array list of drawing blocks (workflow)
+            DrawingBlock dbk = new DrawingBlock(tmpBlockPoint_.Y, tmpBlockPoint_.X, tmpBlockText_);
+            listOfBlocks_.Add(dbk);
+
+            doTmpBlockDraw_ = false;
+            panelDraw.Refresh();
         }
 
         /// <summary>
@@ -61,7 +71,8 @@ namespace WorkflowApplication
         private void panelDraw_DragOver(object sender, DragEventArgs e)
         {
             //indexOfItemUnderMouseToDrop = listBox2.IndexFromPoint(listBox2.PointToClient(new Point(e.X, e.Y)));
-            
+            e.Effect = DragDropEffects.Copy;
+
             // enable drawing of tmpblock
             Console.WriteLine(e.Data.GetData(DataFormats.Text));
             Console.WriteLine(e.X.ToString() + "," + e.Y.ToString());
@@ -75,7 +86,8 @@ namespace WorkflowApplication
             // to draw on g
             
             tmpBlockPoint_.X = e.X - this.MdiParent.Location.X - this.Location.X;
-            tmpBlockPoint_.Y = e.Y - this.MdiParent.Location.Y - this.Location.Y - 110;
+            tmpBlockPoint_.Y = e.Y - this.MdiParent.Location.Y - this.Location.Y - 110; // hardcode this value first
+            tmpBlockText_ = e.Data.GetData(DataFormats.Text).ToString();
             panelDraw.Refresh();
 
             // if  the MouseDown event set the DragDrop operation to be a move event
