@@ -14,6 +14,7 @@ namespace WorkflowApplication
         // declare for forms
         FormStepList frmStepList;
         FormWorkflowList frmWorkflowList;
+        FormAbout frmAbout;
 
         // private methods
         private void ShowWorkflowForm()
@@ -28,9 +29,16 @@ namespace WorkflowApplication
             frmStepList.BringToFront();
         }
 
+        private void ShowAboutForm()
+        {
+            frmAbout.ShowDialog();
+        }
+
         public FormMain()
         {
             InitializeComponent();
+
+            frmAbout = new FormAbout();
 
             frmWorkflowList = new FormWorkflowList();
             frmWorkflowList.MdiParent = this;
@@ -66,6 +74,11 @@ namespace WorkflowApplication
             // populate data
             ShowWorkflowForm();
             ShowStepForm();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowAboutForm();
         }
 
     }

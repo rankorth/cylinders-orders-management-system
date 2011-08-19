@@ -45,7 +45,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.listBoxWorkflows);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(342, 448);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(342, 435);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -65,7 +65,7 @@
             "Printing"});
             this.listBoxWorkflows.Location = new System.Drawing.Point(0, 0);
             this.listBoxWorkflows.Name = "listBoxWorkflows";
-            this.listBoxWorkflows.Size = new System.Drawing.Size(342, 448);
+            this.listBoxWorkflows.Size = new System.Drawing.Size(342, 435);
             this.listBoxWorkflows.Sorted = true;
             this.listBoxWorkflows.TabIndex = 0;
             this.listBoxWorkflows.DoubleClick += new System.EventHandler(this.listBoxWorkflows_DoubleClick);
@@ -77,17 +77,17 @@
             this.toolStripButtonAddWorkflow});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(35, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(99, 38);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripButtonAddWorkflow
             // 
-            this.toolStripButtonAddWorkflow.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonAddWorkflow.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddWorkflow.Image")));
             this.toolStripButtonAddWorkflow.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAddWorkflow.Name = "toolStripButtonAddWorkflow";
-            this.toolStripButtonAddWorkflow.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonAddWorkflow.Size = new System.Drawing.Size(87, 35);
             this.toolStripButtonAddWorkflow.Text = "Add Workflow";
+            this.toolStripButtonAddWorkflow.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonAddWorkflow.Click += new System.EventHandler(this.toolStripButtonAddWorkflow_Click);
             // 
             // FormWorkflowList

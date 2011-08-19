@@ -45,7 +45,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.listBoxSteps);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(342, 424);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(342, 411);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -65,7 +65,7 @@
             "Printing Cylinder"});
             this.listBoxSteps.Location = new System.Drawing.Point(0, 0);
             this.listBoxSteps.Name = "listBoxSteps";
-            this.listBoxSteps.Size = new System.Drawing.Size(342, 424);
+            this.listBoxSteps.Size = new System.Drawing.Size(342, 411);
             this.listBoxSteps.Sorted = true;
             this.listBoxSteps.TabIndex = 0;
             this.listBoxSteps.QueryContinueDrag += new System.Windows.Forms.QueryContinueDragEventHandler(this.listBoxSteps_QueryContinueDrag);
@@ -78,17 +78,17 @@
             this.toolStripButtonAddStep});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(35, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(102, 38);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripButtonAddStep
             // 
-            this.toolStripButtonAddStep.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonAddStep.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddStep.Image")));
             this.toolStripButtonAddStep.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAddStep.Name = "toolStripButtonAddStep";
-            this.toolStripButtonAddStep.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonAddStep.Size = new System.Drawing.Size(59, 35);
             this.toolStripButtonAddStep.Text = "Add Step";
+            this.toolStripButtonAddStep.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButtonAddStep.Click += new System.EventHandler(this.toolStripButtonAddStep_Click);
             // 
             // FormStepList

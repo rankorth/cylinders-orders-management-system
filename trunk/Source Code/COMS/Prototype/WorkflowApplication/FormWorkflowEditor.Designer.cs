@@ -33,6 +33,7 @@
             this.panelDraw = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripCoord = new System.Windows.Forms.ToolStripLabel();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -45,7 +46,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.panelDraw);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(470, 446);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(470, 433);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -63,32 +64,40 @@
             this.panelDraw.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDraw.Location = new System.Drawing.Point(0, 0);
             this.panelDraw.Name = "panelDraw";
-            this.panelDraw.Size = new System.Drawing.Size(470, 446);
+            this.panelDraw.Size = new System.Drawing.Size(470, 433);
             this.panelDraw.TabIndex = 0;
             this.panelDraw.DragDrop += new System.Windows.Forms.DragEventHandler(this.panelDraw_DragDrop);
             this.panelDraw.DragEnter += new System.Windows.Forms.DragEventHandler(this.panelDraw_DragEnter);
             this.panelDraw.DragOver += new System.Windows.Forms.DragEventHandler(this.panelDraw_DragOver);
             this.panelDraw.DragLeave += new System.EventHandler(this.panelDraw_DragLeave);
             this.panelDraw.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDraw_Paint);
+            this.panelDraw.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseMove);
             // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.toolStripCoord});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(35, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(131, 38);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(89, 35);
+            this.toolStripButton1.Text = "Save Workflow";
+            this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // toolStripCoord
+            // 
+            this.toolStripCoord.Name = "toolStripCoord";
+            this.toolStripCoord.Size = new System.Drawing.Size(30, 35);
+            this.toolStripCoord.Text = "(0,0)";
             // 
             // FormWorkflowEditor
             // 
@@ -115,6 +124,7 @@
         private System.Windows.Forms.Panel panelDraw;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripLabel toolStripCoord;
 
     }
 }
