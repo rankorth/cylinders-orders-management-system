@@ -19,7 +19,12 @@ namespace WorkflowApplication
         public FormWorkflowEditor()
         {
             InitializeComponent();
-            listOfBlocks_.Add("");
+
+            DrawingBlock dbk = new DrawingBlock(50, 30, "Printing");
+            listOfBlocks_.Add(dbk);
+            
+            DrawingBlock dbk2 = new DrawingBlock(120, 120, "Engraving");
+            listOfBlocks_.Add(dbk2);
         }
 
 
@@ -27,14 +32,13 @@ namespace WorkflowApplication
         {
             Graphics g = e.Graphics;
 
-            DrawingBlock dbk = new DrawingBlock(g, 50, 30, "Printing");
-            dbk.drawBlock();
+            foreach (DrawingBlock dbk in listOfBlocks_)
+            {
+                dbk.drawBlock(g);
+            }
 
-            DrawingBlock dbk2 = new DrawingBlock(g, 120, 120, "Engraving");
-            dbk2.drawBlock();
-
-            DrawingBlock dbktmp = new DrawingBlock(g, tmpBlockPoint_.Y, tmpBlockPoint_.X, "Engraving");
-            if (doTmpBlockDraw_) dbktmp.drawBlock();
+            DrawingBlock dbktmp = new DrawingBlock(tmpBlockPoint_.Y, tmpBlockPoint_.X, "Engraving");
+            if (doTmpBlockDraw_) dbktmp.drawBlock(g);
         }
 
         private void panelDraw_DragEnter(object sender, DragEventArgs e)

@@ -17,7 +17,7 @@ namespace WorkflowApplication
         private const int WIDTH = HALF_WIDTH * 2;
         private const int HEIGHT = HALF_HEIGHT * 2;
         
-        private Graphics g_;
+        //private Graphics g_;
         private Rectangle rect_;
         private Point point1_;
         private Point point2_;
@@ -33,9 +33,9 @@ namespace WorkflowApplication
         /// <param name="top"></param>
         /// <param name="left"></param>
         /// <param name="title"></param>
-        public DrawingBlock(Graphics g, int top, int left, String title)
+        public DrawingBlock(int top, int left, String title)
         {
-            g_ = g;
+            //g_ = g;
             point1_ = new Point(left - HALF_WIDTH, top - HALF_HEIGHT);
             point2_ = new Point(left + HALF_WIDTH, top + HALF_HEIGHT);
             rect_ = new Rectangle(left - HALF_WIDTH, top - HALF_HEIGHT, WIDTH, HEIGHT);
@@ -45,11 +45,11 @@ namespace WorkflowApplication
         /// <summary>
         /// Draws the block with all the relevant info
         /// </summary>
-        public void drawBlock()
+        public void drawBlock(Graphics g)
         {
-            g_.DrawLine(penBlack_, point1_, point2_);
-            g_.DrawRectangle(penBlack_, rect_);
-            g_.DrawString(title_, fontArial_, Brushes.Black, new PointF(point1_.X, point1_.Y+HEIGHT));
+            g.DrawLine(penBlack_, point1_, point2_);
+            g.DrawRectangle(penBlack_, rect_);
+            g.DrawString(title_, fontArial_, Brushes.Black, new PointF(point1_.X, point1_.Y+HEIGHT));
         }
     }
 }
