@@ -37,7 +37,7 @@ namespace WorkflowApplication
                 dbk.drawBlock(g);
             }
 
-            DrawingBlock dbktmp = new DrawingBlock(tmpBlockPoint_.Y, tmpBlockPoint_.X, tmpBlockText_);
+            DrawingBlock dbktmp = new DrawingBlock(tmpBlockPoint_.X, tmpBlockPoint_.Y, tmpBlockText_);
             if (doTmpBlockDraw_) dbktmp.drawBlock(g);
         }
 
@@ -56,7 +56,7 @@ namespace WorkflowApplication
         private void panelDraw_DragDrop(object sender, DragEventArgs e)
         {
             // add to the array list of drawing blocks (workflow)
-            DrawingBlock dbk = new DrawingBlock(tmpBlockPoint_.Y, tmpBlockPoint_.X, tmpBlockText_);
+            DrawingBlock dbk = new DrawingBlock(tmpBlockPoint_.X, tmpBlockPoint_.Y, tmpBlockText_);
             listOfBlocks_.Add(dbk);
 
             doTmpBlockDraw_ = false;
@@ -116,6 +116,32 @@ namespace WorkflowApplication
         private void panelDraw_MouseMove(object sender, MouseEventArgs e)
         {
             toolStripCoord.Text = "(" + e.X.ToString() + "," + e.Y.ToString() + ")";
+            bool doRefresh = false;
+
+            // set color
+            for (int i = 0; i < listOfBlocks_.Count; i++)
+            {
+                doRefresh = ((DrawingBlock)listOfBlocks_[i]).setHighlight(e.X, e.Y) || doRefresh;                
+            }
+
+            if (doRefresh) panelDraw.Refresh();
+        }
+
+        private void panelDraw_QueryContinueDrag(object sender, QueryContinueDragEventArgs e)
+        {
+
+        }
+
+        private void panelDraw_MouseDown(object sender, MouseEventArgs e)
+        {
+            // move
+            for (int i = 0; i < listOfBlocks_.Count; i++)
+            {
+                if (((DrawingBlock)listOfBlocks_[i]).detectBlock(e.X, e.Y))
+                {
+                    //panelDraw.DoDragDrop(listOfBlocks_, DragDropEffects.Move);
+                }
+            }   // end for
         }
 
     }

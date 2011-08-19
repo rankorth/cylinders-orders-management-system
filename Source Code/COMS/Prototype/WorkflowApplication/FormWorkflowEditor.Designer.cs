@@ -71,6 +71,8 @@
             this.panelDraw.DragOver += new System.Windows.Forms.DragEventHandler(this.panelDraw_DragOver);
             this.panelDraw.DragLeave += new System.EventHandler(this.panelDraw_DragLeave);
             this.panelDraw.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDraw_Paint);
+            this.panelDraw.QueryContinueDrag += new System.Windows.Forms.QueryContinueDragEventHandler(this.panelDraw_QueryContinueDrag);
+            this.panelDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseDown);
             this.panelDraw.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelDraw_MouseMove);
             // 
             // toolStrip1
