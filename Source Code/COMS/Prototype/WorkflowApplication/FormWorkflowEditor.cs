@@ -21,11 +21,11 @@ namespace WorkflowApplication
         {
             InitializeComponent();
 
-            DrawingBlock dbk = new DrawingBlock(80, 30, "Printing");
-            listOfBlocks_.Add(dbk);
+            //DrawingBlock dbk = new DrawingBlock(80, 30, "Printing");
+            //listOfBlocks_.Add(dbk);
 
-            DrawingBlock dbk2 = new DrawingBlock(120, 120, "Engraving");
-            listOfBlocks_.Add(dbk2);
+            //DrawingBlock dbk2 = new DrawingBlock(120, 120, "Engraving");
+            //listOfBlocks_.Add(dbk2);
         }
 
         private void panelDraw_Paint(object sender, PaintEventArgs e)
@@ -76,19 +76,27 @@ namespace WorkflowApplication
             // enable drawing of tmpblock
             Console.WriteLine(e.Data.GetData(DataFormats.Text));
             Console.WriteLine(e.X.ToString() + "," + e.Y.ToString());
-            Console.WriteLine(this.MdiParent.Location.X.ToString() + "," + this.MdiParent.Location.Y.ToString());
-            Console.WriteLine(this.Location.X.ToString() + "," + this.Location.Y.ToString());
-            Console.WriteLine(panelDraw.Location.X.ToString() + "," + panelDraw.Location.Y.ToString());
+            //Console.WriteLine(this.MdiParent.Location.X.ToString() + "," + this.MdiParent.Location.Y.ToString());
+            //Console.WriteLine(this.Location.X.ToString() + "," + this.Location.Y.ToString());
+            //Console.WriteLine(toolStripContainer1.ContentPanel.Location.X.ToString() + "," + toolStripContainer1.ContentPanel.Location.Y.ToString());
 
             // e.X -> entire screen offset
             // this.MdiParent.Location.X -> MdiParent offset
             // this.location.X -> mdi child window offset
             // to draw on g
-            
-            tmpBlockPoint_.X = e.X - this.MdiParent.Location.X - this.Location.X;
-            tmpBlockPoint_.Y = e.Y - this.MdiParent.Location.Y - this.Location.Y - 110; // hardcode this value first
+
+            // Calculate the startPoint by using the PointToScreen 
+            // method.
+            Point startPoint = panelDraw.PointToScreen(panelDraw.Location);
+            Console.WriteLine(startPoint.X.ToString() + "," + startPoint.Y.ToString());
+
+            tmpBlockPoint_.X = e.X - startPoint.X;
+            tmpBlockPoint_.Y = e.Y - startPoint.Y;
+
             tmpBlockText_ = e.Data.GetData(DataFormats.Text).ToString();
             panelDraw.Refresh();
+
+            toolStripCoord.Text = "(" + tmpBlockPoint_.X.ToString() + "," + tmpBlockPoint_.Y.ToString() + ")";
 
             // if  the MouseDown event set the DragDrop operation to be a move event
             // immediately delete the item.  This has the desirable effect of
@@ -104,5 +112,11 @@ namespace WorkflowApplication
             // disable drawing of tmpblock
             doTmpBlockDraw_ = false;
         }
+
+        private void panelDraw_MouseMove(object sender, MouseEventArgs e)
+        {
+            toolStripCoord.Text = "(" + e.X.ToString() + "," + e.Y.ToString() + ")";
+        }
+
     }
 }
