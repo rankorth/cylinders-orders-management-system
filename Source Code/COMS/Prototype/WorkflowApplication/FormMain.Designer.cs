@@ -71,14 +71,14 @@
             // workflowToolStripMenuItem
             // 
             this.workflowToolStripMenuItem.Name = "workflowToolStripMenuItem";
-            this.workflowToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.workflowToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.workflowToolStripMenuItem.Text = "Workflow";
             this.workflowToolStripMenuItem.Click += new System.EventHandler(this.workflowToolStripMenuItem_Click);
             // 
             // stepToolStripMenuItem
             // 
             this.stepToolStripMenuItem.Name = "stepToolStripMenuItem";
-            this.stepToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stepToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.stepToolStripMenuItem.Text = "Step";
             this.stepToolStripMenuItem.Click += new System.EventHandler(this.stepToolStripMenuItem_Click);
             // 
@@ -95,6 +95,7 @@
             this.testMenuToolStripMenuItem.Name = "testMenuToolStripMenuItem";
             this.testMenuToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.testMenuToolStripMenuItem.Text = "TestMenu";
+            this.testMenuToolStripMenuItem.Visible = false;
             // 
             // populateDataToolStripMenuItem
             // 

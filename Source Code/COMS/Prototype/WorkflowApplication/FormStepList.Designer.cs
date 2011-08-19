@@ -61,11 +61,15 @@
             // 
             this.listBoxSteps.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxSteps.FormattingEnabled = true;
+            this.listBoxSteps.Items.AddRange(new object[] {
+            "Printing Cylinder"});
             this.listBoxSteps.Location = new System.Drawing.Point(0, 0);
             this.listBoxSteps.Name = "listBoxSteps";
             this.listBoxSteps.Size = new System.Drawing.Size(342, 424);
             this.listBoxSteps.Sorted = true;
             this.listBoxSteps.TabIndex = 0;
+            this.listBoxSteps.QueryContinueDrag += new System.Windows.Forms.QueryContinueDragEventHandler(this.listBoxSteps_QueryContinueDrag);
+            this.listBoxSteps.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBoxSteps_MouseDown);
             // 
             // toolStrip1
             // 
