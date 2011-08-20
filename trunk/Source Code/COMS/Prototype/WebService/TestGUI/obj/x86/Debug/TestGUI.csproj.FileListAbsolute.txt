@@ -1,0 +1,10 @@
+C:\Users\TIN\Desktop\Prototype\WebService\TestGUI\bin\Debug\TestGUI.exe.config
+C:\Users\TIN\Desktop\Prototype\WebService\TestGUI\bin\Debug\TestGUI.exe
+C:\Users\TIN\Desktop\Prototype\WebService\TestGUI\bin\Debug\TestGUI.pdb
+C:\Users\TIN\Desktop\Prototype\WebService\TestGUI\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\TIN\Desktop\Prototype\WebService\TestGUI\obj\x86\Debug\TestGUI.Form1.resources
+C:\Users\TIN\Desktop\Prototype\WebService\TestGUI\obj\x86\Debug\TestGUI.Properties.Resources.resources
+C:\Users\TIN\Desktop\Prototype\WebService\TestGUI\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\TIN\Desktop\Prototype\WebService\TestGUI\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\TIN\Desktop\Prototype\WebService\TestGUI\obj\x86\Debug\TestGUI.exe
+C:\Users\TIN\Desktop\Prototype\WebService\TestGUI\obj\x86\Debug\TestGUI.pdb
