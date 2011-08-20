@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using WorkflowApplication.WorkflowServiceRef;
 
 namespace WorkflowApplication
 {
@@ -16,7 +17,7 @@ namespace WorkflowApplication
         private String tmpBlockText_ = "";
         private bool doTmpBlockDraw_ = false;       // false = don't draw
         ArrayList listOfBlocks_ = new ArrayList();
-
+        public string WorkflowName="";
         public FormWorkflowEditor()
         {
             InitializeComponent();
@@ -61,6 +62,11 @@ namespace WorkflowApplication
 
             doTmpBlockDraw_ = false;
             panelDraw.Refresh();
+
+            WorkflowClient wfClient = new WorkflowClient();
+            wfClient.insertStep(WorkflowName, tmpBlockText_);
+            wfClient.Close();
+
         }
 
         /// <summary>
@@ -142,6 +148,11 @@ namespace WorkflowApplication
                     //panelDraw.DoDragDrop(listOfBlocks_, DragDropEffects.Move);
                 }
             }   // end for
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            
         }
 
     }

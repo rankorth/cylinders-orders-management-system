@@ -99,5 +99,10 @@ namespace WorkflowApplication
             ismouseover_ = isHighlighted;
             return return_val;
         }
+
+        public string getTitle()
+        {
+            return title_;
+        }
     }
 }
