@@ -99,6 +99,7 @@
             this.Name = "FormWorkflowList";
             this.Text = "List of Workflows";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormWorkflowList_FormClosing);
+            this.Load += new System.EventHandler(this.FormWorkflowList_Load);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();

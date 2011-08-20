@@ -14,7 +14,7 @@ namespace WorkflowApplication
         // declare for forms
         FormStepList frmStepList;
         FormWorkflowList frmWorkflowList;
-        FormAbout frmAbout;
+       // FormAbout frmAbout;
 
         // private methods
         private void ShowWorkflowForm()
@@ -31,14 +31,14 @@ namespace WorkflowApplication
 
         private void ShowAboutForm()
         {
-            frmAbout.ShowDialog();
+           // frmAbout.ShowDialog();
         }
 
         public FormMain()
         {
             InitializeComponent();
 
-            frmAbout = new FormAbout();
+           // frmAbout = new FormAbout();
 
             frmWorkflowList = new FormWorkflowList();
             frmWorkflowList.MdiParent = this;
@@ -52,6 +52,7 @@ namespace WorkflowApplication
             FormWorkflowEditor frmWFEditor = new FormWorkflowEditor();
             frmWFEditor.MdiParent = this;
             frmWFEditor.Text += " - " + strWorkflowName;
+            frmWFEditor.WorkflowName = strWorkflowName;
             frmWFEditor.Show();
         }
 

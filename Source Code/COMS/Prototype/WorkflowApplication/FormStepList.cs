@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WorkflowApplication.WorkflowServiceRef;
 
 namespace WorkflowApplication
 {
@@ -36,7 +37,13 @@ namespace WorkflowApplication
                 //Workflow wf = new Workflow();
 
                 // refresh the workflow list
-                listBoxSteps.Items.Add(frmStepProp.StepName);                
+                //listBoxSteps.Items.Add(frmStepProp.StepName);                
+                WorkflowClient wfClient = new WorkflowClient();
+                wfClient.createStep(frmStepProp.StepName);
+                listBoxSteps.Items.Clear();
+                listBoxSteps.Items.AddRange(wfClient.getSteps());
+
+                wfClient.Close();
             }
         }
 
@@ -95,6 +102,16 @@ namespace WorkflowApplication
             //        e.Action = DragAction.Cancel;
             //    }
             //}
+        }
+
+        private void FormStepList_Load(object sender, EventArgs e)
+        {
+            WorkflowClient wfClient = new WorkflowClient();
+ 
+            listBoxSteps.Items.Clear();
+            listBoxSteps.Items.AddRange(wfClient.getSteps());
+
+            wfClient.Close();
         }
 
     }

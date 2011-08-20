@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WorkflowApplication.WorkflowServiceRef;
 
 // Lessons learnt:
 // - Able to open / close MDI windows UI framework
@@ -43,7 +44,14 @@ namespace WorkflowApplication
                 
 
                 // refresh the workflow list
-                listBoxWorkflows.Items.Add(frmWFProp.WorkflowName);
+                //listBoxWorkflows.Items.Add(frmWFProp.WorkflowName);
+
+                WorkflowClient wfClient = new WorkflowClient();
+                wfClient.createWorkflow(frmWFProp.WorkflowName);
+                listBoxWorkflows.Items.Clear();
+                listBoxWorkflows.Items.AddRange(wfClient.getWorkFlows());
+                
+                wfClient.Close();
             }
         }
 
@@ -55,6 +63,16 @@ namespace WorkflowApplication
                 //MessageBox.Show("test");
                 ((FormMain)MdiParent).createNewWorkflowEditorForm(listBoxWorkflows.SelectedItem.ToString());
             }   // end if
+        }
+
+        private void FormWorkflowList_Load(object sender, EventArgs e)
+        {
+            WorkflowClient wfClient = new WorkflowClient();
+
+            listBoxWorkflows.Items.Clear();
+            listBoxWorkflows.Items.AddRange(wfClient.getWorkFlows());
+
+            wfClient.Close();
         }
     }
 }

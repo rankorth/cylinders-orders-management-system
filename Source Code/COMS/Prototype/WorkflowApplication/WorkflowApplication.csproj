@@ -39,6 +39,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -52,12 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrawingBlock.cs" />
-    <Compile Include="FormAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAbout.Designer.cs">
-      <DependentUpon>FormAbout.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormStepProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +89,11 @@
     <Compile Include="FormWorkflowProperties.Designer.cs">
       <DependentUpon>FormWorkflowProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WorkflowServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Workflow.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,14 +101,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Workflow.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Workflow.edmx</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="FormAbout.resx">
-      <DependentUpon>FormAbout.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormStepProperties.resx">
       <DependentUpon>FormStepProperties.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,6 +129,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="App.Config" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Service References\WorkflowServiceRef\Workflow.wsdl" />
+    <None Include="Service References\WorkflowServiceRef\Workflow.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowServiceRef\Workflow1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowServiceRef\Workflow2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Workflow.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Workflow.cs</LastGenOutput>
@@ -150,13 +153,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EntityDeploy Include="Workflow.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Workflow.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\WorkflowServiceRef\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowServiceRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowServiceRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

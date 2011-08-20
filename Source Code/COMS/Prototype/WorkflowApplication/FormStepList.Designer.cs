@@ -78,7 +78,7 @@
             this.toolStripButtonAddStep});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(102, 38);
+            this.toolStrip1.Size = new System.Drawing.Size(71, 38);
             this.toolStrip1.TabIndex = 0;
             // 
             // toolStripButtonAddStep
@@ -100,6 +100,7 @@
             this.Name = "FormStepList";
             this.Text = "List of Steps";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormStepList_FormClosing);
+            this.Load += new System.EventHandler(this.FormStepList_Load);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
