@@ -1,5 +1,0 @@
-F:\mtech_svn\cylinders-orders-management-system\Source Code\COMS\Prototype\ClassLibrary\bin\Debug\ClassLibrary.dll
-F:\mtech_svn\cylinders-orders-management-system\Source Code\COMS\Prototype\ClassLibrary\bin\Debug\ClassLibrary.pdb
-F:\mtech_svn\cylinders-orders-management-system\Source Code\COMS\Prototype\ClassLibrary\obj\Debug\ResolveAssemblyReference.cache
-F:\mtech_svn\cylinders-orders-management-system\Source Code\COMS\Prototype\ClassLibrary\obj\Debug\ClassLibrary.dll
-F:\mtech_svn\cylinders-orders-management-system\Source Code\COMS\Prototype\ClassLibrary\obj\Debug\ClassLibrary.pdb
