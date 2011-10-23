@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Workflow" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:1153/Workflow.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:1153/Workflow.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:1153/Workflow.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IWorkflow_createStep_InputMessage">
+    <wsdl:part name="parameters" element="tns:createStep" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflow_createStep_OutputMessage">
+    <wsdl:part name="parameters" element="tns:createStepResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflow_createWorkflow_InputMessage">
+    <wsdl:part name="parameters" element="tns:createWorkflow" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflow_createWorkflow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:createWorkflowResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflow_getWorkFlows_InputMessage">
+    <wsdl:part name="parameters" element="tns:getWorkFlows" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflow_getWorkFlows_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getWorkFlowsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflow_getSteps_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSteps" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflow_getSteps_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getStepsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflow_insertStep_InputMessage">
+    <wsdl:part name="parameters" element="tns:insertStep" />
+  </wsdl:message>
+  <wsdl:message name="IWorkflow_insertStep_OutputMessage">
+    <wsdl:part name="parameters" element="tns:insertStepResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IWorkflow">
+    <wsdl:operation name="createStep">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflow/createStep" message="tns:IWorkflow_createStep_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflow/createStepResponse" message="tns:IWorkflow_createStep_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="createWorkflow">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflow/createWorkflow" message="tns:IWorkflow_createWorkflow_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflow/createWorkflowResponse" message="tns:IWorkflow_createWorkflow_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getWorkFlows">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflow/getWorkFlows" message="tns:IWorkflow_getWorkFlows_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflow/getWorkFlowsResponse" message="tns:IWorkflow_getWorkFlows_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSteps">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflow/getSteps" message="tns:IWorkflow_getSteps_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflow/getStepsResponse" message="tns:IWorkflow_getSteps_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="insertStep">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWorkflow/insertStep" message="tns:IWorkflow_insertStep_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWorkflow/insertStepResponse" message="tns:IWorkflow_insertStep_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Workflow" type="tns:IWorkflow">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="createStep">
+      <soap:operation soapAction="http://tempuri.org/IWorkflow/createStep" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createWorkflow">
+      <soap:operation soapAction="http://tempuri.org/IWorkflow/createWorkflow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWorkFlows">
+      <soap:operation soapAction="http://tempuri.org/IWorkflow/getWorkFlows" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSteps">
+      <soap:operation soapAction="http://tempuri.org/IWorkflow/getSteps" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertStep">
+      <soap:operation soapAction="http://tempuri.org/IWorkflow/insertStep" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Workflow">
+    <wsdl:port name="Workflow" binding="tns:Workflow">
+      <soap:address location="http://localhost:1153/Workflow.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
