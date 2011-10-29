@@ -75,8 +75,8 @@ namespace Example
 
             //select * from Order where order_code = "code-112"
             //in example Where(o=> means  o represent Order table, u can put any thing to alias Order table there.
-            //select only one record ontop = SingleOrDefault()
-            Order order = context.Orders.Where(o => o.order_code == "code-111").SingleOrDefault();
+            //select only one record ontop = SingleOrDefault(), Take(1) means select top 1 if there are multiple records 
+            Order order = context.Orders.Where(o => o.order_code == "code-111").Take(1).SingleOrDefault() ;
             if (order != null)
             {
                 order.order_code = "code-112";
