@@ -3,292 +3,183 @@
 
 body   
 {
-    background: #b6b7bc;
-    font-size: .80em;
-    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
-    margin: 0px;
-    padding: 0px;
-    color: #696969;
+    height: 100%; margin: 5px; background-color: #f5f6f7; font-family: Helvetica, Arial, Verdana, sans-serif;
+    font-size: 14px;
 }
 
-a:link, a:visited
+#Header
 {
-    color: #034af3;
+    width: 100%; height: 50px; background-color: Gray; margin-bottom: 5px;
+    background-image:url(Images/Background/metallic_bg.png);
 }
 
-a:hover
+#left_menu_panel
 {
-    color: #1d60ff;
-    text-decoration: none;
+    width: 100%; min-height: 400px; background-color: #CCCCCC;
 }
 
-a:active
+.menu_bar
 {
-    color: #034af3;
+    width: 100%; 
+    height: 38px; 
+    background-color: #CCCCCC; 
+    background-image: url(Images/Menu/menu_bg.png);
+    background-repeat: repeat-x;
 }
 
-p
+.menu_bar .menu_bar_left
 {
-    margin-bottom: 10px;
-    line-height: 1.6em;
+    float: left; 
+    height: 38px; width: 4px; 
+    background-image: url(Images/Menu/menu_left.png);
+    background-repeat: no-repeat;
 }
 
-
-/* HEADINGS   
-----------------------------------------------------------*/
-
-h1, h2, h3, h4, h5, h6
+.menu_bar .menu_bar_right
 {
-    font-size: 1.5em;
-    color: #666666;
-    font-variant: small-caps;
-    text-transform: none;
-    font-weight: 200;
-    margin-bottom: 0px;
+    float: right; 
+    height: 38px; 
+    width: 4px; 
+    background-image: url(Images/Menu/menu_right.png);
+    background-repeat: no-repeat;
 }
 
-h1
+.menu_bar ul
 {
-    font-size: 1.6em;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
+    list-style-type: none; 
+    line-height: 36px; 
+    margin:0;padding:0;
 }
 
-h2
+.menu_bar ul li
 {
-    font-size: 1.5em;
-    font-weight: 600;
-}
-
-h3
-{
-    font-size: 1.2em;
-}
-
-h4
-{
-    font-size: 1.1em;
-}
-
-h5, h6
-{
-    font-size: 1em;
-}
-
-/* this rule styles <h1> and <h2> tags that are the 
-first child of the left and right table columns */
-.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
-{
-    margin-top: 0px;
-}
-
-
-/* PRIMARY LAYOUT ELEMENTS   
-----------------------------------------------------------*/
-
-.page
-{
-    width: 960px;
-    background-color: #fff;
-    margin: 20px auto 0px auto;
-    border: 1px solid #496077;
-}
-
-.header
-{
-    position: relative;
-    margin: 0px;
-    padding: 0px;
-    background: #4b6c9e;
-    width: 100%;
-}
-
-.header h1
-{
-    font-weight: 700;
-    margin: 0px;
-    padding: 0px 0px 0px 20px;
-    color: #f9f9f9;
-    border: none;
-    line-height: 2em;
-    font-size: 2em;
-}
-
-.main
-{
-    padding: 0px 12px;
-    margin: 12px 8px 8px 8px;
-    min-height: 420px;
-}
-
-.leftCol
-{
-    padding: 6px 0px;
-    margin: 12px 8px 8px 8px;
-    width: 200px;
-    min-height: 200px;
-}
-
-.footer
-{
-    color: #4e5766;
-    padding: 8px 0px 0px 0px;
-    margin: 0px auto;
-    text-align: center;
-    line-height: normal;
-}
-
-
-/* TAB MENU   
-----------------------------------------------------------*/
-
-div.hideSkiplink
-{
-    background-color:#3a4f63;
-    width:100%;
-}
-
-div.menu
-{
-    padding: 4px 0px 4px 8px;
-}
-
-div.menu ul
-{
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-    width: auto;
-}
-
-div.menu ul li a, div.menu ul li a:visited
-{
-    background-color: #465c71;
-    border: 1px #4e667d solid;
-    color: #dde4ec;
-    display: block;
-    line-height: 1.35em;
-    padding: 4px 20px;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-div.menu ul li a:hover
-{
-    background-color: #bfcbd6;
-    color: #465c71;
-    text-decoration: none;
-}
-
-div.menu ul li a:active
-{
-    background-color: #465c71;
-    color: #cfdbe6;
-    text-decoration: none;
-}
-
-/* FORM ELEMENTS   
-----------------------------------------------------------*/
-
-fieldset
-{
-    margin: 1em 0px;
-    padding: 1em;
-    border: 1px solid #ccc;
-}
-
-fieldset p 
-{
-    margin: 2px 12px 10px 10px;
-}
-
-fieldset.login label, fieldset.register label, fieldset.changePassword label
-{
-    display: block;
-}
-
-fieldset label.inline 
-{
-    display: inline;
-}
-
-legend 
-{
-    font-size: 1.1em;
-    font-weight: 600;
-    padding: 2px 4px 8px 4px;
-}
-
-input.textEntry 
-{
-    width: 320px;
-    border: 1px solid #ccc;
-}
-
-input.passwordEntry 
-{
-    width: 320px;
-    border: 1px solid #ccc;
-}
-
-div.accountInfo
-{
-    width: 42%;
-}
-
-/* MISC  
-----------------------------------------------------------*/
-
-.clear
-{
-    clear: both;
-}
-
-.title
-{
-    display: block;
     float: left;
-    text-align: left;
-    width: auto;
+    border-right:1px solid Gray;
 }
 
-.loginDisplay
+
+.menu_bar ul li a
 {
-    font-size: 1.1em;
-    display: block;
-    text-align: right;
-    padding: 10px;
-    color: White;
+    text-decoration: none; 
+    color: #FFFFFF;
+    padding-left: 5px; 
+    padding-right: 5px;
+    min-width:80px;
+    display:block;
+    text-align:center;
 }
 
-.loginDisplay a:link
+.menu_bar ul li:hover
 {
-    color: white;
+    font-weight:bold;
+    background-image:url(Images/Menu/menu_bg_hover.png);
+}
+.entry_panel
+{
+    width: 100%; 
+    min-height: 200px; 
+    background-color: White; 
+    border: 1px solid gray;
+    margin-top: 5px;
 }
 
-.loginDisplay a:visited
+.module_menu
 {
-    color: white;
+    line-height:38px;
+    width:100%;
+    background-image:url(Images/Menu/menu_bg.png);
+    vertical-align:middle;
+    display:block;
+    text-align:center;
+    color:#FFFFFF;
+    text-decoration:none;
+    margin:0;padding:0;
 }
 
-.loginDisplay a:hover
+#left_menu_title
 {
-    color: white;
+    background-color:Black;
+    color:White;
+    text-align:center;
+    line-height:25px;
+    vertical-align:middle;
+    border-bottom:2px solid #CCCCCC;
+    
 }
 
-.failureNotification
+.logo
 {
-    font-size: 1.2em;
-    color: Red;
+    float:left;
+    width:120px;
+    height:40px;
+    top:7px;left:7px;
+    display:block;
+    position:relative;
+    background-image:url(Images/Background/logo.png);
 }
 
-.bold
+.header_title
 {
-    font-weight: bold;
+    float:left;
+    font-size:14px;
+    color:White;
+    font-weight:bold;
+    top:25px;
+    left:50px;
+    width:300px;
+    position:relative;
+    display:block;
 }
 
-.submitButton
+.entry_table
 {
-    text-align: right;
-    padding-right: 10px;
+    padding:0;margin:7px;
+} 
+.entry_table .entry_label
+{
+    min-width:200px;
+    line-height:25px;
+    min-height:25px;
+    background-color:#baceeb;
+    border-bottom:2px solid #FFFFFF;
+    border-right:2px solid #FFFFFF;
+    vertical-align:middle;
+    text-align:left;
+    padding-left:5px;
+    display:block;
+    font-weight:bold;
+}
+.entry_table .entry_data
+{
+    min-width:300px;
+    border-bottom:1px solid #baceeb;
+    color:Black;
+}
+
+.entry_table .entry_data input
+{
+    height:23px;
+    width:300px;
+    font-size:14px;
+    border:0;
+}
+
+.entry_table .entry_data input:hover
+{
+    
+    background-color:#ffe3ac;
+}
+
+.entry_table .entry_data textarea
+{
+    height:23px;
+    width:300px;
+    font-size:14px;
+    border:0;
+}
+
+.entry_table .entry_data textarea:hover
+{
+    
+    background-color:#ffe3ac;
 }
