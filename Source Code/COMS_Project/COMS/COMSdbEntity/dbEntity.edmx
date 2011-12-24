@@ -45,6 +45,10 @@
             <End Role="Order_Detail" EntitySet="Order_Detail" />
             <End Role="Cylinder" EntitySet="Cylinder" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cylinder_Workflow" Association="COMSModel.Store.FK_Cylinder_Workflow">
+            <End Role="Workflow" EntitySet="Workflow" />
+            <End Role="Cylinder" EntitySet="Cylinder" />
+          </AssociationSet>
           <AssociationSet Name="FK_Emp_Role_ref_Employee" Association="COMSModel.Store.FK_Emp_Role_ref_Employee">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Emp_Role_ref" EntitySet="Emp_Role_ref" />
@@ -107,6 +111,7 @@
             <PropertyRef Name="cylinderId" />
           </Key>
           <Property Name="cylinderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="workflowId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="order_detailId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="barcode" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="priority" Type="int" Nullable="false" />
@@ -370,6 +375,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cylinder_Workflow">
+          <End Role="Workflow" Type="COMSModel.Store.Workflow" Multiplicity="1" />
+          <End Role="Cylinder" Type="COMSModel.Store.Cylinder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workflow">
+              <PropertyRef Name="workflowId" />
+            </Principal>
+            <Dependent Role="Cylinder">
+              <PropertyRef Name="workflowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Emp_Role_ref_Employee">
           <End Role="Employee" Type="COMSModel.Store.Employee" Multiplicity="1" />
           <End Role="Emp_Role_ref" Type="COMSModel.Store.Emp_Role_ref" Multiplicity="*" />
@@ -590,6 +607,10 @@
             <End Role="Workflow" EntitySet="Workflows" />
             <End Role="Step" EntitySet="Steps" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cylinder_Workflow" Association="COMSModel.FK_Cylinder_Workflow">
+            <End Role="Workflow" EntitySet="Workflows" />
+            <End Role="Cylinder" EntitySet="Cylinders" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Access_Right">
           <Key>
@@ -622,6 +643,8 @@
           <Property Type="DateTime" Name="updated_date" />
           <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Cylinder" FromRole="Cylinder" ToRole="Cylinder_Log" />
           <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Cylinder_Order_Detail" FromRole="Cylinder" ToRole="Order_Detail" />
+          <Property Type="Guid" Name="workflowId" Nullable="false" />
+          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Cylinder" ToRole="Workflow" />
         </EntityType>
         <EntityType Name="Cylinder_Log">
           <Key>
@@ -832,6 +855,7 @@
           <Property Type="Boolean" Name="isactive" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="COMSModel.FK_Workflow_Department" FromRole="Workflow" ToRole="Department" />
           <NavigationProperty Name="Steps" Relationship="COMSModel.FK_Step_Workflow" FromRole="Workflow" ToRole="Step" />
+          <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Workflow" ToRole="Cylinder" />
         </EntityType>
         <Association Name="FK_Role_Right_ref_Access_Right">
           <End Type="COMSModel.Access_Right" Role="Access_Right" Multiplicity="1" />
@@ -1037,6 +1061,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cylinder_Workflow">
+          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="1" />
+          <End Type="COMSModel.Cylinder" Role="Cylinder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workflow">
+              <PropertyRef Name="workflowId" />
+            </Principal>
+            <Dependent Role="Cylinder">
+              <PropertyRef Name="workflowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1059,6 +1095,7 @@
           <EntitySetMapping Name="Cylinders">
             <EntityTypeMapping TypeName="COMSModel.Cylinder">
               <MappingFragment StoreEntitySet="Cylinder">
+                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
@@ -1309,9 +1346,9 @@
           <ConnectorPoint PointX="5.25" PointY="2.1247460937500051" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Cylinder" >
-          <ConnectorPoint PointX="9" PointY="20.105499674479169" />
-          <ConnectorPoint PointX="10.5" PointY="20.105499674479169" />
-          <ConnectorPoint PointX="10.5" PointY="12.085999348958339" />
+          <ConnectorPoint PointX="9" PointY="20.297801106770834" />
+          <ConnectorPoint PointX="10.70312625" PointY="20.297801106770834" />
+          <ConnectorPoint PointX="10.70312625" PointY="12.085999348958339" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Order_Detail" >
           <ConnectorPoint PointX="6.75" PointY="20.163198242187505" />
@@ -1384,10 +1421,19 @@
           <ConnectorPoint PointX="7.5" PointY="14.415725911458335" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="13.470896809895834" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="13.470896809895834" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="13.470896809895834" />
-          <ConnectorPoint PointX="5.25" PointY="13.470896809895834" />
+          <ConnectorPoint PointX="4.5" PointY="13.567047526041666" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="13.567047526041666" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="13.567047526041666" />
+          <ConnectorPoint PointX="5.25" PointY="13.567047526041666" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
+          <ConnectorPoint PointX="4.5" PointY="15.07178635977564" />
+          <ConnectorPoint PointX="4.8160744349011217" PointY="15.38786079467676" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="15.505711924874518" />
+          <ConnectorPoint PointX="5.0625" PointY="15.63428635977564" />
+          <ConnectorPoint PointX="5.0625" PointY="17.875" />
+          <ConnectorPoint PointX="7.1261528461538468" PointY="17.875" />
+          <ConnectorPoint PointX="7.5011528461538459" PointY="18.25" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
