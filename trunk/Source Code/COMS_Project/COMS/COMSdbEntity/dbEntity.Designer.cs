@@ -35,6 +35,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Step1", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Cylinder", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder), true)]
 
 #endregion
 
@@ -712,7 +713,8 @@ namespace COMSdbEntity
         /// <param name="area">Initial value of the area property.</param>
         /// <param name="created_by">Initial value of the created_by property.</param>
         /// <param name="created_date">Initial value of the created_date property.</param>
-        public static Cylinder CreateCylinder(global::System.Guid cylinderId, global::System.Guid order_detailId, global::System.String barcode, global::System.Int32 priority, global::System.Int32 status, global::System.Decimal length, global::System.Decimal diameter, global::System.Decimal area, global::System.String created_by, global::System.DateTime created_date)
+        /// <param name="workflowId">Initial value of the workflowId property.</param>
+        public static Cylinder CreateCylinder(global::System.Guid cylinderId, global::System.Guid order_detailId, global::System.String barcode, global::System.Int32 priority, global::System.Int32 status, global::System.Decimal length, global::System.Decimal diameter, global::System.Decimal area, global::System.String created_by, global::System.DateTime created_date, global::System.Guid workflowId)
         {
             Cylinder cylinder = new Cylinder();
             cylinder.cylinderId = cylinderId;
@@ -725,6 +727,7 @@ namespace COMSdbEntity
             cylinder.area = area;
             cylinder.created_by = created_by;
             cylinder.created_date = created_date;
+            cylinder.workflowId = workflowId;
             return cylinder;
         }
 
@@ -1021,6 +1024,30 @@ namespace COMSdbEntity
         private Nullable<global::System.DateTime> _updated_date;
         partial void Onupdated_dateChanging(Nullable<global::System.DateTime> value);
         partial void Onupdated_dateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid workflowId
+        {
+            get
+            {
+                return _workflowId;
+            }
+            set
+            {
+                OnworkflowIdChanging(value);
+                ReportPropertyChanging("workflowId");
+                _workflowId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("workflowId");
+                OnworkflowIdChanged();
+            }
+        }
+        private global::System.Guid _workflowId;
+        partial void OnworkflowIdChanging(global::System.Guid value);
+        partial void OnworkflowIdChanged();
 
         #endregion
     
@@ -1082,6 +1109,44 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Order_Detail>("COMSModel.FK_Cylinder_Order_Detail", "Order_Detail", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Workflow", "Workflow")]
+        public Workflow Workflow
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Workflow>("COMSModel.FK_Cylinder_Workflow", "Workflow").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Workflow>("COMSModel.FK_Cylinder_Workflow", "Workflow").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Workflow> WorkflowReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Workflow>("COMSModel.FK_Cylinder_Workflow", "Workflow");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Workflow>("COMSModel.FK_Cylinder_Workflow", "Workflow", value);
                 }
             }
         }
@@ -5330,6 +5395,28 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Step>("COMSModel.FK_Step_Workflow", "Step", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Workflow", "Cylinder")]
+        public EntityCollection<Cylinder> Cylinders
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cylinder>("COMSModel.FK_Cylinder_Workflow", "Cylinder");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder>("COMSModel.FK_Cylinder_Workflow", "Cylinder", value);
                 }
             }
         }
