@@ -12,7 +12,10 @@ namespace BusinessLogics
     class PerformanceController
     {
         private COMSEntities context = new COMSEntities();
-        public bool insertFormula(Formula formula)
+        /*
+         * Inserts given formula into the Formula table.
+         */
+        public void insertFormula(Formula formula)
         {
             try
             {
@@ -24,16 +27,18 @@ namespace BusinessLogics
                     //make changes perminent 
                     context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
+                else throw new Exception("context or given formula is null");
             }
             catch (Exception ex)
             {
-                Console.Write("Exception has been thrown at insertFormula method of PerformanceController class: " + ex.Message.ToString());
-                return false;                
+                throw new Exception("Exception has been thrown at insertFormula method of PerformanceController class: " + ex.Message.ToString());                                
             }
-            return true;
         }
 
-        public bool updateFormula(Formula formula)
+        /*
+         * Updates a given formula to the Formula table.
+         */
+        public void updateFormula(Formula formula)
         {
             try
             {
@@ -54,21 +59,26 @@ namespace BusinessLogics
                                 s.isactive = formula.isactive;
                                 s.Step = formula.Step;
                                 s.stepId = formula.stepId;
-                                s.StepReference = formula.StepReference;                               
+                                s.StepReference = formula.StepReference;
                             }
                         }
+                    }
+                    else
+                    {
+                        throw new Exception("There is no such formula in the Formula table.");
                     }
                     context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
             }
             catch (Exception ex)
             {
-                Console.Write("Exception has been thrown at updateFormula method of PerformanceController class: " + ex.Message.ToString());
-                return false;
+                throw new Exception("Exception has been thrown at updateFormula method of PerformanceController class: " + ex.Message.ToString());                
             }
-            return true;
         }
 
+        /*
+         * Retrieves a specific formula of a given formulaId from the Formula table.
+         */
         public Formula retrieveFormula(string formulaId)
         {
             try
@@ -96,6 +106,9 @@ namespace BusinessLogics
             }
         }
 
+        /*
+         * Retrieves all ACTIVE formulae from the Formula table.
+         */
         public IQueryable<Formula> retrieveActiveFormulaList() 
         {
             try
@@ -112,6 +125,9 @@ namespace BusinessLogics
             }
         }
 
+        /*
+         * Retrieves all formulae from the Formula table.
+         */
         public IQueryable<Formula> retrieveAllFormulaList()
         {
             try
