@@ -1,0 +1,25 @@
+Merging of methods with same purpose 
+
+COMS - Main Workflow v1.9 Merged.mdl will have all changes
+
+1. WorkflowDao.getWorkflow() | WorkflowDao.retrieveWorkflowInfo()
+--> Use getWorkflow()
+--> 'Export Cylinder Queues Information' UCRR affected
+
+2. StepDao.getStep() | StepDao.retrieveStepInfo() | StepDao.retrieveStep()
+--> Use getStep()
+--> 'Update Cylinder Status', 'Print Step List', 'Manage Performance Formula', 'Export Cylinder Queues Information', 'Send Cylinder To A Particular Step' UCRR affected
+
+3. EmployeeDao.getAnEmployeeDetails() | EmployeeDao.retrieveEmployee()
+--> Use retrieveEmployee()
+--> 'View Employee Details' UCRR affected
+
+4. EmployeeDao.getEmployeeDetails() --> EmployeeDao.getEmployeeList()
+
+5. CylinderDao.getCylinderList() | CylinderDao.retrieveCylinderList()
+--> Use getCylinderList()
+--> 'View Order Progress Log' UCRR affected
+
+6. CylinderDao.retrieveCylinderInfo() | CylinderDao.retrieveCylinder()
+--> Use retrieveCylinder()
+--> 'Export Cylinder Queue Information' UCRR affected
