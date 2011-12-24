@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+using COMSdbEntity;
+using BusinessLogics;
 
 namespace WebUI.Common
 {
@@ -9,7 +14,8 @@ namespace WebUI.Common
     {
         public static string ShowMessage(string msg)
         {
-            return ("<script>alert(\""+msg+"\");</script>");
+            return ("<script>alert(\"" + msg + "\");</script>");
         }
+
     }
 }
