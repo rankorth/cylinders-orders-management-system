@@ -91,5 +91,15 @@ namespace BusinessLogics
                 dbContext.DeleteObject(s); 
             }
         }
+
+        public void viewCurrentQueue(Guid workflowId)
+        {
+            //IQueryable<Step> stepList = GetSteps(workflowId);
+            //List<
+            //foreach (Step step in stepList)
+            //{
+
+            //}
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace BusinessLogics
     public class CylinderController
     {
         private COMSEntities dbContext = new COMSEntities();
-        public void changeCylinderPriority(Cylinder cylinder)
+		public void changeCylinderPriority(Cylinder cylinder)
         {
             try
             {
@@ -103,6 +103,21 @@ namespace BusinessLogics
                 //always create a meaningful error exception to catch and show up on UI.
                 throw new Exception("Sorry, there is an error occured while stopping production for the cylinder: " + cylinderID);
             }
+        }
+		
+        public IQueryable<Cylinder> retrieveCylinderList(IQueryable<Step> stepList)
+        {
+            //TODO: retrieve all cylinders under the steps in the stepList
+            foreach (Step step in stepList)
+            {
+                IQueryable<Cylinder> cylinderList = dbContext.Cylinders.Where(c => c.Cylinder_Log.stepId.Equals(step.stepId));
+
+            }
+            //return dbContext.Steps.Where(s => s.workflowId.Equals(workflowID));
+        }
+
+        public void changeCylinderStep(cylinderId, nextStepId, error) {
+
         }
     }
 }
