@@ -95,6 +95,10 @@ body
     text-decoration:none;
     margin:0;padding:0;
 }
+.module_menu:hover
+{
+    background-image:url(Images/Menu/module_menu_bg_hover.png);
+}
 
 #left_menu_title
 {
