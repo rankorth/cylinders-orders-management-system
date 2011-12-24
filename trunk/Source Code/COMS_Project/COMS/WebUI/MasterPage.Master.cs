@@ -11,7 +11,10 @@ namespace WebUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+                Common.BasePage bp = new Common.BasePage();
+                bp.login("user", "password");
+                bp.GenerateMenu(module_panel);
         }
+        
     }
 }

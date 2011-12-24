@@ -5,13 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebUI
+namespace WebUI.Admin
 {
-    public partial class template : System.Web.UI.Page
+    public partial class Users : Common.BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            ltrModule_name.Text = "Users Management";
         }
     }
 }

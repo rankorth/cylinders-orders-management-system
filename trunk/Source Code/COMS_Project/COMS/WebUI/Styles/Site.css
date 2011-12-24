@@ -187,3 +187,13 @@ body
     
     background-color:#ffe3ac;
 }
+
+.module_name
+{
+    text-align:center;
+    vertical-align:middle;
+    line-height:20px;
+    background-color:Black;
+    color:White;
+    margin-bottom:3px;
+}
