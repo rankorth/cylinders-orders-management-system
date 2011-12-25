@@ -12,15 +12,12 @@ namespace BusinessLogics
     {
         STATUS_NEW = 1,
         STATUS_INPROD = 2,
-        STATUS_CANCELLED = 3;
+        STATUS_CANCELLED = 3,
     }
 
     class SalesOrderController
     {
         private COMSEntities dbContext = new COMSEntities();
-
-        public static Boolean ISACTIVE_YES = true;
-        public static Boolean ISACTIVE_NO = false;
 
         public void createSalesOrder(Order order)
         {
@@ -74,7 +71,6 @@ namespace BusinessLogics
             try
             {
                 Order dbOrder = retrieveSalesOrder(orderId);
-                dbOrder.isactive = Convert.ToBoolean(OrderConst.ISACTIVE_NO);
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
             catch (Exception ex)
