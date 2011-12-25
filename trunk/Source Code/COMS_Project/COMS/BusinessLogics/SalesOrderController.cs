@@ -19,6 +19,9 @@ namespace BusinessLogics
     {
         private COMSEntities dbContext = new COMSEntities();
 
+        public static Boolean ISACTIVE_YES = true;
+        public static Boolean ISACTIVE_NO = false;
+
         public void createSalesOrder(Order order)
         {
             try
