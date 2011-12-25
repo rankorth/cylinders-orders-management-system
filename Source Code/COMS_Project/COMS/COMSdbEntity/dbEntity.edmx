@@ -280,7 +280,7 @@
           <Property Name="bottom" Type="int" />
           <Property Name="layout_no_of_up_horizontal" Type="int" />
           <Property Name="layout_no_of_repeat_circum" Type="int" />
-          <Property Name="printin_web_total_print_width" Type="int" />
+          <Property Name="printing_web_total_print_width" Type="int" />
           <Property Name="web_width" Type="decimal" Scale="5" />
           <Property Name="cylinder_hole_type" Type="int" />
           <Property Name="inner_diameter" Type="int" />
@@ -295,9 +295,7 @@
           <Property Name="spliting_line_color" Type="nvarchar" MaxLength="50" />
           <Property Name="printing_material" Type="nvarchar" MaxLength="50" />
           <Property Name="result_based_on" Type="nvarchar" MaxLength="50" />
-          <Property Name="image_oriantation" Type="nvarchar" MaxLength="50" />
-          <Property Name="material" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_date" Type="date" Nullable="false" />
+          <Property Name="image_orientation" Type="nvarchar" MaxLength="50" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
@@ -1158,7 +1156,6 @@
           <Property Type="Int32" Name="bottom" />
           <Property Type="Int32" Name="layout_no_of_up_horizontal" />
           <Property Type="Int32" Name="layout_no_of_repeat_circum" />
-          <Property Type="Int32" Name="printin_web_total_print_width" />
           <Property Type="Decimal" Name="web_width" Precision="18" Scale="5" />
           <Property Type="Int32" Name="cylinder_hole_type" />
           <Property Type="Int32" Name="inner_diameter" />
@@ -1173,15 +1170,14 @@
           <Property Type="String" Name="spliting_line_color" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="printing_material" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="result_based_on" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="image_oriantation" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="material" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="order_date" Nullable="false" />
           <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="created_date" Nullable="false" />
           <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="updated_date" />
           <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Order_Detail" FromRole="Order_Detail" ToRole="Cylinder" />
           <NavigationProperty Name="Order" Relationship="COMSModel.FK_Order_Detail_Order" FromRole="Order_Detail" ToRole="Order" />
+          <Property Type="Int32" Name="printing_web_total_print_width" />
+          <Property Type="String" Name="image_orientation" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Cylinder_Order_Detail">
           <End Type="COMSModel.Order_Detail" Role="Order_Detail" Multiplicity="1" />
@@ -1494,13 +1490,12 @@
           <EntitySetMapping Name="Order_Detail">
             <EntityTypeMapping TypeName="COMSModel.Order_Detail">
               <MappingFragment StoreEntitySet="Order_Detail">
+                <ScalarProperty Name="image_orientation" ColumnName="image_orientation" />
+                <ScalarProperty Name="printing_web_total_print_width" ColumnName="printing_web_total_print_width" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
                 <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="order_date" ColumnName="order_date" />
-                <ScalarProperty Name="material" ColumnName="material" />
-                <ScalarProperty Name="image_oriantation" ColumnName="image_oriantation" />
                 <ScalarProperty Name="result_based_on" ColumnName="result_based_on" />
                 <ScalarProperty Name="printing_material" ColumnName="printing_material" />
                 <ScalarProperty Name="spliting_line_color" ColumnName="spliting_line_color" />
@@ -1515,7 +1510,6 @@
                 <ScalarProperty Name="inner_diameter" ColumnName="inner_diameter" />
                 <ScalarProperty Name="cylinder_hole_type" ColumnName="cylinder_hole_type" />
                 <ScalarProperty Name="web_width" ColumnName="web_width" />
-                <ScalarProperty Name="printin_web_total_print_width" ColumnName="printin_web_total_print_width" />
                 <ScalarProperty Name="layout_no_of_repeat_circum" ColumnName="layout_no_of_repeat_circum" />
                 <ScalarProperty Name="layout_no_of_up_horizontal" ColumnName="layout_no_of_up_horizontal" />
                 <ScalarProperty Name="bottom" ColumnName="bottom" />
@@ -1622,7 +1616,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="dbEntity" ZoomLevel="107">
+      <Diagram Name="dbEntity" ZoomLevel="50">
         <EntityTypeShape EntityType="COMSModel.Access_Right" Width="1.5" PointX="3" PointY="23.375" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="COMSModel.Cylinder" Width="1.5" PointX="7.5" PointY="18.25" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="COMSModel.Cylinder_Log" Width="1.5" PointX="9.75" PointY="8.375" Height="3.7109993489583388" />
@@ -1708,23 +1702,23 @@
           <ConnectorPoint PointX="7.5" PointY="14.415725911458335" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="13.200524681640623" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="13.200524681640623" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="13.200524681640623" />
-          <ConnectorPoint PointX="5.25" PointY="13.200524681640623" />
+          <ConnectorPoint PointX="4.5" PointY="13.1372579680305" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="13.1372579680305" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="13.1372579680305" />
+          <ConnectorPoint PointX="5.25" PointY="13.1372579680305" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="14.236878387939445" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="14.236878387939445" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="14.236878387939445" />
-          <ConnectorPoint PointX="5" PointY="14.236878387939445" />
+          <ConnectorPoint PointX="4.5" PointY="14.263079226202745" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="14.263079226202745" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="14.263079226202745" />
+          <ConnectorPoint PointX="5" PointY="14.263079226202745" />
           <ConnectorPoint PointX="5" PointY="15.980205078125" />
           <ConnectorPoint PointX="7.25" PointY="15.980205078125" />
           <ConnectorPoint PointX="7.25" PointY="17.12449218750001" />
           <ConnectorPoint PointX="8.25" PointY="17.12449218750001" />
           <ConnectorPoint PointX="8.25" PointY="18.25" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COMSModel.Order_Detail" Width="1.5" PointX="5.25" PointY="16.75" Height="9.6723437500000031" />
+        <EntityTypeShape EntityType="COMSModel.Order_Detail" Width="1.5" PointX="5.25" PointY="16.75" Height="9.2877408854166674" />
         <AssociationConnector Association="COMSModel.FK_Cylinder_Order_Detail" >
           <ConnectorPoint PointX="6.75" PointY="20.297801106770834" />
           <ConnectorPoint PointX="7.5" PointY="20.297801106770834" />
