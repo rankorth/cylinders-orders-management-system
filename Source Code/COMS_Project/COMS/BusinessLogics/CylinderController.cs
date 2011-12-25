@@ -12,10 +12,7 @@ namespace BusinessLogics
     public class CylinderController
     {
         private COMSEntities dbContext = new COMSEntities();
-        private static int ISACTIVE = 1;
-        private static int NOTACTIVE = 0;
-
-        public void changeCylinderPriority(Cylinder cylinder)
+		public void changeCylinderPriority(Cylinder cylinder)
         {
             try
             {
@@ -37,62 +34,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinder.cylinderId + "'s priority ", ex);
-            }
-        }
-        private void create(String ordercode)
-        {
-            try
-            {
-                SalesOrderController soc = new SalesOrderController();
-                if (null != soc)
-                {
-                    Order newOrder = soc.retrieveSalesOrder(ordercode);
-                    if (null != newOrder)
-                    {
-                        foreach (Order_Detail od in newOrder.Order_Detail)
-                        {
-                            generateCylinder(od);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Sorry, there is an error occured while creating the cylinder ", ex);
-            }
-        }
-
-        private void generateCylinder(Order_Detail orderDetail)
-        {
-            try
-            {
-                if (null != orderDetail && null != dbContext)
-                {
-                    for (int i = 0; i < orderDetail.quantity; i++)
-                    {
-
-                        Guid generatedId = new Guid();
-                        Cylinder newCylinder = new Cylinder();
-                        newCylinder.area = (decimal)orderDetail.area;
-                        newCylinder.barcode = generatedId.ToString();
-                        newCylinder.created_by = orderDetail.created_by;
-                        newCylinder.created_date = orderDetail.created_date;
-                        newCylinder.cylinderId = generatedId;
-                        newCylinder.diameter = (decimal)orderDetail.diameter;
-                        newCylinder.length = (decimal)orderDetail.length;
-                        newCylinder.priority = 0;
-                        newCylinder.status = NOTACTIVE;
-                        newCylinder.updated_by = orderDetail.updated_by;
-                        newCylinder.updated_date = orderDetail.updated_date;
-                        newCylinder.order_detailId = orderDetail.order_detailId;
-                    }
-                    dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Sorry, there is an error occured while generating the cylinder ", ex);
+                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinder.cylinderId + "'s priority", ex);
             }
         }
 
@@ -108,7 +50,9 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while retrieving the cylinder list from the database. ", ex);
+                //related to any errors, there may be only database error
+                //always create a meaningful error exception to catch and show up on UI.
+                throw new Exception("Sorry, there is an error occured while retrieving the cylinder list from the database.", ex);
             }
             return null;
         }
@@ -123,7 +67,7 @@ namespace BusinessLogics
                         foreach (Cylinder s in cylinders)
                         {
                             if (null != s)
-                                s.status = ISACTIVE;
+                                s.status = 1; //1 means start 
                         }
                     }
                     dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
@@ -131,6 +75,8 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
+                //related to any errors, there may be only database error
+                //always create a meaningful error exception to catch and show up on UI.
                 throw new Exception("Sorry, there is an error occured while starting production for the cylinder: " + cylinderID, ex);
             }
         }
@@ -145,7 +91,7 @@ namespace BusinessLogics
                         foreach (Cylinder s in cylinders)
                         {
                             if(null!=s)
-                                s.status = NOTACTIVE;
+                                s.status = 0; //0 means stop 
                         }
                     }
                     dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
@@ -158,7 +104,9 @@ namespace BusinessLogics
                 throw new Exception("Sorry, there is an error occured while stopping production for the cylinder: " + cylinderID, ex);
             }
         }
-		
 
+        public void changeCylinderStep(Guid cylinderId, Guid nextStepId, Error error) {
+
+        }
     }
 }

@@ -8,18 +8,23 @@ using System.Data.Entity;
 
 namespace BusinessLogics
 {
+    enum OrderConst
+    {
+        STATUS_NEW = 1,
+        STATUS_INPROD = 2,
+        STATUS_CANCELLED = 3;
+    }
+
     class SalesOrderController
     {
         private COMSEntities dbContext = new COMSEntities();
-
-        public static const Boolean ISACTIVE_YES = true;
-        public static const Boolean ISACTIVE_NO = false;
 
         public void createSalesOrder(Order order)
         {
             try
             {
                 order.orderId = Guid.NewGuid(); //generate new guid as primary key.
+                order.status = (int)OrderConst.STATUS_NEW;
                 dbContext.Orders.AddObject(order);
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
@@ -27,7 +32,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while saving sales order");
+                throw new Exception("Sorry, there is an error occured while saving sales order", ex);
             }
         }
 
@@ -57,7 +62,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while updating sales order");
+                throw new Exception("Sorry, there is an error occured while updating sales order", ex);
             }
         }
 
@@ -66,14 +71,14 @@ namespace BusinessLogics
             try
             {
                 Order dbOrder = retrieveSalesOrder(orderId);
-                dbOrder.isactive = ISACTIVE_NO;
+                dbOrder.isactive = Convert.ToBoolean(OrderConst.ISACTIVE_NO);
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
             catch (Exception ex)
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while deleting sales order");
+                throw new Exception("Sorry, there is an error occured while deleting sales order", ex);
             }
         }
     }

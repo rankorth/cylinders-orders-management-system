@@ -11,11 +11,14 @@ using System.Data.EntityClient;
 using System.Data.Entity;
 
 using COMSdbEntity;
+using BusinessLogics;
 
 namespace Example
 {
     public partial class Form1 : Form
     {
+        private MainController mainCtrl = new MainController();
+
         public Form1()
         {
             InitializeComponent();
@@ -23,7 +26,7 @@ namespace Example
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
-            COMSEntities context = new COMSEntities();
+            //COMSEntities context = new COMSEntities();
 
             try
             {
@@ -31,15 +34,16 @@ namespace Example
                 Order order = new Order();
 
                 order.orderId = Guid.NewGuid();
-                order.order_type = "test";
-                order.price = 100;
                 order.order_code = "code-111";
+                order.product_name = "example";
+                order.price = 100;
+                order.received_date = DateTime.Now;
                 order.dead_line = DateTime.Now;
+                order.order_type = "test";
+                order.barcode = "barcode-111";
+                order.remark = "this is a remark";
                 order.created_by = "tin";
                 order.created_date = DateTime.Now;
-                order.product_name = "example";
-                order.received_date = DateTime.Now;
-
 
                 //prepare order_details from order record
                 Order_Detail orderdetails = new Order_Detail();
@@ -55,12 +59,14 @@ namespace Example
                 //add above prepared detail record into Order
                 order.Order_Detail.Add(orderdetails);
 
-                //add order record into databse
-                context.Orders.AddObject(order);
+                mainCtrl.createSalesOrder(order);
 
-                //make changes perminent 
-                context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
-                MessageBox.Show("Data Inserted to Order and Order_Detail table");
+                ////add order record into databse
+                //context.Orders.AddObject(order);
+
+                ////make changes perminent 
+                //context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                MessageBox.Show("Data Inserted to Order and Order_Detail table ");
             }
             catch(Exception ex)
             {
@@ -79,7 +85,7 @@ namespace Example
             Order order = context.Orders.Where(o => o.order_code == "code-111").Take(1).SingleOrDefault() ;
             if (order != null)
             {
-                order.order_code = "code-112";
+                order.order_code = "code-222";
                 order.updated_by = "tin-2";
                 order.updated_date = DateTime.Now;
                 context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
@@ -122,6 +128,8 @@ namespace Example
 
             //save all changes to database.
             context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);   
+
+            
         }
     }
 }

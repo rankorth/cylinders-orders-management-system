@@ -79,6 +79,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogics\BusinessLogics.csproj">
+      <Project>{EA686BF3-EC9C-4A40-B08A-414B63D254A7}</Project>
+      <Name>BusinessLogics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\COMSdbEntity\COMSdbEntity.csproj">
       <Project>{10317340-98EE-41F1-A43B-E07E80C442DC}</Project>
       <Name>COMSdbEntity</Name>

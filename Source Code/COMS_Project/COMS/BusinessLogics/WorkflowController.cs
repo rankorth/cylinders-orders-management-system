@@ -28,7 +28,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while saving workflow");
+                throw new Exception("Sorry, there is an error occured while saving workflow", ex);
             }
         }
 
@@ -62,7 +62,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while saving workflow");
+                throw new Exception("Sorry, there is an error occured while saving workflow", ex);
             }
         }
 
@@ -92,14 +92,9 @@ namespace BusinessLogics
             }
         }
 
-        public void viewCurrentQueue(Guid workflowId)
+        public IQueryable<Cylinder> viewCurrentQueue(Guid workflowId)
         {
-            //IQueryable<Step> stepList = GetSteps(workflowId);
-            //List<
-            //foreach (Step step in stepList)
-            //{
-
-            //}
+            return dbContext.Cylinders.Where(c => c.workflowId.Equals(workflowId));
         }
     }
 }

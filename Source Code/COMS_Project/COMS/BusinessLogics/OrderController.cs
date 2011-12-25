@@ -25,7 +25,7 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Error occured while placing new order");
+                throw new Exception("Error occured while placing new order", ex);
             }
         }
 
