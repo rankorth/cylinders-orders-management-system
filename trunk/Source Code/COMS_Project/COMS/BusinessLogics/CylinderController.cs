@@ -34,7 +34,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinder.cylinderId + "'s priority");
+                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinder.cylinderId + "'s priority "+ex.Message);
             }
         }
 
@@ -52,7 +52,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while retrieving the cylinder list from the database.");
+                throw new Exception("Sorry, there is an error occured while retrieving the cylinder list from the database. " + ex.Message);
             }
             return null;
         }
@@ -77,7 +77,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while starting production for the cylinder: " + cylinderID);
+                throw new Exception("Sorry, there is an error occured while starting production for the cylinder: " + cylinderID +" "+ex.Message);
             }
         }
 
@@ -101,7 +101,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while stopping production for the cylinder: " + cylinderID);
+                throw new Exception("Sorry, there is an error occured while stopping production for the cylinder: " + cylinderID + " " + ex.Message);
             }
         }
 		
