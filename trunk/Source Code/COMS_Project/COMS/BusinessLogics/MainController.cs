@@ -111,6 +111,7 @@ namespace BusinessLogics
         {
             try
             {
+                if(null!=error)
                 errorCtrl.createError(error);
             }
             catch (Exception ex)
@@ -123,6 +124,7 @@ namespace BusinessLogics
         {
             try
             {
+                if(null!=id && null!=name)
                 errorCtrl.updateError(id, name);
             }
             catch (Exception ex)
@@ -135,6 +137,7 @@ namespace BusinessLogics
         {
             try
             {
+                if(null!=id)
                 errorCtrl.deleteError(id);
             }
             catch (Exception ex)
@@ -147,6 +150,7 @@ namespace BusinessLogics
         {
             try
             {
+                if(null!=name)
                 errorCtrl.deleteError(name);
             }
             catch (Exception ex)
@@ -159,7 +163,10 @@ namespace BusinessLogics
         {
             try
             {
-                return errorCtrl.retrieveError(errorID);
+                if (null != errorID)
+                    return errorCtrl.retrieveError(errorID);
+                else
+                    return null; 
             }
             catch (Exception ex)
             {
