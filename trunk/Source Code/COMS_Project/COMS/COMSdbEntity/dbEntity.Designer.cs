@@ -3752,6 +3752,78 @@ namespace COMSdbEntity
         private Nullable<global::System.DateTime> _updated_date;
         partial void Onupdated_dateChanging(Nullable<global::System.DateTime> value);
         partial void Onupdated_dateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> length
+        {
+            get
+            {
+                return _length;
+            }
+            set
+            {
+                OnlengthChanging(value);
+                ReportPropertyChanging("length");
+                _length = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("length");
+                OnlengthChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _length;
+        partial void OnlengthChanging(Nullable<global::System.Decimal> value);
+        partial void OnlengthChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> diameter
+        {
+            get
+            {
+                return _diameter;
+            }
+            set
+            {
+                OndiameterChanging(value);
+                ReportPropertyChanging("diameter");
+                _diameter = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("diameter");
+                OndiameterChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _diameter;
+        partial void OndiameterChanging(Nullable<global::System.Decimal> value);
+        partial void OndiameterChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> area
+        {
+            get
+            {
+                return _area;
+            }
+            set
+            {
+                OnareaChanging(value);
+                ReportPropertyChanging("area");
+                _area = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("area");
+                OnareaChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _area;
+        partial void OnareaChanging(Nullable<global::System.Decimal> value);
+        partial void OnareaChanged();
 
         #endregion
     

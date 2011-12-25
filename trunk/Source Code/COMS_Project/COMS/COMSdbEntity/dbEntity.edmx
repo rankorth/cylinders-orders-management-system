@@ -116,9 +116,9 @@
           <Property Name="barcode" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="priority" Type="int" Nullable="false" />
           <Property Name="status" Type="int" Nullable="false" />
-          <Property Name="length" Type="decimal" Nullable="false" Scale="5" />
-          <Property Name="diameter" Type="decimal" Nullable="false" Scale="5" />
-          <Property Name="area" Type="decimal" Nullable="false" Scale="5" />
+          <Property Name="length" Type="decimal" Scale="5" />
+          <Property Name="diameter" Type="decimal" Scale="5" />
+          <Property Name="area" Type="decimal" Scale="5" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
@@ -232,6 +232,9 @@
           <Property Name="cylinder_type" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="quantity" Type="int" Nullable="false" />
           <Property Name="color_count" Type="int" Nullable="false" />
+          <Property Name="length" Type="decimal" Scale="5" />
+          <Property Name="diameter" Type="decimal" Scale="5" />
+          <Property Name="area" Type="decimal" Scale="5" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
@@ -758,6 +761,9 @@
           <Property Type="DateTime" Name="updated_date" />
           <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Order_Detail" FromRole="Order_Detail" ToRole="Cylinder" />
           <NavigationProperty Name="Order" Relationship="COMSModel.FK_Order_Detail_Order" FromRole="Order_Detail" ToRole="Order" />
+          <Property Type="Decimal" Name="length" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="diameter" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="area" Precision="18" Scale="5" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -1203,6 +1209,9 @@
           <EntitySetMapping Name="Order_Detail">
             <EntityTypeMapping TypeName="COMSModel.Order_Detail">
               <MappingFragment StoreEntitySet="Order_Detail">
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="diameter" ColumnName="diameter" />
+                <ScalarProperty Name="length" ColumnName="length" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
