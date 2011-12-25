@@ -34,27 +34,67 @@ namespace Example
                 Order order = new Order();
 
                 order.orderId = Guid.NewGuid();
-                order.order_code = "code-111";
-                order.product_name = "example";
-                order.price = 100;
-                order.received_date = DateTime.Now;
-                order.dead_line = DateTime.Now;
-                order.order_type = "test";
-                order.barcode = "barcode-111";
-                order.remark = "this is a remark";
-                order.created_by = "tin";
+                order.barcode = order.orderId.ToString();
+                order.belong_to_set = false;
+                order.created_by = "Ba Tien";
                 order.created_date = DateTime.Now;
+                order.Customer = new Customer();
+                order.dead_line = DateTime.Now;
+                order.old_core = false;
+                order.order_code = "order-code-111";
+                order.order_type = "new-order";
+                order.pay_percentage = 100;
+                order.price = 1000000;
+                order.price_type = 0;
+                order.product_name = "Sua Bot Nguyen Kem Jolly";
+                order.remark = "this is a remark";
+                order.status = (int)OrderConst.STATUS_NEW;
+                order.updated_by = "Ba Tien";
+                order.updated_date = DateTime.Now;
 
                 //prepare order_details from order record
                 Order_Detail orderdetails = new Order_Detail();
-
                 orderdetails.order_detailId = Guid.NewGuid();
-                orderdetails.created_by = "tin";
+                orderdetails.angle = 45;
+                orderdetails.arrangement = 1; //1-sided or 2-sided
+                orderdetails.bottom = 1;
+                orderdetails.color_count = 4;
+                orderdetails.created_by = "Ba Tien";
                 orderdetails.created_date = DateTime.Now;
-                orderdetails.cylinder_code = "CYL001";
-                orderdetails.cylinder_type = "TP1";
-                orderdetails.quantity = 2;
-                orderdetails.color_count = 3;
+                orderdetails.cylinder_area = 500;
+                orderdetails.cylinder_circumference = 80;
+                orderdetails.cylinder_code = "cylinder-code-111";
+                orderdetails.cylinder_hole_type = 0; //standard or others
+                orderdetails.cylinder_length = 100;
+                orderdetails.cylinder_type = "type-1";
+                orderdetails.eye_mark_color = "color";
+                orderdetails.eye_mark_height = 10;
+                orderdetails.eye_mark_sign = "sign";
+                orderdetails.eye_mark_width = 10;
+                orderdetails.height = 90;
+                orderdetails.image_orientation = "0"; //0, 90, 180, 270 degrees, or others
+                orderdetails.inner_diameter = 8;
+                orderdetails.key_way_height = 2;
+                orderdetails.key_way_width = 2;
+                orderdetails.layout_no_of_repeat_circum = 3;
+                orderdetails.layout_no_of_up_horizontal = 4;
+                orderdetails.no_of_cylinders = 4;
+                orderdetails.orderId = order.orderId;
+                orderdetails.outer_diameter = 12;
+                orderdetails.print_method = 0; // reverse or surface
+                orderdetails.print_width = 480;
+                orderdetails.printing_web_total_print_width = 4800;
+                orderdetails.printing_material = "5"; //multiple options or other
+                orderdetails.reg_mark = 0; //standard or others
+                orderdetails.result_based_on = "0"; //graphic proof, printing sample, fingerprint or others
+                orderdetails.spliting_line_color = "color";
+                orderdetails.spliting_line_side = 1; //2-sided or not
+                orderdetails.spliting_line_size = 100;
+                orderdetails.stretch_range = 10;
+                orderdetails.top_down = 1; // top/down (1/2)
+                orderdetails.updated_by = "Ba Tien";
+                orderdetails.updated_date = DateTime.Now;
+                orderdetails.web_width = 48;
 
                 //add above prepared detail record into Order
                 order.Order_Detail.Add(orderdetails);
@@ -85,10 +125,7 @@ namespace Example
             Order order = context.Orders.Where(o => o.order_code == "code-111").Take(1).SingleOrDefault() ;
             if (order != null)
             {
-                order.order_code = "code-222";
-                order.updated_by = "tin-2";
-                order.updated_date = DateTime.Now;
-                context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                
                 MessageBox.Show("Updated");
             }
             else

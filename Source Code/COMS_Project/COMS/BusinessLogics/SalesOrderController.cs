@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace BusinessLogics
 {
-    enum OrderConst
+    public enum OrderConst
     {
         STATUS_NEW = 1,
         STATUS_INPROD = 2,
@@ -71,6 +71,7 @@ namespace BusinessLogics
             try
             {
                 Order dbOrder = retrieveSalesOrder(orderId);
+                dbOrder.status = (int)OrderConst.STATUS_CANCELLED;
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
             catch (Exception ex)

@@ -36,8 +36,6 @@ namespace WebUI
                 order.created_by = "tin";
                 order.created_date = DateTime.Now;
                 order.product_name = "example";
-                order.received_date = DateTime.Now;
-
 
                 //prepare order_details from order record
                 Order_Detail orderdetails = new Order_Detail();
@@ -47,7 +45,6 @@ namespace WebUI
                 orderdetails.created_date = DateTime.Now;
                 orderdetails.cylinder_code = "CYL001";
                 orderdetails.cylinder_type = "TP1";
-                orderdetails.quantity = 2;
                 orderdetails.color_count = 3;
                 //add above prepared detail record into Order
                 order.Order_Detail.Add(orderdetails);

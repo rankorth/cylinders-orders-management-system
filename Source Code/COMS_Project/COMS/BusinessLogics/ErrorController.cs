@@ -26,25 +26,18 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while creating a new error code", ex);
+                throw new Exception("Sorry, there is an error occured while creating a new error code ", ex);
             }
         }
 
-        public void updateError(Error error)
+        public void updateError(Guid id, String name)
         {
             try
             {
+                Error error = dbContext.Errors.Where(s => s.errorId.Equals(id)).SingleOrDefault();
                 if (null != error && null != dbContext)
                 {
-                    IQueryable<Error> errors = dbContext.Errors.Where(s => s.errorId.Equals(error.errorId));
-                    if (null != errors)
-                    {
-                        foreach (Error s in errors)
-                        {
-                            if (null != s)
-                                s.name = error.name;
-                        }
-                    }
+                    error.name = name;
                     dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
             }
@@ -52,38 +45,54 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while updating error code", ex);
+                throw new Exception("Sorry, there is an error occured while updating error code ", ex);
             }
         }
 
-        public void deleteError(Guid errorID)
+        public void deleteError(Guid id)
         {
             try
             {
-                if (null != errorID && null != dbContext)
+                if (null != id && null != dbContext)
                 {
-                    IQueryable<Error> errors = dbContext.Errors.Where(er => er.errorId.Equals(errorID) || er.errorId.Equals(errorID));
-                    if (null != errors)
-                    {
-                        foreach (Error er in errors)
-                        { dbContext.DeleteObject(er); }
-                    }
+                    Error err = dbContext.Errors.Where(s => s.errorId.Equals(id)).SingleOrDefault();
+                    dbContext.DeleteObject(err);
+                    dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while removing error code");
+                throw new Exception("Sorry, there is an error occured while removing error code ", ex);
             }
         }
 
-        public IQueryable<Error> getError(Guid errorID)
+        public void deleteError(String name)
+        {
+            try
+            {
+                if (null != name && null != dbContext)
+                {
+                    Error err = dbContext.Errors.Where(s => s.name.Equals(name)).SingleOrDefault();
+                    dbContext.DeleteObject(err);
+                    dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                }
+            }
+            catch (Exception ex)
+            {
+                //related to any errors, there may be only database error
+                //always create a meaningful error exception to catch and show up on UI.
+                throw new Exception("Sorry, there is an error occured while removing error code ", ex);
+            }
+        }
+
+        public Error retrieveError(Guid errorID)
         {
             try
             {
                 if (null != dbContext && null != errorID)
-                    return dbContext.Errors.Where(s => s.errorId.Equals(errorID));
+                    return dbContext.Errors.Where(s => s.errorId.Equals(errorID)).SingleOrDefault();
                 else
                     return null;
             }
@@ -91,11 +100,11 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while retrieving the error code " + errorID + " information from the database.", ex);
+                throw new Exception("Sorry, there is an error occured while retrieving the error code " + errorID + " information from the database. ", ex);
             }
         }
 
-        public IQueryable<Error> getAllErrors()
+        public IQueryable<Error> retrieveAllErrors()
         {
             try
             {
@@ -115,7 +124,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while retrieving the error codes from the database.", ex);
+                throw new Exception("Sorry, there is an error occured while retrieving the error codes from the database. ", ex);
             }
         }
     }
