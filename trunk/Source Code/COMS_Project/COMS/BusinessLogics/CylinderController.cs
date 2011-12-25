@@ -37,7 +37,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinder.cylinderId + "'s priority "+ex.Message);
+                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinder.cylinderId + "'s priority ", ex);
             }
         }
         private void create(String ordercode)
@@ -59,7 +59,7 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while creating the cylinder " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while creating the cylinder ", ex);
             }
         }
 
@@ -92,7 +92,7 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while generating the cylinder " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while generating the cylinder ", ex);
             }
         }
 
@@ -108,7 +108,7 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while retrieving the cylinder list from the database. " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while retrieving the cylinder list from the database. ", ex);
             }
             return null;
         }
@@ -131,7 +131,7 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while starting production for the cylinder: " + cylinderID +" "+ex.Message);
+                throw new Exception("Sorry, there is an error occured while starting production for the cylinder: " + cylinderID, ex);
             }
         }
 
@@ -155,9 +155,10 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while stopping production for the cylinder: " + cylinderID + " " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while stopping production for the cylinder: " + cylinderID, ex);
             }
         }
 		
+
     }
 }
