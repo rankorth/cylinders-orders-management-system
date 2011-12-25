@@ -1175,12 +1175,11 @@ namespace COMSdbEntity
         /// <param name="priority">Initial value of the priority property.</param>
         /// <param name="status">Initial value of the status property.</param>
         /// <param name="length">Initial value of the length property.</param>
-        /// <param name="diameter">Initial value of the diameter property.</param>
         /// <param name="area">Initial value of the area property.</param>
         /// <param name="created_by">Initial value of the created_by property.</param>
         /// <param name="created_date">Initial value of the created_date property.</param>
         /// <param name="workflowId">Initial value of the workflowId property.</param>
-        public static Cylinder CreateCylinder(global::System.Guid cylinderId, global::System.Guid order_detailId, global::System.String barcode, global::System.Int32 priority, global::System.Int32 status, global::System.Decimal length, global::System.Decimal diameter, global::System.Decimal area, global::System.String created_by, global::System.DateTime created_date, global::System.Guid workflowId)
+        public static Cylinder CreateCylinder(global::System.Guid cylinderId, global::System.Guid order_detailId, global::System.String barcode, global::System.Int32 priority, global::System.Int32 status, global::System.Decimal length, global::System.Decimal area, global::System.String created_by, global::System.DateTime created_date, global::System.Guid workflowId)
         {
             Cylinder cylinder = new Cylinder();
             cylinder.cylinderId = cylinderId;
@@ -1189,7 +1188,6 @@ namespace COMSdbEntity
             cylinder.priority = priority;
             cylinder.status = status;
             cylinder.length = length;
-            cylinder.diameter = diameter;
             cylinder.area = area;
             cylinder.created_by = created_by;
             cylinder.created_date = created_date;
@@ -1352,30 +1350,6 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal diameter
-        {
-            get
-            {
-                return _diameter;
-            }
-            set
-            {
-                OndiameterChanging(value);
-                ReportPropertyChanging("diameter");
-                _diameter = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("diameter");
-                OndiameterChanged();
-            }
-        }
-        private global::System.Decimal _diameter;
-        partial void OndiameterChanging(global::System.Decimal value);
-        partial void OndiameterChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Decimal area
         {
             get
@@ -1514,6 +1488,30 @@ namespace COMSdbEntity
         private global::System.Guid _workflowId;
         partial void OnworkflowIdChanging(global::System.Guid value);
         partial void OnworkflowIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> circumference
+        {
+            get
+            {
+                return _circumference;
+            }
+            set
+            {
+                OncircumferenceChanging(value);
+                ReportPropertyChanging("circumference");
+                _circumference = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("circumference");
+                OncircumferenceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _circumference;
+        partial void OncircumferenceChanging(Nullable<global::System.Decimal> value);
+        partial void OncircumferenceChanged();
 
         #endregion
     
