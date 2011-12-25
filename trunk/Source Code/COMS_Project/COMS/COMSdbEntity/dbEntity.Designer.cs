@@ -4094,10 +4094,9 @@ namespace COMSdbEntity
         /// <param name="cylinder_length">Initial value of the cylinder_length property.</param>
         /// <param name="cylinder_circumference">Initial value of the cylinder_circumference property.</param>
         /// <param name="cylinder_area">Initial value of the cylinder_area property.</param>
-        /// <param name="order_date">Initial value of the order_date property.</param>
         /// <param name="created_by">Initial value of the created_by property.</param>
         /// <param name="created_date">Initial value of the created_date property.</param>
-        public static Order_Detail CreateOrder_Detail(global::System.Guid order_detailId, global::System.Guid orderId, global::System.String cylinder_code, global::System.String cylinder_type, global::System.Int32 no_of_cylinders, global::System.Int32 color_count, global::System.Decimal cylinder_length, global::System.Decimal cylinder_circumference, global::System.Decimal cylinder_area, global::System.DateTime order_date, global::System.String created_by, global::System.DateTime created_date)
+        public static Order_Detail CreateOrder_Detail(global::System.Guid order_detailId, global::System.Guid orderId, global::System.String cylinder_code, global::System.String cylinder_type, global::System.Int32 no_of_cylinders, global::System.Int32 color_count, global::System.Decimal cylinder_length, global::System.Decimal cylinder_circumference, global::System.Decimal cylinder_area, global::System.String created_by, global::System.DateTime created_date)
         {
             Order_Detail order_Detail = new Order_Detail();
             order_Detail.order_detailId = order_detailId;
@@ -4109,7 +4108,6 @@ namespace COMSdbEntity
             order_Detail.cylinder_length = cylinder_length;
             order_Detail.cylinder_circumference = cylinder_circumference;
             order_Detail.cylinder_area = cylinder_area;
-            order_Detail.order_date = order_date;
             order_Detail.created_by = created_by;
             order_Detail.created_date = created_date;
             return order_Detail;
@@ -4630,30 +4628,6 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> printin_web_total_print_width
-        {
-            get
-            {
-                return _printin_web_total_print_width;
-            }
-            set
-            {
-                Onprintin_web_total_print_widthChanging(value);
-                ReportPropertyChanging("printin_web_total_print_width");
-                _printin_web_total_print_width = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("printin_web_total_print_width");
-                Onprintin_web_total_print_widthChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _printin_web_total_print_width;
-        partial void Onprintin_web_total_print_widthChanging(Nullable<global::System.Int32> value);
-        partial void Onprintin_web_total_print_widthChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Decimal> web_width
         {
             get
@@ -4988,78 +4962,6 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String image_oriantation
-        {
-            get
-            {
-                return _image_oriantation;
-            }
-            set
-            {
-                Onimage_oriantationChanging(value);
-                ReportPropertyChanging("image_oriantation");
-                _image_oriantation = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("image_oriantation");
-                Onimage_oriantationChanged();
-            }
-        }
-        private global::System.String _image_oriantation;
-        partial void Onimage_oriantationChanging(global::System.String value);
-        partial void Onimage_oriantationChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String material
-        {
-            get
-            {
-                return _material;
-            }
-            set
-            {
-                OnmaterialChanging(value);
-                ReportPropertyChanging("material");
-                _material = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("material");
-                OnmaterialChanged();
-            }
-        }
-        private global::System.String _material;
-        partial void OnmaterialChanging(global::System.String value);
-        partial void OnmaterialChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime order_date
-        {
-            get
-            {
-                return _order_date;
-            }
-            set
-            {
-                Onorder_dateChanging(value);
-                ReportPropertyChanging("order_date");
-                _order_date = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("order_date");
-                Onorder_dateChanged();
-            }
-        }
-        private global::System.DateTime _order_date;
-        partial void Onorder_dateChanging(global::System.DateTime value);
-        partial void Onorder_dateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String created_by
@@ -5152,6 +5054,54 @@ namespace COMSdbEntity
         private Nullable<global::System.DateTime> _updated_date;
         partial void Onupdated_dateChanging(Nullable<global::System.DateTime> value);
         partial void Onupdated_dateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> printing_web_total_print_width
+        {
+            get
+            {
+                return _printing_web_total_print_width;
+            }
+            set
+            {
+                Onprinting_web_total_print_widthChanging(value);
+                ReportPropertyChanging("printing_web_total_print_width");
+                _printing_web_total_print_width = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("printing_web_total_print_width");
+                Onprinting_web_total_print_widthChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _printing_web_total_print_width;
+        partial void Onprinting_web_total_print_widthChanging(Nullable<global::System.Int32> value);
+        partial void Onprinting_web_total_print_widthChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String image_orientation
+        {
+            get
+            {
+                return _image_orientation;
+            }
+            set
+            {
+                Onimage_orientationChanging(value);
+                ReportPropertyChanging("image_orientation");
+                _image_orientation = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("image_orientation");
+                Onimage_orientationChanged();
+            }
+        }
+        private global::System.String _image_orientation;
+        partial void Onimage_orientationChanging(global::System.String value);
+        partial void Onimage_orientationChanged();
 
         #endregion
     
