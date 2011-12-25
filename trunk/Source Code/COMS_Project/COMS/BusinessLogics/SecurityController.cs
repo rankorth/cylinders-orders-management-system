@@ -9,28 +9,32 @@ using System.Collections;
 
 namespace BusinessLogics
 {
+    enum SecurityConst
+    {
+        LOGIN_STATUS_OK = 0,
+        LOGIN_STATUS_NO_USERNAME = 1,
+        LOGIN_STATUS_WRONG_PASS = 2,
+    }
     class SecurityController
     {
         private COMSEntities dbContext = new COMSEntities();
-        public static const int LOGIN_STATUS_OK = 0;
-        public static const int LOGIN_STATUS_NO_USERNAME = 1;
-        public static const int LOGIN_STATUS_WRONG_PASS = 2;
+        
 
-        private List<Access_Right> login(String username, String password)
+        public List<Access_Right> login(String username, String password)
         {
-            int returnStatus = LOGIN_STATUS_NO_USERNAME;
+            SecurityConst returnStatus = SecurityConst.LOGIN_STATUS_NO_USERNAME;
             List<Access_Right> rightList = null;
 
             //TODO:check username & password
             Employee dbEmpl = dbContext.Employees.Where(e => e.username.Equals(username)).FirstOrDefault();
             if (dbEmpl.password.Equals(password))
             {
-                returnStatus = LOGIN_STATUS_OK;
-                rightList = retrieveRoles(dbEmpl);
+                returnStatus = SecurityConst.LOGIN_STATUS_OK;
+               // rightList = GetRoles(dbEmpl);
             }
             else
             {
-                returnStatus = LOGIN_STATUS_WRONG_PASS;
+                returnStatus = SecurityConst.LOGIN_STATUS_WRONG_PASS;
             }
             return rightList;
         }
