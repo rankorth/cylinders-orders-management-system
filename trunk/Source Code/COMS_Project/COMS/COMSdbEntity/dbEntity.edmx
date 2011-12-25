@@ -7,6 +7,7 @@
     <Schema Namespace="COMSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="COMSModelStoreContainer">
           <EntitySet Name="Access_Right" EntityType="COMSModel.Store.Access_Right" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Customer" EntityType="COMSModel.Store.Customer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cylinder" EntityType="COMSModel.Store.Cylinder" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cylinder_Log" EntityType="COMSModel.Store.Cylinder_Log" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Department" EntityType="COMSModel.Store.Department" store:Type="Tables" Schema="dbo" />
@@ -16,6 +17,7 @@
           <EntitySet Name="Formula" EntityType="COMSModel.Store.Formula" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Order" EntityType="COMSModel.Store.Order" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Order_Detail" EntityType="COMSModel.Store.Order_Detail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Printer" EntityType="COMSModel.Store.Printer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Role" EntityType="COMSModel.Store.Role" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Role_Right_ref" EntityType="COMSModel.Store.Role_Right_ref" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Step" EntityType="COMSModel.Store.Step" store:Type="Tables" Schema="dbo" />
@@ -65,9 +67,17 @@
             <End Role="Step" EntitySet="Step" />
             <End Role="Formula" EntitySet="Formula" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="COMSModel.Store.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_Detail_Order" Association="COMSModel.Store.FK_Order_Detail_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Printer_Customer" Association="COMSModel.Store.FK_Printer_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Printer" EntitySet="Printer" />
           </AssociationSet>
           <AssociationSet Name="FK_Role_Right_ref_Access_Right" Association="COMSModel.Store.FK_Role_Right_ref_Access_Right">
             <End Role="Access_Right" EntitySet="Access_Right" />
@@ -105,6 +115,25 @@
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
           <Property Name="isactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerid" />
+          </Key>
+          <Property Name="customerid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="code" Type="nchar" MaxLength="10" />
+          <Property Name="code_tax" Type="nvarchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="fullname" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="10" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="printer_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="updated_date" Type="datetime" />
+          <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Cylinder">
           <Key>
@@ -209,6 +238,7 @@
           </Key>
           <Property Name="orderId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="order_code" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="customer_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="product_name" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="price" Type="decimal" Nullable="false" Scale="2" />
           <Property Name="price_type" Type="int" />
@@ -272,6 +302,23 @@
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Printer">
+          <Key>
+            <PropertyRef Name="printer_id" />
+          </Key>
+          <Property Name="printer_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="customer_id" Type="uniqueidentifier" />
+          <Property Name="address" Type="nvarchar" MaxLength="255" />
+          <Property Name="code" Type="nvarchar" MaxLength="10" />
+          <Property Name="hole_stick" Type="nvarchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+          <Property Name="slot_latch" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="10" />
+          <Property Name="created_date" Type="datetime" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="updated_date" Type="datetime" />
+          <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -473,6 +520,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Customer">
+          <End Role="Customer" Type="COMSModel.Store.Customer" Multiplicity="1" />
+          <End Role="Order" Type="COMSModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customerid" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_Detail_Order">
           <End Role="Order" Type="COMSModel.Store.Order" Multiplicity="1" />
           <End Role="Order_Detail" Type="COMSModel.Store.Order_Detail" Multiplicity="*" />
@@ -482,6 +541,18 @@
             </Principal>
             <Dependent Role="Order_Detail">
               <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Printer_Customer">
+          <End Role="Customer" Type="COMSModel.Store.Customer" Multiplicity="0..1" />
+          <End Role="Printer" Type="COMSModel.Store.Printer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customerid" />
+            </Principal>
+            <Dependent Role="Printer">
+              <PropertyRef Name="customer_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -648,6 +719,16 @@
           <AssociationSet Name="FK_Order_Detail_Order" Association="COMSModel.FK_Order_Detail_Order">
             <End Role="Order" EntitySet="Orders" />
             <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <EntitySet Name="Customers" EntityType="COMSModel.Customer" />
+          <AssociationSet Name="FK_Order_Customer" Association="COMSModel.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <EntitySet Name="Printers" EntityType="COMSModel.Printer" />
+          <AssociationSet Name="FK_Printer_Customer" Association="COMSModel.FK_Printer_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Printer" EntitySet="Printers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Access_Right">
@@ -1136,6 +1217,8 @@
           <Property Type="DateTime" Name="updated_date" />
           <Property Type="Int32" Name="status" Nullable="false" />
           <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Order_Detail_Order" FromRole="Order" ToRole="Order_Detail" />
+          <Property Type="Guid" Name="customer_id" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="COMSModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
         </EntityType>
         <Association Name="FK_Order_Detail_Order">
           <End Type="COMSModel.Order" Role="Order" Multiplicity="1" />
@@ -1146,6 +1229,69 @@
             </Principal>
             <Dependent Role="Order_Detail">
               <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerid" />
+          </Key>
+          <Property Type="Guid" Name="customerid" Nullable="false" />
+          <Property Type="String" Name="code" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="code_tax" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="address" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" />
+          <Property Type="String" Name="created_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="fax" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="fullname" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="status" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="telephone" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="printer_id" Nullable="false" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="COMSModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="Printers" Relationship="COMSModel.FK_Printer_Customer" FromRole="Customer" ToRole="Printer" />
+        </EntityType>
+        <Association Name="FK_Order_Customer">
+          <End Type="COMSModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="COMSModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customerid" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Printer">
+          <Key>
+            <PropertyRef Name="printer_id" />
+          </Key>
+          <Property Type="Guid" Name="printer_id" Nullable="false" />
+          <Property Type="Guid" Name="customer_id" />
+          <Property Type="String" Name="address" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="code" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hole_stick" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="slot_latch" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="status" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" />
+          <Property Type="String" Name="created_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="COMSModel.FK_Printer_Customer" FromRole="Printer" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK_Printer_Customer">
+          <End Type="COMSModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="COMSModel.Printer" Role="Printer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customerid" />
+            </Principal>
+            <Dependent Role="Printer">
+              <PropertyRef Name="customer_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1397,6 +1543,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="COMSModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
@@ -1414,6 +1561,44 @@
                 <ScalarProperty Name="product_name" ColumnName="product_name" />
                 <ScalarProperty Name="order_code" ColumnName="order_code" />
                 <ScalarProperty Name="orderId" ColumnName="orderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="COMSModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="printer_id" ColumnName="printer_id" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="code_tax" ColumnName="code_tax" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Printers">
+            <EntityTypeMapping TypeName="COMSModel.Printer">
+              <MappingFragment StoreEntitySet="Printer">
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="slot_latch" ColumnName="slot_latch" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="hole_stick" ColumnName="hole_stick" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="printer_id" ColumnName="printer_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1437,7 +1622,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="dbEntity" ZoomLevel="48">
+      <Diagram Name="dbEntity" ZoomLevel="107">
         <EntityTypeShape EntityType="COMSModel.Access_Right" Width="1.5" PointX="3" PointY="23.375" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="COMSModel.Cylinder" Width="1.5" PointX="7.5" PointY="18.25" Height="3.7109993489583388" />
         <EntityTypeShape EntityType="COMSModel.Cylinder_Log" Width="1.5" PointX="9.75" PointY="8.375" Height="3.7109993489583388" />
@@ -1523,16 +1708,16 @@
           <ConnectorPoint PointX="7.5" PointY="14.415725911458335" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="13.6631982421875" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="13.6631982421875" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="13.6631982421875" />
-          <ConnectorPoint PointX="5.25" PointY="13.6631982421875" />
+          <ConnectorPoint PointX="4.5" PointY="13.200524681640623" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="13.200524681640623" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="13.200524681640623" />
+          <ConnectorPoint PointX="5.25" PointY="13.200524681640623" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="14.526049363281244" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="14.526049363281244" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="14.526049363281244" />
-          <ConnectorPoint PointX="5" PointY="14.526049363281244" />
+          <ConnectorPoint PointX="4.5" PointY="14.294712583007804" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="14.294712583007804" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="14.294712583007804" />
+          <ConnectorPoint PointX="5" PointY="14.294712583007804" />
           <ConnectorPoint PointX="5" PointY="15.980205078125" />
           <ConnectorPoint PointX="7.25" PointY="15.980205078125" />
           <ConnectorPoint PointX="7.25" PointY="17.12449218750001" />
@@ -1546,10 +1731,21 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="COMSModel.Order" Width="1.5" PointX="3" PointY="17.375" Height="4.4802050781250031" />
         <AssociationConnector Association="COMSModel.FK_Order_Detail_Order" >
-          <ConnectorPoint PointX="4.5" PointY="19.6151025390625" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="19.6151025390625" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="19.6151025390625" />
-          <ConnectorPoint PointX="5.25" PointY="19.6151025390625" />
+          <ConnectorPoint PointX="4.5" PointY="19.807403971354169" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="19.807403971354169" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="19.807403971354169" />
+          <ConnectorPoint PointX="5.25" PointY="19.807403971354169" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COMSModel.Customer" Width="1.5" PointX="0.75" PointY="17.75" Height="4.0956022135416674" />
+        <AssociationConnector Association="COMSModel.FK_Order_Customer" >
+          <ConnectorPoint PointX="2.25" PointY="19.797801106770834" />
+          <ConnectorPoint PointX="3" PointY="19.797801106770834" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COMSModel.Printer" Width="1.5" PointX="3" PointY="27" Height="3.5186979166666674" />
+        <AssociationConnector Association="COMSModel.FK_Printer_Customer" >
+          <ConnectorPoint PointX="1.5" PointY="21.845602213541667" />
+          <ConnectorPoint PointX="1.5" PointY="28.759348958333334" />
+          <ConnectorPoint PointX="3" PointY="28.759348958333334" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
