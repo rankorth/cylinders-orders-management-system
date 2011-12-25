@@ -146,7 +146,7 @@
           <Property Name="priority" Type="int" Nullable="false" />
           <Property Name="status" Type="int" Nullable="false" />
           <Property Name="length" Type="decimal" Scale="5" />
-          <Property Name="diameter" Type="decimal" Scale="5" />
+          <Property Name="circumference" Type="decimal" Scale="5" />
           <Property Name="area" Type="decimal" Scale="5" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
@@ -754,7 +754,6 @@
           <Property Type="Int32" Name="priority" Nullable="false" />
           <Property Type="Int32" Name="status" Nullable="false" />
           <Property Type="Decimal" Name="length" Nullable="false" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="diameter" Nullable="false" Precision="18" Scale="5" />
           <Property Type="Decimal" Name="area" Nullable="false" Precision="18" Scale="5" />
           <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="created_date" Nullable="false" />
@@ -764,6 +763,7 @@
           <Property Type="Guid" Name="workflowId" Nullable="false" />
           <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Cylinder" ToRole="Workflow" />
           <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Cylinder_Order_Detail" FromRole="Cylinder" ToRole="Order_Detail" />
+          <Property Type="Decimal" Name="circumference" Precision="18" Scale="5" />
         </EntityType>
         <EntityType Name="Cylinder_Log">
           <Key>
@@ -1317,13 +1317,13 @@
           <EntitySetMapping Name="Cylinders">
             <EntityTypeMapping TypeName="COMSModel.Cylinder">
               <MappingFragment StoreEntitySet="Cylinder">
+                <ScalarProperty Name="circumference" ColumnName="circumference" />
                 <ScalarProperty Name="workflowId" ColumnName="workflowId" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
                 <ScalarProperty Name="created_by" ColumnName="created_by" />
                 <ScalarProperty Name="area" ColumnName="area" />
-                <ScalarProperty Name="diameter" ColumnName="diameter" />
                 <ScalarProperty Name="length" ColumnName="length" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="priority" ColumnName="priority" />
@@ -1624,7 +1624,7 @@
     <Diagrams>
       <Diagram Name="dbEntity" ZoomLevel="107">
         <EntityTypeShape EntityType="COMSModel.Access_Right" Width="1.5" PointX="3" PointY="23.375" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="COMSModel.Cylinder" Width="1.5" PointX="7.5" PointY="18.25" Height="3.7109993489583388" />
+        <EntityTypeShape EntityType="COMSModel.Cylinder" Width="1.5" PointX="7.5" PointY="18.25" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="COMSModel.Cylinder_Log" Width="1.5" PointX="9.75" PointY="8.375" Height="3.7109993489583388" />
         <EntityTypeShape EntityType="COMSModel.Department" Width="1.5" PointX="0.75" PointY="9.5" Height="2.749492187499996" />
         <EntityTypeShape EntityType="COMSModel.Emp_Role_ref" Width="1.5" PointX="5.25" PointY="5.75" Height="2.749492187499996" />
@@ -1714,10 +1714,10 @@
           <ConnectorPoint PointX="5.25" PointY="13.200524681640623" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="14.294712583007804" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="14.294712583007804" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="14.294712583007804" />
-          <ConnectorPoint PointX="5" PointY="14.294712583007804" />
+          <ConnectorPoint PointX="4.5" PointY="14.236878387939445" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="14.236878387939445" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="14.236878387939445" />
+          <ConnectorPoint PointX="5" PointY="14.236878387939445" />
           <ConnectorPoint PointX="5" PointY="15.980205078125" />
           <ConnectorPoint PointX="7.25" PointY="15.980205078125" />
           <ConnectorPoint PointX="7.25" PointY="17.12449218750001" />
