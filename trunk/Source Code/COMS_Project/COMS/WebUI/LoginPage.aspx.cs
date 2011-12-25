@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusinessLogics;
+using COMSdbEntity;
 
 namespace WebUI
 {
@@ -18,7 +19,7 @@ namespace WebUI
 
         protected void Login(object sender, EventArgs e)
         {
-            int loginStatus = mainCtrl.login(txtUserName.Text, txtPassword.Text);
+            List<Access_Right> rightList = mainCtrl.login(txtUserName.Text, txtPassword.Text);
         }
     }
 }

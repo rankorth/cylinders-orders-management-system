@@ -9,7 +9,7 @@ using System.Collections;
 
 namespace BusinessLogics
 {
-    enum SecurityConst
+    public enum SecurityConst
     {
         LOGIN_STATUS_OK = 0,
         LOGIN_STATUS_NO_USERNAME = 1,
