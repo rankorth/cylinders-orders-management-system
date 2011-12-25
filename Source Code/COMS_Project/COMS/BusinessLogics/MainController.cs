@@ -166,18 +166,5 @@ namespace BusinessLogics
                 throw new Exception("Sorry, there is an error occured while retrieving the error code " + errorID + " information from the database. " + ex.Message);
             }
         }
-
-        public IQueryable<Error> retrieveAllErrors()
-        {
-            try
-            {
-                return errorCtrl.retrieveAllErrors();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Sorry, there is an error occured while retrieving the error codes from the database. " + ex.Message);
-            }
-        }
-
     }
 }
