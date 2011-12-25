@@ -15,32 +15,26 @@ namespace BusinessLogics
         private static int ISACTIVE = 1;
         private static int NOTACTIVE = 0;
 
-		public void changeCylinderPriority(Cylinder cylinder)
+        public void changeCylinderPriority(Guid cylinder_id, int priority)
         {
             try
             {
-                if (null != cylinder && null != dbContext)
+                if (null != cylinder_id && null != dbContext && priority >=0)
                 {
-                    IQueryable<Cylinder> cylinders = dbContext.Cylinders.Where(s => s.cylinderId.Equals(cylinder.cylinderId));
-                    if (null != cylinders)
+                    Cylinder cylinder = dbContext.Cylinders.Where(s => s.cylinderId.Equals(cylinder_id)).SingleOrDefault();
+                    if (null != cylinder)
                     {
-                        foreach (Cylinder s in cylinders)
-                        {
-                            if (null != s)
-                                s.priority = cylinder.priority;
-                        }
+                        cylinder.priority = priority;
+                        dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                     }
-                    dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
             }
             catch (Exception ex)
             {
-                //related to any errors, there may be only database error
-                //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinder.cylinderId + "'s priority ", ex);
+                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinder_id + "'s priority ", ex);
             }
         }
-        private void create(String ordercode)
+        public void create(String ordercode)
         {
             try
             {
@@ -72,7 +66,7 @@ namespace BusinessLogics
                     for (int i = 0; i < orderDetail.no_of_cylinders; i++)
                     {
 
-                        Guid generatedId = new Guid();
+                        Guid generatedId = Guid.NewGuid(); ;
                         Cylinder newCylinder = new Cylinder();
                         newCylinder.area = (decimal)orderDetail.cylinder_area;
                         newCylinder.barcode = generatedId.ToString();
@@ -86,6 +80,8 @@ namespace BusinessLogics
                         newCylinder.updated_by = orderDetail.updated_by;
                         newCylinder.updated_date = orderDetail.updated_date;
                         newCylinder.order_detailId = orderDetail.order_detailId;
+                        newCylinder.workflowId = new Guid("22222222-2222-2222-2222-222222222222"); //Questions
+                        dbContext.Cylinders.AddObject(newCylinder);
                     }
                     dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
