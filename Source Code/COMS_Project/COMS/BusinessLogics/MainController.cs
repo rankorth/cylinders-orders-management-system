@@ -90,7 +90,7 @@ namespace BusinessLogics
 
         public IQueryable<Error> retrieveAllErrors()
         {
-            return errorCtrl.getAllErrors();
+            return errorCtrl.retrieveAllErrors();
         }
 
         public void sendCylinderToStep(Guid cylinderId, Guid nextStepId, Error error)
@@ -106,5 +106,78 @@ namespace BusinessLogics
         //- View Sales Order - coded
         //- View Workflow Queues
         //- Send Cylinder To A Particular Step
+
+        public void createError(Error error)
+        {
+            try
+            {
+                errorCtrl.createError(error);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while creating a new error code " + ex.Message);
+            }
+        }
+
+        public void updateError(Guid id, String name)
+        {
+            try
+            {
+                errorCtrl.updateError(id, name);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while updating error code " + ex.Message);
+            }
+        }
+
+        public void deleteError(Guid id)
+        {
+            try
+            {
+                errorCtrl.deleteError(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while removing error code " + ex.Message);
+            }
+        }
+
+        public void deleteError(String name)
+        {
+            try
+            {
+                errorCtrl.deleteError(name);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while removing error code " + ex.Message);
+            }
+        }
+
+        public Error retrieveError(Guid errorID)
+        {
+            try
+            {
+                return errorCtrl.retrieveError(errorID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving the error code " + errorID + " information from the database. " + ex.Message);
+            }
+        }
+
+        public IQueryable<Error> retrieveAllErrors()
+        {
+            try
+            {
+                return errorCtrl.retrieveAllErrors();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving the error codes from the database. " + ex.Message);
+            }
+        }
+
     }
 }
