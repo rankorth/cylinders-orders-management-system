@@ -30,12 +30,12 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Employee", "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Employee), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Formula_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Formula", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Formula), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Detail_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Detail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Detail), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Role_Right_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Role_Right_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Role_Right_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Step1", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Cylinder", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Detail_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Detail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Detail), true)]
 
 #endregion
 
@@ -218,22 +218,6 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Order> Orders
-        {
-            get
-            {
-                if ((_Orders == null))
-                {
-                    _Orders = base.CreateObjectSet<Order>("Orders");
-                }
-                return _Orders;
-            }
-        }
-        private ObjectSet<Order> _Orders;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Order_Detail> Order_Detail
         {
             get
@@ -326,6 +310,22 @@ namespace COMSdbEntity
             }
         }
         private ObjectSet<Workflow> _Workflows;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Order> Orders
+        {
+            get
+            {
+                if ((_Orders == null))
+                {
+                    _Orders = base.CreateObjectSet<Order>("Orders");
+                }
+                return _Orders;
+            }
+        }
+        private ObjectSet<Order> _Orders;
 
         #endregion
         #region AddTo Methods
@@ -395,14 +395,6 @@ namespace COMSdbEntity
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Orders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToOrders(Order order)
-        {
-            base.AddObject("Orders", order);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Order_Detail EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToOrder_Detail(Order_Detail order_Detail)
@@ -448,6 +440,14 @@ namespace COMSdbEntity
         public void AddToWorkflows(Workflow workflow)
         {
             base.AddObject("Workflows", workflow);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Orders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToOrders(Order order)
+        {
+            base.AddObject("Orders", order);
         }
 
         #endregion
@@ -3087,8 +3087,8 @@ namespace COMSdbEntity
         /// <param name="price">Initial value of the price property.</param>
         /// <param name="created_by">Initial value of the created_by property.</param>
         /// <param name="created_date">Initial value of the created_date property.</param>
-        /// <param name="isactive">Initial value of the isactive property.</param>
-        public static Order CreateOrder(global::System.Guid orderId, global::System.String order_code, global::System.String product_name, global::System.Decimal price, global::System.String created_by, global::System.DateTime created_date, global::System.Boolean isactive)
+        /// <param name="status">Initial value of the status property.</param>
+        public static Order CreateOrder(global::System.Guid orderId, global::System.String order_code, global::System.String product_name, global::System.Decimal price, global::System.String created_by, global::System.DateTime created_date, global::System.Int32 status)
         {
             Order order = new Order();
             order.orderId = orderId;
@@ -3097,7 +3097,7 @@ namespace COMSdbEntity
             order.price = price;
             order.created_by = created_by;
             order.created_date = created_date;
-            order.isactive = isactive;
+            order.status = status;
             return order;
         }
 
@@ -3424,24 +3424,24 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Boolean isactive
+        public global::System.Int32 status
         {
             get
             {
-                return _isactive;
+                return _status;
             }
             set
             {
-                OnisactiveChanging(value);
-                ReportPropertyChanging("isactive");
-                _isactive = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("isactive");
-                OnisactiveChanged();
+                OnstatusChanging(value);
+                ReportPropertyChanging("status");
+                _status = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("status");
+                OnstatusChanged();
             }
         }
-        private global::System.Boolean _isactive;
-        partial void OnisactiveChanging(global::System.Boolean value);
-        partial void OnisactiveChanged();
+        private global::System.Int32 _status;
+        partial void OnstatusChanging(global::System.Int32 value);
+        partial void OnstatusChanged();
 
         #endregion
     
@@ -5334,6 +5334,30 @@ namespace COMSdbEntity
         private global::System.Boolean _isactive;
         partial void OnisactiveChanging(global::System.Boolean value);
         partial void OnisactiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> nextWorkflowID
+        {
+            get
+            {
+                return _nextWorkflowID;
+            }
+            set
+            {
+                OnnextWorkflowIDChanging(value);
+                ReportPropertyChanging("nextWorkflowID");
+                _nextWorkflowID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("nextWorkflowID");
+                OnnextWorkflowIDChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _nextWorkflowID;
+        partial void OnnextWorkflowIDChanging(Nullable<global::System.Guid> value);
+        partial void OnnextWorkflowIDChanged();
 
         #endregion
     

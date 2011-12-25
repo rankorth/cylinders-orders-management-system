@@ -220,7 +220,7 @@
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
-          <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Order_Detail">
           <Key>
@@ -302,6 +302,7 @@
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
           <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="nextWorkflowID" Type="uniqueidentifier" />
         </EntityType>
         <Association Name="FK_Cylinder_Log_Cylinder">
           <End Role="Cylinder" Type="COMSModel.Store.Cylinder" Multiplicity="1" />
@@ -532,7 +533,6 @@
           <EntitySet Name="Employees" EntityType="COMSModel.Employee" />
           <EntitySet Name="Errors" EntityType="COMSModel.Error" />
           <EntitySet Name="Formulae" EntityType="COMSModel.Formula" />
-          <EntitySet Name="Orders" EntityType="COMSModel.Order" />
           <EntitySet Name="Order_Detail" EntityType="COMSModel.Order_Detail" />
           <EntitySet Name="Roles" EntityType="COMSModel.Role" />
           <EntitySet Name="Role_Right_ref" EntityType="COMSModel.Role_Right_ref" />
@@ -587,10 +587,6 @@
             <End Role="Step" EntitySet="Steps" />
             <End Role="Formula" EntitySet="Formulae" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_Detail_Order" Association="COMSModel.FK_Order_Detail_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="Order_Detail" EntitySet="Order_Detail" />
-          </AssociationSet>
           <AssociationSet Name="FK_Role_Right_ref_Role" Association="COMSModel.FK_Role_Right_ref_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="Role_Right_ref" EntitySet="Role_Right_ref" />
@@ -610,6 +606,11 @@
           <AssociationSet Name="FK_Cylinder_Workflow" Association="COMSModel.FK_Cylinder_Workflow">
             <End Role="Workflow" EntitySet="Workflows" />
             <End Role="Cylinder" EntitySet="Cylinders" />
+          </AssociationSet>
+          <EntitySet Name="Orders" EntityType="COMSModel.Order" />
+          <AssociationSet Name="FK_Order_Detail_Order" Association="COMSModel.FK_Order_Detail_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Access_Right">
@@ -740,26 +741,6 @@
           <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Formula" FromRole="Formula" ToRole="Cylinder_Log" />
           <NavigationProperty Name="Step" Relationship="COMSModel.FK_Formula_Step" FromRole="Formula" ToRole="Step" />
         </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="orderId" />
-          </Key>
-          <Property Type="Guid" Name="orderId" Nullable="false" />
-          <Property Type="String" Name="order_code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="product_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="DateTime" Name="received_date" />
-          <Property Type="DateTime" Name="dead_line" />
-          <Property Type="String" Name="order_type" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="barcode" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="remark" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" Nullable="false" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="updated_date" />
-          <Property Type="Boolean" Name="isactive" Nullable="false" />
-          <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Order_Detail_Order" FromRole="Order" ToRole="Order_Detail" />
-        </EntityType>
         <EntityType Name="Order_Detail">
           <Key>
             <PropertyRef Name="order_detailId" />
@@ -856,6 +837,7 @@
           <NavigationProperty Name="Department" Relationship="COMSModel.FK_Workflow_Department" FromRole="Workflow" ToRole="Department" />
           <NavigationProperty Name="Steps" Relationship="COMSModel.FK_Step_Workflow" FromRole="Workflow" ToRole="Step" />
           <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Workflow" ToRole="Cylinder" />
+          <Property Type="Guid" Name="nextWorkflowID" />
         </EntityType>
         <Association Name="FK_Role_Right_ref_Access_Right">
           <End Type="COMSModel.Access_Right" Role="Access_Right" Multiplicity="1" />
@@ -1001,18 +983,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Detail_Order">
-          <End Type="COMSModel.Order" Role="Order" Multiplicity="1" />
-          <End Type="COMSModel.Order_Detail" Role="Order_Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="orderId" />
-            </Principal>
-            <Dependent Role="Order_Detail">
-              <PropertyRef Name="orderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Role_Right_ref_Role">
           <End Type="COMSModel.Role" Role="Role" Multiplicity="1" />
           <End Type="COMSModel.Role_Right_ref" Role="Role_Right_ref" Multiplicity="*" />
@@ -1070,6 +1040,38 @@
             </Principal>
             <Dependent Role="Cylinder">
               <PropertyRef Name="workflowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Type="Guid" Name="orderId" Nullable="false" />
+          <Property Type="String" Name="order_code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="product_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="received_date" />
+          <Property Type="DateTime" Name="dead_line" />
+          <Property Type="String" Name="order_type" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="barcode" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="remark" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" Nullable="false" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="Int32" Name="status" Nullable="false" />
+          <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Order_Detail_Order" FromRole="Order" ToRole="Order_Detail" />
+        </EntityType>
+        <Association Name="FK_Order_Detail_Order">
+          <End Type="COMSModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="COMSModel.Order_Detail" Role="Order_Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="Order_Detail">
+              <PropertyRef Name="orderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1196,26 +1198,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="COMSModel.Order">
-              <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="isactive" ColumnName="isactive" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="barcode" ColumnName="barcode" />
-                <ScalarProperty Name="order_type" ColumnName="order_type" />
-                <ScalarProperty Name="dead_line" ColumnName="dead_line" />
-                <ScalarProperty Name="received_date" ColumnName="received_date" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="product_name" ColumnName="product_name" />
-                <ScalarProperty Name="order_code" ColumnName="order_code" />
-                <ScalarProperty Name="orderId" ColumnName="orderId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Order_Detail">
             <EntityTypeMapping TypeName="COMSModel.Order_Detail">
               <MappingFragment StoreEntitySet="Order_Detail">
@@ -1292,6 +1274,7 @@
           <EntitySetMapping Name="Workflows">
             <EntityTypeMapping TypeName="COMSModel.Workflow">
               <MappingFragment StoreEntitySet="Workflow">
+                <ScalarProperty Name="nextWorkflowID" ColumnName="nextWorkflowID" />
                 <ScalarProperty Name="isactive" ColumnName="isactive" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
@@ -1300,6 +1283,26 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="departmentId" ColumnName="departmentId" />
                 <ScalarProperty Name="workflowId" ColumnName="workflowId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="COMSModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="order_type" ColumnName="order_type" />
+                <ScalarProperty Name="dead_line" ColumnName="dead_line" />
+                <ScalarProperty Name="received_date" ColumnName="received_date" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="order_code" ColumnName="order_code" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1332,7 +1335,6 @@
         <EntityTypeShape EntityType="COMSModel.Employee" Width="1.5" PointX="3" PointY="5" Height="4.2879036458333282" />
         <EntityTypeShape EntityType="COMSModel.Error" Width="1.5" PointX="7.5" PointY="6.75" Height="1.595683593749996" />
         <EntityTypeShape EntityType="COMSModel.Formula" Width="1.5" PointX="7.5" PointY="10" Height="3.3263964843750102" />
-        <EntityTypeShape EntityType="COMSModel.Order" Width="1.5" PointX="3" PointY="18.125" Height="3.903300781249996" />
         <EntityTypeShape EntityType="COMSModel.Order_Detail" Width="1.5" PointX="5.25" PointY="18.5" Height="3.3263964843750102" />
         <EntityTypeShape EntityType="COMSModel.Role" Width="1.5" PointX="3" PointY="0.75" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="COMSModel.Role_Right_ref" Width="1.5" PointX="5.25" PointY="0.75" Height="2.7494921875000102" />
@@ -1351,8 +1353,8 @@
           <ConnectorPoint PointX="10.70312625" PointY="12.085999348958339" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Order_Detail" >
-          <ConnectorPoint PointX="6.75" PointY="20.163198242187505" />
-          <ConnectorPoint PointX="7.5" PointY="20.163198242187505" />
+          <ConnectorPoint PointX="6.75" PointY="20.163198242187498" />
+          <ConnectorPoint PointX="7.5" PointY="20.163198242187498" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Employee" >
           <ConnectorPoint PointX="4.5" PointY="8.9249479166666621" />
@@ -1402,12 +1404,6 @@
           <ConnectorPoint PointX="6.75" PointY="12.288198242187505" />
           <ConnectorPoint PointX="7.5" PointY="12.288198242187505" />
         </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Order_Detail_Order" >
-          <ConnectorPoint PointX="4.5" PointY="20.163198242187505" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="20.163198242187505" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="20.163198242187505" />
-          <ConnectorPoint PointX="5.25" PointY="20.163198242187505" />
-        </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Role" >
           <ConnectorPoint PointX="4.5" PointY="1.3748730468750026" />
           <ConnectorPoint PointX="5.25" PointY="1.3748730468750026" />
@@ -1427,13 +1423,20 @@
           <ConnectorPoint PointX="5.25" PointY="13.567047526041666" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="15.07178635977564" />
-          <ConnectorPoint PointX="4.8160744349011217" PointY="15.38786079467676" />
-          <ConnectorPoint PointX="4.9339255650988791" PointY="15.505711924874518" />
-          <ConnectorPoint PointX="5.0625" PointY="15.63428635977564" />
+          <ConnectorPoint PointX="4.5" PointY="15.264087792067308" />
+          <ConnectorPoint PointX="4.8160744349011217" PointY="15.580162226968428" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="15.698013357166186" />
+          <ConnectorPoint PointX="5.0625" PointY="15.826587792067308" />
           <ConnectorPoint PointX="5.0625" PointY="17.875" />
           <ConnectorPoint PointX="7.1261528461538468" PointY="17.875" />
           <ConnectorPoint PointX="7.5011528461538459" PointY="18.25" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COMSModel.Order" Width="1.5" PointX="3" PointY="18.25" Height="3.9033007812500031" />
+        <AssociationConnector Association="COMSModel.FK_Order_Detail_Order" >
+          <ConnectorPoint PointX="4.5" PointY="20.163198242187498" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="20.163198242187498" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="20.163198242187498" />
+          <ConnectorPoint PointX="5.25" PointY="20.163198242187498" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
