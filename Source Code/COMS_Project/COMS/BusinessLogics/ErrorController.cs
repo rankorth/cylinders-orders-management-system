@@ -30,14 +30,14 @@ namespace BusinessLogics
             }
         }
 
-        public void updateError(Guid id, String Name)
+        public void updateError(Guid id, String name)
         {
             try
             {
                     Error  error = dbContext.Errors.Where(s => s.errorId.Equals(id)).SingleOrDefault();
                     if (null != error && null != dbContext)
                     {
-                        error.name = Name;
+                        error.name = name;
                         dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                     }
             }
