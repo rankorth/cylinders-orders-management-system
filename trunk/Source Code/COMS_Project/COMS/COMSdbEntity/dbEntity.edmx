@@ -277,6 +277,7 @@
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Step_ref">
           <Key>
@@ -807,6 +808,7 @@
           <NavigationProperty Name="Step_ref" Relationship="COMSModel.FK_Step_ref_Step" FromRole="Step" ToRole="Step_ref" />
           <NavigationProperty Name="Step_ref1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step" ToRole="Step_ref" />
           <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_Workflow" FromRole="Step" ToRole="Workflow" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
         </EntityType>
         <EntityType Name="Step_ref">
           <Key>
@@ -1243,6 +1245,7 @@
           <EntitySetMapping Name="Steps">
             <EntityTypeMapping TypeName="COMSModel.Step">
               <MappingFragment StoreEntitySet="Step">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />

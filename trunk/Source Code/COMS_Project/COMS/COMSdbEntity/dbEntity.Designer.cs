@@ -4380,7 +4380,8 @@ namespace COMSdbEntity
         /// <param name="y">Initial value of the y property.</param>
         /// <param name="created_by">Initial value of the created_by property.</param>
         /// <param name="created_date">Initial value of the created_date property.</param>
-        public static Step CreateStep(global::System.Guid stepId, global::System.Guid workflowId, global::System.String name, global::System.Int32 x, global::System.Int32 y, global::System.String created_by, global::System.DateTime created_date)
+        /// <param name="isActive">Initial value of the isActive property.</param>
+        public static Step CreateStep(global::System.Guid stepId, global::System.Guid workflowId, global::System.String name, global::System.Int32 x, global::System.Int32 y, global::System.String created_by, global::System.DateTime created_date, global::System.Boolean isActive)
         {
             Step step = new Step();
             step.stepId = stepId;
@@ -4390,6 +4391,7 @@ namespace COMSdbEntity
             step.y = y;
             step.created_by = created_by;
             step.created_date = created_date;
+            step.isActive = isActive;
             return step;
         }
 
@@ -4686,6 +4688,30 @@ namespace COMSdbEntity
         private Nullable<global::System.DateTime> _updated_date;
         partial void Onupdated_dateChanging(Nullable<global::System.DateTime> value);
         partial void Onupdated_dateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean isActive
+        {
+            get
+            {
+                return _isActive;
+            }
+            set
+            {
+                OnisActiveChanging(value);
+                ReportPropertyChanging("isActive");
+                _isActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("isActive");
+                OnisActiveChanged();
+            }
+        }
+        private global::System.Boolean _isActive;
+        partial void OnisActiveChanging(global::System.Boolean value);
+        partial void OnisActiveChanged();
 
         #endregion
     
