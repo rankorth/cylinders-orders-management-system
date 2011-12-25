@@ -26,7 +26,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while creating a new error code " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while creating a new error code ", ex);
             }
         }
 
@@ -45,7 +45,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while updating error code " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while updating error code ", ex);
             }
         }
 
@@ -64,7 +64,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while removing error code " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while removing error code ", ex);
             }
         }
 
@@ -83,7 +83,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while removing error code " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while removing error code ", ex);
             }
         }
 
@@ -100,7 +100,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while retrieving the error code " + errorID + " information from the database. " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while retrieving the error code " + errorID + " information from the database. ", ex);
             }
         }
 
@@ -124,7 +124,7 @@ namespace BusinessLogics
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while retrieving the error codes from the database. " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while retrieving the error codes from the database. ", ex);
             }
         }
     }
