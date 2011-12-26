@@ -384,6 +384,7 @@
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
           <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="prevWorkflowID" Type="uniqueidentifier" />
           <Property Name="nextWorkflowID" Type="uniqueidentifier" />
         </EntityType>
         <Association Name="FK_Cylinder_Log_Cylinder">
@@ -643,7 +644,6 @@
           <EntitySet Name="Role_Right_ref" EntityType="COMSModel.Role_Right_ref" />
           <EntitySet Name="Steps" EntityType="COMSModel.Step" />
           <EntitySet Name="Step_ref" EntityType="COMSModel.Step_ref" />
-          <EntitySet Name="Workflows" EntityType="COMSModel.Workflow" />
           <AssociationSet Name="FK_Role_Right_ref_Access_Right" Association="COMSModel.FK_Role_Right_ref_Access_Right">
             <End Role="Access_Right" EntitySet="Access_Right" />
             <End Role="Role_Right_ref" EntitySet="Role_Right_ref" />
@@ -672,10 +672,6 @@
             <End Role="Department" EntitySet="Departments" />
             <End Role="Employee" EntitySet="Employees" />
           </AssociationSet>
-          <AssociationSet Name="FK_Workflow_Department" Association="COMSModel.FK_Workflow_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="Workflow" EntitySet="Workflows" />
-          </AssociationSet>
           <AssociationSet Name="FK_Emp_Role_ref_Employee" Association="COMSModel.FK_Emp_Role_ref_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Emp_Role_ref" EntitySet="Emp_Role_ref" />
@@ -700,14 +696,6 @@
             <End Role="Step" EntitySet="Steps" />
             <End Role="Step_ref" EntitySet="Step_ref" />
           </AssociationSet>
-          <AssociationSet Name="FK_Step_Workflow" Association="COMSModel.FK_Step_Workflow">
-            <End Role="Workflow" EntitySet="Workflows" />
-            <End Role="Step" EntitySet="Steps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cylinder_Workflow" Association="COMSModel.FK_Cylinder_Workflow">
-            <End Role="Workflow" EntitySet="Workflows" />
-            <End Role="Cylinder" EntitySet="Cylinders" />
-          </AssociationSet>
           <EntitySet Name="Order_Detail" EntityType="COMSModel.Order_Detail" />
           <AssociationSet Name="FK_Cylinder_Order_Detail" Association="COMSModel.FK_Cylinder_Order_Detail">
             <End Role="Order_Detail" EntitySet="Order_Detail" />
@@ -728,7 +716,20 @@
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Printer" EntitySet="Printers" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Workflows" EntityType="COMSModel.Workflow" />
+          <AssociationSet Name="FK_Cylinder_Workflow" Association="COMSModel.FK_Cylinder_Workflow">
+            <End Role="Workflow" EntitySet="Workflows" />
+            <End Role="Cylinder" EntitySet="Cylinders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workflow_Department" Association="COMSModel.FK_Workflow_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Workflow" EntitySet="Workflows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_Workflow" Association="COMSModel.FK_Step_Workflow">
+            <End Role="Workflow" EntitySet="Workflows" />
+            <End Role="Step" EntitySet="Steps" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Access_Right">
           <Key>
             <PropertyRef Name="rightsId" />
@@ -759,9 +760,9 @@
           <Property Type="DateTime" Name="updated_date" />
           <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Cylinder" FromRole="Cylinder" ToRole="Cylinder_Log" />
           <Property Type="Guid" Name="workflowId" Nullable="false" />
-          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Cylinder" ToRole="Workflow" />
           <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Cylinder_Order_Detail" FromRole="Cylinder" ToRole="Order_Detail" />
           <Property Type="Decimal" Name="circumference" Precision="18" Scale="5" />
+          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Cylinder" ToRole="Workflow" />
         </EntityType>
         <EntityType Name="Cylinder_Log">
           <Key>
@@ -905,8 +906,8 @@
           <NavigationProperty Name="Formulae" Relationship="COMSModel.FK_Formula_Step" FromRole="Step" ToRole="Formula" />
           <NavigationProperty Name="Step_ref" Relationship="COMSModel.FK_Step_ref_Step" FromRole="Step" ToRole="Step_ref" />
           <NavigationProperty Name="Step_ref1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step" ToRole="Step_ref" />
-          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_Workflow" FromRole="Step" ToRole="Workflow" />
           <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_Workflow" FromRole="Step" ToRole="Workflow" />
         </EntityType>
         <EntityType Name="Step_ref">
           <Key>
@@ -921,23 +922,6 @@
           <Property Type="DateTime" Name="updated_date" />
           <NavigationProperty Name="Step" Relationship="COMSModel.FK_Step_ref_Step" FromRole="Step_ref" ToRole="Step" />
           <NavigationProperty Name="Step1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step_ref" ToRole="Step" />
-        </EntityType>
-        <EntityType Name="Workflow">
-          <Key>
-            <PropertyRef Name="workflowId" />
-          </Key>
-          <Property Type="Guid" Name="workflowId" Nullable="false" />
-          <Property Type="Guid" Name="departmentId" Nullable="false" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" Nullable="false" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="updated_date" />
-          <Property Type="Boolean" Name="isactive" Nullable="false" />
-          <NavigationProperty Name="Department" Relationship="COMSModel.FK_Workflow_Department" FromRole="Workflow" ToRole="Department" />
-          <NavigationProperty Name="Steps" Relationship="COMSModel.FK_Step_Workflow" FromRole="Workflow" ToRole="Step" />
-          <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Workflow" ToRole="Cylinder" />
-          <Property Type="Guid" Name="nextWorkflowID" />
         </EntityType>
         <Association Name="FK_Role_Right_ref_Access_Right">
           <End Type="COMSModel.Access_Right" Role="Access_Right" Multiplicity="1" />
@@ -1023,18 +1007,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Workflow_Department">
-          <End Type="COMSModel.Department" Role="Department" Multiplicity="1" />
-          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="departmentId" />
-            </Principal>
-            <Dependent Role="Workflow">
-              <PropertyRef Name="departmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Emp_Role_ref_Employee">
           <End Type="COMSModel.Employee" Role="Employee" Multiplicity="1" />
           <End Type="COMSModel.Emp_Role_ref" Role="Emp_Role_ref" Multiplicity="*" />
@@ -1104,30 +1076,6 @@
             </Principal>
             <Dependent Role="Step_ref">
               <PropertyRef Name="to_stepId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Step_Workflow">
-          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="1" />
-          <End Type="COMSModel.Step" Role="Step" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Workflow">
-              <PropertyRef Name="workflowId" />
-            </Principal>
-            <Dependent Role="Step">
-              <PropertyRef Name="workflowId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cylinder_Workflow">
-          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="1" />
-          <End Type="COMSModel.Cylinder" Role="Cylinder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Workflow">
-              <PropertyRef Name="workflowId" />
-            </Principal>
-            <Dependent Role="Cylinder">
-              <PropertyRef Name="workflowId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1288,6 +1236,60 @@
             </Principal>
             <Dependent Role="Printer">
               <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Workflow">
+          <Key>
+            <PropertyRef Name="workflowId" />
+          </Key>
+          <Property Type="Guid" Name="workflowId" Nullable="false" />
+          <Property Type="Guid" Name="departmentId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" Nullable="false" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="Boolean" Name="isactive" Nullable="false" />
+          <Property Type="Guid" Name="prevWorkflowID" />
+          <Property Type="Guid" Name="nextWorkflowID" />
+          <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Workflow" ToRole="Cylinder" />
+          <NavigationProperty Name="Department" Relationship="COMSModel.FK_Workflow_Department" FromRole="Workflow" ToRole="Department" />
+          <NavigationProperty Name="Steps" Relationship="COMSModel.FK_Step_Workflow" FromRole="Workflow" ToRole="Step" />
+        </EntityType>
+        <Association Name="FK_Cylinder_Workflow">
+          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="1" />
+          <End Type="COMSModel.Cylinder" Role="Cylinder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workflow">
+              <PropertyRef Name="workflowId" />
+            </Principal>
+            <Dependent Role="Cylinder">
+              <PropertyRef Name="workflowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workflow_Department">
+          <End Type="COMSModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentId" />
+            </Principal>
+            <Dependent Role="Workflow">
+              <PropertyRef Name="departmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_Workflow">
+          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="1" />
+          <End Type="COMSModel.Step" Role="Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workflow">
+              <PropertyRef Name="workflowId" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="workflowId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1472,21 +1474,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Workflows">
-            <EntityTypeMapping TypeName="COMSModel.Workflow">
-              <MappingFragment StoreEntitySet="Workflow">
-                <ScalarProperty Name="nextWorkflowID" ColumnName="nextWorkflowID" />
-                <ScalarProperty Name="isactive" ColumnName="isactive" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
-                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Order_Detail">
             <EntityTypeMapping TypeName="COMSModel.Order_Detail">
               <MappingFragment StoreEntitySet="Order_Detail">
@@ -1596,6 +1583,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Workflows">
+            <EntityTypeMapping TypeName="COMSModel.Workflow">
+              <MappingFragment StoreEntitySet="Workflow">
+                <ScalarProperty Name="nextWorkflowID" ColumnName="nextWorkflowID" />
+                <ScalarProperty Name="prevWorkflowID" ColumnName="prevWorkflowID" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1616,7 +1619,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="dbEntity" ZoomLevel="50">
+      <Diagram Name="dbEntity" ZoomLevel="65">
         <EntityTypeShape EntityType="COMSModel.Access_Right" Width="1.5" PointX="3" PointY="23.375" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="COMSModel.Cylinder" Width="1.5" PointX="7.5" PointY="18.25" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="COMSModel.Cylinder_Log" Width="1.5" PointX="9.75" PointY="8.375" Height="3.7109993489583388" />
@@ -1629,7 +1632,6 @@
         <EntityTypeShape EntityType="COMSModel.Role_Right_ref" Width="1.5" PointX="5.25" PointY="0.75" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="COMSModel.Step" Width="1.5" PointX="5.25" PointY="11.25" Height="4.2879036458333388" />
         <EntityTypeShape EntityType="COMSModel.Step_ref" Width="1.5" PointX="7.5" PointY="14.125" Height="2.7494921875000085" />
-        <EntityTypeShape EntityType="COMSModel.Workflow" Width="1.5" PointX="3" PointY="12" Height="2.9417936197916674" />
         <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Access_Right" >
           <ConnectorPoint PointX="4.5" PointY="23.376152846153843" />
           <ConnectorPoint PointX="4.875" PointY="23.001152846153843" />
@@ -1638,8 +1640,8 @@
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Cylinder" >
           <ConnectorPoint PointX="9" PointY="20.297801106770834" />
-          <ConnectorPoint PointX="10.7539078125" PointY="20.297801106770834" />
-          <ConnectorPoint PointX="10.7539078125" PointY="12.085999348958339" />
+          <ConnectorPoint PointX="10.770830867385865" PointY="20.297801106770834" />
+          <ConnectorPoint PointX="10.770830867385865" PointY="12.085999348958339" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Employee" >
           <ConnectorPoint PointX="4.5" PointY="8.9249479166666621" />
@@ -1658,18 +1660,13 @@
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Step" >
           <ConnectorPoint PointX="6.75" PointY="13.725698242187505" />
-          <ConnectorPoint PointX="10.0937475" PointY="13.725698242187505" />
-          <ConnectorPoint PointX="10.0937475" PointY="12.085999348958339" />
+          <ConnectorPoint PointX="10.229162933692933" PointY="13.725698242187505" />
+          <ConnectorPoint PointX="10.229162933692933" PointY="12.085999348958339" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Employee_Department" >
           <ConnectorPoint PointX="1.5" PointY="9.5" />
           <ConnectorPoint PointX="1.5" PointY="7.1439518229166641" />
           <ConnectorPoint PointX="3" PointY="7.1439518229166641" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Workflow_Department" >
-          <ConnectorPoint PointX="2.25" PointY="10.749999500000001" />
-          <ConnectorPoint PointX="3.75" PointY="10.749999500000001" />
-          <ConnectorPoint PointX="3.75" PointY="12" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Employee" >
           <ConnectorPoint PointX="4.5" PointY="7.124746093749998" />
@@ -1694,29 +1691,12 @@
           <ConnectorPoint PointX="5.25" PointY="1.3748730468750026" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_ref_Step" >
-          <ConnectorPoint PointX="6.75" PointY="14.831451822916669" />
-          <ConnectorPoint PointX="7.5" PointY="14.831451822916669" />
+          <ConnectorPoint PointX="6.75" PointY="15.21114471356074" />
+          <ConnectorPoint PointX="7.5" PointY="15.21114471356074" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_ref_Step1" >
-          <ConnectorPoint PointX="6.75" PointY="14.415725911458335" />
-          <ConnectorPoint PointX="7.5" PointY="14.415725911458335" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Step_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="13.1372579680305" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="13.1372579680305" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="13.1372579680305" />
-          <ConnectorPoint PointX="5.25" PointY="13.1372579680305" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="14.263079226202745" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="14.263079226202745" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="14.263079226202745" />
-          <ConnectorPoint PointX="5" PointY="14.263079226202745" />
-          <ConnectorPoint PointX="5" PointY="15.980205078125" />
-          <ConnectorPoint PointX="7.25" PointY="15.980205078125" />
-          <ConnectorPoint PointX="7.25" PointY="17.12449218750001" />
-          <ConnectorPoint PointX="8.25" PointY="17.12449218750001" />
-          <ConnectorPoint PointX="8.25" PointY="18.25" />
+          <ConnectorPoint PointX="6.75" PointY="14.605572356780371" />
+          <ConnectorPoint PointX="7.5" PointY="14.605572356780371" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COMSModel.Order_Detail" Width="1.5" PointX="5.25" PointY="16.75" Height="9.2877408854166674" />
         <AssociationConnector Association="COMSModel.FK_Cylinder_Order_Detail" >
@@ -1740,6 +1720,28 @@
           <ConnectorPoint PointX="1.5" PointY="21.845602213541667" />
           <ConnectorPoint PointX="1.5" PointY="28.759348958333334" />
           <ConnectorPoint PointX="3" PointY="28.759348958333334" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COMSModel.Workflow" Width="1.5" PointX="3" PointY="10.125" Height="3.5186979166666674" />
+        <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
+          <ConnectorPoint PointX="4.5" PointY="11.884348958333334" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="11.884348958333334" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="11.884348958333334" />
+          <ConnectorPoint PointX="5" PointY="11.884348958333334" />
+          <ConnectorPoint PointX="5" PointY="15.980205078125" />
+          <ConnectorPoint PointX="7.25" PointY="15.980205078125" />
+          <ConnectorPoint PointX="7.25" PointY="17.12449218750001" />
+          <ConnectorPoint PointX="8.25" PointY="17.12449218750001" />
+          <ConnectorPoint PointX="8.25" PointY="18.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Workflow_Department" >
+          <ConnectorPoint PointX="2.25" PointY="11.18724609375" />
+          <ConnectorPoint PointX="3" PointY="11.18724609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Step_Workflow" >
+          <ConnectorPoint PointX="4.5" PointY="12.8265234375" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="12.826523437499999" />
+          <ConnectorPoint PointX="5.083333333333333" PointY="12.8265234375" />
+          <ConnectorPoint PointX="5.25" PointY="12.8265234375" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
