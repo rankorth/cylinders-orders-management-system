@@ -12,8 +12,9 @@ namespace BusinessLogics
     public class CylinderController
     {
         private COMSEntities dbContext = new COMSEntities();
-        private static int ISACTIVE = 1;
+        private static int ACTIVE = 1;
         private static int NOTACTIVE = 0;
+        private static int STATUS_INPROD = 2;
 
         public void changeCylinderPriority(Guid cylinder_id, int priority)
         {
@@ -34,20 +35,25 @@ namespace BusinessLogics
                 throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinder_id + "'s priority ", ex);
             }
         }
-        public void create(String ordercode)
+        public void create(String ordercode, Guid workflowID)
         {
             try
             {
                 SalesOrderController soc = new SalesOrderController();
                 if (null != soc)
                 {
-                    Order newOrder = soc.retrieveSalesOrder(ordercode);
-                    if (null != newOrder)
+                    Order order = soc.retrieveSalesOrder(ordercode);
+                    if (null != order)
                     {
-                        foreach (Order_Detail od in newOrder.Order_Detail)
+                        foreach (Order_Detail od in order.Order_Detail)
                         {
-                            generateCylinder(od);
+                            generateCylinder(od, workflowID);
                         }
+
+                        dbContext.GetObjectByKey(order.EntityKey);
+                        order.status = STATUS_INPROD;
+                        dbContext.Orders.ApplyCurrentValues(order);
+                        dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                     }
                 }
             }
@@ -57,7 +63,7 @@ namespace BusinessLogics
             }
         }
 
-        private void generateCylinder(Order_Detail orderDetail)
+        private void generateCylinder(Order_Detail orderDetail, Guid workflowID)
         {
             try
             {
@@ -76,14 +82,13 @@ namespace BusinessLogics
                         newCylinder.circumference = (decimal)orderDetail.cylinder_circumference;
                         newCylinder.length = (decimal)orderDetail.cylinder_length;
                         newCylinder.priority = 0;
-                        newCylinder.status = NOTACTIVE;
+                        newCylinder.status = ACTIVE;
                         newCylinder.updated_by = orderDetail.updated_by;
                         newCylinder.updated_date = orderDetail.updated_date;
                         newCylinder.order_detailId = orderDetail.order_detailId;
-                        newCylinder.workflowId = new Guid("22222222-2222-2222-2222-222222222222"); //Questions
+                        newCylinder.workflowId = workflowID;
                         dbContext.Cylinders.AddObject(newCylinder);
                     }
-                    dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
             }
             catch (Exception ex)
@@ -108,7 +113,8 @@ namespace BusinessLogics
             }
             return null;
         }
-
+/*
+ * //To be confirmed-Do not delete
         public void startProduction(String cylinderID)
         {
             try
@@ -119,7 +125,7 @@ namespace BusinessLogics
                         foreach (Cylinder s in cylinders)
                         {
                             if (null != s)
-                                s.status = ISACTIVE;
+                                s.status = ACTIVE;
                         }
                     }
                     dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
@@ -130,8 +136,8 @@ namespace BusinessLogics
                 throw new Exception("Sorry, there is an error occured while starting production for the cylinder: " + cylinderID, ex);
             }
         }
-
-        public void stopProduction(String cylinderID)
+*/
+        public void stopProduction(Guid cylinderID)
         {
             try
             {
