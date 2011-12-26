@@ -17,10 +17,10 @@ namespace BusinessLogics
         private SalesOrderController orderCtrl = new SalesOrderController();
         private ErrorController errorCtrl = new ErrorController();
         private EmployeeController employeeCtrl = new EmployeeController();
-        
+
         public List<Access_Right> login(String username, String password)
         {
-            
+
             return securityCtrl.login(username, password);
 
             //try
@@ -54,15 +54,15 @@ namespace BusinessLogics
             return workflowCtrl.GetAllWorkflow();
         }
 
- //       public IQueryable<Cylinder> exportCylinderQueue(Guid workflowId)
- //       {
- //           return viewQueue(workflowId);
- //       }
+        //       public IQueryable<Cylinder> exportCylinderQueue(Guid workflowId)
+        //       {
+        //           return viewQueue(workflowId);
+        //       }
 
- //       public IQueryable<Cylinder> viewQueue(Guid workflowId)
- //       {
- //           return workflowCtrl.viewCurrentQueue(workflowId);
- //       }
+        //       public IQueryable<Cylinder> viewQueue(Guid workflowId)
+        //       {
+        //           return workflowCtrl.viewCurrentQueue(workflowId);
+        //       }
 
         public void createSalesOrder(Order order)
         {
@@ -94,10 +94,10 @@ namespace BusinessLogics
             return errorCtrl.retrieveAllErrors();
         }
 
- //       public void sendCylinderToStep(Guid cylinderId, Guid nextStepId, Error error)
- //       {
- //           cylinderCtrl.changeCylinderStep(cylinderId, nextStepId, error);
- //       }
+        //       public void sendCylinderToStep(Guid cylinderId, Guid nextStepId, Error error)
+        //       {
+        //           cylinderCtrl.changeCylinderStep(cylinderId, nextStepId, error);
+        //       }
 
 
         //- Export Cylinder Queues
@@ -112,8 +112,8 @@ namespace BusinessLogics
         {
             try
             {
-                if(null!=error)
-                errorCtrl.createError(error);
+                if (null != error)
+                    errorCtrl.createError(error);
             }
             catch (Exception ex)
             {
@@ -125,8 +125,8 @@ namespace BusinessLogics
         {
             try
             {
-                if(null!=id && null!=name)
-                errorCtrl.updateError(id, name);
+                if (null != id && null != name)
+                    errorCtrl.updateError(id, name);
             }
             catch (Exception ex)
             {
@@ -138,8 +138,8 @@ namespace BusinessLogics
         {
             try
             {
-                if(null!=id)
-                errorCtrl.deleteError(id);
+                if (null != id)
+                    errorCtrl.deleteError(id);
             }
             catch (Exception ex)
             {
@@ -151,8 +151,8 @@ namespace BusinessLogics
         {
             try
             {
-                if(null!=name)
-                errorCtrl.deleteError(name);
+                if (null != name)
+                    errorCtrl.deleteError(name);
             }
             catch (Exception ex)
             {
@@ -167,7 +167,7 @@ namespace BusinessLogics
                 if (null != errorID)
                     return errorCtrl.retrieveError(errorID);
                 else
-                    return null; 
+                    return null;
             }
             catch (Exception ex)
             {
@@ -192,7 +192,7 @@ namespace BusinessLogics
         {
             try
             {
-                if (null != cylinder_id && priority>=0)
+                if (null != cylinder_id && priority >= 0)
                     cylinderCtrl.changeCylinderPriority(cylinder_id, priority);
             }
             catch (Exception ex)
