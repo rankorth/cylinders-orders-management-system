@@ -28,28 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgWorkflows = new System.Windows.Forms.DataGridView();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgWorkflows)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgWorkflows
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgWorkflows.AllowUserToAddRows = false;
+            this.dgWorkflows.AllowUserToDeleteRows = false;
+            this.dgWorkflows.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgWorkflows.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colName,
-            this.colDescription});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(460, 209);
-            this.dataGridView1.TabIndex = 0;
+            this.ID});
+            this.dgWorkflows.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgWorkflows.Location = new System.Drawing.Point(0, 0);
+            this.dgWorkflows.MultiSelect = false;
+            this.dgWorkflows.Name = "dgWorkflows";
+            this.dgWorkflows.ReadOnly = true;
+            this.dgWorkflows.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgWorkflows.Size = new System.Drawing.Size(460, 209);
+            this.dgWorkflows.TabIndex = 0;
+            this.dgWorkflows.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgWorkflows_CellContentClick);
             // 
             // btnOpen
             // 
@@ -73,16 +76,19 @@
             // 
             // colName
             // 
+            this.colName.DataPropertyName = "name";
             this.colName.HeaderText = "Name";
             this.colName.Name = "colName";
             this.colName.ReadOnly = true;
+            this.colName.Width = 300;
             // 
-            // colDescription
+            // ID
             // 
-            this.colDescription.HeaderText = "Description";
-            this.colDescription.Name = "colDescription";
-            this.colDescription.ReadOnly = true;
-            this.colDescription.Width = 250;
+            this.ID.DataPropertyName = "workflowId";
+            this.ID.HeaderText = "GUID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
             // 
             // OpenDialog
             // 
@@ -91,23 +97,24 @@
             this.ClientSize = new System.Drawing.Size(460, 240);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOpen);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgWorkflows);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "OpenDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Open Workflow";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.OpenDialog_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgWorkflows)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgWorkflows;
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
 
     }
 }

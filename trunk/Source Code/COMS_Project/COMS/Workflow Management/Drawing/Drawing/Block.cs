@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using COMSdbEntity;
 
 namespace WorkflowManagement
 {
@@ -16,7 +17,8 @@ namespace WorkflowManagement
         public string Description { get; set; }
         public string WorkInstruction { get; set; }
         public string Notes { get; set; }
-
+        public bool isActive = true;
+        public Guid workflowid;
 
         public int width { get; set; }
         public int height { get; set; }
@@ -141,6 +143,56 @@ namespace WorkflowManagement
         public void ClearSelectedState()
         {
             isSelected = false;
+        }
+
+        public void Save(COMSEntities context)
+        {
+
+            if (this.obj_id != Guid.Empty) //database obj
+            {
+                Step step = context.Steps.Where(s => s.stepId.Equals(this.obj_id)).SingleOrDefault();
+
+                if (step == null)
+                {
+                    return;
+                }
+
+                step.stepId = this.obj_id;
+                step.name = this.Title;
+                step.description = this.Description;
+                step.instruction = this.WorkInstruction;
+                step.note = this.Notes;
+                step.x = this.x;
+                step.y = this.y;
+                step.updated_by = "workflow_app";
+                step.updated_date = DateTime.Now;
+
+            }
+            else //new obj
+            {
+                if (this.isActive)
+                {
+                    Step step = new Step();
+
+                    step.workflowId = this.workflowid;
+                    step.stepId = this.display_id;
+                    step.name = this.Title;
+                    step.description = this.Description;
+                    step.instruction = this.WorkInstruction;
+                    step.note = this.Notes;
+                    step.x = this.x;
+                    step.y = this.y;
+                    step.created_by = "workflow_app";
+                    step.created_date = DateTime.Now;
+                    context.Steps.AddObject(step);
+                }
+            }
+
+        }
+
+        public void ChangedToDBObject()
+        {
+            this.obj_id = this.display_id;
         }
     }
 

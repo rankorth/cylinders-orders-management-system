@@ -140,7 +140,14 @@ namespace WorkflowManagement
 
         private void saveToolStripButton_Click(object sender, EventArgs e)
         {
-            ((WorkflowDesigner)ActiveMdiChild).SaveDocument();
+            if (ActiveMdiChild != null)
+            {
+                ((WorkflowDesigner)ActiveMdiChild).SaveDocument();
+            }
+            else
+            {
+                MessageBox.Show("Please select a document to save.", "Warning");
+            }
         }
 
         private void helpToolStripButton_Click(object sender, EventArgs e)
@@ -165,11 +172,22 @@ namespace WorkflowManagement
 
             if (Open.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
+                foreach (WorkflowDesigner wd in this.MdiChildren)
+                {
+                    if (wd.WorkflowID.Equals(Open.workflowId))
+                    {
+                        //MessageBox.Show("This workflow has already been opened.", "Warning");
+                        wd.Activate();
+                        return;
+                    }
+                }
+
                 WorkflowDesigner childForm = new WorkflowDesigner();
                 childForm.MdiParent = this;
                 childForm.Text = Open.DocName;
                 childForm.DocDescription = Open.DocDescription;
                 childForm.DocName = Open.DocName;
+                childForm.WorkflowID = Open.workflowId;
                 childForm.Show();
                 //call open workflow rotine
 

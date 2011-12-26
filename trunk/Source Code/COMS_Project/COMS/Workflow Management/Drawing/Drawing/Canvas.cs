@@ -6,6 +6,10 @@ using System.Text;
 using System.Drawing;
 
 using WorkflowManagement;
+using COMSdbEntity;
+using System.Data.EntityClient;
+using System.Data.Entity;
+
 
 namespace WorkflowManagement
 {
@@ -24,11 +28,12 @@ namespace WorkflowManagement
 
     public class Canvas
     {
-        
-
         Dictionary<Guid, Block> Elements = new Dictionary<Guid, Block>();
         List<Connector> Connectors = new List<Connector>();
         public Size CanvasSize = new Size();
+        private Guid WorkflowID = Guid.Empty;
+        public string PreviousWorkflowName="";
+        public string NextWorkflowName = "";
 
         object selectedElement = null;
         bool isDirty = true;
@@ -39,9 +44,12 @@ namespace WorkflowManagement
         int delX = 0;
         int delY = 0;
 
-        public Canvas(Size canvas_size)
+        public Canvas(Size canvas_size,Guid workflowID)
         {
             CanvasSize = canvas_size;
+            WorkflowID = workflowID;
+
+            LoadWorkflowFromDB();
         }
         public void Create_Block_fromDB(Guid ID, int x, int y, string Title,
                                  string Desc, string WorkInstruct, string Notes)
@@ -62,7 +70,7 @@ namespace WorkflowManagement
 
             isDirty = true;
         }
-        public void Create_Connector_fromDB(Guid from, Guid to)
+        public void Create_Connector_fromDB(Guid ConnectorID, Guid from, Guid to)
         {
             NewConnection = new NewConnector();
 
@@ -99,7 +107,9 @@ namespace WorkflowManagement
 
 
             CanvasStatus = CanvasState.None;
-            Create_Connector(NewConnection.belowBlock, NewConnection.topBlock, NewConnection.isLeftToRight);
+            Connector Con = new Connector(ConnectorID, NewConnection.belowBlock, NewConnection.topBlock, NewConnection.isLeftToRight);
+            Connectors.Add(Con);
+
             NewConnection = null;
         }
         public void Create_Connector(Block BelowBlock, Block TopBlock, bool isLeftToRight)
@@ -107,7 +117,7 @@ namespace WorkflowManagement
             Connector Con = new Connector(BelowBlock, TopBlock, isLeftToRight);
             Connectors.Add(Con);
         }
-
+        
         public void Paint(Graphics graphic, int curX, int curY)
         {
             // if (!isDirty) { return; }
@@ -125,11 +135,13 @@ namespace WorkflowManagement
 
             foreach (Block element in Elements.Values)
             {
+                if(element.isActive)
                 element.Draw(grfx.Graphics);
             }
 
             foreach (Connector con in Connectors)
             {
+                if(con.isActive)
                 con.Draw(ConnectorState.Normal, grfx.Graphics);
             }
             Show_New_Con_line(grfx.Graphics, curX, curY);
@@ -154,6 +166,7 @@ namespace WorkflowManagement
             Elements.Reverse();
             foreach (Block element in Elements.Values)
             {
+                if (!element.isActive) { continue;  }
                 previous_state = element.getPreviousMouseOverState();
                 if (!isFound)
                 {
@@ -179,6 +192,7 @@ namespace WorkflowManagement
 
             foreach (Connector con in Connectors)
             {
+                if (!con.isActive) { continue; }
                 if (con.isMouseOver(X, Y))
                 {
                     isFound = true;
@@ -194,11 +208,13 @@ namespace WorkflowManagement
         {
             foreach (Connector con in Connectors)
             {
+                if (!con.isActive) { continue; }
                 if (con.Status != ConnectorState.Selected)
                     con.Status = ConnectorState.Normal;
             }
             foreach (Block block in Elements.Values)
             {
+                if (!block.isActive) { continue; }
                 block.ClearMouseOverState();
             }
         }
@@ -207,11 +223,12 @@ namespace WorkflowManagement
         {
             foreach (Connector con in Connectors)
             {
-
+                if (!con.isActive) { continue; }
                 con.Status = ConnectorState.Normal;
             }
             foreach (Block block in Elements.Values)
             {
+                if (!block.isActive) { continue; }
                 block.ClearSelectedState();
             }
         }
@@ -233,6 +250,7 @@ namespace WorkflowManagement
             Elements.Reverse();
             foreach (Block element in Elements.Values)
             {
+                if (!element.isActive) { continue; }
                 previous_state = element.getPreviousSelectedState();
                 if (!isFound)
                 {
@@ -273,6 +291,7 @@ namespace WorkflowManagement
 
             foreach (Connector con in Connectors)
             {
+                if (!con.isActive) { continue; }
                 if (con.isMouseSelected(X, Y))
                 {
                     isFound = true;
@@ -427,15 +446,18 @@ namespace WorkflowManagement
                 {
                     if (selBlock.Equals(Con.block1) || selBlock.Equals(Con.block2))
                     {
-                        Connectors.Remove(Con);
+                        //Connectors.Remove(Con);
+                        Con.isActive = false;   //marked to delete from DB
                     }
                 }
 
-                Elements.Remove(((Block)selectedElement).ID);
+                //Elements.Remove(((Block)selectedElement).ID);
+                ((Block)selectedElement).isActive = false; //marked to delete from DB
             }
             else if (selectedElement.GetType() == typeof(Connector))
             {
-                Connectors.Remove((Connector)selectedElement);
+               // Connectors.Remove((Connector)selectedElement);
+                ((Connector)selectedElement).isActive = false;
             }
 
             selectedElement = null;
@@ -452,6 +474,68 @@ namespace WorkflowManagement
                 }
                 return activity;
             }
+        }
+
+        public void SaveToDatabase()
+        {
+            COMSEntities context=new COMSEntities();
+
+            bool isSavedPerformed = false;
+            foreach (Block element in Elements.Values)
+            {
+
+                    element.workflowid = this.WorkflowID;
+                    element.Save(context);
+
+
+                isSavedPerformed = true;
+            }
+
+            if (isSavedPerformed)   //save steps first
+            {
+                context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+            }
+
+            foreach (Connector con in Connectors)
+            {
+                    con.workflowid = this.WorkflowID;
+                    con.Save(context);
+                isSavedPerformed = true;
+            }
+
+            if (isSavedPerformed)   //save connections now
+            {
+                context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+            }
+
+            context.Dispose();
+
+            foreach (Block element in Elements.Values)
+            {
+                element.ChangedToDBObject();
+            }
+            foreach (Connector con in Connectors)
+            {
+                con.ChangedToDBObject();
+            }
+        }
+
+        public void LoadWorkflowFromDB()
+        {
+            COMSEntities context = new COMSEntities();
+            Workflow workflow=   context.Workflows.Where(w => w.workflowId.Equals(this.WorkflowID)).SingleOrDefault();
+            
+
+            foreach (Step s in workflow.Steps.Where(s=>s.isActive==true))
+            {
+                Create_Block_fromDB(s.stepId, s.x, s.y, s.name, s.description, s.instruction, s.note);
+            }
+
+            foreach(Step_ref con in workflow.Step_ref)
+            {
+                Create_Connector_fromDB(con.Id, con.from_stepId, con.to_stepId);
+            }
+
         }
     }
 }
