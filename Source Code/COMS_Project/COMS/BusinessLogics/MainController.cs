@@ -16,6 +16,7 @@ namespace BusinessLogics
         private CylinderController cylinderCtrl = new CylinderController();
         private SalesOrderController orderCtrl = new SalesOrderController();
         private ErrorController errorCtrl = new ErrorController();
+        private EmployeeController employeeCtrl = new EmployeeController();
         
         public List<Access_Right> login(String username, String password)
         {
@@ -53,15 +54,15 @@ namespace BusinessLogics
             return workflowCtrl.GetAllWorkflow();
         }
 
-        public IQueryable<Cylinder> exportCylinderQueue(Guid workflowId)
-        {
-            return viewQueue(workflowId);
-        }
+ //       public IQueryable<Cylinder> exportCylinderQueue(Guid workflowId)
+ //       {
+ //           return viewQueue(workflowId);
+ //       }
 
-        public IQueryable<Cylinder> viewQueue(Guid workflowId)
-        {
-            return workflowCtrl.viewCurrentQueue(workflowId);
-        }
+ //       public IQueryable<Cylinder> viewQueue(Guid workflowId)
+ //       {
+ //           return workflowCtrl.viewCurrentQueue(workflowId);
+ //       }
 
         public void createSalesOrder(Order order)
         {
@@ -93,10 +94,10 @@ namespace BusinessLogics
             return errorCtrl.retrieveAllErrors();
         }
 
-        public void sendCylinderToStep(Guid cylinderId, Guid nextStepId, Error error)
-        {
-            cylinderCtrl.changeCylinderStep(cylinderId, nextStepId, error);
-        }
+ //       public void sendCylinderToStep(Guid cylinderId, Guid nextStepId, Error error)
+ //       {
+ //           cylinderCtrl.changeCylinderStep(cylinderId, nextStepId, error);
+ //       }
 
 
         //- Export Cylinder Queues
@@ -116,7 +117,7 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while creating a new error code " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while creating a new error code ", ex);
             }
         }
 
@@ -129,7 +130,7 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while updating error code " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while updating error code ", ex);
             }
         }
 
@@ -142,7 +143,7 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while removing error code " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while removing error code ", ex);
             }
         }
 
@@ -155,7 +156,7 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while removing error code " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while removing error code ", ex);
             }
         }
 
@@ -170,7 +171,87 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while retrieving the error code " + errorID + " information from the database. " + ex.Message);
+                throw new Exception("Sorry, there is an error occured while retrieving the error code " + errorID + " information from the database. ", ex);
+            }
+        }
+
+        //public void create(String ordercode)
+        //{
+        //    try
+        //    {
+        //        if(null!=ordercode)
+        //            cylinderCtrl.create(ordercode);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception("Sorry, there is an error occured while creating the cylinders", ex);
+        //    }
+        //}
+
+        public void changeCylinderPriority(Guid cylinder_id, int priority)
+        {
+            try
+            {
+                if (null != cylinder_id && priority>=0)
+                    cylinderCtrl.changeCylinderPriority(cylinder_id, priority);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while creating the cylinders", ex);
+            }
+        }
+
+        public IQueryable<Cylinder> viewCylinderInfo()
+        {
+            try
+            {
+                return cylinderCtrl.retrieveCylinderList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving the cylinders", ex);
+
+            }
+        }
+
+        public void startCylinderProd(Guid workflowID, String order_code)
+        {
+            try
+            {
+                if (null != order_code)
+                    cylinderCtrl.create(order_code, workflowID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while creating the cylinders", ex);
+            }
+        }
+
+        public void stopCylinderProd(Guid cylinderID)
+        {
+            try
+            {
+                if (null != cylinderID)
+                    cylinderCtrl.stopProduction(cylinderID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while changing the status of cylinder" + cylinderID, ex);
+            }
+        }
+
+        public Employee retrieveEmployee(Guid employeeID)
+        {
+            try
+            {
+                if (null != employeeID)
+                    return employeeCtrl.retrieveEmployeeInfo(employeeID);
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving the employee information ", ex);
             }
         }
     }
