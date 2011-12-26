@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using COMSdbEntity;
 
-
+using System.Data.EntityClient;
+using System.Data.Entity;
 
 namespace WorkflowManagement
 {
@@ -31,6 +33,9 @@ namespace WorkflowManagement
 
     public  class Connector
     {
+        private Guid display_id = Guid.NewGuid();
+        public Guid obj_id = Guid.Empty;
+
          public Block block1 {get ; set; }
          public Block block2{get ; set; }
          Point toPoint = new Point(); Point fromPoint = new Point();
@@ -38,9 +43,17 @@ namespace WorkflowManagement
          Rectangle bounding_box=new Rectangle();
          static int line_to_point_tolerance = 3;
          public bool isLeftToRight = true;
+         public bool isActive = true;
+         public Guid workflowid;
 
          public Connector(Block BelowBlock, Block TopBlock, bool isLeftToRight)
          {
+             block1 = BelowBlock; block2 = TopBlock; this.isLeftToRight = isLeftToRight;
+         }
+         public Connector(Guid ConnectorObjId, Block BelowBlock, Block TopBlock, bool isLeftToRight)
+         {
+             obj_id = ConnectorObjId;
+             display_id = obj_id;
              block1 = BelowBlock; block2 = TopBlock; this.isLeftToRight = isLeftToRight;
          }
         public  void Draw( ConnectorState State,Graphics graphic)
@@ -356,6 +369,53 @@ namespace WorkflowManagement
             {
             }
             return result;
+        }
+
+        public void Save(COMSEntities context)
+        {
+
+            if (this.obj_id != Guid.Empty) //database obj
+            {
+                if (!this.isActive)
+                {
+                    Step_ref connector = context.Step_ref.Where(sf => sf.Id.Equals(this.obj_id)).SingleOrDefault();
+                    if (connector == null)
+                    {
+                        return;
+                    }
+                    context.Step_ref.DeleteObject(connector);
+                }            
+            }
+            else //new obj
+            {
+                if (this.isActive)
+                {
+                    Step_ref stepref = new Step_ref();
+
+                    stepref.workflowId = this.workflowid;
+                    stepref.Id = this.display_id;
+                    if (this.isLeftToRight)
+                    {
+                        stepref.from_stepId = this.block1.obj_id;
+                        stepref.to_stepId = this.block2.obj_id;
+                    }
+                    else
+                    {
+                        stepref.from_stepId = this.block2.obj_id;
+                        stepref.to_stepId = this.block1.obj_id;
+                    }
+
+                    stepref.created_by = "workflow_app";
+                    stepref.created_date = DateTime.Now;
+                    context.Step_ref.AddObject(stepref);
+                }
+            }
+
+        }
+
+        public void ChangedToDBObject()
+        {
+            this.obj_id = this.display_id;
         }
     }
 }

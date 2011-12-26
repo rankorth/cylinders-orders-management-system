@@ -19,6 +19,7 @@ namespace Drawing
         private bool isNewDoc = true;
         private bool isActiveDocument = false;
         public bool isDocSaved=false;
+        public Guid WorkflowID=Guid.Empty;
 
         public string DocName = "";
         public string DocDescription = "";
@@ -47,11 +48,12 @@ namespace Drawing
         }
         public void OpenWorkflow(Guid Workflow_ID)
         {
-            //write retrival rotine
+            Drawing_Canvas = new Canvas(pnlCanvas.Size, WorkflowID);
+            isNewDoc = false;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            Drawing_Canvas = new Canvas(pnlCanvas.Size);
+            OpenWorkflow(WorkflowID);
         }
 
 
@@ -270,9 +272,11 @@ namespace Drawing
             //***write code to send workflow data to server
             try
             {
+                Drawing_Canvas.SaveToDatabase();
             }
             catch
             {
+                throw;
             }
         }
     }
