@@ -22,19 +22,21 @@ namespace BusinessLogics
 
         public List<Access_Right> login(String username, String password)
         {
-            SecurityConst returnStatus = SecurityConst.LOGIN_STATUS_NO_USERNAME;
             List<Access_Right> rightList = null;
 
             //TODO:check username & password
             Employee dbEmpl = dbContext.Employees.Where(e => e.username.Equals(username)).FirstOrDefault();
-            if (dbEmpl.password.Equals(password))
+            if (dbEmpl == null)
             {
-                returnStatus = SecurityConst.LOGIN_STATUS_OK;
-               // rightList = GetRoles(dbEmpl);
+                throw new Exception("" + SecurityConst.LOGIN_STATUS_NO_USERNAME);
+            }
+            else if (dbEmpl.password.Equals(password))
+            {
+                rightList = GetEmployee_AccessRights(dbEmpl);
             }
             else
             {
-                returnStatus = SecurityConst.LOGIN_STATUS_WRONG_PASS;
+                throw new Exception("" + SecurityConst.LOGIN_STATUS_WRONG_PASS);
             }
             return rightList;
         }
@@ -50,8 +52,6 @@ namespace BusinessLogics
             return roles;
         }
 
-
-
         private List<Access_Right> GetAccessRights(Role role)//(Employee empl)
         {
 
@@ -66,7 +66,7 @@ namespace BusinessLogics
 
         public List<Access_Right> GetEmployee_AccessRights(Employee employee)
         {
-           List<Role> roles= GetRoles(employee);
+            List<Role> roles= GetRoles(employee);
 
             List<Access_Right> Access=new List<Access_Right>();
 
@@ -76,21 +76,6 @@ namespace BusinessLogics
             }
             return Access;
         }
-
-
-        //    empl.Emp_Role_ref.Rol
-        //    //get all AccessRights under Roles assigned to Employee record
-        //    IQueryable<Role> roleList = dbContext.Emp_Role_ref.Where(er => er.employeeId.Equals(empl.employeeId)).Join(dbContext.Roles, er => er.roleId, r => r.roleId, (er, r) => r);
-
-        //    List<Access_Right> rightList = new List<Access_Right>();
-        //    foreach (Role role in roleList) {
-        //        IQueryable<Access_Right> dbRightList = dbContext.Role_Right_ref.Where(rr => rr.roleId.Equals(role.roleId)).Join(dbContext.Access_Right, ar => ar.rightId, rr => rr.rightsId, (rr, ar) => ar);
-        //        if (dbRightList != null) {
-        //            //TODO: add Access_Right list to big list
-        //        }
-        //    }
-        //    return rightList;
-        //}
 
         public void logOut()
         {

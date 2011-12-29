@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crypto.cs" />
     <Compile Include="CylinderController.cs" />
     <Compile Include="EmployeeController.cs" />
     <Compile Include="ErrorController.cs" />
@@ -59,6 +60,9 @@
       <Project>{10317340-98EE-41F1-A43B-E07E80C442DC}</Project>
       <Name>COMSdbEntity</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

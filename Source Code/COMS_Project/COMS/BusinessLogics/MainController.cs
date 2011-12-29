@@ -20,28 +20,8 @@ namespace BusinessLogics
 
         public List<Access_Right> login(String username, String password)
         {
-
             return securityCtrl.login(username, password);
-
-            //try
-            //{
-            //    switch (loginStatus)
-            //    {
-            //        case SecurityController.LOGIN_STATUS_OK:
-            //            //TODO: forward to main page
-            //            break;
-            //        case SecurityController.LOGIN_STATUS_NO_USERNAME:
-            //        case SecurityController.LOGIN_STATUS_WRONG_PASS:
-            //        default:
-            //            //TODO: go back to login page with error msg
-            //            break;
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    //TODO: go back to login page with error msg
-            //}
-            //return loginStatus;
+            //TODO: web UI page to save access right list into Session by Session[""] = list;
         }
 
         public void logOut()
@@ -54,22 +34,22 @@ namespace BusinessLogics
             return workflowCtrl.GetAllWorkflow();
         }
 
-        //       public IQueryable<Cylinder> exportCylinderQueue(Guid workflowId)
-        //       {
-        //           return viewQueue(workflowId);
-        //       }
+        public IQueryable<Cylinder> exportCylinderQueue(Guid workflowId)
+        {
+            return viewQueue(workflowId);
+        }
 
-        //       public IQueryable<Cylinder> viewQueue(Guid workflowId)
-        //       {
-        //           return workflowCtrl.viewCurrentQueue(workflowId);
-        //       }
+        public IQueryable<Cylinder> viewQueue(Guid workflowId)
+        {
+            return workflowCtrl.viewCurrentQueue(workflowId);
+        }
 
         public void createSalesOrder(Order order)
         {
             orderCtrl.createSalesOrder(order);
         }
 
-        public Order viewSalesOrder(String order_code) //renamed from updateSalesOrder
+        public Order getSalesOrder(String order_code) //renamed from updateSalesOrder
         {
             return orderCtrl.retrieveSalesOrder(order_code);
         }
@@ -79,9 +59,9 @@ namespace BusinessLogics
             orderCtrl.updateSalesOrder(order);
         }
 
-        public void deleteSpecificOder(Guid orderId)
+        public void deleteSpecificOder(Order order)
         {
-            orderCtrl.deleteSpecificOrder(orderId);
+            orderCtrl.deleteSpecificOrder(order);
         }
 
         public IQueryable<Workflow> getAllWorkflow()
@@ -94,19 +74,25 @@ namespace BusinessLogics
             return errorCtrl.retrieveAllErrors();
         }
 
-        //       public void sendCylinderToStep(Guid cylinderId, Guid nextStepId, Error error)
-        //       {
-        //           cylinderCtrl.changeCylinderStep(cylinderId, nextStepId, error);
-        //       }
+        public IQueryable<Step> startSendCylinderToStep()
+        {
+            return workflowCtrl.getAllSteps();
+        }
 
+        public void sendCylinderToStep(Guid cylinderId, Guid nextStepId, Error error) //renamed from confirm()
+        {
+            cylinderCtrl.changeCylinderStep(cylinderId, nextStepId, error);
+        }
 
-        //- Export Cylinder Queues
-        //- Manage Sales Order - coded
-        //- Login
-        //- Logout
-        //- View Sales Order - coded
-        //- View Workflow Queues
-        //- Send Cylinder To A Particular Step
+        public IQueryable<Workflow> startSendCylinderToWorkflow()
+        {
+            return workflowCtrl.GetAllWorkflow();
+        }
+
+        public void sendCylinderToWorkflow(Guid cylinderId, Guid nextWorkflowId, Error error)
+        {
+            cylinderCtrl.changeCylinderWorkflow(cylinderId, nextWorkflowId, error);
+        }
 
         public void createError(Error error)
         {
@@ -175,21 +161,7 @@ namespace BusinessLogics
             }
         }
 
-        //public void create(String ordercode)
-        //{
-        //    try
-        //    {
-        //        if(null!=ordercode)
-        //            cylinderCtrl.create(ordercode);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception("Sorry, there is an error occured while creating the cylinders", ex);
-        //    }
-        //}
-
         public void changeCylinderPriority(Guid cylinder_id, int priority)
-        {
             try
             {
                 if (null != cylinder_id && priority >= 0)
@@ -205,15 +177,13 @@ namespace BusinessLogics
         {
             try
             {
-                return cylinderCtrl.retrieveCylinderList();
+            return orderCtrl.getNextOrderBarCode();
             }
             catch (Exception ex)
             {
                 throw new Exception("Sorry, there is an error occured while retrieving the cylinders", ex);
 
             }
-        }
-
         public void startCylinderProd(Guid workflowID, String order_code)
         {
             try
@@ -226,7 +196,6 @@ namespace BusinessLogics
                 throw new Exception("Sorry, there is an error occured while creating the cylinders", ex);
             }
         }
-
         public void stopCylinderProd(Guid cylinderID)
         {
             try
@@ -254,5 +223,20 @@ namespace BusinessLogics
                 throw new Exception("Sorry, there is an error occured while retrieving the employee information ", ex);
             }
         }
+		
+		public String getNextOrderBarCode()
+        {
+            return orderCtrl.getNextOrderBarCode();
+        }
+
+
+        //- Export Cylinder Queues
+        //- Manage Sales Order - coded-tested
+        //- Login - coded-tested
+        //- Logout
+        //- View Sales Order - coded-tested
+        //- View Workflow Queues
+        //- Send Cylinder To A Particular Step
+        //- Send Cylinder To A Workflow
     }
 }

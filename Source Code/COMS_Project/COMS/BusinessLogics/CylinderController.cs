@@ -165,5 +165,22 @@ namespace BusinessLogics
         {
 
         }
+
+        public void changeCylinderWorkflow(Guid cylinderId, Guid nextWorkflowId, Error error) 
+        {
+
+        }
+
+        public String getNextCylinderBarCode(Order order, Cylinder cylinder)
+        {
+            //cylinder barcode format: '[order_code]aa+bbc'
+            //[order_code]: the barcode of the sales order
+            //aa: the number of the cylinder, starts at 01
+            //bb: the color number of the cylinder, starts at 01
+            //c: the type of cylinder core: 0 for recycled core, 1 for new core, 2 for backup core
+            String nextCylBc = "";
+
+            return nextCylBc;
+        }
     }
 }
