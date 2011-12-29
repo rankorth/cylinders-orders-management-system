@@ -162,6 +162,7 @@ namespace BusinessLogics
         }
 
         public void changeCylinderPriority(Guid cylinder_id, int priority)
+        {
             try
             {
                 if (null != cylinder_id && priority >= 0)
@@ -177,13 +178,15 @@ namespace BusinessLogics
         {
             try
             {
-            return orderCtrl.getNextOrderBarCode();
+                return cylinderCtrl.retrieveCylinderList();
             }
             catch (Exception ex)
             {
                 throw new Exception("Sorry, there is an error occured while retrieving the cylinders", ex);
 
             }
+        }
+
         public void startCylinderProd(Guid workflowID, String order_code)
         {
             try
@@ -196,6 +199,7 @@ namespace BusinessLogics
                 throw new Exception("Sorry, there is an error occured while creating the cylinders", ex);
             }
         }
+
         public void stopCylinderProd(Guid cylinderID)
         {
             try
