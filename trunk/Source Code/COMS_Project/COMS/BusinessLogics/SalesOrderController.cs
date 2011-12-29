@@ -5,6 +5,7 @@ using System.Text;
 using COMSdbEntity;
 using System.Data.EntityClient;
 using System.Data.Entity;
+using System.Data.Objects;
 
 namespace BusinessLogics
 {
@@ -48,30 +49,28 @@ namespace BusinessLogics
 
         public void updateSalesOrder(Order order)
         {
-            try
+            //TODO: compare order with dbOrder
+            //if cylinders already started production then cannot update, has to cancel order and create a new one
+            if (order.status.Equals((int)OrderConst.STATUS_INPROD))
             {
-                Order dbOrder = retrieveSalesOrder(order.orderId);
-
-                //TODO: compare order with dbOrder
-                //if cylinders already started production then cannot update, has to cancel order and create a new one
-
-
-                dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                dbContext.Refresh(RefreshMode.StoreWins, order);
+                throw new Exception("Order already in production, cannot update");
             }
-            catch (Exception ex)
+            else if (order.status.Equals((int)OrderConst.STATUS_CANCELLED))
             {
-                //related to any errors, there may be only database error
-                //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while updating sales order", ex);
+                dbContext.Refresh(RefreshMode.StoreWins, order);
+                throw new Exception("Order already cancelled, cannot update");
+            }
+            {
+                dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
         }
 
-        public void deleteSpecificOrder(Guid orderId)
+        public void deleteSpecificOrder(Order order)
         {
             try
             {
-                Order dbOrder = retrieveSalesOrder(orderId);
-                dbOrder.status = (int)OrderConst.STATUS_CANCELLED;
+                order.status = (int)OrderConst.STATUS_CANCELLED;
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
             catch (Exception ex)
@@ -80,6 +79,17 @@ namespace BusinessLogics
                 //always create a meaningful error exception to catch and show up on UI.
                 throw new Exception("Sorry, there is an error occured while deleting sales order", ex);
             }
+        }
+
+        public String getNextOrderBarCode()
+        {
+            //order barcode format: 'nnnn-Myy'
+            //nnnn: the th order of the month, starts at 0001
+            //M: the current month, starts at 1(Jan), 2(Feb),...,0(Oct), A(Nov), B(Dec)
+            //yy: the current year, '11' for 2011.
+            String nextOrderBarCode = "";
+
+            return nextOrderBarCode;
         }
     }
 }
