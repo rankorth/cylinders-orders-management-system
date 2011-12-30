@@ -16,13 +16,13 @@ namespace BusinessLogics
         private static int NOTACTIVE = 0;
         private static int STATUS_INPROD = 2;
 
-        public void changeCylinderPriority(Guid cylinder_id, int priority)
+        public void changeCylinderPriority(Guid cylinderID, int priority)
         {
             try
             {
-                if (null != cylinder_id && null != dbContext && priority >=0)
+                if (null != cylinderID && null != dbContext && priority >=0)
                 {
-                    Cylinder cylinder = dbContext.Cylinders.Where(s => s.cylinderId.Equals(cylinder_id)).SingleOrDefault();
+                    Cylinder cylinder = dbContext.Cylinders.Where(s => s.cylinderId.Equals(cylinderID)).SingleOrDefault();
                     if (null != cylinder)
                     {
                         cylinder.priority = priority;
@@ -32,7 +32,7 @@ namespace BusinessLogics
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinder_id + "'s priority ", ex);
+                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinderID + "'s priority ", ex);
             }
         }
         public void create(String ordercode, Guid workflowID)
