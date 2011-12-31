@@ -22,28 +22,25 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
 <script type="text/javascript">    
 
-    var checkedList = "";
     function updateCheckList(checkBox) {
 
+        var rownum =0;
+        rownum = checkBox.id.charAt(checkBox.id.length - 1);
         if (checkBox.checked) {
-            if (checkedList != "") {
-                checkedList = checkedList + "," + checkBox.value
-            } else {
-                checkedList = checkBox.value;
-            }
+            document.getElementById("OutputPlaceHolder_gvErrorMsgs_checkedList_" + rownum).setAttribute("value", checkBox.value);
         } else {
-            if (checkedList != "") {
-                checkedList = checkedList.replace(checkBox.value, "");
-                checkedList = checkedList.replace(",,", ",");
-                if (checkedList == ",") { checkedList = ""; }
-            }
+            document.getElementById("OutputPlaceHolder_gvErrorMsgs_checkedList_" + rownum).setAttribute("value", "");
         }
     }
 </script>
     <asp:GridView ID="gvErrorMsgs" runat="server" 
     onrowdatabound="gvErrorMsgs_RowDataBound" ViewStateMode="Enabled" Width="100%">
         <Columns>
-            <asp:TemplateField></asp:TemplateField>
+            <asp:TemplateField>
+               <ItemTemplate>
+                    <asp:HiddenField ID="checkedList" runat="server" Value="" />
+               </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="name" HeaderText="Error Message" />
         </Columns>
     </asp:GridView>

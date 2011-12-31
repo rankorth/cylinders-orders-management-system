@@ -39,11 +39,14 @@ namespace WebUI.Admin
 
         protected void lnkDelete_Click(object sender, EventArgs e)
         {
-            List<Guid> deleteList = getSelectedRecords();
-            foreach (Guid deleteItem in deleteList)
-            {
-                mainctrl.deleteError(deleteItem);
+            for(int i=0; i<gvErrorMsgs.Rows.Count; i++){
+                string strValue = ((HiddenField)gvErrorMsgs.Rows[i].Cells[0].FindControl("checkedList")).Value;
+                if(strValue!=""){
+                    Guid id = new Guid(strValue);
+                    mainctrl.deleteError(id);
+                }
             }
+            load_data();
         }
 
         protected void gvErrorMsgs_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -59,24 +62,6 @@ namespace WebUI.Admin
             }
 
             
-        }
-
-        private List<Guid> getSelectedRecords()
-        {
-            List<Guid> selections = new List<Guid>();
-
-            for (int i = 0; i < gvErrorMsgs.Rows.Count; i++)
-            {
-                GridViewRow row = gvErrorMsgs.Rows[i];
-                bool isChecked = ((CheckBox)row.FindControl("chkSelect")).Checked;
-
-                if (isChecked)
-                {
-                    selections.Add(new Guid(((CheckBox)row.FindControl("errid")).ToString()));
-                }
-            }
-
-            return selections;
         }
     }
 }
