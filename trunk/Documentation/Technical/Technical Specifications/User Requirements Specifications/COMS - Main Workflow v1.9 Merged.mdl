@@ -18797,7 +18797,7 @@
 							    location   	(1156, 540)
 							    anchor_loc 	3
 							    nlines     	2
-							    max_width  	498
+							    max_width  	501
 							    label      	"")
 							icon       	"entity"
 							icon_style 	"Icon"
@@ -18820,7 +18820,7 @@
 							    location   	(1732, 540)
 							    anchor_loc 	3
 							    nlines     	2
-							    max_width  	498
+							    max_width  	501
 							    label      	"")
 							icon       	"entity"
 							icon_style 	"Icon"
@@ -43231,7 +43231,10 @@
 					type       	"datetime")
 				    (object ClassAttribute "updateUser"
 					quid       	"4E43DC020166"
-					type       	"varchar")))
+					type       	"varchar")
+				    (object ClassAttribute "status"
+					quid       	"4EF6B7A70275"
+					type       	"int")))
 			    (object Class "ORDER_DETAIL"
 				quid       	"4E43EFCC00C2"
 				class_attributes 	(list class_attribute_list
@@ -43646,7 +43649,7 @@
 				location   	(2080, 960)
 				label      	(object ItemLabel
 				    Parent_View 	@2544
-				    location   	(1864, 654)
+				    location   	(1864, 629)
 				    fill_color 	13434879
 				    nlines     	1
 				    max_width  	432
@@ -43658,14 +43661,14 @@
 				quidu      	"4E43DB960190"
 				compartment 	(object Compartment
 				    Parent_View 	@2544
-				    location   	(1864, 715)
+				    location   	(1864, 690)
 				    icon_style 	"Icon"
 				    fill_color 	16777215
 				    anchor     	2
-				    nlines     	11
+				    nlines     	12
 				    max_width  	428)
 				width      	450
-				height     	636
+				height     	686
 				autoResize 	TRUE)
 			    (object ClassView "Class" "Logical View::Database Design::Tables::ROLE" @2545
 				ShowCompartmentStereotypes 	TRUE
@@ -43762,10 +43765,10 @@
 				height     	436
 				autoResize 	TRUE)
 			    (object AssociationViewNew "details of" @2551
-				location   	(2080, 549)
+				location   	(2080, 537)
 				label      	(object SegLabel @2552
 				    Parent_View 	@2551
-				    location   	(2177, 538)
+				    location   	(2177, 526)
 				    font       	(object Font
 					italics    	TRUE)
 				    anchor     	1
@@ -43783,7 +43786,7 @@
 				roleview_list 	(list RoleViews
 				    (object RoleView "$UNNAMED$641" @2553
 					Parent_View 	@2551
-					location   	(576, -539)
+					location   	(576, -551)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F0700062"
@@ -43792,7 +43795,7 @@
 					line_style 	0)
 				    (object RoleView "$UNNAMED$642" @2554
 					Parent_View 	@2551
-					location   	(576, -539)
+					location   	(576, -551)
 					stereotype 	TRUE
 					line_color 	3342489
 					quidu      	"4E43F0700065"
@@ -53754,21 +53757,22 @@
 			origin     	(1440, 1668)
 			terminus   	(1560, 1668))
 		    (object NoteView @3173
-			location   	(320, 256)
+			location   	(336, 224)
 			label      	(object ItemLabel
 			    Parent_View 	@3173
-			    location   	(110, 137)
+			    location   	(42, 24)
 			    fill_color 	13434879
-			    nlines     	4
-			    max_width  	384
+			    nlines     	8
+			    max_width  	553
 			    label      	
 |- Step 2,5 are done independently
 |- Step 5, 8 are mutually exclusive
+|- Internal steps are workflow (1, 3, 6, 9, 11, 13, 15, 17), the rest just show the connection between workflows
 			    )
 			line_color 	3342489
 			fill_color 	13434879
-			width      	444
-			height     	250)
+			width      	613
+			height     	412)
 		    (object ObjectView "Delivery" @3174
 			location   	(672, 1776)
 			font       	(object Font
