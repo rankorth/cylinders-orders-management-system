@@ -53,6 +53,7 @@
   <ItemGroup>
     <Content Include="Admin\AddOrder.aspx" />
     <Content Include="Admin\Departments.aspx" />
+    <Content Include="Admin\ErrorManagement.aspx" />
     <Content Include="Admin\ManageOrders.aspx" />
     <Content Include="Admin\Role.aspx" />
     <Content Include="Admin\Users.aspx" />
@@ -97,6 +98,13 @@
     </Compile>
     <Compile Include="Admin\Departments.aspx.designer.cs">
       <DependentUpon>Departments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ErrorManagement.aspx.cs">
+      <DependentUpon>ErrorManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ErrorManagement.aspx.designer.cs">
+      <DependentUpon>ErrorManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageOrders.aspx.cs">
       <DependentUpon>ManageOrders.aspx</DependentUpon>
