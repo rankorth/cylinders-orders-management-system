@@ -182,7 +182,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Error Controller Testing";
             this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // label2
             // 
