@@ -95,6 +95,10 @@
             <End Role="Step" EntitySet="Step" />
             <End Role="Step_ref" EntitySet="Step_ref" />
           </AssociationSet>
+          <AssociationSet Name="FK_Step_ref_Workflow" Association="COMSModel.Store.FK_Step_ref_Workflow">
+            <End Role="Workflow" EntitySet="Workflow" />
+            <End Role="Step_ref" EntitySet="Step_ref" />
+          </AssociationSet>
           <AssociationSet Name="FK_Step_Workflow" Association="COMSModel.Store.FK_Step_Workflow">
             <End Role="Workflow" EntitySet="Workflow" />
             <End Role="Step" EntitySet="Step" />
@@ -359,12 +363,15 @@
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
           <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="isStep" Type="bit" Nullable="false" />
+          <Property Name="isBegin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Step_ref">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="workflowId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="from_stepId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="to_stepId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
@@ -603,6 +610,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Step_ref_Workflow">
+          <End Role="Workflow" Type="COMSModel.Store.Workflow" Multiplicity="1" />
+          <End Role="Step_ref" Type="COMSModel.Store.Step_ref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workflow">
+              <PropertyRef Name="workflowId" />
+            </Principal>
+            <Dependent Role="Step_ref">
+              <PropertyRef Name="workflowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Step_Workflow">
           <End Role="Workflow" Type="COMSModel.Store.Workflow" Multiplicity="1" />
           <End Role="Step" Type="COMSModel.Store.Step" Multiplicity="*" />
@@ -642,7 +661,6 @@
           <EntitySet Name="Formulae" EntityType="COMSModel.Formula" />
           <EntitySet Name="Roles" EntityType="COMSModel.Role" />
           <EntitySet Name="Role_Right_ref" EntityType="COMSModel.Role_Right_ref" />
-          <EntitySet Name="Steps" EntityType="COMSModel.Step" />
           <EntitySet Name="Step_ref" EntityType="COMSModel.Step_ref" />
           <AssociationSet Name="FK_Role_Right_ref_Access_Right" Association="COMSModel.FK_Role_Right_ref_Access_Right">
             <End Role="Access_Right" EntitySet="Access_Right" />
@@ -664,10 +682,6 @@
             <End Role="Formula" EntitySet="Formulae" />
             <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
           </AssociationSet>
-          <AssociationSet Name="FK_Cylinder_Log_Step" Association="COMSModel.FK_Cylinder_Log_Step">
-            <End Role="Step" EntitySet="Steps" />
-            <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
-          </AssociationSet>
           <AssociationSet Name="FK_Employee_Department" Association="COMSModel.FK_Employee_Department">
             <End Role="Department" EntitySet="Departments" />
             <End Role="Employee" EntitySet="Employees" />
@@ -680,21 +694,9 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="Emp_Role_ref" EntitySet="Emp_Role_ref" />
           </AssociationSet>
-          <AssociationSet Name="FK_Formula_Step" Association="COMSModel.FK_Formula_Step">
-            <End Role="Step" EntitySet="Steps" />
-            <End Role="Formula" EntitySet="Formulae" />
-          </AssociationSet>
           <AssociationSet Name="FK_Role_Right_ref_Role" Association="COMSModel.FK_Role_Right_ref_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="Role_Right_ref" EntitySet="Role_Right_ref" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Step_ref_Step" Association="COMSModel.FK_Step_ref_Step">
-            <End Role="Step" EntitySet="Steps" />
-            <End Role="Step_ref" EntitySet="Step_ref" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Step_ref_Step1" Association="COMSModel.FK_Step_ref_Step1">
-            <End Role="Step" EntitySet="Steps" />
-            <End Role="Step_ref" EntitySet="Step_ref" />
           </AssociationSet>
           <EntitySet Name="Order_Detail" EntityType="COMSModel.Order_Detail" />
           <AssociationSet Name="FK_Cylinder_Order_Detail" Association="COMSModel.FK_Cylinder_Order_Detail">
@@ -724,6 +726,27 @@
           <AssociationSet Name="FK_Workflow_Department" Association="COMSModel.FK_Workflow_Department">
             <End Role="Department" EntitySet="Departments" />
             <End Role="Workflow" EntitySet="Workflows" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_ref_Workflow" Association="COMSModel.FK_Step_ref_Workflow">
+            <End Role="Workflow" EntitySet="Workflows" />
+            <End Role="Step_ref" EntitySet="Step_ref" />
+          </AssociationSet>
+          <EntitySet Name="Steps" EntityType="COMSModel.Step" />
+          <AssociationSet Name="FK_Cylinder_Log_Step" Association="COMSModel.FK_Cylinder_Log_Step">
+            <End Role="Step" EntitySet="Steps" />
+            <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Formula_Step" Association="COMSModel.FK_Formula_Step">
+            <End Role="Step" EntitySet="Steps" />
+            <End Role="Formula" EntitySet="Formulae" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_ref_Step" Association="COMSModel.FK_Step_ref_Step">
+            <End Role="Step" EntitySet="Steps" />
+            <End Role="Step_ref" EntitySet="Step_ref" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_ref_Step1" Association="COMSModel.FK_Step_ref_Step1">
+            <End Role="Step" EntitySet="Steps" />
+            <End Role="Step_ref" EntitySet="Step_ref" />
           </AssociationSet>
           <AssociationSet Name="FK_Step_Workflow" Association="COMSModel.FK_Step_Workflow">
             <End Role="Workflow" EntitySet="Workflows" />
@@ -886,29 +909,6 @@
           <NavigationProperty Name="Access_Right" Relationship="COMSModel.FK_Role_Right_ref_Access_Right" FromRole="Role_Right_ref" ToRole="Access_Right" />
           <NavigationProperty Name="Role" Relationship="COMSModel.FK_Role_Right_ref_Role" FromRole="Role_Right_ref" ToRole="Role" />
         </EntityType>
-        <EntityType Name="Step">
-          <Key>
-            <PropertyRef Name="stepId" />
-          </Key>
-          <Property Type="Guid" Name="stepId" Nullable="false" />
-          <Property Type="Guid" Name="workflowId" Nullable="false" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="description" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="instruction" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="note" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="x" Nullable="false" />
-          <Property Type="Int32" Name="y" Nullable="false" />
-          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" Nullable="false" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="updated_date" />
-          <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Step" FromRole="Step" ToRole="Cylinder_Log" />
-          <NavigationProperty Name="Formulae" Relationship="COMSModel.FK_Formula_Step" FromRole="Step" ToRole="Formula" />
-          <NavigationProperty Name="Step_ref" Relationship="COMSModel.FK_Step_ref_Step" FromRole="Step" ToRole="Step_ref" />
-          <NavigationProperty Name="Step_ref1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step" ToRole="Step_ref" />
-          <Property Type="Boolean" Name="isActive" Nullable="false" />
-          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_Workflow" FromRole="Step" ToRole="Workflow" />
-        </EntityType>
         <EntityType Name="Step_ref">
           <Key>
             <PropertyRef Name="Id" />
@@ -920,6 +920,8 @@
           <Property Type="DateTime" Name="created_date" Nullable="false" />
           <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="updated_date" />
+          <Property Type="Guid" Name="workflowId" Nullable="false" />
+          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_ref_Workflow" FromRole="Step_ref" ToRole="Workflow" />
           <NavigationProperty Name="Step" Relationship="COMSModel.FK_Step_ref_Step" FromRole="Step_ref" ToRole="Step" />
           <NavigationProperty Name="Step1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step_ref" ToRole="Step" />
         </EntityType>
@@ -983,18 +985,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Cylinder_Log_Step">
-          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
-          <End Type="COMSModel.Cylinder_Log" Role="Cylinder_Log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Step">
-              <PropertyRef Name="stepId" />
-            </Principal>
-            <Dependent Role="Cylinder_Log">
-              <PropertyRef Name="stepId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Employee_Department">
           <End Type="COMSModel.Department" Role="Department" Multiplicity="1" />
           <End Type="COMSModel.Employee" Role="Employee" Multiplicity="*" />
@@ -1031,18 +1021,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Formula_Step">
-          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
-          <End Type="COMSModel.Formula" Role="Formula" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Step">
-              <PropertyRef Name="stepId" />
-            </Principal>
-            <Dependent Role="Formula">
-              <PropertyRef Name="stepId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Role_Right_ref_Role">
           <End Type="COMSModel.Role" Role="Role" Multiplicity="1" />
           <End Type="COMSModel.Role_Right_ref" Role="Role_Right_ref" Multiplicity="*" />
@@ -1052,30 +1030,6 @@
             </Principal>
             <Dependent Role="Role_Right_ref">
               <PropertyRef Name="roleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Step_ref_Step">
-          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
-          <End Type="COMSModel.Step_ref" Role="Step_ref" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Step">
-              <PropertyRef Name="stepId" />
-            </Principal>
-            <Dependent Role="Step_ref">
-              <PropertyRef Name="from_stepId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Step_ref_Step1">
-          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
-          <End Type="COMSModel.Step_ref" Role="Step_ref" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Step">
-              <PropertyRef Name="stepId" />
-            </Principal>
-            <Dependent Role="Step_ref">
-              <PropertyRef Name="to_stepId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1255,6 +1209,7 @@
           <Property Type="Guid" Name="nextWorkflowID" />
           <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Workflow" ToRole="Cylinder" />
           <NavigationProperty Name="Department" Relationship="COMSModel.FK_Workflow_Department" FromRole="Workflow" ToRole="Department" />
+          <NavigationProperty Name="Step_ref" Relationship="COMSModel.FK_Step_ref_Workflow" FromRole="Workflow" ToRole="Step_ref" />
           <NavigationProperty Name="Steps" Relationship="COMSModel.FK_Step_Workflow" FromRole="Workflow" ToRole="Step" />
         </EntityType>
         <Association Name="FK_Cylinder_Workflow">
@@ -1278,6 +1233,91 @@
             </Principal>
             <Dependent Role="Workflow">
               <PropertyRef Name="departmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_ref_Workflow">
+          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="1" />
+          <End Type="COMSModel.Step_ref" Role="Step_ref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workflow">
+              <PropertyRef Name="workflowId" />
+            </Principal>
+            <Dependent Role="Step_ref">
+              <PropertyRef Name="workflowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="stepId" />
+          </Key>
+          <Property Type="Guid" Name="stepId" Nullable="false" />
+          <Property Type="Guid" Name="workflowId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="description" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="instruction" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="note" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="x" Nullable="false" />
+          <Property Type="Int32" Name="y" Nullable="false" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" Nullable="false" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <Property Type="Boolean" Name="isStep" Nullable="false" />
+          <Property Type="Boolean" Name="isBegin" Nullable="false" />
+          <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Step" FromRole="Step" ToRole="Cylinder_Log" />
+          <NavigationProperty Name="Formulae" Relationship="COMSModel.FK_Formula_Step" FromRole="Step" ToRole="Formula" />
+          <NavigationProperty Name="Step_ref" Relationship="COMSModel.FK_Step_ref_Step" FromRole="Step" ToRole="Step_ref" />
+          <NavigationProperty Name="Step_ref1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step" ToRole="Step_ref" />
+          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_Workflow" FromRole="Step" ToRole="Workflow" />
+        </EntityType>
+        <Association Name="FK_Cylinder_Log_Step">
+          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
+          <End Type="COMSModel.Cylinder_Log" Role="Cylinder_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="stepId" />
+            </Principal>
+            <Dependent Role="Cylinder_Log">
+              <PropertyRef Name="stepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Formula_Step">
+          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
+          <End Type="COMSModel.Formula" Role="Formula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="stepId" />
+            </Principal>
+            <Dependent Role="Formula">
+              <PropertyRef Name="stepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_ref_Step">
+          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
+          <End Type="COMSModel.Step_ref" Role="Step_ref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="stepId" />
+            </Principal>
+            <Dependent Role="Step_ref">
+              <PropertyRef Name="from_stepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_ref_Step1">
+          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
+          <End Type="COMSModel.Step_ref" Role="Step_ref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="stepId" />
+            </Principal>
+            <Dependent Role="Step_ref">
+              <PropertyRef Name="to_stepId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1442,28 +1482,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Steps">
-            <EntityTypeMapping TypeName="COMSModel.Step">
-              <MappingFragment StoreEntitySet="Step">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="y" ColumnName="y" />
-                <ScalarProperty Name="x" ColumnName="x" />
-                <ScalarProperty Name="note" ColumnName="note" />
-                <ScalarProperty Name="instruction" ColumnName="instruction" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
-                <ScalarProperty Name="stepId" ColumnName="stepId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Step_ref">
             <EntityTypeMapping TypeName="COMSModel.Step_ref">
               <MappingFragment StoreEntitySet="Step_ref">
+                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
@@ -1599,6 +1621,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Steps">
+            <EntityTypeMapping TypeName="COMSModel.Step">
+              <MappingFragment StoreEntitySet="Step">
+                <ScalarProperty Name="isBegin" ColumnName="isBegin" />
+                <ScalarProperty Name="isStep" ColumnName="isStep" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="instruction" ColumnName="instruction" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
+                <ScalarProperty Name="stepId" ColumnName="stepId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1630,8 +1673,7 @@
         <EntityTypeShape EntityType="COMSModel.Formula" Width="1.5" PointX="7.5" PointY="10" Height="3.3263964843750102" />
         <EntityTypeShape EntityType="COMSModel.Role" Width="1.5" PointX="3" PointY="0.75" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="COMSModel.Role_Right_ref" Width="1.5" PointX="5.25" PointY="0.75" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="COMSModel.Step" Width="1.5" PointX="5.25" PointY="11.25" Height="4.2879036458333388" />
-        <EntityTypeShape EntityType="COMSModel.Step_ref" Width="1.5" PointX="7.5" PointY="14.125" Height="2.7494921875000085" />
+        <EntityTypeShape EntityType="COMSModel.Step_ref" Width="1.5" PointX="8" PointY="14.125" Height="3.1340950520833353" />
         <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Access_Right" >
           <ConnectorPoint PointX="4.5" PointY="23.376152846153843" />
           <ConnectorPoint PointX="4.875" PointY="23.001152846153843" />
@@ -1640,8 +1682,8 @@
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Cylinder" >
           <ConnectorPoint PointX="9" PointY="20.297801106770834" />
-          <ConnectorPoint PointX="10.770830867385865" PointY="20.297801106770834" />
-          <ConnectorPoint PointX="10.770830867385865" PointY="12.085999348958339" />
+          <ConnectorPoint PointX="10.5" PointY="20.297801106770834" />
+          <ConnectorPoint PointX="10.5" PointY="12.085999348958334" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Employee" >
           <ConnectorPoint PointX="4.5" PointY="8.9249479166666621" />
@@ -1655,13 +1697,8 @@
           <ConnectorPoint PointX="10.5" PointY="8.375" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Formula" >
-          <ConnectorPoint PointX="9" PointY="11.042999674479169" />
-          <ConnectorPoint PointX="9.75" PointY="11.042999674479169" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Step" >
-          <ConnectorPoint PointX="6.75" PointY="13.725698242187505" />
-          <ConnectorPoint PointX="10.229162933692933" PointY="13.725698242187505" />
-          <ConnectorPoint PointX="10.229162933692933" PointY="12.085999348958339" />
+          <ConnectorPoint PointX="9" PointY="11.042999674479166" />
+          <ConnectorPoint PointX="9.75" PointY="11.042999674479166" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Employee_Department" >
           <ConnectorPoint PointX="1.5" PointY="9.5" />
@@ -1682,21 +1719,9 @@
           <ConnectorPoint PointX="5.0625" PointY="6.4061210468750058" />
           <ConnectorPoint PointX="5.25" PointY="6.4061210468750058" />
         </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Formula_Step" >
-          <ConnectorPoint PointX="6.75" PointY="12.288198242187505" />
-          <ConnectorPoint PointX="7.5" PointY="12.288198242187505" />
-        </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Role" >
           <ConnectorPoint PointX="4.5" PointY="1.3748730468750026" />
           <ConnectorPoint PointX="5.25" PointY="1.3748730468750026" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Step_ref_Step" >
-          <ConnectorPoint PointX="6.75" PointY="15.21114471356074" />
-          <ConnectorPoint PointX="7.5" PointY="15.21114471356074" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Step_ref_Step1" >
-          <ConnectorPoint PointX="6.75" PointY="14.605572356780371" />
-          <ConnectorPoint PointX="7.5" PointY="14.605572356780371" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COMSModel.Order_Detail" Width="1.5" PointX="5.25" PointY="16.75" Height="9.2877408854166674" />
         <AssociationConnector Association="COMSModel.FK_Cylinder_Order_Detail" >
@@ -1723,25 +1748,55 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="COMSModel.Workflow" Width="1.5" PointX="3" PointY="10.125" Height="3.5186979166666674" />
         <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="11.884348958333334" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="11.884348958333334" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="11.884348958333334" />
-          <ConnectorPoint PointX="5" PointY="11.884348958333334" />
-          <ConnectorPoint PointX="5" PointY="15.980205078125" />
-          <ConnectorPoint PointX="7.25" PointY="15.980205078125" />
-          <ConnectorPoint PointX="7.25" PointY="17.12449218750001" />
-          <ConnectorPoint PointX="8.25" PointY="17.12449218750001" />
+          <ConnectorPoint PointX="4.5" PointY="12.444376593098959" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="12.444376593098959" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="12.444376593098959" />
+          <ConnectorPoint PointX="5" PointY="12.444376593098959" />
+          <ConnectorPoint PointX="5" PointY="14.614807942708339" />
+          <ConnectorPoint PointX="7.75" PointY="14.614807942708339" />
+          <ConnectorPoint PointX="7.75" PointY="17.509095052083335" />
+          <ConnectorPoint PointX="8.25" PointY="17.509095052083335" />
           <ConnectorPoint PointX="8.25" PointY="18.25" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Workflow_Department" >
-          <ConnectorPoint PointX="2.25" PointY="11.18724609375" />
-          <ConnectorPoint PointX="3" PointY="11.18724609375" />
+          <ConnectorPoint PointX="2.25" PointY="11.187246093749998" />
+          <ConnectorPoint PointX="3" PointY="11.187246093749998" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Step_ref_Workflow" >
+          <ConnectorPoint PointX="3.75" PointY="13.835999348958332" />
+          <ConnectorPoint PointX="3.75" PointY="15.651153971354169" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="15.651153971354169" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="15.651153971354169" />
+          <ConnectorPoint PointX="7.666666666666667" PointY="15.651153971354169" />
+          <ConnectorPoint PointX="7.833333333333333" PointY="15.651153971354169" />
+          <ConnectorPoint PointX="8" PointY="15.651153971354169" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COMSModel.Step" Width="1.5" PointX="5.25" PointY="9.5" Height="4.8648079427083388" />
+        <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Step" >
+          <ConnectorPoint PointX="6.75" PointY="9.71875" />
+          <ConnectorPoint PointX="9.75" PointY="9.71875" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Formula_Step" >
+          <ConnectorPoint PointX="6.75" PointY="11.6631982421875" />
+          <ConnectorPoint PointX="7.5" PointY="11.6631982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Step_ref_Step" >
+          <ConnectorPoint PointX="6.75" PointY="13.7569477421875" />
+          <ConnectorPoint PointX="9.0572891666666653" PointY="13.7569477421875" />
+          <ConnectorPoint PointX="9.2239558333333331" PointY="13.7569477421875" />
+          <ConnectorPoint PointX="9.28125" PointY="13.7569477421875" />
+          <ConnectorPoint PointX="9.28125" PointY="14.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Step_ref_Step1" >
+          <ConnectorPoint PointX="6.75" PointY="13.541669613281256" />
+          <ConnectorPoint PointX="9.1406225" PointY="13.541669613281256" />
+          <ConnectorPoint PointX="9.1406225" PointY="14.125" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="12.8265234375" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="12.826523437499999" />
-          <ConnectorPoint PointX="5.083333333333333" PointY="12.8265234375" />
-          <ConnectorPoint PointX="5.25" PointY="12.8265234375" />
+          <ConnectorPoint PointX="4.5" PointY="10.990249837239583" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="10.990249837239583" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="10.990249837239583" />
+          <ConnectorPoint PointX="5.25" PointY="10.990249837239583" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
