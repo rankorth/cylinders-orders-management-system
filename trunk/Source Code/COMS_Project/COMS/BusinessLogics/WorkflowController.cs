@@ -97,9 +97,14 @@ namespace BusinessLogics
             }
         }
 
-        public IQueryable<Cylinder> viewCurrentQueue(Guid workflowId)
+        public List<Order> viewCurrentQueue(Guid workflowId)
         {
-            return dbContext.Cylinders.Where(c => c.workflowId.Equals(workflowId));
+            List<Order> orderList = new List<Order>();
+            IQueryable<Cylinder> cylList = dbContext.Cylinders.Where(c => c.workflowId.Equals(workflowId));
+            foreach (Cylinder cyl in cylList) {
+                orderList.Add(cyl.Order_Detail.Order);
+            }
+            return orderList;
         }
     }
 }

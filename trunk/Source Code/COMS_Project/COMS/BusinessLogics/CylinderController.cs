@@ -9,6 +9,16 @@ using System.Data.Entity;
 
 namespace BusinessLogics
 {
+    public class CylinderConst
+    {
+        public const String CORETYPE_NEW = "1";
+        public const String CORETYPE_USED = "0";
+        public const String CORETYPE_BACKUP = "2";
+
+        public static String STATUS_ACTIVE = "ATV";
+        public static String STATUS_NOTACTIVE = "INA";
+        public static String STATUS_INPROD = "PROD";
+    }
     public class CylinderController
     {
         private COMSEntities dbContext = new COMSEntities();
@@ -25,7 +35,7 @@ namespace BusinessLogics
                     Cylinder cylinder = dbContext.Cylinders.Where(s => s.cylinderId.Equals(cylinderID)).SingleOrDefault();
                     if (null != cylinder)
                     {
-                        cylinder.priority = priority;
+                        //cylinder.priority = priority;
                         dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                     }
                 }
@@ -51,7 +61,7 @@ namespace BusinessLogics
                         }
 
                         dbContext.GetObjectByKey(order.EntityKey);
-                        order.status = STATUS_INPROD;
+                        order.status = OrderConst.STATUS_INPROD;
                         dbContext.Orders.ApplyCurrentValues(order);
                         dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                     }
@@ -69,19 +79,17 @@ namespace BusinessLogics
             {
                 if (null != orderDetail && null != dbContext)
                 {
-                    for (int i = 0; i < orderDetail.no_of_cylinders; i++)
+                    for (int i = 0; i < (orderDetail.new_cyl_count + orderDetail.used_cyl_count); i++)
                     {
 
                         Guid generatedId = Guid.NewGuid(); ;
                         Cylinder newCylinder = new Cylinder();
-                        newCylinder.area = (decimal)orderDetail.cylinder_area;
                         newCylinder.barcode = generatedId.ToString();
                         newCylinder.created_by = orderDetail.created_by;
                         newCylinder.created_date = orderDetail.created_date;
                         newCylinder.cylinderId = generatedId;
-                        newCylinder.circumference = (decimal)orderDetail.cylinder_circumference;
-                        newCylinder.length = (decimal)orderDetail.cylinder_length;
-                        newCylinder.priority = 0;
+                        newCylinder.length = (decimal)orderDetail.cyl_length;
+                        newCylinder.diameter = (decimal)orderDetail.cyl_diameter;
                         newCylinder.status = ACTIVE;
                         newCylinder.updated_by = orderDetail.updated_by;
                         newCylinder.updated_date = orderDetail.updated_date;
