@@ -114,13 +114,25 @@ namespace WorkflowManagement
                 txtNotes.Text = "";
                 return;
             }
-            txtName.Text = WorkflowActivity.Title;
-            txtDescription.Text = WorkflowActivity.Description;
-            txtWorkInstruction.Text = WorkflowActivity.WorkInstruction;
-            txtNotes.Text = WorkflowActivity.Notes;
+            if (WorkflowActivity.isStep)
+            {
+                txtName.Text = WorkflowActivity.Title;
+                txtDescription.Text = WorkflowActivity.Description;
+                txtWorkInstruction.Text = WorkflowActivity.WorkInstruction;
+                txtNotes.Text = WorkflowActivity.Notes;
 
-            currentWorkflowActivity = WorkflowActivity;
-            currentWorkflowDesignerWindow = (WorkflowDesigner)ActiveMdiChild;
+                currentWorkflowActivity = WorkflowActivity;
+                currentWorkflowDesignerWindow = (WorkflowDesigner)ActiveMdiChild;
+            }
+            else
+            {
+                pnlProperties.Enabled = false;
+                txtName.Text = "";
+                txtDescription.Text = "";
+                txtWorkInstruction.Text = "";
+                txtNotes.Text = "";
+                return;
+            }
         }
 
 

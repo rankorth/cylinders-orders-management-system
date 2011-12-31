@@ -52,11 +52,20 @@ namespace WorkflowManagement
             LoadWorkflowFromDB();
         }
         public void Create_Block_fromDB(Guid ID, int x, int y, string Title,
-                                 string Desc, string WorkInstruct, string Notes)
+                                 string Desc, string WorkInstruct, string Notes,bool isStep, bool isBegin)
         {
             Block block_element = new Block();
-            block_element.CreatefromDB(ID, x, y, Title, Desc, WorkInstruct, Notes);
-
+            if (isStep)
+            {
+                block_element.CreatefromDB(ID, x, y, Title, Desc, WorkInstruct, Notes);
+            }else if (isBegin)
+            {
+                block_element.CreatefromDB_Begin(ID, x, y, Title, Desc, WorkInstruct, Notes);
+            }
+            else
+            {
+                block_element.CreatefromDB_End(ID, x, y, Title, Desc, WorkInstruct, Notes);
+            }
             Elements.Add(block_element.ID, block_element);
 
             isDirty = true;
@@ -334,12 +343,22 @@ namespace WorkflowManagement
 
             if (CanvasStatus == CanvasState.NewConFrom)
             {
+                if (!((Block)selectedElement).isStep && !((Block)selectedElement).isBegin)
+                {
+                    clear_new_con();
+                    return;
+                }
                 NewConnection.belowBlock = (Block)selectedElement;
                 NewConnection.isLeftToRight = true;
                 CanvasStatus = CanvasState.NewConTo;
             }
             else if (CanvasStatus == CanvasState.NewConTo)
             {
+                if (!((Block)selectedElement).isStep && ((Block)selectedElement).isBegin)
+                {
+                    clear_new_con();
+                    return;
+                }
 
                 NewConnection.topBlock = (Block)selectedElement;
                 if (Elements.Values.ToList().IndexOf(NewConnection.belowBlock) > Elements.Values.ToList().IndexOf(NewConnection.topBlock))
@@ -439,6 +458,11 @@ namespace WorkflowManagement
         {
             if (selectedElement.GetType() == typeof(Block))
             {
+                if (!((Block)selectedElement).isStep)
+                {
+                    return;
+                }
+
                 Block selBlock = (Block)selectedElement;
                 Connector[] listCon = Connectors.ToArray();
 
@@ -524,11 +548,26 @@ namespace WorkflowManagement
         {
             COMSEntities context = new COMSEntities();
             Workflow workflow=   context.Workflows.Where(w => w.workflowId.Equals(this.WorkflowID)).SingleOrDefault();
+
+            Workflow PreviousWorkflow =  context.Workflows.Where(w => w.workflowId.Equals(workflow.prevWorkflowID)).SingleOrDefault();
+            Workflow NextWorkflow = context.Workflows.Where(w => w.workflowId.Equals(workflow.nextWorkflowID)).SingleOrDefault();
             
+            PreviousWorkflowName = "Nil";
+            NextWorkflowName = "Nil";
+
+            if (PreviousWorkflow != null)
+            {
+                PreviousWorkflowName = PreviousWorkflow.name;
+            }
+            
+            if (NextWorkflow != null)
+            {
+                NextWorkflowName = NextWorkflow.name;
+            }
 
             foreach (Step s in workflow.Steps.Where(s=>s.isActive==true))
             {
-                Create_Block_fromDB(s.stepId, s.x, s.y, s.name, s.description, s.instruction, s.note);
+                Create_Block_fromDB(s.stepId, s.x, s.y, s.name, s.description, s.instruction, s.note,s.isStep,s.isBegin);
             }
 
             foreach(Step_ref con in workflow.Step_ref)

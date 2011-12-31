@@ -25,6 +25,9 @@ namespace WorkflowManagement
         private bool isSelected = false;
         private bool isMouseOver = false;
 
+        public bool isStep =true;
+        public bool isBegin;
+
         public Guid ID
         {
             get
@@ -37,35 +40,105 @@ namespace WorkflowManagement
         {
             this.obj_id = ID;
             this.display_id = ID;
-            this.x      = x;
-            this.y      = y;
-            this.Title  = Title;
-            this.Description        = Desc;
-            this.WorkInstruction    = WorkInstruct;
-            this.Notes              = Notes;
+            this.x = x;
+            this.y = y;
+            this.Title = Title;
+            this.Description = Desc;
+            this.WorkInstruction = WorkInstruct;
+            this.Notes = Notes;
+            this.isStep = true;
+            this.isBegin = false;
         }
+
+        public void CreatefromDB_Begin(Guid ID, int x, int y, string Title,
+                                 string Desc, string WorkInstruct, string Notes)
+        {
+            this.obj_id = ID;
+            this.display_id = ID;
+            this.x = x;
+            this.y = y;
+            this.Title = Title;
+            this.Description = Desc;
+            this.WorkInstruction = WorkInstruct;
+            this.Notes = Notes;
+            this.isStep = false;
+            this.isBegin = true;
+        }
+
+        public void CreatefromDB_End(Guid ID, int x, int y, string Title,
+                                 string Desc, string WorkInstruct, string Notes)
+        {
+            this.obj_id = ID;
+            this.display_id = ID;
+            this.x = x;
+            this.y = y;
+            this.Title = Title;
+            this.Description = Desc;
+            this.WorkInstruction = WorkInstruct;
+            this.Notes = Notes;
+            this.isStep = false;
+            this.isBegin = false;
+        }
+
         public void Create(int x, int y, string Title)
         {
             this.x = x;
             this.y = y;
             this.Title = Title;
+            this.isStep = true;
         }
+
+        public void CreateBeginBlock(int x, int y, string Title)
+        {
+            this.x = x;
+            this.y = y;
+            this.Title = Title;
+            this.isStep = false;
+            this.isBegin = true;
+        }
+        public void CreateEndBlock(int x, int y, string Title)
+        {
+            this.x = x;
+            this.y = y;
+            this.Title = Title;
+            this.isStep = false;
+            this.isBegin = false;
+        }
+
         public void Draw(Graphics graphic)
         {
             //graphic.PageUnit = GraphicsUnit.Display;
-            Font sFont =  new Font("Arial", 10);
+            Font sFont = new Font("Arial", 10);
             Pen retPen = new Pen(Brushes.Black, 1);
             Brush retFill = Brushes.White;
-            if (isMouseOver) { retPen = new Pen(Brushes.Orange, 2); retFill = Brushes.LightYellow; }
-            if (isSelected) { retPen = new Pen(Brushes.Black, 1); retFill = Brushes.Orange; }
+            Brush textColor = Brushes.Black;
+
+            if (this.isStep)
+            {
+                if (isMouseOver) { retPen = new Pen(Brushes.Orange, 2); retFill = Brushes.LightYellow; }
+                if (isSelected) { retPen = new Pen(Brushes.Black, 1); retFill = Brushes.Orange; }
+            }else
+            {
+                if (this.isBegin)
+                {
+                    retFill     = Brushes.Blue;
+                    textColor   = Brushes.White; 
+                }
+                else
+                {
+                    retFill = Brushes.Black;
+                    textColor = Brushes.White; 
+                }
+            }
+
             SizeF sSize = graphic.MeasureString(Title, sFont);
-            width = Convert.ToInt32( sSize.Width ) + 2;
-            height =Convert.ToInt32( sSize.Height) + 2;
+            width = Convert.ToInt32(sSize.Width) + 2;
+            height = Convert.ToInt32(sSize.Height) + 2;
             Rectangle block = new Rectangle(x, y, width, height);
-            graphic.FillRectangle(retFill, block); 
+            graphic.FillRectangle(retFill, block);
             graphic.DrawRectangle(retPen, block);
-            
-            graphic.DrawString(Title, sFont, Brushes.Black, new Point(x + 2, y + 2));
+
+            graphic.DrawString(Title, sFont, textColor, new Point(x + 2, y + 2));
 
             if (isSelected)
             {
@@ -164,6 +237,9 @@ namespace WorkflowManagement
                 step.note = this.Notes;
                 step.x = this.x;
                 step.y = this.y;
+                step.isActive = this.isActive;
+                step.isStep = this.isStep;
+                step.isBegin = this.isBegin;
                 step.updated_by = "workflow_app";
                 step.updated_date = DateTime.Now;
 
@@ -182,6 +258,9 @@ namespace WorkflowManagement
                     step.note = this.Notes;
                     step.x = this.x;
                     step.y = this.y;
+                    step.isActive=this.isActive;
+                    step.isStep = this.isStep;
+                    step.isBegin = this.isBegin;
                     step.created_by = "workflow_app";
                     step.created_date = DateTime.Now;
                     context.Steps.AddObject(step);

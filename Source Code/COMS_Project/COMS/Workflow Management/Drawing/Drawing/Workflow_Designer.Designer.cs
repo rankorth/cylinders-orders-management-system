@@ -86,7 +86,6 @@
             this.tblAddNewStep.Name = "tblAddNewStep";
             this.tblAddNewStep.Size = new System.Drawing.Size(23, 22);
             this.tblAddNewStep.Text = "Add New Step";
-            this.tblAddNewStep.Click += new System.EventHandler(this.tblAddNewStep_Click);
             // 
             // tblAddNewCon
             // 
