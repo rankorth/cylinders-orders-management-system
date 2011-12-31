@@ -34,7 +34,7 @@ namespace BusinessLogics
 
         public IQueryable<Step> GetSteps(Guid WorkflowID)
         {
-            return dbContext.Steps.Where(s => s.workflowId.Equals(WorkflowID));
+            return dbContext.Steps.Where(s => s.workflowId.Equals(WorkflowID) && s.isActive==true && s.isStep==true);
         }
 
         public IQueryable<Step> getAllSteps()
