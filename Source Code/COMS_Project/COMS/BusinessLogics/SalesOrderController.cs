@@ -9,11 +9,18 @@ using System.Data.Objects;
 
 namespace BusinessLogics
 {
-    public enum OrderConst
+    public class OrderConst
     {
-        STATUS_NEW = 1,
-        STATUS_INPROD = 2,
-        STATUS_CANCELLED = 3,
+        public const String STATUS_NEW = "NEW";
+        public const String STATUS_INPROD = "PROD";
+        public const String STATUS_CANCELLED = "CNL";
+        
+        public const String PRIORITY_LOW = "LOW";
+        public const String PRIORITY_MEDIUM = "MED";
+        public const String PRIORITY_HIGH = "HIGH";
+
+        public const String ORDERTYPE_NEW = "NEW";
+        public const String ORDERTYPE_REDO = "REDO";
     }
 
     class SalesOrderController
@@ -25,7 +32,7 @@ namespace BusinessLogics
             try
             {
                 order.orderId = Guid.NewGuid(); //generate new guid as primary key.
-                order.status = (int)OrderConst.STATUS_NEW;
+                order.status = OrderConst.STATUS_NEW;
                 dbContext.Orders.AddObject(order);
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
@@ -51,12 +58,12 @@ namespace BusinessLogics
         {
             //TODO: compare order with dbOrder
             //if cylinders already started production then cannot update, has to cancel order and create a new one
-            if (order.status.Equals((int)OrderConst.STATUS_INPROD))
+            if (order.status.Equals(OrderConst.STATUS_INPROD))
             {
                 dbContext.Refresh(RefreshMode.StoreWins, order);
                 throw new Exception("Order already in production, cannot update");
             }
-            else if (order.status.Equals((int)OrderConst.STATUS_CANCELLED))
+            else if (order.status.Equals(OrderConst.STATUS_CANCELLED))
             {
                 dbContext.Refresh(RefreshMode.StoreWins, order);
                 throw new Exception("Order already cancelled, cannot update");
@@ -70,7 +77,7 @@ namespace BusinessLogics
         {
             try
             {
-                order.status = (int)OrderConst.STATUS_CANCELLED;
+                order.status = OrderConst.STATUS_CANCELLED;
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
             catch (Exception ex)

@@ -1802,7 +1802,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="dbEntity" ZoomLevel="65">
+      <Diagram Name="dbEntity" ZoomLevel="85">
         <EntityTypeShape EntityType="COMSModel.Access_Right" Width="1.5" PointX="3" PointY="1.375" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="COMSModel.Customer" Width="1.5" PointX="1.5" PointY="31" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="COMSModel.Cylinder" Width="1.5" PointX="5.25" PointY="14.75" Height="4.4802050781250085" />

@@ -29,10 +29,6 @@ namespace WebUI
             try
             {
                 order.orderId = Guid.NewGuid();
-                order.order_type = "test";
-                order.price = 100;
-                order.order_code = "code-111";
-                order.dead_line = DateTime.Now;
                 order.created_by = "tin";
                 order.created_date = DateTime.Now;
                 order.product_name = "example";
@@ -43,8 +39,6 @@ namespace WebUI
                 orderdetails.order_detailId = Guid.NewGuid();
                 orderdetails.created_by = "tin";
                 orderdetails.created_date = DateTime.Now;
-                orderdetails.cylinder_code = "CYL001";
-                orderdetails.cylinder_type = "TP1";
                 orderdetails.color_count = 3;
                 //add above prepared detail record into Order
                 order.Order_Detail.Add(orderdetails);

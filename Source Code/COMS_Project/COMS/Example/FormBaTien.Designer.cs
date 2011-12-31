@@ -37,6 +37,10 @@
             this.txtBxUsername = new System.Windows.Forms.TextBox();
             this.txtBxPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.btnCreateCustomer = new System.Windows.Forms.Button();
+            this.btnCreateWorkflow = new System.Windows.Forms.Button();
+            this.btnCreateCylinder = new System.Windows.Forms.Button();
+            this.btnViewQueue = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCreateOrder
@@ -126,11 +130,55 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Clicked);
             // 
+            // btnCreateCustomer
+            // 
+            this.btnCreateCustomer.Location = new System.Drawing.Point(12, 132);
+            this.btnCreateCustomer.Name = "btnCreateCustomer";
+            this.btnCreateCustomer.Size = new System.Drawing.Size(100, 23);
+            this.btnCreateCustomer.TabIndex = 10;
+            this.btnCreateCustomer.Text = "Create Customer";
+            this.btnCreateCustomer.UseVisualStyleBackColor = true;
+            this.btnCreateCustomer.Click += new System.EventHandler(this.btnCreateCustomer_Clicked);
+            // 
+            // btnCreateWorkflow
+            // 
+            this.btnCreateWorkflow.Location = new System.Drawing.Point(119, 132);
+            this.btnCreateWorkflow.Name = "btnCreateWorkflow";
+            this.btnCreateWorkflow.Size = new System.Drawing.Size(100, 23);
+            this.btnCreateWorkflow.TabIndex = 11;
+            this.btnCreateWorkflow.Text = "Create Workflow";
+            this.btnCreateWorkflow.UseVisualStyleBackColor = true;
+            this.btnCreateWorkflow.Click += new System.EventHandler(this.btnCreateWorkflow_Clicked);
+            // 
+            // btnCreateCylinder
+            // 
+            this.btnCreateCylinder.Location = new System.Drawing.Point(225, 132);
+            this.btnCreateCylinder.Name = "btnCreateCylinder";
+            this.btnCreateCylinder.Size = new System.Drawing.Size(86, 23);
+            this.btnCreateCylinder.TabIndex = 12;
+            this.btnCreateCylinder.Text = "Create Cylinder";
+            this.btnCreateCylinder.UseVisualStyleBackColor = true;
+            this.btnCreateCylinder.Click += new System.EventHandler(this.btnCreateCylinder_Clicked);
+            // 
+            // btnViewQueue
+            // 
+            this.btnViewQueue.Location = new System.Drawing.Point(13, 171);
+            this.btnViewQueue.Name = "btnViewQueue";
+            this.btnViewQueue.Size = new System.Drawing.Size(75, 23);
+            this.btnViewQueue.TabIndex = 13;
+            this.btnViewQueue.Text = "View Queue";
+            this.btnViewQueue.UseVisualStyleBackColor = true;
+            this.btnViewQueue.Click += new System.EventHandler(this.btnViewQueue_Clicked);
+            // 
             // FormBaTien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(308, 262);
+            this.ClientSize = new System.Drawing.Size(323, 262);
+            this.Controls.Add(this.btnViewQueue);
+            this.Controls.Add(this.btnCreateCylinder);
+            this.Controls.Add(this.btnCreateWorkflow);
+            this.Controls.Add(this.btnCreateCustomer);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtBxPassword);
             this.Controls.Add(this.txtBxUsername);
@@ -158,5 +206,9 @@
         private System.Windows.Forms.TextBox txtBxUsername;
         private System.Windows.Forms.TextBox txtBxPassword;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnCreateCustomer;
+        private System.Windows.Forms.Button btnCreateWorkflow;
+        private System.Windows.Forms.Button btnCreateCylinder;
+        private System.Windows.Forms.Button btnViewQueue;
     }
 }

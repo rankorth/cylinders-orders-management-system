@@ -22,78 +22,78 @@ namespace Example
 
         private void btnCreateOrder_Clicked(object sender, EventArgs e)
         {
-            //COMSEntities context = new COMSEntities();
+            COMSEntities dbContext = new COMSEntities();
 
             try
             {
                 //prepare Order
                 Order order = new Order();
-
-                order.orderId = Guid.NewGuid();
-                order.barcode = order.orderId.ToString();
-                order.belong_to_set = false;
+                order.belong_to_set = "";
                 order.created_by = "Ba Tien";
                 order.created_date = DateTime.Now;
-                order.Customer = new Customer();
-                order.dead_line = DateTime.Now;
+                order.customer_id = dbContext.Customers.Where(c => c.code.Equals("12")).FirstOrDefault().customerid;
+                order.customer_rep = "Client Staff A";
+                order.cylinder_type = "AB";
+                order.delivery_date = DateTime.Now;
                 order.old_core = false;
-                order.order_code = "order-code-111";
-                order.order_type = "new-order";
-                order.pay_percentage = 100;
-                order.price = 1000000;
-                order.price_type = 0;
+                order.old_order_code = "";
+                order.order_code = "0001-B11";
+                order.order_type = OrderConst.ORDERTYPE_NEW;
+                order.price_type = "STD";
+                order.priority = OrderConst.PRIORITY_LOW;
                 order.product_name = "Sua Bot Nguyen Kem Jolly";
-                order.remark = "this is a remark";
-                order.status = (int)OrderConst.STATUS_NEW;
+                order.redo_pct = 0;
+                order.set_code = "JKS312101";
                 order.updated_by = "Ba Tien";
                 order.updated_date = DateTime.Now;
 
                 //prepare order_details from order record
-                Order_Detail orderdetails = new Order_Detail();
-                orderdetails.order_detailId = Guid.NewGuid();
-                orderdetails.angle = 45;
-                orderdetails.arrangement = 1; //1-sided or 2-sided
-                orderdetails.bottom = 1;
-                orderdetails.color_count = 4;
-                orderdetails.created_by = "Ba Tien";
-                orderdetails.created_date = DateTime.Now;
-                orderdetails.cylinder_area = 500;
-                orderdetails.cylinder_circumference = 80;
-                orderdetails.cylinder_code = "cylinder-code-111";
-                orderdetails.cylinder_hole_type = 0; //standard or others
-                orderdetails.cylinder_length = 100;
-                orderdetails.cylinder_type = "type-1";
-                orderdetails.eye_mark_color = "color";
-                orderdetails.eye_mark_height = 10;
-                orderdetails.eye_mark_sign = "sign";
-                orderdetails.eye_mark_width = 10;
-                orderdetails.height = 90;
-                orderdetails.image_orientation = "0"; //0, 90, 180, 270 degrees, or others
-                orderdetails.inner_diameter = 8;
-                orderdetails.key_way_height = 2;
-                orderdetails.key_way_width = 2;
-                orderdetails.layout_no_of_repeat_circum = 3;
-                orderdetails.layout_no_of_up_horizontal = 4;
-                orderdetails.no_of_cylinders = 4;
-                orderdetails.orderId = order.orderId;
-                orderdetails.outer_diameter = 12;
-                orderdetails.print_method = 0; // reverse or surface
-                orderdetails.print_width = 480;
-                orderdetails.printing_web_total_print_width = 4800;
-                orderdetails.printing_material = "5"; //multiple options or other
-                orderdetails.reg_mark = 0; //standard or others
-                orderdetails.result_based_on = "0"; //graphic proof, printing sample, fingerprint or others
-                orderdetails.spliting_line_color = "color";
-                orderdetails.spliting_line_side = 1; //2-sided or not
-                orderdetails.spliting_line_size = 100;
-                orderdetails.stretch_range = 10;
-                orderdetails.top_down = 1; // top/down (1/2)
-                orderdetails.updated_by = "Ba Tien";
-                orderdetails.updated_date = DateTime.Now;
-                orderdetails.web_width = 48;
+                Order_Detail orderDetail = new Order_Detail();
+                orderDetail.changes = "";
+                orderDetail.circum_dir_repeat = 1;
+                orderDetail.color_count = 4;
+                orderDetail.color_list = "KCMY";
+                orderDetail.core_type = "NEW";
+                orderDetail.created_by = "Ba Tien";
+                orderDetail.created_date = DateTime.Now;
+                orderDetail.cyl_diameter = (decimal)(980 / 3.1416);
+                orderDetail.cyl_length = 1220;
+                orderDetail.eyemark_color = "K";
+                orderDetail.eyemark_height = 5;
+                orderDetail.eyemark_location = "1"; //1-sided or 2-sided
+                orderDetail.eyemark_sign = "";
+                orderDetail.eyemark_width = 10;
+                orderDetail.graphic_done_date = DateTime.Now;
+                orderDetail.img_orientation = "0"; //0, 90, 180, 270 degrees, or others
+                orderDetail.keyhole_angle = 70;
+                orderDetail.keyhole_inner_dia = 80;
+                orderDetail.keyhole_keyway = "12x12";
+                orderDetail.keyhole_outer_dia = 90;
+                orderDetail.keyhole_type = "OTHER"; //standard or others
+                orderDetail.length_dir_repeat = 1;
+                orderDetail.new_cyl_count = 4;
+                orderDetail.order_detailId = Guid.NewGuid();
+                orderDetail.orderId = order.orderId;
+                orderDetail.print_material = "OPP"; //multiple options or other
+                orderDetail.print_method = "SRFC";  // reverse or surface
+                orderDetail.prod_height_stretch = 0;
+                orderDetail.prod_print_height = 980;
+                orderDetail.prod_print_width = 1120;
+                orderDetail.prod_width_stretch = 0;
+                orderDetail.reg_mark_type = "TrungDong"; //standard or others
+                orderDetail.result_based_on = ""; //graphic proof, printing sample, fingerprint or others
+                orderDetail.sent_to_mech_date = DateTime.Now;
+                orderDetail.splitline_color = "K";
+                orderDetail.splitline_size = 10;
+                orderDetail.splitline_type = ""; //2-sided or not
+                orderDetail.updated_by = "Ba Tien";
+                orderDetail.updated_date = DateTime.Now;
+                orderDetail.used_cyl_count = 0;
+                orderDetail.web_print_width = 1120;
+                orderDetail.web_total_width = 1145;
 
                 //add above prepared detail record into Order
-                order.Order_Detail.Add(orderdetails);
+                order.Order_Detail.Add(orderDetail);
 
                 mainCtrl.createSalesOrder(order);
 
@@ -121,10 +121,10 @@ namespace Example
                 //select * from Order where order_code = "code-112"
                 //in example Where(o=> means  o represent Order table, u can put any thing to alias Order table there.
                 //select only one record ontop = SingleOrDefault(), Take(1) means select top 1 if there are multiple records 
-                Order order = mainCtrl.getSalesOrder("order-code-111");
+                Order order = mainCtrl.getSalesOrder("0001-B11");
                 if (order != null)
                 {
-                    order.remark = "the remark has been updated";
+                    order.priority = OrderConst.PRIORITY_HIGH;
                     foreach (Order_Detail orderDetail in order.Order_Detail)
                     {
                         orderDetail.updated_by = "System";
@@ -148,9 +148,9 @@ namespace Example
         {
             try
             {
-                Order dbOrder = mainCtrl.getSalesOrder("order-code-111");
+                Order dbOrder = mainCtrl.getSalesOrder("0001-B11");
                 mainCtrl.deleteSpecificOder(dbOrder);
-                MessageBox.Show("Deleted");
+                MessageBox.Show("Order "+dbOrder.order_code+"Deleted");
             }
             catch (Exception ex)
             {
@@ -268,6 +268,133 @@ namespace Example
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnCreateCustomer_Clicked(object sender, EventArgs e)
+        {
+            COMSEntities dbContext = new COMSEntities();
+            try
+            {
+                Customer cust = new Customer();
+                cust.address = "635 HỒNG BÀNG Q6 P6";
+                cust.code = "12";
+                cust.code_tax = "0301640003";
+                cust.created_by = "Ba Tien";
+                cust.created_date = DateTime.Now;
+                cust.customerid = Guid.NewGuid();
+                cust.fax = "9692281";
+                cust.fullname = "CTY TNHH SXTM NHẤT LỢI";
+                cust.name = "NHẤT LỢI";
+                cust.status = "ACTIVE";
+                cust.telephone = "39605972-205(HẰNG)";
+                cust.updated_by = cust.created_by;
+                cust.updated_date = cust.created_date;
+
+                Printer printer = new Printer();
+                printer.address = "";
+                printer.code = "";
+                printer.created_by = cust.created_by;
+                printer.created_date = cust.created_date;
+                printer.customer_id = cust.customerid;
+                printer.hole_stick = "70 x 15";
+                printer.name = "Anh Hà (BN) Máy 3";
+                printer.printer_id = Guid.NewGuid();
+                printer.slot_latch = "10 x 9 (1 Đầu)";
+                printer.status = "";
+                printer.updated_by = printer.created_by;
+                printer.updated_date = printer.updated_date;
+                cust.Printers.Add(printer);
+
+                dbContext.Customers.AddObject(cust);
+                //make changes permanent 
+                dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                MessageBox.Show("Customer Created");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void btnCreateWorkflow_Clicked(object sender, EventArgs e)
+        {
+            COMSEntities dbContext = new COMSEntities();
+            try
+            {
+                Workflow workflow = new Workflow();
+                workflow.created_by = "Ba Tien";
+                workflow.created_date = DateTime.Now;
+                workflow.departmentId = dbContext.Departments.Where(d => d.name.Equals("Sales Dept")).FirstOrDefault().departmentId;
+                workflow.isactive = true;
+                workflow.name = "Sales to Mechanical";
+                workflow.nextWorkflowID = null;
+                workflow.prevWorkflowID = null;
+                workflow.updated_by = workflow.created_by;
+                workflow.updated_date = workflow.created_date;
+                workflow.workflowId = Guid.NewGuid();
+
+                dbContext.Workflows.AddObject(workflow);
+                //make changes permanent 
+                dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                MessageBox.Show("Workflow Created");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void btnCreateCylinder_Clicked(object sender, EventArgs e)
+        {
+            COMSEntities dbContext = new COMSEntities();
+            try
+            {
+                Order order = dbContext.Orders.Where(o => o.order_code.Equals("0001-B11")).FirstOrDefault();
+                Order_Detail orderDetail = order.Order_Detail.FirstOrDefault();
+                Cylinder cyl = new Cylinder();
+                cyl.color_no = 1;
+                cyl.core_type = CylinderConst.CORETYPE_NEW;
+                cyl.created_by = order.created_by;
+                cyl.created_date = order.created_date;
+                cyl.cyl_no = 1;
+                cyl.cylinderId = Guid.NewGuid();
+                cyl.diameter = orderDetail.cyl_diameter;
+                cyl.length = orderDetail.cyl_length;
+                cyl.order_detailId = orderDetail.order_detailId;
+                cyl.status = 1;
+                cyl.stepId = null;
+                cyl.updated_by = cyl.created_by;
+                cyl.updated_date = cyl.created_date;
+                cyl.workflowId = dbContext.Workflows.Where(w => w.name.IndexOf("Sales") > -1).FirstOrDefault().workflowId;
+                cyl.barcode = order.order_code + "0" + cyl.cyl_no + "+0" + cyl.color_no + cyl.core_type;
+
+                dbContext.Cylinders.AddObject(cyl);
+                //make changes permanent 
+                dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                MessageBox.Show("Cylinder Created");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+            }
+        }
+
+        private void btnViewQueue_Clicked(object sender, EventArgs e)
+        {
+            COMSEntities dbContext = new COMSEntities();
+            try
+            {
+                Workflow workflow = dbContext.Workflows.Where(w => w.name.IndexOf("Sales") > -1).FirstOrDefault();
+                List<Order> orderList = mainCtrl.viewQueue(workflow.workflowId);
+                foreach (Order order in orderList)
+                {
+                    MessageBox.Show("Order "+order.order_code+" are under workflow "+workflow.name);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
             }
         }
     }

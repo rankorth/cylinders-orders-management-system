@@ -34,12 +34,12 @@ namespace BusinessLogics
             return workflowCtrl.GetAllWorkflow();
         }
 
-        public IQueryable<Cylinder> exportCylinderQueue(Guid workflowId)
+        public List<Order> exportCylinderQueue(Guid workflowId)
         {
             return viewQueue(workflowId);
         }
 
-        public IQueryable<Cylinder> viewQueue(Guid workflowId)
+        public List<Order> viewQueue(Guid workflowId)
         {
             return workflowCtrl.viewCurrentQueue(workflowId);
         }
@@ -239,7 +239,7 @@ namespace BusinessLogics
         //- Login - coded-tested
         //- Logout
         //- View Sales Order - coded-tested
-        //- View Workflow Queues
+        //- View Workflow Queues - coded-tested
         //- Send Cylinder To A Particular Step
         //- Send Cylinder To A Workflow
     }
