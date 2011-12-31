@@ -52,9 +52,9 @@
             this.button8 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button17 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.button17 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -182,6 +182,7 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Error Controller Testing";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // label2
             // 
@@ -322,6 +323,16 @@
             this.tabPage3.Text = "Employee";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(24, 56);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(72, 49);
+            this.button17.TabIndex = 2;
+            this.button17.Text = "1. Create Employee";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.createEmployee_Click);
+            // 
             // button13
             // 
             this.button13.Location = new System.Drawing.Point(102, 56);
@@ -340,16 +351,6 @@
             this.label4.Size = new System.Drawing.Size(91, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "Employee Testing";
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(24, 56);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(72, 49);
-            this.button17.TabIndex = 2;
-            this.button17.Text = "1. Create Employee";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.createEmployee_Click);
             // 
             // Form2
             // 
