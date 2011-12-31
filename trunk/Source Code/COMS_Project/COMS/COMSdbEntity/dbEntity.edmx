@@ -17,6 +17,7 @@
           <EntitySet Name="Formula" EntityType="COMSModel.Store.Formula" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Order" EntityType="COMSModel.Store.Order" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Order_Detail" EntityType="COMSModel.Store.Order_Detail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order_Log" EntityType="COMSModel.Store.Order_Log" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Printer" EntityType="COMSModel.Store.Printer" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Role" EntityType="COMSModel.Store.Role" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Role_Right_ref" EntityType="COMSModel.Store.Role_Right_ref" store:Type="Tables" Schema="dbo" />
@@ -74,6 +75,14 @@
           <AssociationSet Name="FK_Order_Detail_Order" Association="COMSModel.Store.FK_Order_Detail_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="Order_Detail" EntitySet="Order_Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Log_Order" Association="COMSModel.Store.FK_Order_Log_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Order_Log" EntitySet="Order_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Log_Workflow" Association="COMSModel.Store.FK_Order_Log_Workflow">
+            <End Role="Workflow" EntitySet="Workflow" />
+            <End Role="Order_Log" EntitySet="Order_Log" />
           </AssociationSet>
           <AssociationSet Name="FK_Printer_Customer" Association="COMSModel.Store.FK_Printer_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -147,15 +156,17 @@
           <Property Name="workflowId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="order_detailId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="barcode" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="priority" Type="int" Nullable="false" />
-          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="stepId" Type="uniqueidentifier" />
+          <Property Name="color_no" Type="int" />
+          <Property Name="core_type" Type="nvarchar" MaxLength="10" />
+          <Property Name="cyl_no" Type="int" />
+          <Property Name="diameter" Type="decimal" Scale="2" />
           <Property Name="length" Type="decimal" Scale="5" />
-          <Property Name="circumference" Type="decimal" Scale="5" />
-          <Property Name="area" Type="decimal" Scale="5" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
+          <Property Name="status" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Cylinder_Log">
           <Key>
@@ -163,13 +174,16 @@
           </Key>
           <Property Name="cylinderlogId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="cylinderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="dept_name" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="start_time" Type="datetime" Nullable="false" />
           <Property Name="end_time" Type="datetime" />
           <Property Name="mark" Type="int" />
-          <Property Name="formulaId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="formula" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="employeeId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="errorId" Type="uniqueidentifier" />
           <Property Name="stepId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -225,7 +239,7 @@
           <Key>
             <PropertyRef Name="formulaId" />
           </Key>
-          <Property Name="formulaId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="formulaId" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="stepId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="formula" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="coef1" Type="int" Nullable="false" />
@@ -243,21 +257,23 @@
           <Property Name="orderId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="order_code" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="customer_id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="product_name" Type="nvarchar" Nullable="false" MaxLength="255" />
-          <Property Name="price" Type="decimal" Nullable="false" Scale="2" />
-          <Property Name="price_type" Type="int" />
-          <Property Name="pay_percentage" Type="int" />
-          <Property Name="belong_to_set" Type="bit" />
+          <Property Name="customer_rep" Type="nvarchar" MaxLength="50" />
+          <Property Name="product_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="price_type" Type="nvarchar" MaxLength="10" />
+          <Property Name="redo_pct" Type="int" />
           <Property Name="old_core" Type="bit" />
-          <Property Name="dead_line" Type="datetime" />
-          <Property Name="order_type" Type="nvarchar" MaxLength="50" />
-          <Property Name="barcode" Type="nvarchar" MaxLength="50" />
-          <Property Name="remark" Type="nvarchar" MaxLength="255" />
-          <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="delivery_date" Type="datetime" />
+          <Property Name="order_type" Type="nvarchar" MaxLength="5" />
+          <Property Name="status" Type="nvarchar" MaxLength="5" />
+          <Property Name="set_code" Type="nvarchar" MaxLength="10" />
+          <Property Name="cylinder_type" Type="nvarchar" MaxLength="5" />
+          <Property Name="old_order_code" Type="nvarchar" MaxLength="10" />
+          <Property Name="priority" Type="nvarchar" MaxLength="5" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
-          <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
-          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
+          <Property Name="belong_to_set" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Order_Detail">
           <Key>
@@ -265,45 +281,61 @@
           </Key>
           <Property Name="order_detailId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="orderId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="cylinder_code" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="cylinder_type" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="no_of_cylinders" Type="int" Nullable="false" />
-          <Property Name="color_count" Type="int" Nullable="false" />
-          <Property Name="cylinder_length" Type="decimal" Nullable="false" Scale="5" />
-          <Property Name="cylinder_circumference" Type="decimal" Nullable="false" Scale="5" />
-          <Property Name="cylinder_area" Type="decimal" Nullable="false" Scale="5" />
-          <Property Name="print_width" Type="decimal" Scale="5" />
-          <Property Name="height" Type="decimal" Scale="5" />
-          <Property Name="stretch_range" Type="decimal" Scale="5" />
-          <Property Name="eye_mark_height" Type="decimal" Scale="5" />
-          <Property Name="eye_mark_width" Type="decimal" Scale="5" />
-          <Property Name="eye_mark_color" Type="nchar" MaxLength="10" />
-          <Property Name="eye_mark_sign" Type="nchar" MaxLength="50" />
-          <Property Name="arrangement" Type="int" />
-          <Property Name="top_down" Type="int" />
-          <Property Name="bottom" Type="int" />
-          <Property Name="layout_no_of_up_horizontal" Type="int" />
-          <Property Name="layout_no_of_repeat_circum" Type="int" />
-          <Property Name="printing_web_total_print_width" Type="int" />
-          <Property Name="web_width" Type="decimal" Scale="5" />
-          <Property Name="cylinder_hole_type" Type="int" />
-          <Property Name="inner_diameter" Type="int" />
-          <Property Name="outer_diameter" Type="int" />
-          <Property Name="angle" Type="int" />
-          <Property Name="key_way_width" Type="int" />
-          <Property Name="key_way_height" Type="int" />
-          <Property Name="print_method" Type="int" />
-          <Property Name="reg_mark" Type="int" />
-          <Property Name="spliting_line_size" Type="decimal" Scale="5" />
-          <Property Name="spliting_line_side" Type="int" />
-          <Property Name="spliting_line_color" Type="nvarchar" MaxLength="50" />
-          <Property Name="printing_material" Type="nvarchar" MaxLength="50" />
-          <Property Name="result_based_on" Type="nvarchar" MaxLength="50" />
-          <Property Name="image_orientation" Type="nvarchar" MaxLength="50" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
+          <Property Name="core_type" Type="nvarchar" MaxLength="10" />
+          <Property Name="prod_print_width" Type="decimal" Scale="2" />
+          <Property Name="prod_width_stretch" Type="decimal" Scale="2" />
+          <Property Name="prod_print_height" Type="decimal" Scale="2" />
+          <Property Name="prod_height_stretch" Type="decimal" Scale="2" />
+          <Property Name="length_dir_repeat" Type="int" />
+          <Property Name="circum_dir_repeat" Type="int" />
+          <Property Name="web_print_width" Type="int" />
+          <Property Name="web_total_width" Type="int" />
+          <Property Name="cyl_length" Type="decimal" Scale="2" />
+          <Property Name="cyl_diameter" Type="decimal" Scale="2" />
+          <Property Name="eyemark_height" Type="int" />
+          <Property Name="eyemark_width" Type="int" />
+          <Property Name="eyemark_color" Type="nvarchar" MaxLength="10" />
+          <Property Name="eyemark_sign" Type="nvarchar" MaxLength="10" />
+          <Property Name="eyemark_location" Type="nvarchar" MaxLength="10" />
+          <Property Name="keyhole_type" Type="nvarchar" MaxLength="10" />
+          <Property Name="keyhole_inner_dia" Type="int" />
+          <Property Name="keyhole_outer_dia" Type="int" />
+          <Property Name="keyhole_angle" Type="int" />
+          <Property Name="keyhole_keyway" Type="nvarchar" MaxLength="10" />
+          <Property Name="color_count" Type="int" />
+          <Property Name="color_list" Type="nvarchar" MaxLength="12" />
+          <Property Name="new_cyl_count" Type="int" />
+          <Property Name="used_cyl_count" Type="int" />
+          <Property Name="print_method" Type="nvarchar" MaxLength="5" />
+          <Property Name="reg_mark_type" Type="nvarchar" MaxLength="10" />
+          <Property Name="splitline_size" Type="int" />
+          <Property Name="splitline_type" Type="nvarchar" MaxLength="10" />
+          <Property Name="splitline_color" Type="nvarchar" MaxLength="10" />
+          <Property Name="print_material" Type="nvarchar" MaxLength="10" />
+          <Property Name="result_based_on" Type="nvarchar" MaxLength="10" />
+          <Property Name="img_orientation" Type="nvarchar" MaxLength="10" />
+          <Property Name="graphic_done_date" Type="datetime" />
+          <Property Name="sent_to_mech_date" Type="datetime" />
+          <Property Name="cut_core_result" Type="nvarchar" MaxLength="20" />
+          <Property Name="changes" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Order_Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="workflowId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="orderId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="order_status" Type="nvarchar" MaxLength="10" />
+          <Property Name="dept_name" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="updated_date" Type="datetime" Nullable="false" />
+          <Property Name="remarks" Type="nvarchar" MaxLength="255" />
+          <Property Name="updated_by" Type="nvarchar(max)" />
+          <Property Name="related_cyl" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Printer">
           <Key>
@@ -438,7 +470,7 @@
               <PropertyRef Name="formulaId" />
             </Principal>
             <Dependent Role="Cylinder_Log">
-              <PropertyRef Name="formulaId" />
+              <PropertyRef Name="formula" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -550,6 +582,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Log_Order">
+          <End Role="Order" Type="COMSModel.Store.Order" Multiplicity="1" />
+          <End Role="Order_Log" Type="COMSModel.Store.Order_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="Order_Log">
+              <PropertyRef Name="orderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Log_Workflow">
+          <End Role="Workflow" Type="COMSModel.Store.Workflow" Multiplicity="1" />
+          <End Role="Order_Log" Type="COMSModel.Store.Order_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workflow">
+              <PropertyRef Name="workflowId" />
+            </Principal>
+            <Dependent Role="Order_Log">
+              <PropertyRef Name="workflowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Printer_Customer">
           <End Role="Customer" Type="COMSModel.Store.Customer" Multiplicity="0..1" />
           <End Role="Printer" Type="COMSModel.Store.Printer" Multiplicity="*" />
@@ -652,6 +708,7 @@
       <Schema Namespace="COMSModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="COMSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Access_Right" EntityType="COMSModel.Access_Right" />
+          <EntitySet Name="Customers" EntityType="COMSModel.Customer" />
           <EntitySet Name="Cylinders" EntityType="COMSModel.Cylinder" />
           <EntitySet Name="Cylinder_Log" EntityType="COMSModel.Cylinder_Log" />
           <EntitySet Name="Departments" EntityType="COMSModel.Department" />
@@ -659,16 +716,38 @@
           <EntitySet Name="Employees" EntityType="COMSModel.Employee" />
           <EntitySet Name="Errors" EntityType="COMSModel.Error" />
           <EntitySet Name="Formulae" EntityType="COMSModel.Formula" />
+          <EntitySet Name="Orders" EntityType="COMSModel.Order" />
+          <EntitySet Name="Order_Detail" EntityType="COMSModel.Order_Detail" />
+          <EntitySet Name="Order_Log" EntityType="COMSModel.Order_Log" />
+          <EntitySet Name="Printers" EntityType="COMSModel.Printer" />
           <EntitySet Name="Roles" EntityType="COMSModel.Role" />
           <EntitySet Name="Role_Right_ref" EntityType="COMSModel.Role_Right_ref" />
+          <EntitySet Name="Steps" EntityType="COMSModel.Step" />
           <EntitySet Name="Step_ref" EntityType="COMSModel.Step_ref" />
+          <EntitySet Name="Workflows" EntityType="COMSModel.Workflow" />
           <AssociationSet Name="FK_Role_Right_ref_Access_Right" Association="COMSModel.FK_Role_Right_ref_Access_Right">
             <End Role="Access_Right" EntitySet="Access_Right" />
             <End Role="Role_Right_ref" EntitySet="Role_Right_ref" />
           </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="COMSModel.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Printer_Customer" Association="COMSModel.FK_Printer_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Printer" EntitySet="Printers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Cylinder_Log_Cylinder" Association="COMSModel.FK_Cylinder_Log_Cylinder">
             <End Role="Cylinder" EntitySet="Cylinders" />
             <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cylinder_Order_Detail" Association="COMSModel.FK_Cylinder_Order_Detail">
+            <End Role="Order_Detail" EntitySet="Order_Detail" />
+            <End Role="Cylinder" EntitySet="Cylinders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cylinder_Workflow" Association="COMSModel.FK_Cylinder_Workflow">
+            <End Role="Workflow" EntitySet="Workflows" />
+            <End Role="Cylinder" EntitySet="Cylinders" />
           </AssociationSet>
           <AssociationSet Name="FK_Cylinder_Log_Employee" Association="COMSModel.FK_Cylinder_Log_Employee">
             <End Role="Employee" EntitySet="Employees" />
@@ -682,9 +761,17 @@
             <End Role="Formula" EntitySet="Formulae" />
             <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cylinder_Log_Step" Association="COMSModel.FK_Cylinder_Log_Step">
+            <End Role="Step" EntitySet="Steps" />
+            <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employee_Department" Association="COMSModel.FK_Employee_Department">
             <End Role="Department" EntitySet="Departments" />
             <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Workflow_Department" Association="COMSModel.FK_Workflow_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Workflow" EntitySet="Workflows" />
           </AssociationSet>
           <AssociationSet Name="FK_Emp_Role_ref_Employee" Association="COMSModel.FK_Emp_Role_ref_Employee">
             <End Role="Employee" EntitySet="Employees" />
@@ -694,51 +781,25 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="Emp_Role_ref" EntitySet="Emp_Role_ref" />
           </AssociationSet>
-          <AssociationSet Name="FK_Role_Right_ref_Role" Association="COMSModel.FK_Role_Right_ref_Role">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="Role_Right_ref" EntitySet="Role_Right_ref" />
+          <AssociationSet Name="FK_Formula_Step" Association="COMSModel.FK_Formula_Step">
+            <End Role="Step" EntitySet="Steps" />
+            <End Role="Formula" EntitySet="Formulae" />
           </AssociationSet>
-          <EntitySet Name="Order_Detail" EntityType="COMSModel.Order_Detail" />
-          <AssociationSet Name="FK_Cylinder_Order_Detail" Association="COMSModel.FK_Cylinder_Order_Detail">
-            <End Role="Order_Detail" EntitySet="Order_Detail" />
-            <End Role="Cylinder" EntitySet="Cylinders" />
-          </AssociationSet>
-          <EntitySet Name="Orders" EntityType="COMSModel.Order" />
           <AssociationSet Name="FK_Order_Detail_Order" Association="COMSModel.FK_Order_Detail_Order">
             <End Role="Order" EntitySet="Orders" />
             <End Role="Order_Detail" EntitySet="Order_Detail" />
           </AssociationSet>
-          <EntitySet Name="Customers" EntityType="COMSModel.Customer" />
-          <AssociationSet Name="FK_Order_Customer" Association="COMSModel.FK_Order_Customer">
-            <End Role="Customer" EntitySet="Customers" />
+          <AssociationSet Name="FK_Order_Log_Order" Association="COMSModel.FK_Order_Log_Order">
             <End Role="Order" EntitySet="Orders" />
+            <End Role="Order_Log" EntitySet="Order_Log" />
           </AssociationSet>
-          <EntitySet Name="Printers" EntityType="COMSModel.Printer" />
-          <AssociationSet Name="FK_Printer_Customer" Association="COMSModel.FK_Printer_Customer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Printer" EntitySet="Printers" />
-          </AssociationSet>
-          <EntitySet Name="Workflows" EntityType="COMSModel.Workflow" />
-          <AssociationSet Name="FK_Cylinder_Workflow" Association="COMSModel.FK_Cylinder_Workflow">
+          <AssociationSet Name="FK_Order_Log_Workflow" Association="COMSModel.FK_Order_Log_Workflow">
             <End Role="Workflow" EntitySet="Workflows" />
-            <End Role="Cylinder" EntitySet="Cylinders" />
+            <End Role="Order_Log" EntitySet="Order_Log" />
           </AssociationSet>
-          <AssociationSet Name="FK_Workflow_Department" Association="COMSModel.FK_Workflow_Department">
-            <End Role="Department" EntitySet="Departments" />
-            <End Role="Workflow" EntitySet="Workflows" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Step_ref_Workflow" Association="COMSModel.FK_Step_ref_Workflow">
-            <End Role="Workflow" EntitySet="Workflows" />
-            <End Role="Step_ref" EntitySet="Step_ref" />
-          </AssociationSet>
-          <EntitySet Name="Steps" EntityType="COMSModel.Step" />
-          <AssociationSet Name="FK_Cylinder_Log_Step" Association="COMSModel.FK_Cylinder_Log_Step">
-            <End Role="Step" EntitySet="Steps" />
-            <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Formula_Step" Association="COMSModel.FK_Formula_Step">
-            <End Role="Step" EntitySet="Steps" />
-            <End Role="Formula" EntitySet="Formulae" />
+          <AssociationSet Name="FK_Role_Right_ref_Role" Association="COMSModel.FK_Role_Right_ref_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Role_Right_ref" EntitySet="Role_Right_ref" />
           </AssociationSet>
           <AssociationSet Name="FK_Step_ref_Step" Association="COMSModel.FK_Step_ref_Step">
             <End Role="Step" EntitySet="Steps" />
@@ -752,7 +813,11 @@
             <End Role="Workflow" EntitySet="Workflows" />
             <End Role="Step" EntitySet="Steps" />
           </AssociationSet>
-          </EntityContainer>
+          <AssociationSet Name="FK_Step_ref_Workflow" Association="COMSModel.FK_Step_ref_Workflow">
+            <End Role="Workflow" EntitySet="Workflows" />
+            <End Role="Step_ref" EntitySet="Step_ref" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Access_Right">
           <Key>
             <PropertyRef Name="rightsId" />
@@ -766,25 +831,48 @@
           <Property Type="Boolean" Name="isactive" Nullable="false" />
           <NavigationProperty Name="Role_Right_ref" Relationship="COMSModel.FK_Role_Right_ref_Access_Right" FromRole="Access_Right" ToRole="Role_Right_ref" />
         </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerid" />
+          </Key>
+          <Property Type="Guid" Name="customerid" Nullable="false" />
+          <Property Type="String" Name="code" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="code_tax" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="address" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" />
+          <Property Type="String" Name="created_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="fax" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="fullname" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="status" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="telephone" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="printer_id" Nullable="false" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="COMSModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="Printers" Relationship="COMSModel.FK_Printer_Customer" FromRole="Customer" ToRole="Printer" />
+        </EntityType>
         <EntityType Name="Cylinder">
           <Key>
             <PropertyRef Name="cylinderId" />
           </Key>
           <Property Type="Guid" Name="cylinderId" Nullable="false" />
+          <Property Type="Guid" Name="workflowId" Nullable="false" />
           <Property Type="Guid" Name="order_detailId" Nullable="false" />
           <Property Type="String" Name="barcode" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="priority" Nullable="false" />
-          <Property Type="Int32" Name="status" Nullable="false" />
-          <Property Type="Decimal" Name="length" Nullable="false" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="area" Nullable="false" Precision="18" Scale="5" />
+          <Property Type="Guid" Name="stepId" />
+          <Property Type="Int32" Name="color_no" />
+          <Property Type="String" Name="core_type" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="cyl_no" />
+          <Property Type="Decimal" Name="diameter" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="length" Precision="18" Scale="5" />
           <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="created_date" Nullable="false" />
           <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="updated_date" />
+          <Property Type="Int32" Name="status" Nullable="false" />
           <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Cylinder" FromRole="Cylinder" ToRole="Cylinder_Log" />
-          <Property Type="Guid" Name="workflowId" Nullable="false" />
           <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Cylinder_Order_Detail" FromRole="Cylinder" ToRole="Order_Detail" />
-          <Property Type="Decimal" Name="circumference" Precision="18" Scale="5" />
           <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Cylinder" ToRole="Workflow" />
         </EntityType>
         <EntityType Name="Cylinder_Log">
@@ -793,17 +881,20 @@
           </Key>
           <Property Type="Guid" Name="cylinderlogId" Nullable="false" />
           <Property Type="Guid" Name="cylinderId" Nullable="false" />
+          <Property Type="String" Name="dept_name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="start_time" Nullable="false" />
           <Property Type="DateTime" Name="end_time" />
           <Property Type="Int32" Name="mark" />
-          <Property Type="Guid" Name="formulaId" Nullable="false" />
+          <Property Type="String" Name="formula" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Guid" Name="employeeId" Nullable="false" />
           <Property Type="Guid" Name="errorId" />
           <Property Type="Guid" Name="stepId" Nullable="false" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="remark" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cylinder" Relationship="COMSModel.FK_Cylinder_Log_Cylinder" FromRole="Cylinder_Log" ToRole="Cylinder" />
           <NavigationProperty Name="Employee" Relationship="COMSModel.FK_Cylinder_Log_Employee" FromRole="Cylinder_Log" ToRole="Employee" />
           <NavigationProperty Name="Error" Relationship="COMSModel.FK_Cylinder_Log_Error" FromRole="Cylinder_Log" ToRole="Error" />
-          <NavigationProperty Name="Formula" Relationship="COMSModel.FK_Cylinder_Log_Formula" FromRole="Cylinder_Log" ToRole="Formula" />
+          <NavigationProperty Name="Formula1" Relationship="COMSModel.FK_Cylinder_Log_Formula" FromRole="Cylinder_Log" ToRole="Formula" />
           <NavigationProperty Name="Step" Relationship="COMSModel.FK_Cylinder_Log_Step" FromRole="Cylinder_Log" ToRole="Step" />
         </EntityType>
         <EntityType Name="Department">
@@ -868,7 +959,7 @@
           <Key>
             <PropertyRef Name="formulaId" />
           </Key>
-          <Property Type="Guid" Name="formulaId" Nullable="false" />
+          <Property Type="String" Name="formulaId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Guid" Name="stepId" Nullable="false" />
           <Property Type="String" Name="formula1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="coef1" Nullable="false" />
@@ -880,6 +971,118 @@
           <Property Type="Boolean" Name="isactive" Nullable="false" />
           <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Formula" FromRole="Formula" ToRole="Cylinder_Log" />
           <NavigationProperty Name="Step" Relationship="COMSModel.FK_Formula_Step" FromRole="Formula" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Type="Guid" Name="orderId" Nullable="false" />
+          <Property Type="String" Name="order_code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="customer_id" Nullable="false" />
+          <Property Type="String" Name="customer_rep" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="product_name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="price_type" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="redo_pct" />
+          <Property Type="Boolean" Name="old_core" />
+          <Property Type="DateTime" Name="delivery_date" />
+          <Property Type="String" Name="order_type" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="status" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="set_code" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="cylinder_type" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="old_order_code" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="priority" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" Nullable="false" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="belong_to_set" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="COMSModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Order_Detail_Order" FromRole="Order" ToRole="Order_Detail" />
+          <NavigationProperty Name="Order_Log" Relationship="COMSModel.FK_Order_Log_Order" FromRole="Order" ToRole="Order_Log" />
+        </EntityType>
+        <EntityType Name="Order_Detail">
+          <Key>
+            <PropertyRef Name="order_detailId" />
+          </Key>
+          <Property Type="Guid" Name="order_detailId" Nullable="false" />
+          <Property Type="Guid" Name="orderId" Nullable="false" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" Nullable="false" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="String" Name="core_type" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="prod_print_width" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prod_width_stretch" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prod_print_height" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prod_height_stretch" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="length_dir_repeat" />
+          <Property Type="Int32" Name="circum_dir_repeat" />
+          <Property Type="Int32" Name="web_print_width" />
+          <Property Type="Int32" Name="web_total_width" />
+          <Property Type="Decimal" Name="cyl_length" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="cyl_diameter" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="eyemark_height" />
+          <Property Type="Int32" Name="eyemark_width" />
+          <Property Type="String" Name="eyemark_color" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="eyemark_sign" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="eyemark_location" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="keyhole_type" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="keyhole_inner_dia" />
+          <Property Type="Int32" Name="keyhole_outer_dia" />
+          <Property Type="Int32" Name="keyhole_angle" />
+          <Property Type="String" Name="keyhole_keyway" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="color_count" />
+          <Property Type="String" Name="color_list" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="new_cyl_count" />
+          <Property Type="Int32" Name="used_cyl_count" />
+          <Property Type="String" Name="print_method" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="reg_mark_type" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="splitline_size" />
+          <Property Type="String" Name="splitline_type" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="splitline_color" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="print_material" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="result_based_on" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="img_orientation" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="graphic_done_date" />
+          <Property Type="DateTime" Name="sent_to_mech_date" />
+          <Property Type="String" Name="cut_core_result" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="changes" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Order_Detail" FromRole="Order_Detail" ToRole="Cylinder" />
+          <NavigationProperty Name="Order" Relationship="COMSModel.FK_Order_Detail_Order" FromRole="Order_Detail" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Order_Log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Guid" Name="id" Nullable="false" />
+          <Property Type="Guid" Name="workflowId" Nullable="false" />
+          <Property Type="Guid" Name="orderId" Nullable="false" />
+          <Property Type="String" Name="order_status" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="dept_name" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" Nullable="false" />
+          <Property Type="String" Name="remarks" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="updated_by" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="related_cyl" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="COMSModel.FK_Order_Log_Order" FromRole="Order_Log" ToRole="Order" />
+          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Order_Log_Workflow" FromRole="Order_Log" ToRole="Workflow" />
+        </EntityType>
+        <EntityType Name="Printer">
+          <Key>
+            <PropertyRef Name="printer_id" />
+          </Key>
+          <Property Type="Guid" Name="printer_id" Nullable="false" />
+          <Property Type="Guid" Name="customer_id" />
+          <Property Type="String" Name="address" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="code" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="hole_stick" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="slot_latch" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="status" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" />
+          <Property Type="String" Name="created_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="COMSModel.FK_Printer_Customer" FromRole="Printer" ToRole="Customer" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -909,21 +1112,66 @@
           <NavigationProperty Name="Access_Right" Relationship="COMSModel.FK_Role_Right_ref_Access_Right" FromRole="Role_Right_ref" ToRole="Access_Right" />
           <NavigationProperty Name="Role" Relationship="COMSModel.FK_Role_Right_ref_Role" FromRole="Role_Right_ref" ToRole="Role" />
         </EntityType>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="stepId" />
+          </Key>
+          <Property Type="Guid" Name="stepId" Nullable="false" />
+          <Property Type="Guid" Name="workflowId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="description" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="instruction" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="note" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="x" Nullable="false" />
+          <Property Type="Int32" Name="y" Nullable="false" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" Nullable="false" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
+          <Property Type="Boolean" Name="isStep" Nullable="false" />
+          <Property Type="Boolean" Name="isBegin" Nullable="false" />
+          <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Step" FromRole="Step" ToRole="Cylinder_Log" />
+          <NavigationProperty Name="Formulae" Relationship="COMSModel.FK_Formula_Step" FromRole="Step" ToRole="Formula" />
+          <NavigationProperty Name="Step_ref" Relationship="COMSModel.FK_Step_ref_Step" FromRole="Step" ToRole="Step_ref" />
+          <NavigationProperty Name="Step_ref1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step" ToRole="Step_ref" />
+          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_Workflow" FromRole="Step" ToRole="Workflow" />
+        </EntityType>
         <EntityType Name="Step_ref">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="workflowId" Nullable="false" />
           <Property Type="Guid" Name="from_stepId" Nullable="false" />
           <Property Type="Guid" Name="to_stepId" Nullable="false" />
           <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="created_date" Nullable="false" />
           <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="updated_date" />
-          <Property Type="Guid" Name="workflowId" Nullable="false" />
-          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_ref_Workflow" FromRole="Step_ref" ToRole="Workflow" />
           <NavigationProperty Name="Step" Relationship="COMSModel.FK_Step_ref_Step" FromRole="Step_ref" ToRole="Step" />
           <NavigationProperty Name="Step1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step_ref" ToRole="Step" />
+          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_ref_Workflow" FromRole="Step_ref" ToRole="Workflow" />
+        </EntityType>
+        <EntityType Name="Workflow">
+          <Key>
+            <PropertyRef Name="workflowId" />
+          </Key>
+          <Property Type="Guid" Name="workflowId" Nullable="false" />
+          <Property Type="Guid" Name="departmentId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" Nullable="false" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="Boolean" Name="isactive" Nullable="false" />
+          <Property Type="Guid" Name="prevWorkflowID" />
+          <Property Type="Guid" Name="nextWorkflowID" />
+          <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Workflow" ToRole="Cylinder" />
+          <NavigationProperty Name="Department" Relationship="COMSModel.FK_Workflow_Department" FromRole="Workflow" ToRole="Department" />
+          <NavigationProperty Name="Order_Log" Relationship="COMSModel.FK_Order_Log_Workflow" FromRole="Workflow" ToRole="Order_Log" />
+          <NavigationProperty Name="Steps" Relationship="COMSModel.FK_Step_Workflow" FromRole="Workflow" ToRole="Step" />
+          <NavigationProperty Name="Step_ref" Relationship="COMSModel.FK_Step_ref_Workflow" FromRole="Workflow" ToRole="Step_ref" />
         </EntityType>
         <Association Name="FK_Role_Right_ref_Access_Right">
           <End Type="COMSModel.Access_Right" Role="Access_Right" Multiplicity="1" />
@@ -937,6 +1185,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Order_Customer">
+          <End Type="COMSModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="COMSModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customerid" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Printer_Customer">
+          <End Type="COMSModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="COMSModel.Printer" Role="Printer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customerid" />
+            </Principal>
+            <Dependent Role="Printer">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Cylinder_Log_Cylinder">
           <End Type="COMSModel.Cylinder" Role="Cylinder" Multiplicity="1" />
           <End Type="COMSModel.Cylinder_Log" Role="Cylinder_Log" Multiplicity="*" />
@@ -946,6 +1218,30 @@
             </Principal>
             <Dependent Role="Cylinder_Log">
               <PropertyRef Name="cylinderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cylinder_Order_Detail">
+          <End Type="COMSModel.Order_Detail" Role="Order_Detail" Multiplicity="1" />
+          <End Type="COMSModel.Cylinder" Role="Cylinder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order_Detail">
+              <PropertyRef Name="order_detailId" />
+            </Principal>
+            <Dependent Role="Cylinder">
+              <PropertyRef Name="order_detailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cylinder_Workflow">
+          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="1" />
+          <End Type="COMSModel.Cylinder" Role="Cylinder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workflow">
+              <PropertyRef Name="workflowId" />
+            </Principal>
+            <Dependent Role="Cylinder">
+              <PropertyRef Name="workflowId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -981,7 +1277,19 @@
               <PropertyRef Name="formulaId" />
             </Principal>
             <Dependent Role="Cylinder_Log">
-              <PropertyRef Name="formulaId" />
+              <PropertyRef Name="formula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cylinder_Log_Step">
+          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
+          <End Type="COMSModel.Cylinder_Log" Role="Cylinder_Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="stepId" />
+            </Principal>
+            <Dependent Role="Cylinder_Log">
+              <PropertyRef Name="stepId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -993,6 +1301,18 @@
               <PropertyRef Name="departmentId" />
             </Principal>
             <Dependent Role="Employee">
+              <PropertyRef Name="departmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Workflow_Department">
+          <End Type="COMSModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="departmentId" />
+            </Principal>
+            <Dependent Role="Workflow">
               <PropertyRef Name="departmentId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1021,103 +1341,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Role_Right_ref_Role">
-          <End Type="COMSModel.Role" Role="Role" Multiplicity="1" />
-          <End Type="COMSModel.Role_Right_ref" Role="Role_Right_ref" Multiplicity="*" />
+        <Association Name="FK_Formula_Step">
+          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
+          <End Type="COMSModel.Formula" Role="Formula" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="roleId" />
+            <Principal Role="Step">
+              <PropertyRef Name="stepId" />
             </Principal>
-            <Dependent Role="Role_Right_ref">
-              <PropertyRef Name="roleId" />
+            <Dependent Role="Formula">
+              <PropertyRef Name="stepId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Order_Detail">
-          <Key>
-            <PropertyRef Name="order_detailId" />
-          </Key>
-          <Property Type="Guid" Name="order_detailId" Nullable="false" />
-          <Property Type="Guid" Name="orderId" Nullable="false" />
-          <Property Type="String" Name="cylinder_code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="cylinder_type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="no_of_cylinders" Nullable="false" />
-          <Property Type="Int32" Name="color_count" Nullable="false" />
-          <Property Type="Decimal" Name="cylinder_length" Nullable="false" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="cylinder_circumference" Nullable="false" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="cylinder_area" Nullable="false" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="print_width" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="height" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="stretch_range" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="eye_mark_height" Precision="18" Scale="5" />
-          <Property Type="Decimal" Name="eye_mark_width" Precision="18" Scale="5" />
-          <Property Type="String" Name="eye_mark_color" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="eye_mark_sign" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Type="Int32" Name="arrangement" />
-          <Property Type="Int32" Name="top_down" />
-          <Property Type="Int32" Name="bottom" />
-          <Property Type="Int32" Name="layout_no_of_up_horizontal" />
-          <Property Type="Int32" Name="layout_no_of_repeat_circum" />
-          <Property Type="Decimal" Name="web_width" Precision="18" Scale="5" />
-          <Property Type="Int32" Name="cylinder_hole_type" />
-          <Property Type="Int32" Name="inner_diameter" />
-          <Property Type="Int32" Name="outer_diameter" />
-          <Property Type="Int32" Name="angle" />
-          <Property Type="Int32" Name="key_way_width" />
-          <Property Type="Int32" Name="key_way_height" />
-          <Property Type="Int32" Name="print_method" />
-          <Property Type="Int32" Name="reg_mark" />
-          <Property Type="Decimal" Name="spliting_line_size" Precision="18" Scale="5" />
-          <Property Type="Int32" Name="spliting_line_side" />
-          <Property Type="String" Name="spliting_line_color" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="printing_material" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="result_based_on" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" Nullable="false" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="updated_date" />
-          <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Order_Detail" FromRole="Order_Detail" ToRole="Cylinder" />
-          <NavigationProperty Name="Order" Relationship="COMSModel.FK_Order_Detail_Order" FromRole="Order_Detail" ToRole="Order" />
-          <Property Type="Int32" Name="printing_web_total_print_width" />
-          <Property Type="String" Name="image_orientation" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <Association Name="FK_Cylinder_Order_Detail">
-          <End Type="COMSModel.Order_Detail" Role="Order_Detail" Multiplicity="1" />
-          <End Type="COMSModel.Cylinder" Role="Cylinder" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order_Detail">
-              <PropertyRef Name="order_detailId" />
-            </Principal>
-            <Dependent Role="Cylinder">
-              <PropertyRef Name="order_detailId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="orderId" />
-          </Key>
-          <Property Type="Guid" Name="orderId" Nullable="false" />
-          <Property Type="String" Name="order_code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="product_name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="price_type" />
-          <Property Type="Int32" Name="pay_percentage" />
-          <Property Type="Boolean" Name="belong_to_set" />
-          <Property Type="Boolean" Name="old_core" />
-          <Property Type="DateTime" Name="dead_line" />
-          <Property Type="String" Name="order_type" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="barcode" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="remark" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" Nullable="false" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="updated_date" />
-          <Property Type="Int32" Name="status" Nullable="false" />
-          <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Order_Detail_Order" FromRole="Order" ToRole="Order_Detail" />
-          <Property Type="Guid" Name="customer_id" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="COMSModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
-        </EntityType>
         <Association Name="FK_Order_Detail_Order">
           <End Type="COMSModel.Order" Role="Order" Multiplicity="1" />
           <End Type="COMSModel.Order_Detail" Role="Order_Detail" Multiplicity="*" />
@@ -1130,170 +1365,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="customerid" />
-          </Key>
-          <Property Type="Guid" Name="customerid" Nullable="false" />
-          <Property Type="String" Name="code" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="code_tax" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="address" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" />
-          <Property Type="String" Name="created_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="fax" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="fullname" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="status" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="telephone" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Guid" Name="printer_id" Nullable="false" />
-          <Property Type="DateTime" Name="updated_date" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Orders" Relationship="COMSModel.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
-          <NavigationProperty Name="Printers" Relationship="COMSModel.FK_Printer_Customer" FromRole="Customer" ToRole="Printer" />
-        </EntityType>
-        <Association Name="FK_Order_Customer">
-          <End Type="COMSModel.Customer" Role="Customer" Multiplicity="1" />
-          <End Type="COMSModel.Order" Role="Order" Multiplicity="*" />
+        <Association Name="FK_Order_Log_Order">
+          <End Type="COMSModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="COMSModel.Order_Log" Role="Order_Log" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="customerid" />
+            <Principal Role="Order">
+              <PropertyRef Name="orderId" />
             </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="customer_id" />
+            <Dependent Role="Order_Log">
+              <PropertyRef Name="orderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Printer">
-          <Key>
-            <PropertyRef Name="printer_id" />
-          </Key>
-          <Property Type="Guid" Name="printer_id" Nullable="false" />
-          <Property Type="Guid" Name="customer_id" />
-          <Property Type="String" Name="address" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="code" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="hole_stick" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="slot_latch" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="status" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" />
-          <Property Type="String" Name="created_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="updated_date" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="COMSModel.FK_Printer_Customer" FromRole="Printer" ToRole="Customer" />
-        </EntityType>
-        <Association Name="FK_Printer_Customer">
-          <End Type="COMSModel.Customer" Role="Customer" Multiplicity="0..1" />
-          <End Type="COMSModel.Printer" Role="Printer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="customerid" />
-            </Principal>
-            <Dependent Role="Printer">
-              <PropertyRef Name="customer_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Workflow">
-          <Key>
-            <PropertyRef Name="workflowId" />
-          </Key>
-          <Property Type="Guid" Name="workflowId" Nullable="false" />
-          <Property Type="Guid" Name="departmentId" Nullable="false" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" Nullable="false" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="updated_date" />
-          <Property Type="Boolean" Name="isactive" Nullable="false" />
-          <Property Type="Guid" Name="prevWorkflowID" />
-          <Property Type="Guid" Name="nextWorkflowID" />
-          <NavigationProperty Name="Cylinders" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Workflow" ToRole="Cylinder" />
-          <NavigationProperty Name="Department" Relationship="COMSModel.FK_Workflow_Department" FromRole="Workflow" ToRole="Department" />
-          <NavigationProperty Name="Step_ref" Relationship="COMSModel.FK_Step_ref_Workflow" FromRole="Workflow" ToRole="Step_ref" />
-          <NavigationProperty Name="Steps" Relationship="COMSModel.FK_Step_Workflow" FromRole="Workflow" ToRole="Step" />
-        </EntityType>
-        <Association Name="FK_Cylinder_Workflow">
+        <Association Name="FK_Order_Log_Workflow">
           <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="1" />
-          <End Type="COMSModel.Cylinder" Role="Cylinder" Multiplicity="*" />
+          <End Type="COMSModel.Order_Log" Role="Order_Log" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workflow">
               <PropertyRef Name="workflowId" />
             </Principal>
-            <Dependent Role="Cylinder">
+            <Dependent Role="Order_Log">
               <PropertyRef Name="workflowId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Workflow_Department">
-          <End Type="COMSModel.Department" Role="Department" Multiplicity="1" />
-          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="*" />
+        <Association Name="FK_Role_Right_ref_Role">
+          <End Type="COMSModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="COMSModel.Role_Right_ref" Role="Role_Right_ref" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Department">
-              <PropertyRef Name="departmentId" />
+            <Principal Role="Role">
+              <PropertyRef Name="roleId" />
             </Principal>
-            <Dependent Role="Workflow">
-              <PropertyRef Name="departmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Step_ref_Workflow">
-          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="1" />
-          <End Type="COMSModel.Step_ref" Role="Step_ref" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Workflow">
-              <PropertyRef Name="workflowId" />
-            </Principal>
-            <Dependent Role="Step_ref">
-              <PropertyRef Name="workflowId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Step">
-          <Key>
-            <PropertyRef Name="stepId" />
-          </Key>
-          <Property Type="Guid" Name="stepId" Nullable="false" />
-          <Property Type="Guid" Name="workflowId" Nullable="false" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="description" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="instruction" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="note" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="x" Nullable="false" />
-          <Property Type="Int32" Name="y" Nullable="false" />
-          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" Nullable="false" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="updated_date" />
-          <Property Type="Boolean" Name="isActive" Nullable="false" />
-          <Property Type="Boolean" Name="isStep" Nullable="false" />
-          <Property Type="Boolean" Name="isBegin" Nullable="false" />
-          <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Step" FromRole="Step" ToRole="Cylinder_Log" />
-          <NavigationProperty Name="Formulae" Relationship="COMSModel.FK_Formula_Step" FromRole="Step" ToRole="Formula" />
-          <NavigationProperty Name="Step_ref" Relationship="COMSModel.FK_Step_ref_Step" FromRole="Step" ToRole="Step_ref" />
-          <NavigationProperty Name="Step_ref1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step" ToRole="Step_ref" />
-          <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_Workflow" FromRole="Step" ToRole="Workflow" />
-        </EntityType>
-        <Association Name="FK_Cylinder_Log_Step">
-          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
-          <End Type="COMSModel.Cylinder_Log" Role="Cylinder_Log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Step">
-              <PropertyRef Name="stepId" />
-            </Principal>
-            <Dependent Role="Cylinder_Log">
-              <PropertyRef Name="stepId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Formula_Step">
-          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
-          <End Type="COMSModel.Formula" Role="Formula" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Step">
-              <PropertyRef Name="stepId" />
-            </Principal>
-            <Dependent Role="Formula">
-              <PropertyRef Name="stepId" />
+            <Dependent Role="Role_Right_ref">
+              <PropertyRef Name="roleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1333,6 +1437,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Step_ref_Workflow">
+          <End Type="COMSModel.Workflow" Role="Workflow" Multiplicity="1" />
+          <End Type="COMSModel.Step_ref" Role="Step_ref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workflow">
+              <PropertyRef Name="workflowId" />
+            </Principal>
+            <Dependent Role="Step_ref">
+              <PropertyRef Name="workflowId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1352,21 +1468,43 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="COMSModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="printer_id" ColumnName="printer_id" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="fullname" ColumnName="fullname" />
+                <ScalarProperty Name="fax" ColumnName="fax" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="code_tax" ColumnName="code_tax" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="customerid" ColumnName="customerid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Cylinders">
             <EntityTypeMapping TypeName="COMSModel.Cylinder">
               <MappingFragment StoreEntitySet="Cylinder">
-                <ScalarProperty Name="circumference" ColumnName="circumference" />
-                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="updated_date" ColumnName="updated_date" />
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
                 <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="area" ColumnName="area" />
                 <ScalarProperty Name="length" ColumnName="length" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="diameter" ColumnName="diameter" />
+                <ScalarProperty Name="cyl_no" ColumnName="cyl_no" />
+                <ScalarProperty Name="core_type" ColumnName="core_type" />
+                <ScalarProperty Name="color_no" ColumnName="color_no" />
+                <ScalarProperty Name="stepId" ColumnName="stepId" />
                 <ScalarProperty Name="barcode" ColumnName="barcode" />
                 <ScalarProperty Name="order_detailId" ColumnName="order_detailId" />
+                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
                 <ScalarProperty Name="cylinderId" ColumnName="cylinderId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1374,13 +1512,16 @@
           <EntitySetMapping Name="Cylinder_Log">
             <EntityTypeMapping TypeName="COMSModel.Cylinder_Log">
               <MappingFragment StoreEntitySet="Cylinder_Log">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
                 <ScalarProperty Name="stepId" ColumnName="stepId" />
                 <ScalarProperty Name="errorId" ColumnName="errorId" />
                 <ScalarProperty Name="employeeId" ColumnName="employeeId" />
-                <ScalarProperty Name="formulaId" ColumnName="formulaId" />
+                <ScalarProperty Name="formula" ColumnName="formula" />
                 <ScalarProperty Name="mark" ColumnName="mark" />
                 <ScalarProperty Name="end_time" ColumnName="end_time" />
                 <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="dept_name" ColumnName="dept_name" />
                 <ScalarProperty Name="cylinderId" ColumnName="cylinderId" />
                 <ScalarProperty Name="cylinderlogId" ColumnName="cylinderlogId" />
               </MappingFragment>
@@ -1456,6 +1597,114 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="COMSModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="belong_to_set" ColumnName="belong_to_set" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="priority" ColumnName="priority" />
+                <ScalarProperty Name="old_order_code" ColumnName="old_order_code" />
+                <ScalarProperty Name="cylinder_type" ColumnName="cylinder_type" />
+                <ScalarProperty Name="set_code" ColumnName="set_code" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="order_type" ColumnName="order_type" />
+                <ScalarProperty Name="delivery_date" ColumnName="delivery_date" />
+                <ScalarProperty Name="old_core" ColumnName="old_core" />
+                <ScalarProperty Name="redo_pct" ColumnName="redo_pct" />
+                <ScalarProperty Name="price_type" ColumnName="price_type" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="customer_rep" ColumnName="customer_rep" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="order_code" ColumnName="order_code" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Detail">
+            <EntityTypeMapping TypeName="COMSModel.Order_Detail">
+              <MappingFragment StoreEntitySet="Order_Detail">
+                <ScalarProperty Name="changes" ColumnName="changes" />
+                <ScalarProperty Name="cut_core_result" ColumnName="cut_core_result" />
+                <ScalarProperty Name="sent_to_mech_date" ColumnName="sent_to_mech_date" />
+                <ScalarProperty Name="graphic_done_date" ColumnName="graphic_done_date" />
+                <ScalarProperty Name="img_orientation" ColumnName="img_orientation" />
+                <ScalarProperty Name="result_based_on" ColumnName="result_based_on" />
+                <ScalarProperty Name="print_material" ColumnName="print_material" />
+                <ScalarProperty Name="splitline_color" ColumnName="splitline_color" />
+                <ScalarProperty Name="splitline_type" ColumnName="splitline_type" />
+                <ScalarProperty Name="splitline_size" ColumnName="splitline_size" />
+                <ScalarProperty Name="reg_mark_type" ColumnName="reg_mark_type" />
+                <ScalarProperty Name="print_method" ColumnName="print_method" />
+                <ScalarProperty Name="used_cyl_count" ColumnName="used_cyl_count" />
+                <ScalarProperty Name="new_cyl_count" ColumnName="new_cyl_count" />
+                <ScalarProperty Name="color_list" ColumnName="color_list" />
+                <ScalarProperty Name="color_count" ColumnName="color_count" />
+                <ScalarProperty Name="keyhole_keyway" ColumnName="keyhole_keyway" />
+                <ScalarProperty Name="keyhole_angle" ColumnName="keyhole_angle" />
+                <ScalarProperty Name="keyhole_outer_dia" ColumnName="keyhole_outer_dia" />
+                <ScalarProperty Name="keyhole_inner_dia" ColumnName="keyhole_inner_dia" />
+                <ScalarProperty Name="keyhole_type" ColumnName="keyhole_type" />
+                <ScalarProperty Name="eyemark_location" ColumnName="eyemark_location" />
+                <ScalarProperty Name="eyemark_sign" ColumnName="eyemark_sign" />
+                <ScalarProperty Name="eyemark_color" ColumnName="eyemark_color" />
+                <ScalarProperty Name="eyemark_width" ColumnName="eyemark_width" />
+                <ScalarProperty Name="eyemark_height" ColumnName="eyemark_height" />
+                <ScalarProperty Name="cyl_diameter" ColumnName="cyl_diameter" />
+                <ScalarProperty Name="cyl_length" ColumnName="cyl_length" />
+                <ScalarProperty Name="web_total_width" ColumnName="web_total_width" />
+                <ScalarProperty Name="web_print_width" ColumnName="web_print_width" />
+                <ScalarProperty Name="circum_dir_repeat" ColumnName="circum_dir_repeat" />
+                <ScalarProperty Name="length_dir_repeat" ColumnName="length_dir_repeat" />
+                <ScalarProperty Name="prod_height_stretch" ColumnName="prod_height_stretch" />
+                <ScalarProperty Name="prod_print_height" ColumnName="prod_print_height" />
+                <ScalarProperty Name="prod_width_stretch" ColumnName="prod_width_stretch" />
+                <ScalarProperty Name="prod_print_width" ColumnName="prod_print_width" />
+                <ScalarProperty Name="core_type" ColumnName="core_type" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="order_detailId" ColumnName="order_detailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Log">
+            <EntityTypeMapping TypeName="COMSModel.Order_Log">
+              <MappingFragment StoreEntitySet="Order_Log">
+                <ScalarProperty Name="related_cyl" ColumnName="related_cyl" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="dept_name" ColumnName="dept_name" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Printers">
+            <EntityTypeMapping TypeName="COMSModel.Printer">
+              <MappingFragment StoreEntitySet="Printer">
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="slot_latch" ColumnName="slot_latch" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="hole_stick" ColumnName="hole_stick" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="printer_id" ColumnName="printer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="COMSModel.Role">
               <MappingFragment StoreEntitySet="Role">
@@ -1482,145 +1731,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Step_ref">
-            <EntityTypeMapping TypeName="COMSModel.Step_ref">
-              <MappingFragment StoreEntitySet="Step_ref">
-                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="to_stepId" ColumnName="to_stepId" />
-                <ScalarProperty Name="from_stepId" ColumnName="from_stepId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Order_Detail">
-            <EntityTypeMapping TypeName="COMSModel.Order_Detail">
-              <MappingFragment StoreEntitySet="Order_Detail">
-                <ScalarProperty Name="image_orientation" ColumnName="image_orientation" />
-                <ScalarProperty Name="printing_web_total_print_width" ColumnName="printing_web_total_print_width" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="result_based_on" ColumnName="result_based_on" />
-                <ScalarProperty Name="printing_material" ColumnName="printing_material" />
-                <ScalarProperty Name="spliting_line_color" ColumnName="spliting_line_color" />
-                <ScalarProperty Name="spliting_line_side" ColumnName="spliting_line_side" />
-                <ScalarProperty Name="spliting_line_size" ColumnName="spliting_line_size" />
-                <ScalarProperty Name="reg_mark" ColumnName="reg_mark" />
-                <ScalarProperty Name="print_method" ColumnName="print_method" />
-                <ScalarProperty Name="key_way_height" ColumnName="key_way_height" />
-                <ScalarProperty Name="key_way_width" ColumnName="key_way_width" />
-                <ScalarProperty Name="angle" ColumnName="angle" />
-                <ScalarProperty Name="outer_diameter" ColumnName="outer_diameter" />
-                <ScalarProperty Name="inner_diameter" ColumnName="inner_diameter" />
-                <ScalarProperty Name="cylinder_hole_type" ColumnName="cylinder_hole_type" />
-                <ScalarProperty Name="web_width" ColumnName="web_width" />
-                <ScalarProperty Name="layout_no_of_repeat_circum" ColumnName="layout_no_of_repeat_circum" />
-                <ScalarProperty Name="layout_no_of_up_horizontal" ColumnName="layout_no_of_up_horizontal" />
-                <ScalarProperty Name="bottom" ColumnName="bottom" />
-                <ScalarProperty Name="top_down" ColumnName="top_down" />
-                <ScalarProperty Name="arrangement" ColumnName="arrangement" />
-                <ScalarProperty Name="eye_mark_sign" ColumnName="eye_mark_sign" />
-                <ScalarProperty Name="eye_mark_color" ColumnName="eye_mark_color" />
-                <ScalarProperty Name="eye_mark_width" ColumnName="eye_mark_width" />
-                <ScalarProperty Name="eye_mark_height" ColumnName="eye_mark_height" />
-                <ScalarProperty Name="stretch_range" ColumnName="stretch_range" />
-                <ScalarProperty Name="height" ColumnName="height" />
-                <ScalarProperty Name="print_width" ColumnName="print_width" />
-                <ScalarProperty Name="cylinder_area" ColumnName="cylinder_area" />
-                <ScalarProperty Name="cylinder_circumference" ColumnName="cylinder_circumference" />
-                <ScalarProperty Name="cylinder_length" ColumnName="cylinder_length" />
-                <ScalarProperty Name="color_count" ColumnName="color_count" />
-                <ScalarProperty Name="no_of_cylinders" ColumnName="no_of_cylinders" />
-                <ScalarProperty Name="cylinder_type" ColumnName="cylinder_type" />
-                <ScalarProperty Name="cylinder_code" ColumnName="cylinder_code" />
-                <ScalarProperty Name="orderId" ColumnName="orderId" />
-                <ScalarProperty Name="order_detailId" ColumnName="order_detailId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="COMSModel.Order">
-              <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="remark" ColumnName="remark" />
-                <ScalarProperty Name="barcode" ColumnName="barcode" />
-                <ScalarProperty Name="order_type" ColumnName="order_type" />
-                <ScalarProperty Name="dead_line" ColumnName="dead_line" />
-                <ScalarProperty Name="old_core" ColumnName="old_core" />
-                <ScalarProperty Name="belong_to_set" ColumnName="belong_to_set" />
-                <ScalarProperty Name="pay_percentage" ColumnName="pay_percentage" />
-                <ScalarProperty Name="price_type" ColumnName="price_type" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="product_name" ColumnName="product_name" />
-                <ScalarProperty Name="order_code" ColumnName="order_code" />
-                <ScalarProperty Name="orderId" ColumnName="orderId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="COMSModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="printer_id" ColumnName="printer_id" />
-                <ScalarProperty Name="telephone" ColumnName="telephone" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="fullname" ColumnName="fullname" />
-                <ScalarProperty Name="fax" ColumnName="fax" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="code_tax" ColumnName="code_tax" />
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="customerid" ColumnName="customerid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Printers">
-            <EntityTypeMapping TypeName="COMSModel.Printer">
-              <MappingFragment StoreEntitySet="Printer">
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="slot_latch" ColumnName="slot_latch" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="hole_stick" ColumnName="hole_stick" />
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
-                <ScalarProperty Name="printer_id" ColumnName="printer_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Workflows">
-            <EntityTypeMapping TypeName="COMSModel.Workflow">
-              <MappingFragment StoreEntitySet="Workflow">
-                <ScalarProperty Name="nextWorkflowID" ColumnName="nextWorkflowID" />
-                <ScalarProperty Name="prevWorkflowID" ColumnName="prevWorkflowID" />
-                <ScalarProperty Name="isactive" ColumnName="isactive" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
-                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Steps">
             <EntityTypeMapping TypeName="COMSModel.Step">
               <MappingFragment StoreEntitySet="Step">
@@ -1639,6 +1749,36 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="workflowId" ColumnName="workflowId" />
                 <ScalarProperty Name="stepId" ColumnName="stepId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Step_ref">
+            <EntityTypeMapping TypeName="COMSModel.Step_ref">
+              <MappingFragment StoreEntitySet="Step_ref">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="to_stepId" ColumnName="to_stepId" />
+                <ScalarProperty Name="from_stepId" ColumnName="from_stepId" />
+                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workflows">
+            <EntityTypeMapping TypeName="COMSModel.Workflow">
+              <MappingFragment StoreEntitySet="Workflow">
+                <ScalarProperty Name="nextWorkflowID" ColumnName="nextWorkflowID" />
+                <ScalarProperty Name="prevWorkflowID" ColumnName="prevWorkflowID" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+                <ScalarProperty Name="workflowId" ColumnName="workflowId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1663,140 +1803,150 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="dbEntity" ZoomLevel="65">
-        <EntityTypeShape EntityType="COMSModel.Access_Right" Width="1.5" PointX="3" PointY="23.375" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="COMSModel.Cylinder" Width="1.5" PointX="7.5" PointY="18.25" Height="4.0956022135416674" />
-        <EntityTypeShape EntityType="COMSModel.Cylinder_Log" Width="1.5" PointX="9.75" PointY="8.375" Height="3.7109993489583388" />
-        <EntityTypeShape EntityType="COMSModel.Department" Width="1.5" PointX="0.75" PointY="9.5" Height="2.749492187499996" />
-        <EntityTypeShape EntityType="COMSModel.Emp_Role_ref" Width="1.5" PointX="5.25" PointY="5.75" Height="2.749492187499996" />
-        <EntityTypeShape EntityType="COMSModel.Employee" Width="1.5" PointX="3" PointY="5" Height="4.2879036458333282" />
-        <EntityTypeShape EntityType="COMSModel.Error" Width="1.5" PointX="7.5" PointY="6.75" Height="1.595683593749996" />
-        <EntityTypeShape EntityType="COMSModel.Formula" Width="1.5" PointX="7.5" PointY="10" Height="3.3263964843750102" />
-        <EntityTypeShape EntityType="COMSModel.Role" Width="1.5" PointX="3" PointY="0.75" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="COMSModel.Role_Right_ref" Width="1.5" PointX="5.25" PointY="0.75" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="COMSModel.Step_ref" Width="1.5" PointX="8" PointY="14.125" Height="3.1340950520833353" />
+        <EntityTypeShape EntityType="COMSModel.Access_Right" Width="1.5" PointX="3" PointY="1.375" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="COMSModel.Customer" Width="1.5" PointX="1.5" PointY="31" Height="4.0956022135416674" />
+        <EntityTypeShape EntityType="COMSModel.Cylinder" Width="1.5" PointX="5.25" PointY="14.75" Height="4.4802050781250085" />
+        <EntityTypeShape EntityType="COMSModel.Cylinder_Log" Width="1.5" PointX="9.75" PointY="16.875" Height="4.2879036458333388" />
+        <EntityTypeShape EntityType="COMSModel.Department" Width="1.5" PointX="0.75" PointY="13.125" Height="2.7494921875000102" />
+        <EntityTypeShape EntityType="COMSModel.Emp_Role_ref" Width="1.5" PointX="5.25" PointY="10.375" Height="2.7494921875000102" />
+        <EntityTypeShape EntityType="COMSModel.Employee" Width="1.5" PointX="3" PointY="9.5" Height="4.2879036458333246" />
+        <EntityTypeShape EntityType="COMSModel.Error" Width="1.5" PointX="7.5" PointY="10" Height="1.595683593749996" />
+        <EntityTypeShape EntityType="COMSModel.Formula" Width="1.5" PointX="7.5" PointY="24.5" Height="3.3263964843750102" />
+        <EntityTypeShape EntityType="COMSModel.Order" Width="1.5" PointX="0.75" PointY="22.25" Height="5.4417122395833246" />
+        <EntityTypeShape EntityType="COMSModel.Order_Detail" Width="1.5" PointX="3" PointY="20.125" Height="9.67234375000001" />
+        <EntityTypeShape EntityType="COMSModel.Order_Log" Width="1.5" PointX="8.25" PointY="12.5" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="COMSModel.Printer" Width="1.5" PointX="3.75" PointY="31.25" Height="3.5186979166666674" />
+        <EntityTypeShape EntityType="COMSModel.Role" Width="1.5" PointX="3" PointY="5.375" Height="2.7494921875000102" />
+        <EntityTypeShape EntityType="COMSModel.Role_Right_ref" Width="1.5" PointX="5.25" PointY="5.375" Height="2.7494921875000102" />
+        <EntityTypeShape EntityType="COMSModel.Step" Width="1.5" PointX="5.25" PointY="23.75" Height="4.8648079427083388" />
+        <EntityTypeShape EntityType="COMSModel.Step_ref" Width="1.5" PointX="7.5" PointY="20.25" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="COMSModel.Workflow" Width="1.5" PointX="3" PointY="15.125" Height="3.9033007812500102" />
         <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Access_Right" >
-          <ConnectorPoint PointX="4.5" PointY="23.376152846153843" />
-          <ConnectorPoint PointX="4.875" PointY="23.001152846153843" />
-          <ConnectorPoint PointX="4.875" PointY="2.1247460937500051" />
-          <ConnectorPoint PointX="5.25" PointY="2.1247460937500051" />
+          <ConnectorPoint PointX="4.5" PointY="2.6535953776041694" />
+          <ConnectorPoint PointX="6" PointY="2.6535953776041694" />
+          <ConnectorPoint PointX="6" PointY="5.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Order_Customer" >
+          <ConnectorPoint PointX="1.875" PointY="31" />
+          <ConnectorPoint PointX="1.875" PointY="27.691712239583325" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Printer_Customer" >
+          <ConnectorPoint PointX="3" PointY="33.009348958333334" />
+          <ConnectorPoint PointX="3.75" PointY="33.009348958333334" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Cylinder" >
-          <ConnectorPoint PointX="9" PointY="20.297801106770834" />
-          <ConnectorPoint PointX="10.5" PointY="20.297801106770834" />
-          <ConnectorPoint PointX="10.5" PointY="12.085999348958334" />
+          <ConnectorPoint PointX="6.75" PointY="18.052602539062505" />
+          <ConnectorPoint PointX="9.75" PointY="18.052602539062505" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Cylinder_Order_Detail" >
+          <ConnectorPoint PointX="4.5" PointY="20.126152846153843" />
+          <ConnectorPoint PointX="4.875" PointY="19.751152846153843" />
+          <ConnectorPoint PointX="4.875" PointY="16.990102539062505" />
+          <ConnectorPoint PointX="5.25" PointY="16.990102539062505" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
+          <ConnectorPoint PointX="4.5" PointY="18.071701660156258" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="18.071701660156258" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="18.071701660156258" />
+          <ConnectorPoint PointX="5.25" PointY="18.071701660156258" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Employee" >
-          <ConnectorPoint PointX="4.5" PointY="8.9249479166666621" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="8.9249479166666621" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="8.9249479166666621" />
-          <ConnectorPoint PointX="9.75" PointY="8.9249479166666621" />
+          <ConnectorPoint PointX="4.5" PointY="9.71875" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="9.71875" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="9.71875" />
+          <ConnectorPoint PointX="10.53125" PointY="9.71875" />
+          <ConnectorPoint PointX="10.53125" PointY="16.875" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Error" >
-          <ConnectorPoint PointX="9" PointY="7.547841796874998" />
-          <ConnectorPoint PointX="10.5" PointY="7.547841796874998" />
-          <ConnectorPoint PointX="10.5" PointY="8.375" />
+          <ConnectorPoint PointX="9" PointY="10.797841796874998" />
+          <ConnectorPoint PointX="10.1406225" PointY="10.797841796874998" />
+          <ConnectorPoint PointX="10.1406225" PointY="16.875" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Formula" >
-          <ConnectorPoint PointX="9" PointY="11.042999674479166" />
-          <ConnectorPoint PointX="9.75" PointY="11.042999674479166" />
+          <ConnectorPoint PointX="9" PointY="26.163198242187505" />
+          <ConnectorPoint PointX="10.010414166666665" PointY="26.163198242187505" />
+          <ConnectorPoint PointX="10.177080833333333" PointY="26.163198242187505" />
+          <ConnectorPoint PointX="10.5" PointY="26.163198242187505" />
+          <ConnectorPoint PointX="10.5" PointY="21.162903645833339" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Step" >
+          <ConnectorPoint PointX="6.75" PointY="28.251852213541675" />
+          <ConnectorPoint PointX="10.0937475" PointY="28.251852213541675" />
+          <ConnectorPoint PointX="10.0937475" PointY="21.162903645833339" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Employee_Department" >
-          <ConnectorPoint PointX="1.5" PointY="9.5" />
-          <ConnectorPoint PointX="1.5" PointY="7.1439518229166641" />
-          <ConnectorPoint PointX="3" PointY="7.1439518229166641" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Employee" >
-          <ConnectorPoint PointX="4.5" PointY="7.124746093749998" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="7.1247460937499971" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="7.124746093749998" />
-          <ConnectorPoint PointX="5.25" PointY="7.124746093749998" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Role" >
-          <ConnectorPoint PointX="4.5" PointY="3.4371834951923175" />
-          <ConnectorPoint PointX="4.8160744349011217" PointY="3.7532579300934379" />
-          <ConnectorPoint PointX="4.9339255650988791" PointY="3.8711090602911966" />
-          <ConnectorPoint PointX="5.0625" PointY="3.9996834951923175" />
-          <ConnectorPoint PointX="5.0625" PointY="6.4061210468750058" />
-          <ConnectorPoint PointX="5.25" PointY="6.4061210468750058" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Role" >
-          <ConnectorPoint PointX="4.5" PointY="1.3748730468750026" />
-          <ConnectorPoint PointX="5.25" PointY="1.3748730468750026" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="COMSModel.Order_Detail" Width="1.5" PointX="5.25" PointY="16.75" Height="9.2877408854166674" />
-        <AssociationConnector Association="COMSModel.FK_Cylinder_Order_Detail" >
-          <ConnectorPoint PointX="6.75" PointY="20.297801106770834" />
-          <ConnectorPoint PointX="7.5" PointY="20.297801106770834" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="COMSModel.Order" Width="1.5" PointX="3" PointY="17.375" Height="4.4802050781250031" />
-        <AssociationConnector Association="COMSModel.FK_Order_Detail_Order" >
-          <ConnectorPoint PointX="4.5" PointY="19.807403971354169" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="19.807403971354169" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="19.807403971354169" />
-          <ConnectorPoint PointX="5.25" PointY="19.807403971354169" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="COMSModel.Customer" Width="1.5" PointX="0.75" PointY="17.75" Height="4.0956022135416674" />
-        <AssociationConnector Association="COMSModel.FK_Order_Customer" >
-          <ConnectorPoint PointX="2.25" PointY="19.797801106770834" />
-          <ConnectorPoint PointX="3" PointY="19.797801106770834" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="COMSModel.Printer" Width="1.5" PointX="3" PointY="27" Height="3.5186979166666674" />
-        <AssociationConnector Association="COMSModel.FK_Printer_Customer" >
-          <ConnectorPoint PointX="1.5" PointY="21.845602213541667" />
-          <ConnectorPoint PointX="1.5" PointY="28.759348958333334" />
-          <ConnectorPoint PointX="3" PointY="28.759348958333334" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="COMSModel.Workflow" Width="1.5" PointX="3" PointY="10.125" Height="3.5186979166666674" />
-        <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="12.444376593098959" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="12.444376593098959" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="12.444376593098959" />
-          <ConnectorPoint PointX="5" PointY="12.444376593098959" />
-          <ConnectorPoint PointX="5" PointY="14.614807942708339" />
-          <ConnectorPoint PointX="7.75" PointY="14.614807942708339" />
-          <ConnectorPoint PointX="7.75" PointY="17.509095052083335" />
-          <ConnectorPoint PointX="8.25" PointY="17.509095052083335" />
-          <ConnectorPoint PointX="8.25" PointY="18.25" />
+          <ConnectorPoint PointX="2.25" PointY="13.456451822916662" />
+          <ConnectorPoint PointX="3" PointY="13.456451822916662" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Workflow_Department" >
-          <ConnectorPoint PointX="2.25" PointY="11.187246093749998" />
-          <ConnectorPoint PointX="3" PointY="11.187246093749998" />
+          <ConnectorPoint PointX="2.25" PointY="15.499746093750005" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="15.499746093750005" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="15.499746093750005" />
+          <ConnectorPoint PointX="3" PointY="15.499746093750005" />
         </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Step_ref_Workflow" >
-          <ConnectorPoint PointX="3.75" PointY="13.835999348958332" />
-          <ConnectorPoint PointX="3.75" PointY="15.651153971354169" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="15.651153971354169" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="15.651153971354169" />
-          <ConnectorPoint PointX="7.666666666666667" PointY="15.651153971354169" />
-          <ConnectorPoint PointX="7.833333333333333" PointY="15.651153971354169" />
-          <ConnectorPoint PointX="8" PointY="15.651153971354169" />
+        <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Employee" >
+          <ConnectorPoint PointX="4.5" PointY="11.749746093750005" />
+          <ConnectorPoint PointX="5.25" PointY="11.749746093750005" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="COMSModel.Step" Width="1.5" PointX="5.25" PointY="9.5" Height="4.8648079427083388" />
-        <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Step" >
-          <ConnectorPoint PointX="6.75" PointY="9.71875" />
-          <ConnectorPoint PointX="9.75" PointY="9.71875" />
+        <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Role" >
+          <ConnectorPoint PointX="4.5" PointY="8.12449218750001" />
+          <ConnectorPoint PointX="4.875" PointY="8.49949218750001" />
+          <ConnectorPoint PointX="4.875" PointY="11.031121046875008" />
+          <ConnectorPoint PointX="5.25" PointY="11.031121046875008" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Formula_Step" >
-          <ConnectorPoint PointX="6.75" PointY="11.6631982421875" />
-          <ConnectorPoint PointX="7.5" PointY="11.6631982421875" />
+          <ConnectorPoint PointX="6.75" PointY="26.163198242187505" />
+          <ConnectorPoint PointX="7.5" PointY="26.163198242187505" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Order_Detail_Order" >
+          <ConnectorPoint PointX="2.25" PointY="24.970856119791662" />
+          <ConnectorPoint PointX="3" PointY="24.970856119791662" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Order_Log_Order" >
+          <ConnectorPoint PointX="2.25" PointY="22.251152846153843" />
+          <ConnectorPoint PointX="2.625" PointY="21.876152846153843" />
+          <ConnectorPoint PointX="2.625" PointY="14.268951822916662" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="14.268951822916662" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="14.268951822916662" />
+          <ConnectorPoint PointX="8.25" PointY="14.268951822916662" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Order_Log_Workflow" >
+          <ConnectorPoint PointX="4.5" PointY="16.057551769531251" />
+          <ConnectorPoint PointX="4.875" PointY="16.057551769531251" />
+          <ConnectorPoint PointX="4.875" PointY="13.696719505208343" />
+          <ConnectorPoint PointX="8.25" PointY="13.696719505208343" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Role" >
+          <ConnectorPoint PointX="4.5" PointY="6.7184935937500114" />
+          <ConnectorPoint PointX="5.25" PointY="6.7184935937500114" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_ref_Step" >
-          <ConnectorPoint PointX="6.75" PointY="13.7569477421875" />
-          <ConnectorPoint PointX="9.0572891666666653" PointY="13.7569477421875" />
-          <ConnectorPoint PointX="9.2239558333333331" PointY="13.7569477421875" />
-          <ConnectorPoint PointX="9.28125" PointY="13.7569477421875" />
-          <ConnectorPoint PointX="9.28125" PointY="14.125" />
+          <ConnectorPoint PointX="6" PointY="23.75" />
+          <ConnectorPoint PointX="6" PointY="21.817047526041662" />
+          <ConnectorPoint PointX="7.5" PointY="21.817047526041662" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_ref_Step1" >
-          <ConnectorPoint PointX="6.75" PointY="13.541669613281256" />
-          <ConnectorPoint PointX="9.1406225" PointY="13.541669613281256" />
-          <ConnectorPoint PointX="9.1406225" PointY="14.125" />
+          <ConnectorPoint PointX="6.4062525" PointY="23.75" />
+          <ConnectorPoint PointX="6.4062525" PointY="22.631823789062487" />
+          <ConnectorPoint PointX="7.5" PointY="22.631823789062487" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="10.990249837239583" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="10.990249837239583" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="10.990249837239583" />
-          <ConnectorPoint PointX="5.25" PointY="10.990249837239583" />
+          <ConnectorPoint PointX="4.47576923076923" PointY="19.02830078125001" />
+          <ConnectorPoint PointX="4.8160744349011217" PointY="19.3686059853819" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="19.486457115579658" />
+          <ConnectorPoint PointX="5.0625" PointY="19.615031550480779" />
+          <ConnectorPoint PointX="5.0625" PointY="26.182403971354169" />
+          <ConnectorPoint PointX="5.25" PointY="26.182403971354169" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Step_ref_Workflow" >
+          <ConnectorPoint PointX="4.5" PointY="18.971761319711547" />
+          <ConnectorPoint PointX="4.8160744349011217" PointY="19.287835754612669" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="19.405686884810425" />
+          <ConnectorPoint PointX="4.96875" PointY="19.440511319711547" />
+          <ConnectorPoint PointX="4.96875" PointY="21.002271763020836" />
+          <ConnectorPoint PointX="4.979166666666667" PointY="21.002271763020836" />
+          <ConnectorPoint PointX="5.145833333333333" PointY="21.002271763020836" />
+          <ConnectorPoint PointX="7.5" PointY="21.002271763020836" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
