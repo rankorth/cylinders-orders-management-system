@@ -22,9 +22,25 @@ namespace WebUI.Admin
 
         protected void lnkSave_Click(object sender, EventArgs e)
         {
-            Error newError = new Error();
-            newError.name = txtErrorCode.Text;
-            mainctrl.createError(newError);
+            bool update = false;
+
+            for (int i = 0; i < gvErrorMsgs.Rows.Count; i++)
+            {
+                string strValue = ((HiddenField)gvErrorMsgs.Rows[i].Cells[0].FindControl("checkedList")).Value;
+                if (strValue != "")
+                {
+                    Guid id = new Guid(strValue);
+                    mainctrl.updateError(id, txtErrorCode.Text);
+                    update = true;
+                    break;
+                }
+            }
+            if (!update)
+            {
+                Error newError = new Error();
+                newError.name = txtErrorCode.Text;
+                mainctrl.createError(newError);
+            }
             load_data();
             txtErrorCode.Text = "";
         }
