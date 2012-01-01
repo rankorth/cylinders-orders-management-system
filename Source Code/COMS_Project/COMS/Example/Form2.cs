@@ -212,36 +212,36 @@ namespace Example
         //////////////////////////////////////////////////////
         //////////// CHANGE CYLINDER'S PRIORITY //////////////
         //////////////////////////////////////////////////////
-        private void changeCylinderPriority_Click(object sender, EventArgs e)
-        {
-            try{
-                CylinderController cc = new CylinderController();
-                cc.changeCylinderPriority(CYLINDERID1, 1);
-                cc.changeCylinderPriority(CYLINDERID2, 1);
-                MessageBox.Show("Priority of Cylinder(s) successfully updated");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error occurred while saving \n" + ex.Message + " - " + ex.InnerException.Message);
-            }
-        }
+        //private void changeCylinderPriority_Click(object sender, EventArgs e)
+        //{
+        //    try{
+        //        CylinderController cc = new CylinderController();
+        //        cc.changeCylinderPriority(CYLINDERID1, 1);
+        //        cc.changeCylinderPriority(CYLINDERID2, 1);
+        //        MessageBox.Show("Priority of Cylinder(s) successfully updated");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error occurred while saving \n" + ex.Message + " - " + ex.InnerException.Message);
+        //    }
+        //}
 
         //////////////////////////////////////////////////////////////
         //////////// CHANGE UNKNOWN CYLINDER'S PRIORITY //////////////
         //////////////////////////////////////////////////////////////
-        private void changeCylinderPriorityNA_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                CylinderController cc = new CylinderController();
-                cc.changeCylinderPriority(new Guid("00000000-9E02-4765-9C90-BD87931B546D"), 0);
-                MessageBox.Show("No changes done to the Cylinder information");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Managed to catch the error \n" + ex.Message + " - " + ex.InnerException.Message);
-            }
-        }
+        //private void changeCylinderPriorityNA_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        CylinderController cc = new CylinderController();
+        //        cc.changeCylinderPriority(new Guid("00000000-9E02-4765-9C90-BD87931B546D"), 0);
+        //        MessageBox.Show("No changes done to the Cylinder information");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Managed to catch the error \n" + ex.Message + " - " + ex.InnerException.Message);
+        //    }
+        //}
 
         //////////////////////////////////////////////////////////////////////
         //////////// RETRIEVE CYLINDER INFORMATION FOR PRINTING //////////////
@@ -371,7 +371,7 @@ namespace Example
                 order.belong_to_set = "";
                 order.created_by = "Ba Tien";
                 order.created_date = DateTime.Now;
-                order.customer_id = dbContext.Customers.Where(c => c.code.Equals("12")).FirstOrDefault().customerid;
+                order.customer_id = custID;
                 order.customer_rep = "Client Staff A";
                 order.cylinder_type = "AB";
                 order.delivery_date = DateTime.Now;
@@ -388,7 +388,6 @@ namespace Example
                 order.updated_date = DateTime.Now;
 
                 //prepare order_details from order record
-                Order_Detail orderdetails = new Order_Detail();
 
                 Order_Detail orderDetail = new Order_Detail();
                 orderDetail.changes = "";
@@ -435,7 +434,7 @@ namespace Example
                 orderDetail.web_total_width = 1145;
 
                 //add above prepared detail record into Order
-                order.Order_Detail.Add(orderdetails);
+                order.Order_Detail.Add(orderDetail);
 
                 main.createSalesOrder(order);
 

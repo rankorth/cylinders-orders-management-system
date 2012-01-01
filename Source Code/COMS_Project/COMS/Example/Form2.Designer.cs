@@ -232,11 +232,11 @@
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(187, 139);
+            this.button15.Location = new System.Drawing.Point(297, 208);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(74, 36);
+            this.button15.Size = new System.Drawing.Size(74, 53);
             this.button15.TabIndex = 7;
-            this.button15.Text = "7. Change Priority NA";
+            this.button15.Text = "7. Change Priority NA (NIU)";
             this.button15.UseVisualStyleBackColor = true;
             this.button15.Click += new System.EventHandler(this.changeCylinderPriorityNA_Click);
             // 
@@ -256,7 +256,7 @@
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(74, 39);
             this.button12.TabIndex = 5;
-            this.button12.Text = "8. Stop Production";
+            this.button12.Text = "6. Stop Production";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.stopProduction_Click);
             // 
@@ -282,11 +282,11 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(106, 139);
+            this.button9.Location = new System.Drawing.Point(221, 208);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 36);
+            this.button9.Size = new System.Drawing.Size(75, 53);
             this.button9.TabIndex = 2;
-            this.button9.Text = "6. Change Priority";
+            this.button9.Text = "6. Change Priority (NIU)";
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.changeCylinderPriority_Click);
             // 
