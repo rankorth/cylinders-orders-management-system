@@ -115,8 +115,7 @@ namespace WebUI.Admin
             if (e.CommandName.Equals("SelectRow"))
             {
                 hUpdateID.Value = e.CommandArgument.ToString();
-                ErrorController ErrControl = new ErrorController();
-                txtErrorCode.Text = ErrControl.retrieveError(new Guid(e.CommandArgument.ToString())).name;
+                txtErrorCode.Text = mainctrl.retrieveError(new Guid(e.CommandArgument.ToString())).name;
             }
         }
     }
