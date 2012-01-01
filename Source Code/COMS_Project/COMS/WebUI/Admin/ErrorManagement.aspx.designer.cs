@@ -40,6 +40,24 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtErrorCode;
         
         /// <summary>
+        /// hPageState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hPageState;
+        
+        /// <summary>
+        /// hUpdateID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hUpdateID;
+        
+        /// <summary>
         /// gvErrorMsgs control.
         /// </summary>
         /// <remarks>

@@ -18,6 +18,8 @@
             </td>
         </tr>
     </table>
+    <asp:HiddenField ID="hPageState" runat="server" Value="NEW" />
+    <asp:HiddenField ID="hUpdateID" runat="server" Value="NEW" />
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
 <script type="text/javascript">    
@@ -34,11 +36,13 @@
     }
 </script>
     <asp:GridView ID="gvErrorMsgs" runat="server" 
-    onrowdatabound="gvErrorMsgs_RowDataBound" ViewStateMode="Enabled" Width="100%">
+    onrowdatabound="gvErrorMsgs_RowDataBound" ViewStateMode="Enabled" Width="100%" 
+        onrowcommand="gvErrorMsgs_RowCommand">
         <Columns>
             <asp:TemplateField>
                <ItemTemplate>
-                    <asp:HiddenField ID="checkedList" runat="server" Value="" />
+                    <asp:CheckBox ID="chkID" runat="server" />
+                    &nbsp;<asp:LinkButton ID="lnkEdit" runat="server">edit</asp:LinkButton>
                </ItemTemplate>
             </asp:TemplateField>
             <asp:BoundField DataField="name" HeaderText="Error Message" />
