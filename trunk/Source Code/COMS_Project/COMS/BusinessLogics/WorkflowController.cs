@@ -39,7 +39,7 @@ namespace BusinessLogics
 
         public IQueryable<Step> getAllSteps()
         {
-            return dbContext.Steps;
+            return dbContext.Steps.Where(s => s.isActive == true && s.isStep == true) ;
         }
 
         public IQueryable<Workflow> GetAllWorkflow()
@@ -52,7 +52,7 @@ namespace BusinessLogics
             //return value may be more than one as there may be branching of steps
             // do join
             //(e.g) Select * from step_ref as sf  left join step as s in sf.to_stepId = s.stepId
-            return dbContext.Step_ref.Where(sf => sf.from_stepId.Equals(CurrentStepID))
+            return dbContext.Step_ref.Where(sf => sf.from_stepId.Equals(CurrentStepID) && sf.workflowId.Equals(WorkflowID))
                 .Join(dbContext.Steps, sf => sf.to_stepId, s => s.stepId, (sf, s) => s);
         }
 
@@ -106,5 +106,7 @@ namespace BusinessLogics
             }
             return orderList;
         }
+
+
     }
 }
