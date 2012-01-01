@@ -13,15 +13,6 @@ namespace WebUI.Admin {
     public partial class Role {
         
         /// <summary>
-        /// lnkSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkSearch;
-        
-        /// <summary>
         /// lnkSave control.
         /// </summary>
         /// <remarks>
@@ -31,30 +22,57 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.LinkButton lnkSave;
         
         /// <summary>
-        /// lnkDelete control.
+        /// txtRoleName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkDelete;
+        protected global::System.Web.UI.WebControls.TextBox txtRoleName;
         
         /// <summary>
-        /// TextBox1 control.
+        /// chkIsActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.CheckBox chkIsActive;
         
         /// <summary>
-        /// ltrModule_name control.
+        /// gvAccess control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrModule_name;
+        protected global::System.Web.UI.WebControls.GridView gvAccess;
+        
+        /// <summary>
+        /// hPageState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hPageState;
+        
+        /// <summary>
+        /// hUpdateID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hUpdateID;
+        
+        /// <summary>
+        /// gvResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvResult;
     }
 }
