@@ -24,25 +24,6 @@ namespace BusinessLogics
     {
         private COMSEntities dbContext = new COMSEntities();
 
-        public void changeCylinderPriority(Guid cylinderID, int priority)
-        {
-            try
-            {
-                if (null != cylinderID && null != dbContext && priority >=0)
-                {
-                    Cylinder cylinder = dbContext.Cylinders.Where(s => s.cylinderId.Equals(cylinderID)).SingleOrDefault();
-                    if (null != cylinder)
-                    {
-                        //cylinder.priority = priority;
-                        dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Sorry, there is an error occured while updating the cylinder " + cylinderID + "'s priority ", ex);
-            }
-        }
         public void create(String ordercode, Guid workflowID)
         {
             try
