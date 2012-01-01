@@ -22,19 +22,7 @@
     <asp:HiddenField ID="hUpdateID" runat="server" Value="NEW" />
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
-<script type="text/javascript">    
 
-    function updateCheckList(checkBox) {
-
-        var rownum =0;
-        rownum = checkBox.id.charAt(checkBox.id.length - 1);
-        if (checkBox.checked) {
-            document.getElementById("OutputPlaceHolder_gvErrorMsgs_checkedList_" + rownum).setAttribute("value", checkBox.value);
-        } else {
-            document.getElementById("OutputPlaceHolder_gvErrorMsgs_checkedList_" + rownum).setAttribute("value", "");
-        }
-    }
-</script>
     <asp:GridView ID="gvErrorMsgs" runat="server" 
     onrowdatabound="gvErrorMsgs_RowDataBound" ViewStateMode="Enabled" Width="100%" 
         onrowcommand="gvErrorMsgs_RowCommand">
