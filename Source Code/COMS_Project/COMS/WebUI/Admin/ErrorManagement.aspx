@@ -19,7 +19,7 @@
         </tr>
     </table>
     <asp:HiddenField ID="hPageState" runat="server" Value="NEW" />
-    <asp:HiddenField ID="hUpdateID" runat="server" Value="NEW" />
+    <asp:HiddenField ID="hUpdateID" runat="server" Value="" />
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
 
