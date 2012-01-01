@@ -48,11 +48,8 @@ namespace WebUI.Admin
                 Guid updateId = new Guid(hUpdateID.Value);
                 mainctrl.updateError(updateId, txtErrorCode.Text.Trim());
             }
-
-
             load_data();
             CleanPageState();
-
         }
 
         private void CleanPageState()
@@ -92,11 +89,7 @@ namespace WebUI.Admin
                 lnkEdit.CommandName = "SelectRow";
                 lnkEdit.CommandArgument = errId.ToString();
             }
-
-
         }
-
-
 
         private List<Guid> GetSelectedIDs()
         {
@@ -113,11 +106,8 @@ namespace WebUI.Admin
                     }
                 }
             }
-
             return selectedIDs;
         }
-
-
 
         protected void gvErrorMsgs_RowCommand(object sender, GridViewCommandEventArgs e)
         {
