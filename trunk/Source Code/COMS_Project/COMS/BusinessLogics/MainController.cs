@@ -217,6 +217,18 @@ namespace BusinessLogics
                 throw new Exception("Sorry, there is an error occured while retrieving the employee information ", ex);
             }
         }
+
+        public IQueryable<Employee> retrieveAllEmployees()
+        {
+            try
+            {
+                return employeeCtrl.retrieveEmployeeInfo();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving employees information ", ex);
+            }
+        }
 		
 		public String getNextOrderBarCode()
         {
