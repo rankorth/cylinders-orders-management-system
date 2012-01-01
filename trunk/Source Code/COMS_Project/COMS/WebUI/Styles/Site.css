@@ -7,6 +7,16 @@ body
     font-size: 14px;
 }
 
+a
+{
+    color:Black;
+    font-weight:bold;
+}
+a:hover
+{
+    color:Orange;
+    font-weight:bold;
+}
 #Header
 {
     width: 100%; height: 50px; background-color: Gray; margin-bottom: 5px;
@@ -162,11 +172,11 @@ body
 
 .entry_table .entry_data input
 {
-    height:23px;
-    width:300px;
+    border-style: none;
+    border-color: inherit;
+    border-width: 0;
     font-size:14px;
-    border:0;
-}
+    }
 
 .entry_table .entry_data input:hover
 {
@@ -196,4 +206,9 @@ body
     background-color:Black;
     color:White;
     margin-bottom:3px;
+}
+
+.grid_hover
+{
+    background-color:Black;
 }
