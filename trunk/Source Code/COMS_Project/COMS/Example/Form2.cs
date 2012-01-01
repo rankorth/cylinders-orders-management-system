@@ -25,6 +25,7 @@ namespace Example
 
         //Parameters for Cylinder testing
         private String ORDER_CODE="";
+        private Order ORDER;
         private Guid CYLINDERID1;
         private Guid CYLINDERID2;
         private Guid WORKFLOWID;
@@ -299,7 +300,7 @@ namespace Example
             try
             {
                 //Using SalesOrder information to generate Cylinders
-                main.stopCylinderProd(CYLINDERID1);
+                main.stopCylinderProd(ORDER);
                 MessageBox.Show("Successfully stop the production for cylinder "+CYLINDERID1.ToString());
             }
             catch (Exception ex)
@@ -366,7 +367,7 @@ namespace Example
                 createCustomer(custID);
 
                 //prepare Order
-                Order order = new Order();
+                Order order = new Order(); ORDER = order;
 
                 order.belong_to_set = "";
                 order.created_by = "Ba Tien";

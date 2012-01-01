@@ -238,7 +238,7 @@
             this.button15.TabIndex = 7;
             this.button15.Text = "7. Change Priority NA (NIU)";
             this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.changeCylinderPriorityNA_Click);
+            //this.button15.Click += new System.EventHandler(this.changeCylinderPriorityNA_Click);
             // 
             // button14
             // 
@@ -288,7 +288,7 @@
             this.button9.TabIndex = 2;
             this.button9.Text = "6. Change Priority (NIU)";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.changeCylinderPriority_Click);
+            //this.button9.Click += new System.EventHandler(this.changeCylinderPriority_Click);
             // 
             // button8
             // 
