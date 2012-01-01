@@ -161,19 +161,6 @@ namespace BusinessLogics
             }
         }
 
-        public void changeCylinderPriority(Guid cylinder_id, int priority)
-        {
-            try
-            {
-                if (null != cylinder_id && priority >= 0)
-                    cylinderCtrl.changeCylinderPriority(cylinder_id, priority);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Sorry, there is an error occured while creating the cylinders", ex);
-            }
-        }
-
         public IQueryable<Cylinder> viewCylinderInfo()
         {
             try
