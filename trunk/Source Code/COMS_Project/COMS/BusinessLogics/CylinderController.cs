@@ -15,9 +15,8 @@ namespace BusinessLogics
         public const String CORETYPE_USED = "0";
         public const String CORETYPE_BACKUP = "2";
 
-        public const String STATUS_ACTIVE = "ATV";
-        public const String STATUS_NOTACTIVE = "INA";
-        public const String STATUS_INPROD = "PROD";
+        public const String STATUS_INPROD = "INPROD";
+        public const String STATUS_STOPPED = "STOPPED";
         public const String STATUS_COMPLETED = "COMP";
     }
     public class CylinderController
@@ -28,21 +27,24 @@ namespace BusinessLogics
         {
             try
             {
-                SalesOrderController soc = new SalesOrderController();
-                if (null != soc)
+                if (null != ordercode && null != workflowID && !ordercode.Equals(""))
                 {
-                    Order order = soc.retrieveSalesOrder(ordercode);
-                    if (null != order)
+                    SalesOrderController soc = new SalesOrderController();
+                    if (null != soc)
                     {
-                        foreach (Order_Detail od in order.Order_Detail)
+                        Order order = soc.retrieveSalesOrder(ordercode);
+                        if (null != order)
                         {
-                            generateCylinder(od, workflowID);
-                        }
+                            foreach (Order_Detail od in order.Order_Detail)
+                            {
+                                generateCylinder(od, workflowID);
+                            }
 
-                        dbContext.GetObjectByKey(order.EntityKey);
-                        order.status = OrderConst.STATUS_INPROD;
-                        dbContext.Orders.ApplyCurrentValues(order);
-                        dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                            dbContext.GetObjectByKey(order.EntityKey);
+                            order.status = OrderConst.STATUS_INPROD;
+                            dbContext.Orders.ApplyCurrentValues(order);
+                            dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                        }
                     }
                 }
             }
@@ -56,7 +58,7 @@ namespace BusinessLogics
         {
             try
             {
-                if (null != orderDetail && null != dbContext)
+                if (null != orderDetail && null != dbContext && null!=workflowID)
                 {
                     for (int i = 0; i < (orderDetail.new_cyl_count + orderDetail.used_cyl_count); i++)
                     {
@@ -69,7 +71,7 @@ namespace BusinessLogics
                         newCylinder.cylinderId = generatedId;
                         newCylinder.length = (decimal)orderDetail.cyl_length;
                         newCylinder.diameter = (decimal)orderDetail.cyl_diameter;
-                        newCylinder.status = CylinderConst.STATUS_ACTIVE;
+                        newCylinder.status = CylinderConst.STATUS_INPROD;
                         newCylinder.updated_by = orderDetail.updated_by;
                         newCylinder.updated_date = orderDetail.updated_date;
                         newCylinder.order_detailId = orderDetail.order_detailId;
@@ -100,51 +102,24 @@ namespace BusinessLogics
             }
             return null;
         }
-/*
- * //To be confirmed-Do not delete
-        public void startProduction(String cylinderID)
+
+        public void stopProduction(Order order)
         {
             try
             {
-                if(null!= cylinderID && null!=dbContext){
-                    IQueryable<Cylinder> cylinders = dbContext.Cylinders.Where(s => s.cylinderId.Equals(cylinderID));
-                    if(null!=cylinders){
-                        foreach (Cylinder s in cylinders)
-                        {
-                            if (null != s)
-                                s.status = ACTIVE;
-                        }
+                if(null!= order && null!=dbContext){
+
+                    foreach (Order_Detail od in order.Order_Detail)
+                    {
+                        updateCylinderStatus(od.order_detailId);
                     }
-                    dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Sorry, there is an error occured while starting production for the cylinder: " + cylinderID, ex);
-            }
-        }
-*/
-        public void stopProduction(Guid cylinderID)
-        {
-            try
-            {
-                if(null!= cylinderID && null!=dbContext){
-                    IQueryable<Cylinder> cylinders = dbContext.Cylinders.Where(s => s.cylinderId.Equals(cylinderID));
-                    if(null!=cylinders){
-                        foreach (Cylinder s in cylinders)
-                        {
-                            if(null!=s)
-                                s.status = CylinderConst.STATUS_NOTACTIVE;
-                        }
-                    }
-                    dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
             }
             catch (Exception ex)
             {
                 //related to any errors, there may be only database error
                 //always create a meaningful error exception to catch and show up on UI.
-                throw new Exception("Sorry, there is an error occured while stopping production for the cylinder: " + cylinderID, ex);
+                throw new Exception("Sorry, there is an error occured while stopping the cylinder production", ex);
             }
         }
 
@@ -168,6 +143,20 @@ namespace BusinessLogics
             String nextCylBc = "";
 
             return nextCylBc;
+        }
+
+        public void updateCylinderStatus(Guid orderDetailsID)
+        {
+            IQueryable<Cylinder> cylinders = dbContext.Cylinders.Where(s => s.order_detailId.Equals(orderDetailsID));
+            if (null != cylinders)
+            {
+                foreach (Cylinder cylinder in cylinders)
+                {
+                    if (null != cylinder)
+                        cylinder.status = CylinderConst.STATUS_STOPPED;
+                }
+            }
+            dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
         }
     }
 }
