@@ -15,16 +15,14 @@ namespace BusinessLogics
         public const String CORETYPE_USED = "0";
         public const String CORETYPE_BACKUP = "2";
 
-        public static String STATUS_ACTIVE = "ATV";
-        public static String STATUS_NOTACTIVE = "INA";
-        public static String STATUS_INPROD = "PROD";
+        public const String STATUS_ACTIVE = "ATV";
+        public const String STATUS_NOTACTIVE = "INA";
+        public const String STATUS_INPROD = "PROD";
+        public const String STATUS_COMPLETED = "COMP";
     }
     public class CylinderController
     {
         private COMSEntities dbContext = new COMSEntities();
-        private static int ACTIVE = 1;
-        private static int NOTACTIVE = 0;
-        private static int STATUS_INPROD = 2;
 
         public void changeCylinderPriority(Guid cylinderID, int priority)
         {
@@ -90,7 +88,7 @@ namespace BusinessLogics
                         newCylinder.cylinderId = generatedId;
                         newCylinder.length = (decimal)orderDetail.cyl_length;
                         newCylinder.diameter = (decimal)orderDetail.cyl_diameter;
-                        newCylinder.status = ACTIVE;
+                        newCylinder.status = CylinderConst.STATUS_ACTIVE;
                         newCylinder.updated_by = orderDetail.updated_by;
                         newCylinder.updated_date = orderDetail.updated_date;
                         newCylinder.order_detailId = orderDetail.order_detailId;
@@ -155,7 +153,7 @@ namespace BusinessLogics
                         foreach (Cylinder s in cylinders)
                         {
                             if(null!=s)
-                                s.status = NOTACTIVE;
+                                s.status = CylinderConst.STATUS_NOTACTIVE;
                         }
                     }
                     dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
