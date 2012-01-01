@@ -178,25 +178,28 @@ namespace BusinessLogics
         {
             try
             {
-                if (null != order_code)
+                if (null != order_code && !order_code.Equals("") && null!=workflowID)
                     cylinderCtrl.create(order_code, workflowID);
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while creating the cylinders", ex);
+                throw new Exception("Sorry, there is an error occured while starting the cylinder production", ex);
             }
         }
 
-        public void stopCylinderProd(Guid cylinderID)
+        public void stopCylinderProd(Order order)
         {
             try
             {
-                if (null != cylinderID)
-                    cylinderCtrl.stopProduction(cylinderID);
+                if (null != order)
+                {
+                    orderCtrl.deleteSpecificOrder(order);
+                    cylinderCtrl.stopProduction(order);
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception("Sorry, there is an error occured while changing the status of cylinder" + cylinderID, ex);
+                throw new Exception("Sorry, there is an error occured while stopping the cylinder production", ex);
             }
         }
 
