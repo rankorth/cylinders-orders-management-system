@@ -13,6 +13,15 @@ namespace WebUI.Admin {
     public partial class ErrorManagement {
         
         /// <summary>
+        /// ltrModule_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrModule_name;
+        
+        /// <summary>
         /// lnkSave control.
         /// </summary>
         /// <remarks>

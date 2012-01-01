@@ -19,6 +19,7 @@ namespace WebUI.Admin
                 hPageState.Value = Common.PageState.New;
                 load_data();
             }
+            ltrModule_name.Text = "Error Code Management";
         }
 
         private bool ValidateInput()

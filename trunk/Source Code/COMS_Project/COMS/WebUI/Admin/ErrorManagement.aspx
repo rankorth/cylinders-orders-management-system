@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ErrorManagement.aspx.cs" Inherits="WebUI.Admin.ErrorManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ModuleName" runat="server">
-    <p>Error Code Management</p>
+<asp:Literal ID="ltrModule_name" runat="server"></asp:Literal>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
     <ul>
