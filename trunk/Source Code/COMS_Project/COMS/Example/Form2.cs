@@ -368,29 +368,71 @@ namespace Example
                 //prepare Order
                 Order order = new Order();
 
-                order.orderId = Guid.NewGuid();
+                order.belong_to_set = "";
+                order.created_by = "Ba Tien";
+                order.created_date = DateTime.Now;
+                order.customer_id = dbContext.Customers.Where(c => c.code.Equals("12")).FirstOrDefault().customerid;
+                order.customer_rep = "Client Staff A";
+                order.cylinder_type = "AB";
+                order.delivery_date = DateTime.Now;
+                order.old_core = false;
+                order.old_order_code = "";
                 order.order_code = "code-111"; ORDER_CODE = "code-111";
-                order.product_name = "example";
-                order.customer_id = custID;
-                order.price = 100;
-                order.created_date = DateTime.Now;
-                order.dead_line = DateTime.Now;
-                order.order_type = "test";
-                order.barcode = "barcode-111";
-                order.remark = "this is a remark";
-                order.created_by = "tin";
-                order.created_date = DateTime.Now;
+                order.order_type = OrderConst.ORDERTYPE_NEW;
+                order.price_type = "STD";
+                order.priority = OrderConst.PRIORITY_LOW;
+                order.product_name = "Sua Bot Nguyen Kem Jolly";
+                order.redo_pct = 0;
+                order.set_code = "JKS312101";
+                order.updated_by = "Ba Tien";
+                order.updated_date = DateTime.Now;
 
                 //prepare order_details from order record
                 Order_Detail orderdetails = new Order_Detail();
 
-                orderdetails.order_detailId = Guid.NewGuid();
-                orderdetails.created_by = "tin";
-                orderdetails.created_date = DateTime.Now;
-                orderdetails.cylinder_code = "CYL001";
-                orderdetails.cylinder_type = "TP1";
-                orderdetails.no_of_cylinders = 2;
-                orderdetails.color_count = 3;
+                Order_Detail orderDetail = new Order_Detail();
+                orderDetail.changes = "";
+                orderDetail.circum_dir_repeat = 1;
+                orderDetail.color_count = 4;
+                orderDetail.color_list = "KCMY";
+                orderDetail.core_type = "NEW";
+                orderDetail.created_by = "Ba Tien";
+                orderDetail.created_date = DateTime.Now;
+                orderDetail.cyl_diameter = (decimal)(980 / 3.1416);
+                orderDetail.cyl_length = 1220;
+                orderDetail.eyemark_color = "K";
+                orderDetail.eyemark_height = 5;
+                orderDetail.eyemark_location = "1"; //1-sided or 2-sided
+                orderDetail.eyemark_sign = "";
+                orderDetail.eyemark_width = 10;
+                orderDetail.graphic_done_date = DateTime.Now;
+                orderDetail.img_orientation = "0"; //0, 90, 180, 270 degrees, or others
+                orderDetail.keyhole_angle = 70;
+                orderDetail.keyhole_inner_dia = 80;
+                orderDetail.keyhole_keyway = "12x12";
+                orderDetail.keyhole_outer_dia = 90;
+                orderDetail.keyhole_type = "OTHER"; //standard or others
+                orderDetail.length_dir_repeat = 1;
+                orderDetail.new_cyl_count = 4;
+                orderDetail.order_detailId = Guid.NewGuid();
+                orderDetail.orderId = order.orderId;
+                orderDetail.print_material = "OPP"; //multiple options or other
+                orderDetail.print_method = "SRFC";  // reverse or surface
+                orderDetail.prod_height_stretch = 0;
+                orderDetail.prod_print_height = 980;
+                orderDetail.prod_print_width = 1120;
+                orderDetail.prod_width_stretch = 0;
+                orderDetail.reg_mark_type = "TrungDong"; //standard or others
+                orderDetail.result_based_on = ""; //graphic proof, printing sample, fingerprint or others
+                orderDetail.sent_to_mech_date = DateTime.Now;
+                orderDetail.splitline_color = "K";
+                orderDetail.splitline_size = 10;
+                orderDetail.splitline_type = ""; //2-sided or not
+                orderDetail.updated_by = "Ba Tien";
+                orderDetail.updated_date = DateTime.Now;
+                orderDetail.used_cyl_count = 0;
+                orderDetail.web_print_width = 1120;
+                orderDetail.web_total_width = 1145;
 
                 //add above prepared detail record into Order
                 order.Order_Detail.Add(orderdetails);
