@@ -149,7 +149,7 @@ namespace Example
             try
             {
                 Order dbOrder = mainCtrl.getSalesOrder("0001-B11");
-                mainCtrl.deleteSpecificOder(dbOrder);
+                mainCtrl.deleteSpecificOrder(dbOrder);
                 MessageBox.Show("Order "+dbOrder.order_code+"Deleted");
             }
             catch (Exception ex)
@@ -362,7 +362,7 @@ namespace Example
                 cyl.diameter = orderDetail.cyl_diameter;
                 cyl.length = orderDetail.cyl_length;
                 cyl.order_detailId = orderDetail.order_detailId;
-                cyl.status = "a";
+                cyl.status = CylinderConst.STATUS_INPROD;
                 cyl.stepId = null;
                 cyl.updated_by = cyl.created_by;
                 cyl.updated_date = cyl.created_date;

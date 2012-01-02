@@ -15,6 +15,11 @@
             </td>
             <td class="entry_data">
             </td>
+             <td class="entry_label">
+                Customer Name
+            </td>
+            <td class="entry_data">
+            </td>
         </tr>
         <tr>
             <td class="entry_label">
@@ -22,6 +27,11 @@
             </td>
             <td class="entry_data">
                 <asp:TextBox ID="TextBox1" runat="server" Height="86px" TextMode="MultiLine"></asp:TextBox>
+            </td>
+             <td class="entry_label">
+                Customer Name
+            </td>
+            <td class="entry_data">
             </td>
         </tr>
     </table>

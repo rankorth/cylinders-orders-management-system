@@ -11,13 +11,24 @@ namespace BusinessLogics
 {
     public class CylinderConst
     {
-        public const String CORETYPE_NEW = "1";
-        public const String CORETYPE_USED = "0";
-        public const String CORETYPE_BACKUP = "2";
+        public const String CORETYPE_NEW = "NEW";
+        public const String CORETYPE_USED = "USED";
+        public const String CORETYPE_BACKUP = "BACKUP";
 
         public const String STATUS_INPROD = "INPROD";
         public const String STATUS_STOPPED = "STOPPED";
         public const String STATUS_COMPLETED = "COMP";
+
+        public const String LOG_STS_ERR = "ERR";
+        public const String LOG_STS_OK = "OK";
+        public const String LANG_ENG = "EN";
+        public const String LANG_VN = "VN";
+
+        public static Dictionary<String, String> descDict = new Dictionary<String, String>() { 
+            {LOG_STS_ERR + LANG_ENG,"Cylinder has error!"},{LOG_STS_ERR + LANG_VN,"Ống có lỗi!"},
+            {LOG_STS_OK + LANG_ENG,"Process completed."},{LOG_STS_OK + LANG_VN,"Hoàn thành xử lý ống."}
+        };
+        
     }
     public class CylinderController
     {
@@ -123,14 +134,53 @@ namespace BusinessLogics
             }
         }
 
-        public void changeCylinderStep(Guid cylinderId, Guid nextStepId, Error error)
+        public void changeCylinderStep(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark)
         {
+            cyl.stepId = thisStep.stepId;
 
+            Cylinder_Log cylLog = generateCylinderLog(cyl, empl, thisStep, error, remark);
+            dbContext.Cylinder_Log.AddObject(cylLog);
+
+            dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
         }
 
-        public void changeCylinderWorkflow(Guid cylinderId, Guid nextWorkflowId, Error error) 
+        public Cylinder_Log generateCylinderLog(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark)
         {
+            Cylinder_Log cylLog = new Cylinder_Log();
+            cylLog.created_by = empl.surname + " " + empl.given_name;
+            cylLog.cylinderId = cyl.cylinderId;
+            cylLog.cylinderlogId = Guid.NewGuid();
+            cylLog.dept_name = dbContext.Departments.Where(d => d.departmentId.Equals(empl.departmentId)).FirstOrDefault().name;
+            cylLog.employeeId = empl.employeeId;
+            cylLog.end_time = DateTime.Now; //TODO: logic to treat start_time and end_time differently
+            cylLog.formula = dbContext.Formulae.Where(f => f.stepId.Equals(thisStep.stepId) & f.isactive == true).FirstOrDefault().formula1;
+            cylLog.mark = 0; //TODO: calculate mark from formula
+            cylLog.remark = remark;
+            cylLog.start_time = DateTime.Now;
+            if (error != null)
+            {
+                cylLog.error_desc = error.name;
+                cylLog.status = CylinderConst.descDict[CylinderConst.LOG_STS_ERR + "VN"] + " " + thisStep.description; //TODO: replace VN with language value from empl
+            }
+            else if (thisStep.isBegin == false && thisStep.isStep == false)
+            {//the last step
+                cylLog.status = CylinderConst.descDict[CylinderConst.LOG_STS_OK + "VN"] + " " + thisStep.description; //TODO: replace VN with language value from empl
+            }
+            else
+            {
+                cylLog.status = thisStep.description;
+            }
+            cylLog.stepId = thisStep.stepId;
 
+            return cylLog;
+        }
+
+        public void changeCylinderWorkflow(Cylinder cyl, Employee empl, Step stepBeforeNextWf, Error error, String remark) 
+        {
+            Cylinder_Log cylLog = generateCylinderLog(cyl, empl, stepBeforeNextWf, error, remark);
+            dbContext.Cylinder_Log.AddObject(cylLog);
+
+            dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
         }
 
         public String getNextCylinderBarCode(Order order, Cylinder cylinder)
