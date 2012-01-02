@@ -10,28 +10,29 @@ namespace BusinessLogics
 {
     public class MainController
     {
-        private SecurityController securityCtrl = new SecurityController();
-        private WorkflowController workflowCtrl = new WorkflowController();
-        private StepController stepCtrl = new StepController();
-        private CylinderController cylinderCtrl = new CylinderController();
-        private SalesOrderController orderCtrl = new SalesOrderController();
-        private ErrorController errorCtrl = new ErrorController();
-        private EmployeeController employeeCtrl = new EmployeeController();
+        //private SecurityController securityCtrl = new SecurityController();
+        //private WorkflowController workflowCtrl = new WorkflowController();
+        //private StepController stepCtrl = new StepController();
+        //private CylinderController cylinderCtrl = new CylinderController();
+        //private SalesOrderController orderCtrl = new SalesOrderController();
+        //private ErrorController errorCtrl = new ErrorController();
+        //private EmployeeController employeeCtrl = new EmployeeController();
+        //commented to prevent DB connection being held in each controller for long periods
 
         public List<Access_Right> login(String username, String password)
         {
-            return securityCtrl.login(username, password);
+            return (new SecurityController()).login(username, password);
             //TODO: web UI page to save access right list into Session by Session[""] = list;
         }
 
         public void logOut()
         {
-            securityCtrl.logOut();
+            (new SecurityController()).logOut();
         }
 
         public IQueryable<Workflow> exportQueue()
         {
-            return workflowCtrl.GetAllWorkflow();
+            return (new WorkflowController()).GetAllWorkflow();
         }
 
         public List<Order> exportCylinderQueue(Guid workflowId)
@@ -41,57 +42,57 @@ namespace BusinessLogics
 
         public List<Order> viewQueue(Guid workflowId)
         {
-            return workflowCtrl.viewCurrentQueue(workflowId);
+            return (new WorkflowController()).viewCurrentQueue(workflowId);
         }
 
         public void createSalesOrder(Order order)
         {
-            orderCtrl.createSalesOrder(order);
+            (new SalesOrderController()).createSalesOrder(order);
         }
 
         public Order getSalesOrder(String order_code) //renamed from updateSalesOrder
         {
-            return orderCtrl.retrieveSalesOrder(order_code);
+            return (new SalesOrderController()).retrieveSalesOrder(order_code);
         }
 
         public void updateSalesOrder(Order order) //renamed from updateParticularSalesOrder
         {
-            orderCtrl.updateSalesOrder(order);
+            (new SalesOrderController()).updateSalesOrder(order);
         }
 
-        public void deleteSpecificOder(Order order)
+        public void deleteSpecificOrder(Order order)
         {
-            orderCtrl.deleteSpecificOrder(order);
+            (new SalesOrderController()).deleteSpecificOrder(order);
         }
 
         public IQueryable<Workflow> getAllWorkflow()
         {
-            return workflowCtrl.GetAllWorkflow();
+            return (new WorkflowController()).GetAllWorkflow();
         }
 
         public IQueryable<Error> retrieveAllErrors()
         {
-            return errorCtrl.retrieveAllErrors();
+            return (new ErrorController()).retrieveAllErrors();
         }
 
-        public IQueryable<Step> startSendCylinderToStep()
+        public IQueryable<Step> startSendCylinderToStep(Guid workflowId) //renamed from sendCylinderToStep()
         {
-            return workflowCtrl.getAllSteps();
+            return (new WorkflowController()).GetSteps(workflowId);
         }
 
-        public void sendCylinderToStep(Guid cylinderId, Guid nextStepId, Error error) //renamed from confirm()
+        public void sendCylinderToStep(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark) //renamed from confirm()
         {
-            cylinderCtrl.changeCylinderStep(cylinderId, nextStepId, error);
+            (new CylinderController()).changeCylinderStep(cyl, empl, thisStep, error, remark);
         }
 
         public IQueryable<Workflow> startSendCylinderToWorkflow()
         {
-            return workflowCtrl.GetAllWorkflow();
+            return (new WorkflowController()).GetAllWorkflow();
         }
 
-        public void sendCylinderToWorkflow(Guid cylinderId, Guid nextWorkflowId, Error error)
+        public void sendCylinderToWorkflow(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark)
         {
-            cylinderCtrl.changeCylinderWorkflow(cylinderId, nextWorkflowId, error);
+            (new CylinderController()).changeCylinderWorkflow(cyl, empl, thisStep, error, remark);
         }
 
         public void createError(Error error)
@@ -99,7 +100,7 @@ namespace BusinessLogics
             try
             {
                 if (null != error)
-                    errorCtrl.createError(error);
+                    (new ErrorController()).createError(error);
             }
             catch (Exception ex)
             {
@@ -112,7 +113,7 @@ namespace BusinessLogics
             try
             {
                 if (null != id && null != name)
-                    errorCtrl.updateError(id, name);
+                    (new ErrorController()).updateError(id, name);
             }
             catch (Exception ex)
             {
@@ -125,7 +126,7 @@ namespace BusinessLogics
             try
             {
                 if (null != id)
-                    errorCtrl.deleteError(id);
+                    (new ErrorController()).deleteError(id);
             }
             catch (Exception ex)
             {
@@ -138,7 +139,7 @@ namespace BusinessLogics
             try
             {
                 if (null != name)
-                    errorCtrl.deleteError(name);
+                    (new ErrorController()).deleteError(name);
             }
             catch (Exception ex)
             {
@@ -151,7 +152,7 @@ namespace BusinessLogics
             try
             {
                 if (null != errorID)
-                    return errorCtrl.retrieveError(errorID);
+                    return (new ErrorController()).retrieveError(errorID);
                 else
                     return null;
             }
@@ -165,7 +166,7 @@ namespace BusinessLogics
         {
             try
             {
-                return cylinderCtrl.retrieveCylinderList();
+                return (new CylinderController()).retrieveCylinderList();
             }
             catch (Exception ex)
             {
@@ -179,7 +180,7 @@ namespace BusinessLogics
             try
             {
                 if (null != order_code && !order_code.Equals("") && null!=workflowID)
-                    cylinderCtrl.create(order_code, workflowID);
+                    (new CylinderController()).create(order_code, workflowID);
             }
             catch (Exception ex)
             {
@@ -193,8 +194,8 @@ namespace BusinessLogics
             {
                 if (null != order)
                 {
-                    orderCtrl.deleteSpecificOrder(order);
-                    cylinderCtrl.stopProduction(order);
+                    (new SalesOrderController()).deleteSpecificOrder(order);
+                    (new CylinderController()).stopProduction(order);
                 }
             }
             catch (Exception ex)
@@ -208,7 +209,7 @@ namespace BusinessLogics
             try
             {
                 if (null != employeeID)
-                    return employeeCtrl.retrieveEmployeeInfo(employeeID);
+                    return (new EmployeeController()).retrieveEmployeeInfo(employeeID);
                 else
                     return null;
             }
@@ -232,17 +233,17 @@ namespace BusinessLogics
 		
 		public String getNextOrderBarCode()
         {
-            return orderCtrl.getNextOrderBarCode();
+            return (new SalesOrderController()).getNextOrderBarCode();
         }
 
 
         //- Export Cylinder Queues
         //- Manage Sales Order - coded-tested
         //- Login - coded-tested
-        //- Logout
+        //- Logout - coded
         //- View Sales Order - coded-tested
         //- View Workflow Queues - coded-tested
-        //- Send Cylinder To A Particular Step
-        //- Send Cylinder To A Workflow
+        //- Send Cylinder To A Particular Step - coded
+        //- Send Cylinder To A Workflow - coded
     }
 }

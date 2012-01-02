@@ -13,6 +13,15 @@ namespace WebUI.Admin {
     public partial class ManageOrders {
         
         /// <summary>
+        /// txtBxOrderCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBxOrderCode;
+        
+        /// <summary>
         /// lnkSearch control.
         /// </summary>
         /// <remarks>
