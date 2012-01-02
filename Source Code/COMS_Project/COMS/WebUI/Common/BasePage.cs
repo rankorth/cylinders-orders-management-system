@@ -40,10 +40,11 @@ namespace WebUI.Common
             LinkButton lnkButton;
 
             //replace with actual code once all done
+            module.Add("Orders", "/Admin/ManageOrders.aspx");
             module.Add("Roles", "/Admin/Role.aspx");
-            module.Add("Workflow Error Message", "/Admin/WorkflowErrorDescription.aspx");
+            module.Add("Approve Assign Roles", "/Admin/RoleAssignment_Approval.aspx");
+            module.Add("Workflow Error Message", "/Admin/ErrorManagement.aspx");
             module.Add("Employee", "/Admin/Users.aspx");
-            module.Add("Manage Orders", "/Admin/ManageOrders.aspx");
             
 
 

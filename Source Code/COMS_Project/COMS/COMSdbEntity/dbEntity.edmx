@@ -203,6 +203,7 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="employeeId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="roleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="isapproved" Type="bit" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
@@ -359,7 +360,6 @@
           </Key>
           <Property Name="roleId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="255" />
-          <Property Name="isapproved" Type="bit" Nullable="false" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
@@ -373,9 +373,6 @@
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="roleId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="rightId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="allow_new" Type="bit" Nullable="false" />
-          <Property Name="allow_edit" Type="bit" Nullable="false" />
-          <Property Name="allow_delete" Type="bit" Nullable="false" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
@@ -701,14 +698,12 @@
           <EntitySet Name="Access_Right" EntityType="COMSModel.Access_Right" />
           <EntitySet Name="Customers" EntityType="COMSModel.Customer" />
           <EntitySet Name="Departments" EntityType="COMSModel.Department" />
-          <EntitySet Name="Emp_Role_ref" EntityType="COMSModel.Emp_Role_ref" />
           <EntitySet Name="Employees" EntityType="COMSModel.Employee" />
           <EntitySet Name="Formulae" EntityType="COMSModel.Formula" />
           <EntitySet Name="Orders" EntityType="COMSModel.Order" />
           <EntitySet Name="Order_Detail" EntityType="COMSModel.Order_Detail" />
           <EntitySet Name="Order_Log" EntityType="COMSModel.Order_Log" />
           <EntitySet Name="Printers" EntityType="COMSModel.Printer" />
-          <EntitySet Name="Roles" EntityType="COMSModel.Role" />
           <EntitySet Name="Steps" EntityType="COMSModel.Step" />
           <EntitySet Name="Step_ref" EntityType="COMSModel.Step_ref" />
           <EntitySet Name="Workflows" EntityType="COMSModel.Workflow" />
@@ -727,14 +722,6 @@
           <AssociationSet Name="FK_Workflow_Department" Association="COMSModel.FK_Workflow_Department">
             <End Role="Department" EntitySet="Departments" />
             <End Role="Workflow" EntitySet="Workflows" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Emp_Role_ref_Employee" Association="COMSModel.FK_Emp_Role_ref_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="Emp_Role_ref" EntitySet="Emp_Role_ref" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Emp_Role_ref_Role" Association="COMSModel.FK_Emp_Role_ref_Role">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="Emp_Role_ref" EntitySet="Emp_Role_ref" />
           </AssociationSet>
           <AssociationSet Name="FK_Formula_Step" Association="COMSModel.FK_Formula_Step">
             <End Role="Step" EntitySet="Steps" />
@@ -795,6 +782,16 @@
             <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
           </AssociationSet>
           <EntitySet Name="Errors" EntityType="COMSModel.Error" />
+          <EntitySet Name="Emp_Role_ref" EntityType="COMSModel.Emp_Role_ref" />
+          <EntitySet Name="Roles" EntityType="COMSModel.Role" />
+          <AssociationSet Name="FK_Emp_Role_ref_Employee" Association="COMSModel.FK_Emp_Role_ref_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Emp_Role_ref" EntitySet="Emp_Role_ref" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emp_Role_ref_Role" Association="COMSModel.FK_Emp_Role_ref_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Emp_Role_ref" EntitySet="Emp_Role_ref" />
+          </AssociationSet>
           <EntitySet Name="Role_Right_ref" EntityType="COMSModel.Role_Right_ref" />
           <AssociationSet Name="FK_Role_Right_ref_Access_Right" Association="COMSModel.FK_Role_Right_ref_Access_Right">
             <End Role="Access_Right" EntitySet="Access_Right" />
@@ -855,20 +852,6 @@
           <NavigationProperty Name="Employees" Relationship="COMSModel.FK_Employee_Department" FromRole="Department" ToRole="Employee" />
           <NavigationProperty Name="Workflows" Relationship="COMSModel.FK_Workflow_Department" FromRole="Department" ToRole="Workflow" />
         </EntityType>
-        <EntityType Name="Emp_Role_ref">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Guid" Name="Id" Nullable="false" />
-          <Property Type="Guid" Name="employeeId" Nullable="false" />
-          <Property Type="Guid" Name="roleId" Nullable="false" />
-          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" Nullable="false" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="updated_date" />
-          <NavigationProperty Name="Employee" Relationship="COMSModel.FK_Emp_Role_ref_Employee" FromRole="Emp_Role_ref" ToRole="Employee" />
-          <NavigationProperty Name="Role" Relationship="COMSModel.FK_Emp_Role_ref_Role" FromRole="Emp_Role_ref" ToRole="Role" />
-        </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="employeeId" />
@@ -888,8 +871,8 @@
           <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="isactive" Nullable="false" />
           <NavigationProperty Name="Department" Relationship="COMSModel.FK_Employee_Department" FromRole="Employee" ToRole="Department" />
-          <NavigationProperty Name="Emp_Role_ref" Relationship="COMSModel.FK_Emp_Role_ref_Employee" FromRole="Employee" ToRole="Emp_Role_ref" />
           <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Employee" FromRole="Employee" ToRole="Cylinder_Log" />
+          <NavigationProperty Name="Emp_Role_ref" Relationship="COMSModel.FK_Emp_Role_ref_Employee" FromRole="Employee" ToRole="Emp_Role_ref" />
         </EntityType>
         <EntityType Name="Formula">
           <Key>
@@ -1020,21 +1003,6 @@
           <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customer" Relationship="COMSModel.FK_Printer_Customer" FromRole="Printer" ToRole="Customer" />
         </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="roleId" />
-          </Key>
-          <Property Type="Guid" Name="roleId" Nullable="false" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" Nullable="false" />
-          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="updated_date" />
-          <Property Type="Boolean" Name="isactive" Nullable="false" />
-          <NavigationProperty Name="Emp_Role_ref" Relationship="COMSModel.FK_Emp_Role_ref_Role" FromRole="Role" ToRole="Emp_Role_ref" />
-          <NavigationProperty Name="Role_Right_ref" Relationship="COMSModel.FK_Role_Right_ref_Role" FromRole="Role" ToRole="Role_Right_ref" />
-          <Property Type="Boolean" Name="isapproved" Nullable="false" />
-        </EntityType>
         <EntityType Name="Step">
           <Key>
             <PropertyRef Name="stepId" />
@@ -1141,30 +1109,6 @@
             </Principal>
             <Dependent Role="Workflow">
               <PropertyRef Name="departmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Emp_Role_ref_Employee">
-          <End Type="COMSModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="COMSModel.Emp_Role_ref" Role="Emp_Role_ref" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="employeeId" />
-            </Principal>
-            <Dependent Role="Emp_Role_ref">
-              <PropertyRef Name="employeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Emp_Role_ref_Role">
-          <End Type="COMSModel.Role" Role="Role" Multiplicity="1" />
-          <End Type="COMSModel.Emp_Role_ref" Role="Emp_Role_ref" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="roleId" />
-            </Principal>
-            <Dependent Role="Emp_Role_ref">
-              <PropertyRef Name="roleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1388,6 +1332,59 @@
           <Property Type="Guid" Name="errorId" Nullable="false" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Emp_Role_ref">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="employeeId" Nullable="false" />
+          <Property Type="Guid" Name="roleId" Nullable="false" />
+          <Property Type="Boolean" Name="isapproved" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" Nullable="false" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <NavigationProperty Name="Employee" Relationship="COMSModel.FK_Emp_Role_ref_Employee" FromRole="Emp_Role_ref" ToRole="Employee" />
+          <NavigationProperty Name="Role" Relationship="COMSModel.FK_Emp_Role_ref_Role" FromRole="Emp_Role_ref" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="roleId" />
+          </Key>
+          <Property Type="Guid" Name="roleId" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" Nullable="false" />
+          <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="updated_date" />
+          <Property Type="Boolean" Name="isactive" Nullable="false" />
+          <NavigationProperty Name="Emp_Role_ref" Relationship="COMSModel.FK_Emp_Role_ref_Role" FromRole="Role" ToRole="Emp_Role_ref" />
+          <NavigationProperty Name="Role_Right_ref" Relationship="COMSModel.FK_Role_Right_ref_Role" FromRole="Role" ToRole="Role_Right_ref" />
+        </EntityType>
+        <Association Name="FK_Emp_Role_ref_Employee">
+          <End Type="COMSModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="COMSModel.Emp_Role_ref" Role="Emp_Role_ref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="employeeId" />
+            </Principal>
+            <Dependent Role="Emp_Role_ref">
+              <PropertyRef Name="employeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emp_Role_ref_Role">
+          <End Type="COMSModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="COMSModel.Emp_Role_ref" Role="Emp_Role_ref" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="Emp_Role_ref">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Role_Right_ref">
           <Key>
             <PropertyRef Name="Id" />
@@ -1395,9 +1392,6 @@
           <Property Type="Guid" Name="Id" Nullable="false" />
           <Property Type="Guid" Name="roleId" Nullable="false" />
           <Property Type="Guid" Name="rightId" Nullable="false" />
-          <Property Type="Boolean" Name="allow_new" Nullable="false" />
-          <Property Type="Boolean" Name="allow_edit" Nullable="false" />
-          <Property Type="Boolean" Name="allow_delete" Nullable="false" />
           <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="created_date" Nullable="false" />
           <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1480,19 +1474,6 @@
                 <ScalarProperty Name="created_by" ColumnName="created_by" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="departmentId" ColumnName="departmentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Emp_Role_ref">
-            <EntityTypeMapping TypeName="COMSModel.Emp_Role_ref">
-              <MappingFragment StoreEntitySet="Emp_Role_ref">
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="roleId" ColumnName="roleId" />
-                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1640,20 +1621,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="COMSModel.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="isapproved" ColumnName="isapproved" />
-                <ScalarProperty Name="isactive" ColumnName="isactive" />
-                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
-                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="roleId" ColumnName="roleId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Steps">
             <EntityTypeMapping TypeName="COMSModel.Step">
               <MappingFragment StoreEntitySet="Step">
@@ -1753,6 +1720,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Emp_Role_ref">
+            <EntityTypeMapping TypeName="COMSModel.Emp_Role_ref">
+              <MappingFragment StoreEntitySet="Emp_Role_ref">
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="isapproved" ColumnName="isapproved" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="COMSModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="updated_date" ColumnName="updated_date" />
+                <ScalarProperty Name="updated_by" ColumnName="updated_by" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Role_Right_ref">
             <EntityTypeMapping TypeName="COMSModel.Role_Right_ref">
               <MappingFragment StoreEntitySet="Role_Right_ref">
@@ -1760,9 +1754,6 @@
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
                 <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="allow_delete" ColumnName="allow_delete" />
-                <ScalarProperty Name="allow_edit" ColumnName="allow_edit" />
-                <ScalarProperty Name="allow_new" ColumnName="allow_new" />
                 <ScalarProperty Name="rightId" ColumnName="rightId" />
                 <ScalarProperty Name="roleId" ColumnName="roleId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -1793,14 +1784,12 @@
         <EntityTypeShape EntityType="COMSModel.Access_Right" Width="1.5" PointX="3" PointY="1.375" Height="2.5571907552083388" />
         <EntityTypeShape EntityType="COMSModel.Customer" Width="1.5" PointX="1.5" PointY="31" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="COMSModel.Department" Width="1.5" PointX="0.75" PointY="13.125" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="COMSModel.Emp_Role_ref" Width="1.5" PointX="5.25" PointY="10.375" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="COMSModel.Employee" Width="1.5" PointX="3" PointY="9.5" Height="4.2879036458333246" />
         <EntityTypeShape EntityType="COMSModel.Formula" Width="1.5" PointX="7.5" PointY="24.5" Height="3.3263964843750102" />
         <EntityTypeShape EntityType="COMSModel.Order" Width="1.5" PointX="0.75" PointY="22.25" Height="5.4417122395833246" />
         <EntityTypeShape EntityType="COMSModel.Order_Detail" Width="1.5" PointX="3" PointY="20.125" Height="9.67234375000001" />
         <EntityTypeShape EntityType="COMSModel.Order_Log" Width="1.5" PointX="8.25" PointY="12.5" Height="3.1340950520833388" />
         <EntityTypeShape EntityType="COMSModel.Printer" Width="1.5" PointX="3.75" PointY="31.25" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="COMSModel.Role" Width="1.5" PointX="3" PointY="5.375" Height="2.7494921875000102" />
         <EntityTypeShape EntityType="COMSModel.Step" Width="1.5" PointX="5.25" PointY="23.75" Height="4.8648079427083388" />
         <EntityTypeShape EntityType="COMSModel.Step_ref" Width="1.5" PointX="7.5" PointY="20.25" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="COMSModel.Workflow" Width="1.5" PointX="3" PointY="15.125" Height="3.9033007812500102" />
@@ -1821,16 +1810,6 @@
           <ConnectorPoint PointX="2.5416666666666665" PointY="15.499746093750005" />
           <ConnectorPoint PointX="2.7083333333333335" PointY="15.499746093750005" />
           <ConnectorPoint PointX="3" PointY="15.499746093750005" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Employee" >
-          <ConnectorPoint PointX="4.5" PointY="12.140306617187505" />
-          <ConnectorPoint PointX="5.25" PointY="12.140306617187505" />
-        </AssociationConnector>
-        <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Role" >
-          <ConnectorPoint PointX="4.5" PointY="8.1244921875" />
-          <ConnectorPoint PointX="4.875" PointY="8.4994921875" />
-          <ConnectorPoint PointX="4.875" PointY="11.749746093750005" />
-          <ConnectorPoint PointX="5.25" PointY="11.749746093750005" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Formula_Step" >
           <ConnectorPoint PointX="6.75" PointY="26.163198242187498" />
@@ -1892,10 +1871,8 @@
           <ConnectorPoint PointX="5.25" PointY="18.607897890625004" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Employee" >
-          <ConnectorPoint PointX="4.5" PointY="9.90625" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.90625" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.90625" />
-          <ConnectorPoint PointX="10.53125" PointY="9.90625" />
+          <ConnectorPoint PointX="4.5" PointY="11.783396809895834" />
+          <ConnectorPoint PointX="10.53125" PointY="11.783396809895834" />
           <ConnectorPoint PointX="10.53125" PointY="16.875" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Formula" >
@@ -1911,14 +1888,26 @@
           <ConnectorPoint PointX="10.0937475" PointY="21.162903645833332" />
         </AssociationConnector>
         <EntityTypeShape EntityType="COMSModel.Error" Width="1.5" PointX="5.375" PointY="0.75" Height="1.4033821614583388" />
-        <EntityTypeShape EntityType="COMSModel.Role_Right_ref" Width="1.5" PointX="5.25" PointY="3.125" Height="3.326396484374996" />
+        <EntityTypeShape EntityType="COMSModel.Emp_Role_ref" Width="1.5" PointX="5.25" PointY="8.125" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="COMSModel.Role" Width="1.5" PointX="3" PointY="5.375" Height="2.749492187499996" />
+        <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Employee" >
+          <ConnectorPoint PointX="4.5" PointY="10.283396809895834" />
+          <ConnectorPoint PointX="5.25" PointY="10.283396809895834" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Role" >
+          <ConnectorPoint PointX="4.5" PointY="8.1244921875" />
+          <ConnectorPoint PointX="4.875" PointY="8.4994921875" />
+          <ConnectorPoint PointX="4.875" PointY="7.7488471538461541" />
+          <ConnectorPoint PointX="5.2511528461538459" PointY="8.125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="COMSModel.Role_Right_ref" Width="1.5" PointX="5.25" PointY="3.375" Height="2.7494921875000031" />
         <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Access_Right" >
-          <ConnectorPoint PointX="4.5" PointY="3.7208968098958328" />
-          <ConnectorPoint PointX="5.25" PointY="3.7208968098958328" />
+          <ConnectorPoint PointX="4.5" PointY="3.8458968098958328" />
+          <ConnectorPoint PointX="5.25" PointY="3.8458968098958328" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Role" >
-          <ConnectorPoint PointX="4.5" PointY="5.913198242187498" />
-          <ConnectorPoint PointX="5.25" PointY="5.913198242187498" />
+          <ConnectorPoint PointX="4.5" PointY="5.7497460937500016" />
+          <ConnectorPoint PointX="5.25" PointY="5.7497460937500016" />
         </AssociationConnector>
         </Diagram>
     </Diagrams>

@@ -56,6 +56,7 @@
     <Content Include="Admin\ErrorManagement.aspx" />
     <Content Include="Admin\ManageOrders.aspx" />
     <Content Include="Admin\Role.aspx" />
+    <Content Include="Admin\RoleAssignment_Approval.aspx" />
     <Content Include="Admin\Users.aspx" />
     <Content Include="Admin\WorkflowErrorDescription.aspx" />
     <Content Include="default.aspx" />
@@ -119,6 +120,13 @@
     </Compile>
     <Compile Include="Admin\Role.aspx.designer.cs">
       <DependentUpon>Role.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RoleAssignment_Approval.aspx.cs">
+      <DependentUpon>RoleAssignment_Approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\RoleAssignment_Approval.aspx.designer.cs">
+      <DependentUpon>RoleAssignment_Approval.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Users.aspx.cs">
       <DependentUpon>Users.aspx</DependentUpon>
