@@ -22,8 +22,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Printer_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COMSdbEntity.Customer), "Printer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Printer), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Employee_Department", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Department), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Employee), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Workflow_Department", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Department), "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Workflow), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Employee", "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Employee), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Formula_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Formula", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Formula), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Detail_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Detail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Detail), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Log_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Log), true)]
@@ -38,6 +36,8 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Log_Employee", "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Employee), "Cylinder_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder_Log), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Log_Formula", "Formula", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Formula), "Cylinder_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder_Log), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Log_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Cylinder_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder_Log), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Employee", "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Employee), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Role_Right_ref_Access_Right", "Access_Right", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Access_Right), "Role_Right_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Role_Right_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Role_Right_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Role_Right_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Role_Right_ref), true)]
 
@@ -142,22 +142,6 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Emp_Role_ref> Emp_Role_ref
-        {
-            get
-            {
-                if ((_Emp_Role_ref == null))
-                {
-                    _Emp_Role_ref = base.CreateObjectSet<Emp_Role_ref>("Emp_Role_ref");
-                }
-                return _Emp_Role_ref;
-            }
-        }
-        private ObjectSet<Emp_Role_ref> _Emp_Role_ref;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Employee> Employees
         {
             get
@@ -250,22 +234,6 @@ namespace COMSdbEntity
             }
         }
         private ObjectSet<Printer> _Printers;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Role> Roles
-        {
-            get
-            {
-                if ((_Roles == null))
-                {
-                    _Roles = base.CreateObjectSet<Role>("Roles");
-                }
-                return _Roles;
-            }
-        }
-        private ObjectSet<Role> _Roles;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -366,6 +334,38 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Emp_Role_ref> Emp_Role_ref
+        {
+            get
+            {
+                if ((_Emp_Role_ref == null))
+                {
+                    _Emp_Role_ref = base.CreateObjectSet<Emp_Role_ref>("Emp_Role_ref");
+                }
+                return _Emp_Role_ref;
+            }
+        }
+        private ObjectSet<Emp_Role_ref> _Emp_Role_ref;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Role> Roles
+        {
+            get
+            {
+                if ((_Roles == null))
+                {
+                    _Roles = base.CreateObjectSet<Role>("Roles");
+                }
+                return _Roles;
+            }
+        }
+        private ObjectSet<Role> _Roles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Role_Right_ref> Role_Right_ref
         {
             get
@@ -404,14 +404,6 @@ namespace COMSdbEntity
         public void AddToDepartments(Department department)
         {
             base.AddObject("Departments", department);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Emp_Role_ref EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToEmp_Role_ref(Emp_Role_ref emp_Role_ref)
-        {
-            base.AddObject("Emp_Role_ref", emp_Role_ref);
         }
     
         /// <summary>
@@ -463,14 +455,6 @@ namespace COMSdbEntity
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToRoles(Role role)
-        {
-            base.AddObject("Roles", role);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Steps EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToSteps(Step step)
@@ -516,6 +500,22 @@ namespace COMSdbEntity
         public void AddToErrors(Error error)
         {
             base.AddObject("Errors", error);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Emp_Role_ref EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToEmp_Role_ref(Emp_Role_ref emp_Role_ref)
+        {
+            base.AddObject("Emp_Role_ref", emp_Role_ref);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRoles(Role role)
+        {
+            base.AddObject("Roles", role);
         }
     
         /// <summary>
@@ -2612,6 +2612,30 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> isapproved
+        {
+            get
+            {
+                return _isapproved;
+            }
+            set
+            {
+                OnisapprovedChanging(value);
+                ReportPropertyChanging("isapproved");
+                _isapproved = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("isapproved");
+                OnisapprovedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _isapproved;
+        partial void OnisapprovedChanging(Nullable<global::System.Boolean> value);
+        partial void OnisapprovedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String created_by
@@ -3213,28 +3237,6 @@ namespace COMSdbEntity
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Emp_Role_ref_Employee", "Emp_Role_ref")]
-        public EntityCollection<Emp_Role_ref> Emp_Role_ref
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Emp_Role_ref>("COMSModel.FK_Emp_Role_ref_Employee", "Emp_Role_ref");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Emp_Role_ref>("COMSModel.FK_Emp_Role_ref_Employee", "Emp_Role_ref", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Log_Employee", "Cylinder_Log")]
         public EntityCollection<Cylinder_Log> Cylinder_Log
         {
@@ -3247,6 +3249,28 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Employee", "Cylinder_Log", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Emp_Role_ref_Employee", "Emp_Role_ref")]
+        public EntityCollection<Emp_Role_ref> Emp_Role_ref
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Emp_Role_ref>("COMSModel.FK_Emp_Role_ref_Employee", "Emp_Role_ref");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Emp_Role_ref>("COMSModel.FK_Emp_Role_ref_Employee", "Emp_Role_ref", value);
                 }
             }
         }
@@ -6135,8 +6159,7 @@ namespace COMSdbEntity
         /// <param name="created_by">Initial value of the created_by property.</param>
         /// <param name="created_date">Initial value of the created_date property.</param>
         /// <param name="isactive">Initial value of the isactive property.</param>
-        /// <param name="isapproved">Initial value of the isapproved property.</param>
-        public static Role CreateRole(global::System.Guid roleId, global::System.String name, global::System.String created_by, global::System.DateTime created_date, global::System.Boolean isactive, global::System.Boolean isapproved)
+        public static Role CreateRole(global::System.Guid roleId, global::System.String name, global::System.String created_by, global::System.DateTime created_date, global::System.Boolean isactive)
         {
             Role role = new Role();
             role.roleId = roleId;
@@ -6144,7 +6167,6 @@ namespace COMSdbEntity
             role.created_by = created_by;
             role.created_date = created_date;
             role.isactive = isactive;
-            role.isapproved = isapproved;
             return role;
         }
 
@@ -6321,30 +6343,6 @@ namespace COMSdbEntity
         private global::System.Boolean _isactive;
         partial void OnisactiveChanging(global::System.Boolean value);
         partial void OnisactiveChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean isapproved
-        {
-            get
-            {
-                return _isapproved;
-            }
-            set
-            {
-                OnisapprovedChanging(value);
-                ReportPropertyChanging("isapproved");
-                _isapproved = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("isapproved");
-                OnisapprovedChanged();
-            }
-        }
-        private global::System.Boolean _isapproved;
-        partial void OnisapprovedChanging(global::System.Boolean value);
-        partial void OnisapprovedChanged();
 
         #endregion
     
@@ -6413,20 +6411,14 @@ namespace COMSdbEntity
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="roleId">Initial value of the roleId property.</param>
         /// <param name="rightId">Initial value of the rightId property.</param>
-        /// <param name="allow_new">Initial value of the allow_new property.</param>
-        /// <param name="allow_edit">Initial value of the allow_edit property.</param>
-        /// <param name="allow_delete">Initial value of the allow_delete property.</param>
         /// <param name="created_by">Initial value of the created_by property.</param>
         /// <param name="created_date">Initial value of the created_date property.</param>
-        public static Role_Right_ref CreateRole_Right_ref(global::System.Guid id, global::System.Guid roleId, global::System.Guid rightId, global::System.Boolean allow_new, global::System.Boolean allow_edit, global::System.Boolean allow_delete, global::System.String created_by, global::System.DateTime created_date)
+        public static Role_Right_ref CreateRole_Right_ref(global::System.Guid id, global::System.Guid roleId, global::System.Guid rightId, global::System.String created_by, global::System.DateTime created_date)
         {
             Role_Right_ref role_Right_ref = new Role_Right_ref();
             role_Right_ref.Id = id;
             role_Right_ref.roleId = roleId;
             role_Right_ref.rightId = rightId;
-            role_Right_ref.allow_new = allow_new;
-            role_Right_ref.allow_edit = allow_edit;
-            role_Right_ref.allow_delete = allow_delete;
             role_Right_ref.created_by = created_by;
             role_Right_ref.created_date = created_date;
             return role_Right_ref;
@@ -6509,78 +6501,6 @@ namespace COMSdbEntity
         private global::System.Guid _rightId;
         partial void OnrightIdChanging(global::System.Guid value);
         partial void OnrightIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean allow_new
-        {
-            get
-            {
-                return _allow_new;
-            }
-            set
-            {
-                Onallow_newChanging(value);
-                ReportPropertyChanging("allow_new");
-                _allow_new = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("allow_new");
-                Onallow_newChanged();
-            }
-        }
-        private global::System.Boolean _allow_new;
-        partial void Onallow_newChanging(global::System.Boolean value);
-        partial void Onallow_newChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean allow_edit
-        {
-            get
-            {
-                return _allow_edit;
-            }
-            set
-            {
-                Onallow_editChanging(value);
-                ReportPropertyChanging("allow_edit");
-                _allow_edit = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("allow_edit");
-                Onallow_editChanged();
-            }
-        }
-        private global::System.Boolean _allow_edit;
-        partial void Onallow_editChanging(global::System.Boolean value);
-        partial void Onallow_editChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Boolean allow_delete
-        {
-            get
-            {
-                return _allow_delete;
-            }
-            set
-            {
-                Onallow_deleteChanging(value);
-                ReportPropertyChanging("allow_delete");
-                _allow_delete = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("allow_delete");
-                Onallow_deleteChanged();
-            }
-        }
-        private global::System.Boolean _allow_delete;
-        partial void Onallow_deleteChanging(global::System.Boolean value);
-        partial void Onallow_deleteChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

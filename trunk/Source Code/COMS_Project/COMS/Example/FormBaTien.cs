@@ -362,7 +362,7 @@ namespace Example
                 cyl.diameter = orderDetail.cyl_diameter;
                 cyl.length = orderDetail.cyl_length;
                 cyl.order_detailId = orderDetail.order_detailId;
-                cyl.status = 1;
+                cyl.status = "a";
                 cyl.stepId = null;
                 cyl.updated_by = cyl.created_by;
                 cyl.updated_date = cyl.created_date;

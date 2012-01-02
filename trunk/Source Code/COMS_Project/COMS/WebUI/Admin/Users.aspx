@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="WebUI.Admin.Users" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
-<ul>
-        <li><asp:LinkButton ID="lnkSearch" runat="server">Search</asp:LinkButton></li>
+    <ul>
+        <li><asp:LinkButton ID="lnkSearch" runat="server" onclick="lnkSearch_Click">Search</asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkSave" runat="server">Save</asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkDelete" runat="server">Delete</asp:LinkButton></li>
 </ul>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="InputPlaceHolder" runat="server">
-<table class="entry_table" border="0" cellpadding="0" cellspacing="0">
+    <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td class="entry_label">
                 Name

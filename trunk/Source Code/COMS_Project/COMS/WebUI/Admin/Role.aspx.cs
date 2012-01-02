@@ -44,7 +44,7 @@ namespace WebUI.Admin
                 newRole.name = txtRoleName.Text.Trim();
                 newRole.created_by = base.GetCurentUser().username;
                 newRole.isactive = chkIsActive.Checked;
-                newRole.isapproved = false;
+
                 RoleController RoleCtrl = new RoleController();
                 RoleCtrl.SaveRole(newRole);
                 foreach (Guid ID in GetSelectedAccessIDs())
@@ -63,7 +63,7 @@ namespace WebUI.Admin
                 role.isactive = chkIsActive.Checked;
                 role.updated_by = base.GetCurentUser().username;
                 role.updated_date = DateTime.Now;
-                role.isapproved = false;
+
 
                 List<Guid> selected_updateAccess = GetSelectedAccessIDs();
                 RoleCtrl.RemoveAllRights(role);

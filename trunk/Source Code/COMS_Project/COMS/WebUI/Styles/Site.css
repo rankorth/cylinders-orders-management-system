@@ -26,6 +26,7 @@ a:hover
 #left_menu_panel
 {
     width: 100%; min-height: 400px; background-color: #CCCCCC;
+    font-size:12px;
 }
 
 .menu_bar
@@ -65,6 +66,7 @@ a:hover
 {
     float: left;
     border-right:1px solid Gray;
+    
 }
 
 
@@ -77,11 +79,15 @@ a:hover
     min-width:80px;
     display:block;
     text-align:center;
+    font-weight:normal;
 }
-
-.menu_bar ul li:hover
+.menu_bar ul li a:hover
 {
     font-weight:bold;
+}
+.menu_bar ul li:hover
+{
+
     background-image:url(Images/Menu/menu_bg_hover.png);
 }
 .entry_panel
