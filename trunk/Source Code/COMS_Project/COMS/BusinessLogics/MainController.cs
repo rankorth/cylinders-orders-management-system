@@ -230,6 +230,42 @@ namespace BusinessLogics
                 throw new Exception("Sorry, there is an error occured while retrieving employees information ", ex);
             }
         }
+
+        public void createEmployee(Employee emp)
+        {
+            try
+            {
+                employeeCtrl.createEmployee(emp);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while inserting employee information ", ex);
+            }
+        }
+
+        public void updateEmployee(Employee emp)
+        {
+            try
+            {
+                employeeCtrl.updateEmployee(emp);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while updating employee information ", ex);
+            }
+        }
+
+        public void deleteEmployee(Guid employeeID)
+        {
+            try
+            {
+                employeeCtrl.deleteEmployee(employeeID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while deleting employee information ", ex);
+            }
+        }
 		
 		public String getNextOrderBarCode()
         {
