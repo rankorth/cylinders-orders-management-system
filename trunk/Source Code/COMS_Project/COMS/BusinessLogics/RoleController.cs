@@ -87,5 +87,57 @@ namespace BusinessLogics
         {
             context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
         }
+
+        public List<PendingRoleAssignment> GetAllPendingAssignedRoles()
+        {
+            IQueryable<Emp_Role_ref> pending_assign_roles = context.Emp_Role_ref.Where(erf => erf.isapproved == false);
+            List<PendingRoleAssignment> results = new List<PendingRoleAssignment>();
+
+            foreach (Emp_Role_ref erf in pending_assign_roles)
+            {
+                PendingRoleAssignment pending_role_assignment = new PendingRoleAssignment();
+                pending_role_assignment.Emp_Role_ref_ID     = erf.Id;
+                pending_role_assignment.Employee_Name       = erf.Employee.username;
+                pending_role_assignment.Role_Name           = erf.Role.name;
+
+                results.Add(pending_role_assignment);
+            }
+            return results;
+        }
+
+        public void Reject_Assign_Roles(List<Guid> selected_emp_role_refs)
+        {
+            foreach (Guid id in selected_emp_role_refs)
+            {
+                Emp_Role_ref emp_role_ref = context.Emp_Role_ref.Where(err => err.Id.Equals(id)).SingleOrDefault();
+                if (emp_role_ref != null)
+                {
+                    context.DeleteObject(emp_role_ref);
+                }
+            }
+            context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+        }
+
+        public void Approve_Assign_Roles(List<Guid> selected_emp_role_refs)
+        {
+            foreach (Guid id in selected_emp_role_refs)
+            {
+                Emp_Role_ref emp_role_ref = context.Emp_Role_ref.Where(err => err.Id.Equals(id)).SingleOrDefault();
+                if (emp_role_ref != null)
+                {
+                    emp_role_ref.isapproved = true;
+                }
+            }
+            context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+        }
+
+
+        
+    }
+    public class PendingRoleAssignment
+    {
+        public Guid Emp_Role_ref_ID {get;set;}
+        public string Employee_Name {get;set;}
+        public string Role_Name {get;set;}
     }
 }
