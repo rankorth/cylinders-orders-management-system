@@ -223,7 +223,7 @@ namespace BusinessLogics
         {
             try
             {
-                return employeeCtrl.retrieveEmployeeInfo();
+                return (new EmployeeController()).retrieveEmployeeInfo();
             }
             catch (Exception ex)
             {
@@ -235,7 +235,7 @@ namespace BusinessLogics
         {
             try
             {
-                employeeCtrl.createEmployee(emp);
+                (new EmployeeController()).createEmployee(emp);
             }
             catch (Exception ex)
             {
@@ -247,7 +247,7 @@ namespace BusinessLogics
         {
             try
             {
-                employeeCtrl.updateEmployee(emp);
+                (new EmployeeController()).updateEmployee(emp);
             }
             catch (Exception ex)
             {
@@ -259,14 +259,62 @@ namespace BusinessLogics
         {
             try
             {
-                employeeCtrl.deleteEmployee(employeeID);
+                (new EmployeeController()).deleteEmployee(employeeID);
             }
             catch (Exception ex)
             {
                 throw new Exception("Sorry, there is an error occured while deleting employee information ", ex);
             }
         }
-		
+
+        public String retrieveDepartmentName(Guid departmentID)
+        {
+            try
+            {
+                return (new DepartmentController()).retrieveDepartmentName(departmentID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving department name information ", ex);
+            }
+        }
+
+        public IQueryable<Department> retrieveDepartments()
+        {
+            try
+            {
+                return (new DepartmentController()).retrieveDepartments();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving department information ", ex);
+            }
+        }
+
+        public List<Role> retrieveEmployeeRoles(Guid employeeID)
+        {
+            try
+            { 
+                return(new RoleController()).GetEmployeeRoles(employeeID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving employee roles information ", ex);
+            }
+        }
+
+        public List<Access_Right> retrieveAccessRights(Role role)
+        {
+            try
+            {
+                return (new RoleController()).GetAccessRights(role);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving employee roles information ", ex);
+            }
+        }
+
 		public String getNextOrderBarCode()
         {
             return (new SalesOrderController()).getNextOrderBarCode();
