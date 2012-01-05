@@ -12,9 +12,9 @@
     <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td class="entry_label">
-                New Error Code Message</td>
+                Error Code Message</td>
             <td class="entry_data">
-                <asp:TextBox BorderColor="black" ID="txtErrorCode" runat="server"></asp:TextBox>
+                <asp:TextBox BorderColor="black" maxlength="50" style="border-color:Black;width:336px;" ID="txtErrorCode" runat="server"></asp:TextBox>
             </td>
         </tr>
     </table>
@@ -33,7 +33,7 @@
                     &nbsp;<asp:LinkButton ID="lnkEdit" runat="server">edit</asp:LinkButton>
                </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="name" HeaderText="Error Message" />
+            <asp:BoundField DataField="name" HeaderStyle-HorizontalAlign="Left" HeaderText="Error Message" />
         </Columns>
     </asp:GridView>
 </asp:Content>
