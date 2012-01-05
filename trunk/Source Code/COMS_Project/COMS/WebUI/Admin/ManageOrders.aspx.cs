@@ -24,7 +24,7 @@ namespace WebUI.Admin
 
         protected void lnkSearch_Click(object sender, EventArgs e)
         {
-            Order order = (new MainController).getSalesOrder(txtBxOrderCode.Text);
+            Order order = (new MainController()).getSalesOrder(txtBxOrderCode.Text);
         }
         
     }
