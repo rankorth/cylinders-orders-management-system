@@ -22,6 +22,22 @@ namespace BusinessLogics
         {
             return context.Roles.Where(r => r.roleId.Equals(RoleID)).SingleOrDefault();
         }
+
+        public List<Role> GetEmployeeRoles(Guid employeeID)
+        {
+            List<Role> roles = new List<Role>();
+            if (null != employeeID)
+            {
+                IQueryable<Emp_Role_ref> emp_roles = context.Emp_Role_ref.Where(e => e.employeeId.Equals(employeeID));
+                foreach (Emp_Role_ref emp_role in emp_roles)
+                {
+                    Role role = (Role)context.Roles.Where(r => r.roleId.Equals(emp_role.roleId) && r.isactive==true);
+                    roles.Add(role);
+                }
+            }
+            return roles;
+        }
+
         public List<Access_Right> GetAccessRights(Role role)
         {
             if (role == null)
