@@ -76,6 +76,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtBarCode;
         
         /// <summary>
+        /// DepartmentList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DepartmentList;
+        
+        /// <summary>
         /// txtPosition control.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,33 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        
+        /// <summary>
+        /// gvAccess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAccess;
+        
+        /// <summary>
+        /// hPageState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hPageState;
+        
+        /// <summary>
+        /// hUpdateID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hUpdateID;
         
         /// <summary>
         /// gvUserInfo control.
