@@ -121,7 +121,7 @@ namespace Example
                 //select * from Order where order_code = "code-112"
                 //in example Where(o=> means  o represent Order table, u can put any thing to alias Order table there.
                 //select only one record ontop = SingleOrDefault(), Take(1) means select top 1 if there are multiple records 
-                Order order = mainCtrl.getSalesOrder("0001-B11");
+                Order order = mainCtrl.getSalesOrderByCode("0001-B11");
                 if (order != null)
                 {
                     order.priority = OrderConst.PRIORITY_HIGH;
@@ -148,7 +148,7 @@ namespace Example
         {
             try
             {
-                Order dbOrder = mainCtrl.getSalesOrder("0001-B11");
+                Order dbOrder = mainCtrl.getSalesOrderByCode("0001-B11");
                 mainCtrl.deleteSpecificOrder(dbOrder);
                 MessageBox.Show("Order "+dbOrder.order_code+"Deleted");
             }
