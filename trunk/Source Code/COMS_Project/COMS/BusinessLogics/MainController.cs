@@ -50,9 +50,19 @@ namespace BusinessLogics
             (new SalesOrderController()).createSalesOrder(order);
         }
 
-        public Order getSalesOrder(String order_code) //renamed from updateSalesOrder
+        public Order getSalesOrder(Guid orderId)
+        {
+            return (new SalesOrderController()).retrieveSalesOrder(orderId);
+        }
+
+        public Order getSalesOrderByCode(String order_code) //renamed from updateSalesOrder
         {
             return (new SalesOrderController()).retrieveSalesOrder(order_code);
+        }
+
+        public IQueryable<Order> getSalesOrders(String searchKey, String searchType)
+        {
+            return (new SalesOrderController()).getSalesOrders(searchKey, searchType);
         }
 
         public void updateSalesOrder(Order order) //renamed from updateParticularSalesOrder
@@ -314,6 +324,11 @@ namespace BusinessLogics
                 throw new Exception("Sorry, there is an error occured while retrieving employee roles information ", ex);
             }
         }
+
+        public IQueryable<Customer> getAllCustomers()
+        {
+            return (new CustomerController()).getAllCustomers();
+        }		
 
 		public String getNextOrderBarCode()
         {

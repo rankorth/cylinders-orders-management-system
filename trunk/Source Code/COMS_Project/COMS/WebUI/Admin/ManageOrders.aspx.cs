@@ -12,6 +12,7 @@ namespace WebUI.Admin
 {
     public partial class ManageOrders : Common.BasePage
     {
+        MainController mainctrl = new MainController();
         protected void Page_Load(object sender, EventArgs e)
         {
             ltrModule_name.Text = "Orders Management";
@@ -19,12 +20,15 @@ namespace WebUI.Admin
 
         protected void lnkAddOrder_Click(object sender, EventArgs e)
         {
-            Response.Redirect(@"Admin\AddOrder.aspx");
+            Response.Redirect("DisplayOrder.aspx");
         }
 
         protected void lnkSearch_Click(object sender, EventArgs e)
         {
-            Order order = (new MainController()).getSalesOrder(txtBxOrderCode.Text);
+            IQueryable<Order> orderList = mainctrl.getSalesOrders(txtBxSearchKey.Text, ddlSearchType.Text);
+            gvOrders.DataSource = orderList;
+            gvOrders.AutoGenerateColumns = false;
+            gvOrders.DataBind();
         }
         
     }

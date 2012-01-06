@@ -13,13 +13,22 @@ namespace WebUI.Admin {
     public partial class ManageOrders {
         
         /// <summary>
-        /// txtBxOrderCode control.
+        /// txtBxSearchKey control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBxOrderCode;
+        protected global::System.Web.UI.WebControls.TextBox txtBxSearchKey;
+        
+        /// <summary>
+        /// ddlSearchType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSearchType;
         
         /// <summary>
         /// lnkSearch control.
@@ -47,6 +56,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkCancel;
+        
+        /// <summary>
+        /// gvOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvOrders;
         
         /// <summary>
         /// ltrModule_name control.

@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="barcode, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\barcode.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -51,13 +55,14 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Admin\AddOrder.aspx" />
+    <Content Include="Admin\DisplayOrder.aspx" />
     <Content Include="Admin\Departments.aspx" />
     <Content Include="Admin\ErrorManagement.aspx" />
     <Content Include="Admin\ManageOrders.aspx" />
     <Content Include="Admin\Role.aspx" />
     <Content Include="Admin\RoleAssignment_Approval.aspx" />
     <Content Include="Admin\Users.aspx" />
+    <Content Include="Admin\BarCode.aspx" />
     <Content Include="Admin\WorkflowErrorDescription.aspx" />
     <Content Include="default.aspx" />
     <Content Include="Styles\Images\Background\logo.png" />
@@ -86,12 +91,12 @@
     <Content Include="LoginPage.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin\AddOrder.aspx.cs">
-      <DependentUpon>AddOrder.aspx</DependentUpon>
+    <Compile Include="Admin\DisplayOrder.aspx.cs">
+      <DependentUpon>DisplayOrder.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\AddOrder.aspx.designer.cs">
-      <DependentUpon>AddOrder.aspx</DependentUpon>
+    <Compile Include="Admin\DisplayOrder.aspx.designer.cs">
+      <DependentUpon>DisplayOrder.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Departments.aspx.cs">
       <DependentUpon>Departments.aspx</DependentUpon>
@@ -134,6 +139,13 @@
     </Compile>
     <Compile Include="Admin\Users.aspx.designer.cs">
       <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BarCode.aspx.cs">
+      <DependentUpon>BarCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BarCode.aspx.designer.cs">
+      <DependentUpon>BarCode.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\WorkflowErrorDescription.aspx.cs">
       <DependentUpon>WorkflowErrorDescription.aspx</DependentUpon>
