@@ -13,6 +13,15 @@ namespace WebUI.Admin {
     public partial class Users {
         
         /// <summary>
+        /// txtBxSearchKey control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBxSearchKey;
+        
+        /// <summary>
         /// lnkSearch control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
+        
+        /// <summary>
+        /// LitStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LitStatus;
         
         /// <summary>
         /// gvAccess control.
