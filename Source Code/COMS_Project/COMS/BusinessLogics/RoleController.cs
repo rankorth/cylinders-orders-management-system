@@ -23,19 +23,15 @@ namespace BusinessLogics
             return context.Roles.Where(r => r.roleId.Equals(RoleID)).SingleOrDefault();
         }
 
-        public List<Role> GetEmployeeRoles(Guid employeeID)
+        public IQueryable<Emp_Role_ref> GetEmployeeRoles(Guid employeeID)
         {
-            List<Role> roles = new List<Role>();
+            IQueryable<Emp_Role_ref> emp_roles=null;
+
             if (null != employeeID)
             {
-                IQueryable<Emp_Role_ref> emp_roles = context.Emp_Role_ref.Where(e => e.employeeId.Equals(employeeID));
-                foreach (Emp_Role_ref emp_role in emp_roles)
-                {
-                    Role role = (Role)context.Roles.Where(r => r.roleId.Equals(emp_role.roleId) && r.isactive==true);
-                    roles.Add(role);
-                }
+                emp_roles = context.Emp_Role_ref.Where(e => e.employeeId.Equals(employeeID) && e.isapproved==true);
             }
-            return roles;
+            return emp_roles;
         }
 
         public List<Access_Right> GetAccessRights(Role role)
@@ -147,7 +143,49 @@ namespace BusinessLogics
             context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
         }
 
+        public void assign_Roles(Guid employeeID, List<Guid> rolesID, String username, DateTime today)
+        {
+            foreach (Guid id in rolesID)
+            {
+                Emp_Role_ref emp_role_ref = new Emp_Role_ref();
+                emp_role_ref.Id = Guid.NewGuid(); //generate new guid as primary key.
+                emp_role_ref.employeeId = employeeID;
+                emp_role_ref.roleId = id;
+                emp_role_ref.isapproved = false;
+                emp_role_ref.created_by = username;
+                emp_role_ref.created_date = today;
+                context.Emp_Role_ref.AddObject(emp_role_ref);
+            }
+            context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+        }
 
+        public void update_Assign_Roles(Guid employeeID, List<Guid> rolesID, String username, DateTime today)
+        {
+
+            IQueryable <Emp_Role_ref> emp_role_refs = context.Emp_Role_ref.Where(err => err.employeeId.Equals(employeeID));
+
+            foreach (Emp_Role_ref err in emp_role_refs)
+            {
+                context.DeleteObject(err);
+            }
+
+            foreach (Guid id in rolesID)
+            {
+                Emp_Role_ref emp_role_ref = new Emp_Role_ref();
+                emp_role_ref.Id = Guid.NewGuid(); //generate new guid as primary key.
+                if (emp_role_ref != null)
+                {
+                    emp_role_ref.isapproved = true;
+                    emp_role_ref.employeeId = employeeID;
+                    emp_role_ref.roleId = id;
+                    emp_role_ref.isapproved = false;
+                    emp_role_ref.created_by = username;
+                    emp_role_ref.created_date = today;
+                    context.Emp_Role_ref.AddObject(emp_role_ref);
+                }
+            }
+            context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+        }
         
     }
     public class PendingRoleAssignment
