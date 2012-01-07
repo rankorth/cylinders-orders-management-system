@@ -52,6 +52,23 @@ namespace BusinessLogics
             }
         }
 
+        public Employee retrieveEmployeeInfo(String staff_code)
+        {
+            try
+            {
+                if (null != dbContext && null != staff_code && !staff_code.Trim().Equals(""))
+                    return dbContext.Employees.Where(s => s.staff_code.Equals(staff_code)).SingleOrDefault();
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                //related to any errors, there may be only database error
+                //always create a meaningful error exception to catch and show up on UI.
+                throw new Exception("Sorry, there is an error occured while retrieving the employee information from the database.", ex);
+            }
+        }
+
         public void createEmployee(Employee emp)
         {
             try
