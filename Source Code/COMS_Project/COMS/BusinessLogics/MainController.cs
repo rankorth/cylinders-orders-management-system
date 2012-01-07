@@ -229,6 +229,21 @@ namespace BusinessLogics
             }
         }
 
+        public Employee retrieveEmployee(String staff_code)
+        {
+            try
+            {
+                if (null != staff_code && !staff_code.Trim().Equals(""))
+                    return (new EmployeeController()).retrieveEmployeeInfo(staff_code);
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving the employee information ", ex);
+            }
+        }
+
         public IQueryable<Employee> retrieveAllEmployees()
         {
             try
@@ -301,7 +316,7 @@ namespace BusinessLogics
             }
         }
 
-        public List<Role> retrieveEmployeeRoles(Guid employeeID)
+        public IQueryable<Emp_Role_ref> retrieveEmployeeRoles(Guid employeeID)
         {
             try
             { 
@@ -328,7 +343,22 @@ namespace BusinessLogics
         public IQueryable<Customer> getAllCustomers()
         {
             return (new CustomerController()).getAllCustomers();
-        }		
+        }
+
+        public IQueryable<Role> getRoles()
+        {
+            return (new RoleController()).GetRoles();
+        }
+	
+        public void assignNewRole(Guid employeeID, List<Guid> rolesID, String username, DateTime today)
+        {
+            (new RoleController()).assign_Roles(employeeID, rolesID, username, today);
+        }
+
+        public void updateRole(Guid employeeID, List<Guid> rolesID, String username, DateTime today)
+        {
+            (new RoleController()).update_Assign_Roles(employeeID, rolesID, username, today);
+        }
 
 		public String getNextOrderBarCode()
         {
