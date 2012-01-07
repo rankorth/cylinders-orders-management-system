@@ -114,6 +114,23 @@ namespace BusinessLogics
             return null;
         }
 
+        public IQueryable<Cylinder> retrieveCylinderList(Guid orderDetailsID)
+        {
+            try
+            {
+                if (null != dbContext && null!=orderDetailsID)
+                {
+                    IQueryable<Cylinder> cylinders = dbContext.Cylinders.Where(s => s.order_detailId.Equals(orderDetailsID));
+                    return cylinders;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving the cylinder list from the database. ", ex);
+            }
+            return null;
+        }
+
         public void stopProduction(Order order)
         {
             try
