@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-using BarCode;
+
 
 namespace WebUI.Admin
 {
