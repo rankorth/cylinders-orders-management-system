@@ -32,7 +32,7 @@ namespace WebUI.Common
         }
 
 
-        public void GenerateMenu(Panel menu_panel )
+        public void GenerateMenu(Panel menu_panel)
         {
             //get current user's roles access
 
@@ -42,10 +42,15 @@ namespace WebUI.Common
             //replace with actual code once all done
             module.Add("Orders", "/Admin/ManageOrders.aspx");
             module.Add("Roles", "/Admin/Role.aspx");
+            module.Add("Employee", "/Admin/Users.aspx");
+            module.Add("Customer", "/Admin/Customers.aspx");
             module.Add("Approve Assign Roles", "/Admin/RoleAssignment_Approval.aspx");
             module.Add("Workflow Error Message", "/Admin/ErrorManagement.aspx");
-            module.Add("Employee", "/Admin/Users.aspx");
+            module.Add("Cylinder Que", "/Admin/CylinderQue.aspx");
+            module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
+            module.Add("Reports", "/Admin/Reports.aspx");
             
+
 
 
             foreach (string name in module.Keys)
@@ -54,8 +59,33 @@ namespace WebUI.Common
                 lnkButton.Text = name;
                 lnkButton.CssClass = "module_menu";
                 lnkButton.Attributes.Add("module_id", "module_id");// replace with actual module ID
-               // lnkButton.Click+=new EventHandler(e);
-                
+                // lnkButton.Click+=new EventHandler(e);
+
+                lnkButton.PostBackUrl = Page.ResolveClientUrl(module[name]);
+
+                menu_panel.Controls.Add(lnkButton);
+            }
+
+        }
+
+        public void GenerateStartUpMenu(Panel menu_panel)
+        {
+            //get current user's roles access
+
+            Dictionary<string, string> module = new Dictionary<string, string>();
+            LinkButton lnkButton;
+
+            //replace with actual code once all done
+            module.Add("Cylinder Process", "/CylinderProcess.aspx");
+
+            foreach (string name in module.Keys)
+            {
+                lnkButton = new LinkButton();
+                lnkButton.Text = name;
+                lnkButton.CssClass = "module_menu";
+                lnkButton.Attributes.Add("module_id", "module_id");// replace with actual module ID
+                // lnkButton.Click+=new EventHandler(e);
+
                 lnkButton.PostBackUrl = Page.ResolveClientUrl(module[name]);
 
                 menu_panel.Controls.Add(lnkButton);

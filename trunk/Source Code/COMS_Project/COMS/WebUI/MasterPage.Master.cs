@@ -13,7 +13,10 @@ namespace WebUI
         {
                 Common.BasePage bp = new Common.BasePage();
                 bp.login("user", "password");
-                bp.GenerateMenu(module_panel);
+                if (module_panel.Controls.Count < 1)
+                {
+                    bp.GenerateMenu(module_panel);
+                }
         }
         
     }

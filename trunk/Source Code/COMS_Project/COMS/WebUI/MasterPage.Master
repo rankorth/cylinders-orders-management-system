@@ -21,9 +21,7 @@
                 <div id="left_menu_panel">
                     <div id="left_menu_title">
                         Main Menu</div>
-                    <asp:Panel ID="module_panel" runat="server">
-                        
-                    </asp:Panel>
+                    <asp:Panel ID="module_panel" runat="server"></asp:Panel>
                     <asp:LinkButton ID="lnkLogout" runat="server" CssClass="module_menu">Logout</asp:LinkButton>
                 </div>
             </td>

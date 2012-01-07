@@ -65,6 +65,7 @@
     <Content Include="Admin\BarCode.aspx" />
     <Content Include="Admin\WorkflowErrorDescription.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="Index.aspx" />
     <Content Include="Styles\Images\Background\logo.png" />
     <Content Include="Styles\Images\Background\metallic_bg.png" />
     <Content Include="Styles\Images\Menu\menu_bg.png" />
@@ -88,7 +89,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="LoginPage.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\DisplayOrder.aspx.cs">
@@ -168,6 +168,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,13 +184,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\CommonUtil.cs" />
-    <Compile Include="LoginPage.aspx.cs">
-      <DependentUpon>LoginPage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LoginPage.aspx.designer.cs">
-      <DependentUpon>LoginPage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="template.aspx.cs">
       <DependentUpon>template.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
