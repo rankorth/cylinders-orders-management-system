@@ -9,7 +9,7 @@ using COMSdbEntity;
 
 namespace WebUI.Admin
 {
-    public partial class Users : System.Web.UI.Page
+    public partial class Users :Common.BasePage
     {
         MainController mainctrl = new MainController();
 
@@ -19,6 +19,7 @@ namespace WebUI.Admin
             {
                 hPageState.Value = Common.PageState.New;
                 load_data();
+                load_Roles_data();
                 loadDepartment();
             }
             ltrModule_name.Text = "User Management";
@@ -26,7 +27,7 @@ namespace WebUI.Admin
 
         private void retrieveEmployeeDetail(Guid employeeID)
         {
-            Employee employee = mainctrl.retrieveEmployee(employeeID);
+                Employee employee = mainctrl.retrieveEmployee(employeeID);
         }
         
         private void CleanPageState()
@@ -40,6 +41,8 @@ namespace WebUI.Admin
             txtPassword.Text = "";
             hPageState.Value = Common.PageState.New;
             hUpdateID.Value = "";
+            LitStatus.Text = "";
+            txtBxSearchKey.Text = "";
             DepartmentList.Items.Clear();
             loadDepartment();
         }
@@ -55,17 +58,24 @@ namespace WebUI.Admin
         private void load_Roles_data(Guid employeeID)
         {
             if(null!=employeeID){
-                List<Access_Right> consolidateRights = new List<Access_Right>();
-                List<COMSdbEntity.Role> roles = mainctrl.retrieveEmployeeRoles(employeeID);
-                foreach (COMSdbEntity.Role role in roles)
-                {
-                    List<Access_Right> ar = mainctrl.retrieveAccessRights(role);
-                    consolidateRights.AddRange(ar);
-                }
-                gvAccess.DataSource = consolidateRights;
+                IQueryable<COMSdbEntity.Role> roles = mainctrl.getRoles();
+                gvAccess.DataSource = roles;
                 gvAccess.AutoGenerateColumns = false;
                 gvAccess.DataBind();
+
+                IQueryable<Emp_Role_ref> emp_roles = mainctrl.retrieveEmployeeRoles(employeeID);
+                if(null!=emp_roles)
+                    SelectRolesInGUI(emp_roles);
+                //compare with employeerole
             }
+        }
+
+        private void load_Roles_data()
+        {
+            IQueryable<COMSdbEntity.Role> roles = mainctrl.getRoles();
+            gvAccess.DataSource = roles;
+            gvAccess.AutoGenerateColumns = false;
+            gvAccess.DataBind();            
         }
 
         protected void gvUserInfo_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -75,7 +85,7 @@ namespace WebUI.Admin
             {
                 employeeID = ((Employee)(e.Row.DataItem)).employeeId;
 
-                ((CheckBox)e.Row.Cells[0].FindControl("chkID")).InputAttributes.Add("employeeID", employeeID.ToString());
+                ((CheckBox)e.Row.Cells[0].FindControl("chk2ID")).InputAttributes.Add("employeeID", employeeID.ToString());
                 LinkButton lnkEdit = ((LinkButton)e.Row.Cells[0].FindControl("lnkEdit"));
                 lnkEdit.CommandName = "ShowDetails";
                 lnkEdit.CommandArgument = employeeID.ToString();
@@ -84,15 +94,14 @@ namespace WebUI.Admin
 
         protected void gvAccess_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            Guid employeeID;
+            Guid roleID;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                employeeID = ((Employee)(e.Row.DataItem)).employeeId;
-
-                ((CheckBox)e.Row.Cells[0].FindControl("chkID")).InputAttributes.Add("employeeID", employeeID.ToString());
-                LinkButton lnkEdit = ((LinkButton)e.Row.Cells[0].FindControl("lnkEdit"));
-                lnkEdit.CommandName = "ShowDetails";
-                lnkEdit.CommandArgument = employeeID.ToString();
+                roleID = ((COMSdbEntity.Role)(e.Row.DataItem)).roleId;
+                ((CheckBox)e.Row.Cells[0].FindControl("chkID")).InputAttributes.Add("roleID", roleID.ToString());
+                //LinkButton lnkEdit = ((LinkButton)e.Row.Cells[0].FindControl("lnkEdit"));
+                //lnkEdit.CommandName = "ShowDetails";
+                //lnkEdit.CommandArgument = ID.ToString();
             }
         }
 
@@ -103,15 +112,18 @@ namespace WebUI.Admin
             {
                 hUpdateID.Value = e.CommandArgument.ToString();
                 Employee emp = mainctrl.retrieveEmployee(new Guid(e.CommandArgument.ToString()));
-                txtName.Text = emp.given_name;
-                txtSurname.Text = emp.surname;
-                txtBarCode.Text = emp.barcode;
-                txtPosition.Text = emp.position;
-                txtStaffCode.Text = emp.staff_code;
-                txtUsername.Text = emp.username;
-                txtPassword.Text = emp.password;
-                loadDepartment();                
-                load_Roles_data(new Guid(e.CommandArgument.ToString()));
+                if (null != emp)
+                {
+                    txtName.Text = emp.given_name;
+                    txtSurname.Text = emp.surname;
+                    txtBarCode.Text = emp.barcode;
+                    txtPosition.Text = emp.position;
+                    txtStaffCode.Text = emp.staff_code;
+                    txtUsername.Text = emp.username;
+                    txtPassword.Text = emp.password;
+                    loadDepartment();
+                    load_Roles_data(new Guid(e.CommandArgument.ToString()));
+                }
             }
         }
 
@@ -128,11 +140,36 @@ namespace WebUI.Admin
         {
             bool isValid = true;
 
-            if (string.IsNullOrEmpty(txtName.Text.Trim()))
+            if (string.IsNullOrEmpty(txtStaffCode.Text.Trim()) || string.IsNullOrEmpty(txtUsername.Text.Trim()) || string.IsNullOrEmpty(txtPassword.Text.Trim()))
             {
                 isValid = false;
             }
             return isValid;
+        }
+
+        protected void lnkSearch_Click(object sender, EventArgs e)
+        {
+            hPageState.Value = Common.PageState.Update;
+            Employee emp = mainctrl.retrieveEmployee(txtBxSearchKey.Text);
+            if (null != emp)
+            {
+                txtName.Text = emp.given_name;
+                txtSurname.Text = emp.surname;
+                txtBarCode.Text = emp.barcode;
+                txtPosition.Text = emp.position;
+                txtStaffCode.Text = emp.staff_code;
+                txtUsername.Text = emp.username;
+                txtPassword.Text = emp.password;
+                loadDepartment();
+                load_Roles_data(emp.employeeId);
+                hUpdateID.Value = emp.employeeId.ToString();
+                LitStatus.Text = "";
+            }
+            else
+            {
+                txtBxSearchKey.Text = "";
+                LitStatus.Text = "Staff Code does not exist";
+            }
         }
 
         protected void lnkDelete_Click(object sender, EventArgs e)
@@ -143,6 +180,7 @@ namespace WebUI.Admin
             }
 
             load_data();
+            load_Roles_data();
             CleanPageState();
         }
 
@@ -150,10 +188,12 @@ namespace WebUI.Admin
         {
             if (!ValidateInput())
             {
+                LitStatus.Text = "";
                 return;
             }
 
             Employee newEmployee = new Employee();
+            newEmployee.employeeId = Guid.NewGuid();
             newEmployee.barcode = txtBarCode.Text.Trim();
             newEmployee.given_name = txtName.Text.Trim();
             newEmployee.surname = txtSurname.Text.Trim();
@@ -164,22 +204,27 @@ namespace WebUI.Admin
             newEmployee.password = txtPassword.Text.Trim();
             newEmployee.created_date = DateTime.Today;
             newEmployee.isactive = true;
-            newEmployee.created_by = "Roger";
+            newEmployee.created_by = base.GetCurentUser().username;
             newEmployee.departmentId = new Guid(DepartmentList.SelectedValue);
 
             if (hPageState.Value.Equals(Common.PageState.New))
             {
                 mainctrl.createEmployee(newEmployee);
+                List<Guid> selectedRoleID = GetSelectedRolesIDs();
+                mainctrl.assignNewRole(newEmployee.employeeId, selectedRoleID, base.GetCurentUser().username, DateTime.Today);
             }
             if (hPageState.Value.Equals(Common.PageState.Update))
             {
                 newEmployee.employeeId = new Guid(hUpdateID.Value);
-                newEmployee.updated_by = "Dave";
+                newEmployee.updated_by = base.GetCurentUser().username;
                 newEmployee.updated_date = DateTime.Today;
                 mainctrl.updateEmployee(newEmployee);
+                List<Guid> selectedRoleID = GetSelectedRolesIDs();
+                mainctrl.updateRole(new Guid(hUpdateID.Value), selectedRoleID, base.GetCurentUser().username, DateTime.Today);
             }
             load_data();
             CleanPageState();
+            load_Roles_data();
         }
 
         private List<Guid> GetSelectedIDs()
@@ -189,7 +234,7 @@ namespace WebUI.Admin
             {
                 if (gvrow.RowType == DataControlRowType.DataRow)
                 {
-                    CheckBox chkId = (CheckBox)gvrow.Cells[0].FindControl("chkID");
+                    CheckBox chkId = (CheckBox)gvrow.Cells[0].FindControl("chk2ID");
                     if (chkId.Checked)
                     {
                         Guid ID = new Guid(chkId.InputAttributes["employeeID"].ToString());
@@ -198,6 +243,45 @@ namespace WebUI.Admin
                 }
             }
             return selectedIDs;
+        }
+
+        private List<Guid> GetSelectedRolesIDs()
+        {
+            List<Guid> selectedIDs = new List<Guid>();
+            foreach (GridViewRow grow in gvAccess.Rows)
+            {
+                if (grow.RowType == DataControlRowType.DataRow)
+                {
+                    CheckBox chkId = (CheckBox)grow.Cells[0].FindControl("chkID");
+                    if (chkId.Checked)
+                    {
+                        Guid ID = new Guid(chkId.InputAttributes["roleID"].ToString());
+                        selectedIDs.Add(ID);
+                    }
+                }
+            }
+            return selectedIDs;
+        }
+
+        private void SelectRolesInGUI(IQueryable<Emp_Role_ref> roles)
+        {
+            
+            foreach (GridViewRow grow in gvAccess.Rows)
+            {
+                if (grow.RowType == DataControlRowType.DataRow)
+                {
+                    //COMSdbEntity.Role role = (COMSdbEntity.Role)grow.DataItem;
+                    CheckBox chkId = (CheckBox)grow.Cells[0].FindControl("chkID");
+                    
+                    foreach (Emp_Role_ref r in roles)
+                    {
+                        if ((r.roleId.ToString()).Equals(chkId.InputAttributes["roleID"].ToString()))
+                        {
+                            chkId.Checked = true;
+                        }
+                    }
+                }
+            }
         }
     }
 }
