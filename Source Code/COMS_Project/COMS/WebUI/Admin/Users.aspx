@@ -104,7 +104,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
     
     <asp:GridView ID="gvUserInfo" runat="server" 
-        onrowdatabound="gvUserInfo_RowDataBound" ViewStateMode="Enabled" Width="50%" 
+        onrowdatabound="gvUserInfo_RowDataBound" ViewStateMode="Enabled" Width="55%" 
         onrowcommand="gvUserInfo_RowCommand">
         <Columns>
             <asp:TemplateField>
