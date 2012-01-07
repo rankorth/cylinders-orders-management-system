@@ -11,6 +11,11 @@ namespace WebUI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Prepare_Menu();
+        }
+
+        private void Prepare_Menu()
+        {
             Common.BasePage bp = new Common.BasePage();
             Panel menupanel = (Panel)this.Master.FindControl("module_panel");
             LinkButton LogoutBtn = (LinkButton)this.Master.FindControl("lnkLogout");
@@ -20,7 +25,6 @@ namespace WebUI
 
             bp.GenerateStartUpMenu(menupanel);
         }
-
         protected void lnkLogin_Click(object sender, EventArgs e)
         {
             Response.Redirect("/Admin/Role.aspx");
