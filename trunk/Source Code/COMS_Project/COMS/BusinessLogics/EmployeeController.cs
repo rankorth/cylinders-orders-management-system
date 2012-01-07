@@ -58,7 +58,7 @@ namespace BusinessLogics
             {
                 if (null != dbContext && null != emp)
                 {
-                    emp.employeeId = Guid.NewGuid(); //generate new guid as primary key.
+                    //emp.employeeId = Guid.NewGuid(); //generate new guid as primary key.
                     dbContext.Employees.AddObject(emp);
                     dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
