@@ -360,6 +360,11 @@ namespace BusinessLogics
             (new RoleController()).update_Assign_Roles(employeeID, rolesID, username, today);
         }
 
+        public List<Cylinder> getAllCylinders(String order_code)
+        {
+            return (new SalesOrderController()).getAllCylinders(order_code);
+        }
+
 		public String getNextOrderBarCode()
         {
             return (new SalesOrderController()).getNextOrderBarCode();
