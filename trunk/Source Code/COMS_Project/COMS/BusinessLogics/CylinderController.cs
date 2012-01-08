@@ -153,6 +153,8 @@ namespace BusinessLogics
         //Tin(7-Jan-2012)
         public void changeCylinderStep(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark,DateTime starttime,DateTime endtime,int performance_mark,string status,bool isDamage)
         {
+            //Tin updated
+            cyl.workflowId = thisStep.workflowId;
             cyl.stepId = thisStep.stepId; 
             //Tin (7-Jan-2012)
             Cylinder_Log cylLog = generateCylinderLog(cyl, empl, thisStep, error, remark,starttime,endtime,performance_mark,status,isDamage);
