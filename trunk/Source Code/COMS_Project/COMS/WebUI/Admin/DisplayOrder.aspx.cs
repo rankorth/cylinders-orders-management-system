@@ -39,6 +39,7 @@ namespace WebUI.Admin
             IQueryable<Customer> customerList = mainCtrl.getAllCustomers();
             foreach (Customer cust in customerList) {
                 ddlCustomer.Items.Add(new ListItem(cust.fullname, cust.customerid.ToString()));
+                ddlCustomerCode.Items.Add(new ListItem(cust.code, cust.customerid.ToString()));
             }
         }
 
@@ -58,10 +59,12 @@ namespace WebUI.Admin
             IQueryable<Customer> customerList = mainCtrl.getAllCustomers();
             foreach (Customer cust in customerList)
             {
-                ListItem item = new ListItem(cust.fullname, cust.customerid.ToString());
-                ddlCustomer.Items.Add(item);
+                ddlCustomer.Items.Add(new ListItem(cust.fullname, cust.customerid.ToString()));
+                ddlCustomerCode.Items.Add(new ListItem(cust.code, cust.customerid.ToString()));
             }
             ddlCustomer.SelectedValue = order.customer_id.ToString();
+            ddlCustomerCode.SelectedValue = ddlCustomer.SelectedValue;
+            txtCustomerCode.Text = ddlCustomerCode.SelectedItem.Text;
 
             txtCustomerRep.Text = order.customer_rep;
             txtProdName.Text = order.product_name;
@@ -288,9 +291,15 @@ namespace WebUI.Admin
 
             //the number of cylinders depends on whether old cores are being reused
             if (chkBxOldCore.Checked)
+            {
+                orderDetail.new_cyl_count = 0;
                 orderDetail.used_cyl_count = Convert.ToInt32(txtCylCount.Text);
+            }
             else
+            {
                 orderDetail.new_cyl_count = Convert.ToInt32(txtCylCount.Text);
+                orderDetail.used_cyl_count = 0;
+            }
 
             orderDetail.print_method = (rBtnMethodSurface.Checked) ? OrderConst.PRINTMETHOD_SURFACE : OrderConst.PRINTMETHOD_REVERSE;
 

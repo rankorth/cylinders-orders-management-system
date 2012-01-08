@@ -11,6 +11,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="InputPlaceHolder" runat="server">
 
 <asp:HiddenField ID="hdOrderId" runat="server" />
+<script language="javascript" type="text/javascript">
+    function updateCustomerCode() {
+        var ddlCustomer = document.getElementById("ddlCustomer");
+        var custId = ddlCustomer.options[ddlCustomer.selectedIndex].value;
+
+        var ddlCustCode = document.getElementById("ddlCustomerCode");
+        for (var i = 0; i < ddlCustCode.length; i++) {
+            if (ddlCustCode.options[i].value == custId)
+                ddlCustCode.selectedIndex = i;
+        }
+    }
+</script>
 
 <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>
@@ -25,7 +37,8 @@
         </tr>
         <tr>
             <td class="entry_label">1.Customer</td>
-            <td class="entry_data" colspan="3"><asp:DropDownList ID="ddlCustomer" runat="server"></asp:DropDownList></td>
+            <td class="entry_data" colspan="3"><asp:DropDownList ID="ddlCustomer" 
+                    runat="server" style="margin-bottom: 0px"></asp:DropDownList></td>
              <td class="entry_label">Set Code</td>
             <td class="entry_data"><asp:TextBox ID="txtSetCode" runat="server" BorderWidth="1" 
                     MaxLength="10" /></td>
@@ -246,8 +259,10 @@
              <td class="entry_data">Color:<asp:TextBox ID="txtSplitLineColor" runat="server" 
                      BorderWidth="1" Width="40px" MaxLength="2" /></td>
             <td class="entry_label">15. Customer Code:</td>
-             <td class="entry_data"><asp:TextBox ID="txtCustCode" runat="server" BorderWidth="1" 
-                     Width="120px" MaxLength="3" /></td>
+             <td class="entry_data">
+                 <asp:TextBox ID="txtCustomerCode" runat="server" BorderWidth="1" Width="60px" Enabled="false" />
+                 <asp:DropDownList ID="ddlCustomerCode" runat="server" Width="60px" Visible="false"/>
+            </td>
         </tr>
         <tr>
             <td class="entry_label">16.Printing Material:</td>

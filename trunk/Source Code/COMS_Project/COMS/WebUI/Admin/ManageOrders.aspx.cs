@@ -31,7 +31,7 @@ namespace WebUI.Admin
                 gvOrders.DataSource = orderList;
                 gvOrders.AutoGenerateColumns = false;
                 gvOrders.DataBind();
-                lblMsg.Text = "Search found "+orderList.Count()+"result(s).";
+                lblMsg.Text = "Search found "+orderList.Count()+" result(s).";
                 lblMsg.CssClass = "OkMsg";
             }
             else

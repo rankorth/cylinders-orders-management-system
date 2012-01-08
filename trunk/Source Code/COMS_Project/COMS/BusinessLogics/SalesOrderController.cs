@@ -159,5 +159,10 @@ namespace BusinessLogics
 
             return nextOrderBarCode;
         }
+
+        public List<Cylinder> getAllCylinders(String order_code) 
+        {
+            return null;
+        }
     }
 }
