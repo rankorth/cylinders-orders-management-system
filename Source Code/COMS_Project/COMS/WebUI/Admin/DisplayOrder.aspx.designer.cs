@@ -13,15 +13,6 @@ namespace WebUI.Admin {
     public partial class DisplayOrder {
         
         /// <summary>
-        /// lnkSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkSearch;
-        
-        /// <summary>
         /// lnkSave control.
         /// </summary>
         /// <remarks>
@@ -31,6 +22,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.LinkButton lnkSave;
         
         /// <summary>
+        /// lnkPrintBarcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkPrintBarcode;
+        
+        /// <summary>
         /// lnkCancel control.
         /// </summary>
         /// <remarks>
@@ -38,6 +38,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkCancel;
+        
+        /// <summary>
+        /// hdOrderId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdOrderId;
         
         /// <summary>
         /// lblMsg control.
@@ -65,15 +74,6 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgBarCode;
-        
-        /// <summary>
-        /// txtBarCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBarCode;
         
         /// <summary>
         /// ddlCustomer control.
@@ -193,6 +193,24 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtProdWidth;
         
         /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
+        /// vldTxtProdWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtProdWidth;
+        
+        /// <summary>
         /// txtProdHeight control.
         /// </summary>
         /// <remarks>
@@ -200,6 +218,24 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProdHeight;
+        
+        /// <summary>
+        /// RequiredFieldValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        
+        /// <summary>
+        /// vldTxtProdHeight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtProdHeight;
         
         /// <summary>
         /// txtWidthStretch control.
@@ -211,6 +247,24 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtWidthStretch;
         
         /// <summary>
+        /// RequiredFieldValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        
+        /// <summary>
+        /// vldTxtWidthStretch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtWidthStretch;
+        
+        /// <summary>
         /// txtHeightStretch control.
         /// </summary>
         /// <remarks>
@@ -218,6 +272,24 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtHeightStretch;
+        
+        /// <summary>
+        /// RequiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        
+        /// <summary>
+        /// vldTxtHeightStretch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtHeightStretch;
         
         /// <summary>
         /// txtLengthRepeats control.
@@ -229,6 +301,24 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtLengthRepeats;
         
         /// <summary>
+        /// RequiredFieldValidator5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        
+        /// <summary>
+        /// vldTxtLengthRepeats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtLengthRepeats;
+        
+        /// <summary>
         /// txtCircumRepeats control.
         /// </summary>
         /// <remarks>
@@ -236,6 +326,24 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCircumRepeats;
+        
+        /// <summary>
+        /// RequiredFieldValidator6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        
+        /// <summary>
+        /// vldTxtCircumRepeats control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtCircumRepeats;
         
         /// <summary>
         /// txtWebPrintWidth control.
@@ -247,6 +355,24 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtWebPrintWidth;
         
         /// <summary>
+        /// RequiredFieldValidator7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+        
+        /// <summary>
+        /// vldTxtWebPrintWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtWebPrintWidth;
+        
+        /// <summary>
         /// txtWebTotalWidth control.
         /// </summary>
         /// <remarks>
@@ -254,6 +380,24 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtWebTotalWidth;
+        
+        /// <summary>
+        /// RequiredFieldValidator8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
+        
+        /// <summary>
+        /// vldTxtWebTotalWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtWebTotalWidth;
         
         /// <summary>
         /// txtCylLength control.
@@ -265,6 +409,24 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtCylLength;
         
         /// <summary>
+        /// RequiredFieldValidator9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator9;
+        
+        /// <summary>
+        /// vldTxtCylLength control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtCylLength;
+        
+        /// <summary>
         /// txtCylCircum control.
         /// </summary>
         /// <remarks>
@@ -272,6 +434,24 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCylCircum;
+        
+        /// <summary>
+        /// RequiredFieldValidator10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator10;
+        
+        /// <summary>
+        /// vldTxtCylCircum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtCylCircum;
         
         /// <summary>
         /// chkBxEyeMark control.
@@ -310,6 +490,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtEMHeight;
         
         /// <summary>
+        /// vldTxtEMHeight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtEMHeight;
+        
+        /// <summary>
         /// txtEMWidth control.
         /// </summary>
         /// <remarks>
@@ -317,6 +506,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEMWidth;
+        
+        /// <summary>
+        /// vldTxtEMWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtEMWidth;
         
         /// <summary>
         /// txtEMColor control.
@@ -391,6 +589,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtKHInnerDia;
         
         /// <summary>
+        /// vldTxtKHInnerDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtKHInnerDia;
+        
+        /// <summary>
         /// txtKHOuterDia control.
         /// </summary>
         /// <remarks>
@@ -400,6 +607,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtKHOuterDia;
         
         /// <summary>
+        /// vldTxtKHOuterDia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtKHOuterDia;
+        
+        /// <summary>
         /// txtKHAngle control.
         /// </summary>
         /// <remarks>
@@ -407,6 +623,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtKHAngle;
+        
+        /// <summary>
+        /// vldTxtKHAngle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtKHAngle;
         
         /// <summary>
         /// txtKHKeyway control.
@@ -427,6 +652,24 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtColorCount;
         
         /// <summary>
+        /// RequiredFieldValidator11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator11;
+        
+        /// <summary>
+        /// vldTxtColorCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtColorCount;
+        
+        /// <summary>
         /// txtCylCount control.
         /// </summary>
         /// <remarks>
@@ -434,6 +677,24 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCylCount;
+        
+        /// <summary>
+        /// RequiredFieldValidator12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator12;
+        
+        /// <summary>
+        /// vldTxtCylCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator vldTxtCylCount;
         
         /// <summary>
         /// rBtnMethodSurface control.
@@ -652,13 +913,40 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtCreatedBy;
         
         /// <summary>
-        /// calDeliveryDate control.
+        /// txtDeliveryDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calDeliveryDate;
+        protected global::System.Web.UI.WebControls.TextBox txtDeliveryDate;
+        
+        /// <summary>
+        /// txtDeliveryDate_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtDeliveryDate_CalendarExtender;
+        
+        /// <summary>
+        /// vldTxtDeliveryDate2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator vldTxtDeliveryDate2;
+        
+        /// <summary>
+        /// vldTxtDeliveryDate1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator vldTxtDeliveryDate1;
         
         /// <summary>
         /// ddlPriority control.

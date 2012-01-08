@@ -86,7 +86,7 @@ namespace BusinessLogics
 
         public IQueryable<Order> getSalesOrders(String searchKey, String searchType)
         {
-            if (searchKey == null || searchType == null)
+            if (String.IsNullOrEmpty(searchKey) || String.IsNullOrEmpty(searchType))
             {
                 return dbContext.Orders;
             }
