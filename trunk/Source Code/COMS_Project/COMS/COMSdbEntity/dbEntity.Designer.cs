@@ -30,7 +30,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Workflow_Department", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Department), "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Workflow), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Employee", "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Employee), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Formula_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Formula", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Formula), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Detail_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Detail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Detail), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Log_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Log), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Log_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Order_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Log), true)]
@@ -39,6 +38,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Step1", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Formula_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Formula", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Formula), true)]
 
 #endregion
 
@@ -237,22 +237,6 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Formula> Formulae
-        {
-            get
-            {
-                if ((_Formulae == null))
-                {
-                    _Formulae = base.CreateObjectSet<Formula>("Formulae");
-                }
-                return _Formulae;
-            }
-        }
-        private ObjectSet<Formula> _Formulae;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Order> Orders
         {
             get
@@ -393,6 +377,22 @@ namespace COMSdbEntity
             }
         }
         private ObjectSet<Workflow> _Workflows;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Formula> Formulae
+        {
+            get
+            {
+                if ((_Formulae == null))
+                {
+                    _Formulae = base.CreateObjectSet<Formula>("Formulae");
+                }
+                return _Formulae;
+            }
+        }
+        private ObjectSet<Formula> _Formulae;
 
         #endregion
         #region AddTo Methods
@@ -470,14 +470,6 @@ namespace COMSdbEntity
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Formulae EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToFormulae(Formula formula)
-        {
-            base.AddObject("Formulae", formula);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Orders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToOrders(Order order)
@@ -547,6 +539,14 @@ namespace COMSdbEntity
         public void AddToWorkflows(Workflow workflow)
         {
             base.AddObject("Workflows", workflow);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Formulae EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFormulae(Formula formula)
+        {
+            base.AddObject("Formulae", formula);
         }
 
         #endregion
@@ -3457,7 +3457,7 @@ namespace COMSdbEntity
         /// <param name="created_by">Initial value of the created_by property.</param>
         /// <param name="created_date">Initial value of the created_date property.</param>
         /// <param name="isactive">Initial value of the isactive property.</param>
-        public static Formula CreateFormula(global::System.String formulaId, global::System.Guid stepId, global::System.String formula1, global::System.Int32 coef1, global::System.Int32 coef2, global::System.Int32 coef3, global::System.Int32 coef4, global::System.String created_by, global::System.DateTime created_date, global::System.Boolean isactive)
+        public static Formula CreateFormula(global::System.Guid formulaId, global::System.Guid stepId, global::System.String formula1, global::System.Int32 coef1, global::System.Int32 coef2, global::System.Int32 coef3, global::System.Int32 coef4, global::System.String created_by, global::System.DateTime created_date, global::System.Boolean isactive)
         {
             Formula formula = new Formula();
             formula.formulaId = formulaId;
@@ -3481,7 +3481,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String formulaId
+        public global::System.Guid formulaId
         {
             get
             {
@@ -3493,14 +3493,14 @@ namespace COMSdbEntity
                 {
                     OnformulaIdChanging(value);
                     ReportPropertyChanging("formulaId");
-                    _formulaId = StructuralObject.SetValidValue(value, false);
+                    _formulaId = StructuralObject.SetValidValue(value);
                     ReportPropertyChanged("formulaId");
                     OnformulaIdChanged();
                 }
             }
         }
-        private global::System.String _formulaId;
-        partial void OnformulaIdChanging(global::System.String value);
+        private global::System.Guid _formulaId;
+        partial void OnformulaIdChanging(global::System.Guid value);
         partial void OnformulaIdChanged();
     
         /// <summary>
@@ -7171,28 +7171,6 @@ namespace COMSdbEntity
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Formula_Step", "Formula")]
-        public EntityCollection<Formula> Formulae
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Formula>("COMSModel.FK_Formula_Step", "Formula");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Formula>("COMSModel.FK_Formula_Step", "Formula", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Step_ref_Step", "Step_ref")]
         public EntityCollection<Step_ref> Step_ref
         {
@@ -7265,6 +7243,28 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Workflow>("COMSModel.FK_Step_Workflow", "Workflow", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Formula_Step", "Formula")]
+        public EntityCollection<Formula> Formulae
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Formula>("COMSModel.FK_Formula_Step", "Formula");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Formula>("COMSModel.FK_Formula_Step", "Formula", value);
                 }
             }
         }
