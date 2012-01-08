@@ -26,9 +26,41 @@ namespace WebUI.Admin
         protected void lnkSearch_Click(object sender, EventArgs e)
         {
             IQueryable<Order> orderList = mainctrl.getSalesOrders(txtBxSearchKey.Text, ddlSearchType.Text);
-            gvOrders.DataSource = orderList;
-            gvOrders.AutoGenerateColumns = false;
-            gvOrders.DataBind();
+            if (orderList != null)
+            {
+                gvOrders.DataSource = orderList;
+                gvOrders.AutoGenerateColumns = false;
+                gvOrders.DataBind();
+                lblMsg.Text = "Search found "+orderList.Count()+"result(s).";
+                lblMsg.CssClass = "OkMsg";
+            }
+            else
+            {
+
+            }
+
+        }
+
+        protected void gvOrders_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            Order order = null;
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+               LinkButton lnkOrderCode = (LinkButton) e.Row.FindControl("lnkOrderCode");
+
+               order =(Order) e.Row.DataItem;
+               lnkOrderCode.Text = order.order_code.ToString();
+               lnkOrderCode.CommandName = "OrderDetail";
+               lnkOrderCode.CommandArgument = order.orderId.ToString();
+            }
+        }
+
+        protected void gvOrders_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("OrderDetail"))
+            {
+                Response.Redirect("/Admin/DisplayOrder.aspx?orderId="+e.CommandArgument.ToString());
+            }
         }
         
     }

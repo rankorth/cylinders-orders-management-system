@@ -276,45 +276,143 @@ namespace Example
             COMSEntities dbContext = new COMSEntities();
             try
             {
-                Customer cust = new Customer();
-                cust.address = "635 HỒNG BÀNG Q6 P6";
-                cust.code = "12";
-                cust.code_tax = "0301640003";
-                cust.created_by = "Ba Tien";
-                cust.created_date = DateTime.Now;
-                cust.customerid = Guid.NewGuid();
-                cust.fax = "9692281";
-                cust.fullname = "CTY TNHH SXTM NHẤT LỢI";
-                cust.name = "NHẤT LỢI";
-                cust.status = "ACTIVE";
-                cust.telephone = "39605972-205(HẰNG)";
-                cust.updated_by = cust.created_by;
-                cust.updated_date = cust.created_date;
-
-                Printer printer = new Printer();
-                printer.address = "";
-                printer.code = "";
-                printer.created_by = cust.created_by;
-                printer.created_date = cust.created_date;
-                printer.customer_id = cust.customerid;
-                printer.hole_stick = "70 x 15";
-                printer.name = "Anh Hà (BN) Máy 3";
-                printer.printer_id = Guid.NewGuid();
-                printer.slot_latch = "10 x 9 (1 Đầu)";
-                printer.status = "";
-                printer.updated_by = printer.created_by;
-                printer.updated_date = printer.updated_date;
-                cust.Printers.Add(printer);
-
-                dbContext.Customers.AddObject(cust);
+                dbContext.Customers.AddObject(createCustomer1());
+                dbContext.Customers.AddObject(createCustomer2());
+                dbContext.Customers.AddObject(createCustomer3());
+                dbContext.Customers.AddObject(createCustomer4());
                 //make changes permanent 
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
-                MessageBox.Show("Customer Created");
+                MessageBox.Show("4 Customers Created");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.StackTrace);
             }
+        }
+
+        private Customer createCustomer1()
+        {
+            Customer cust = new Customer();
+            cust.address = "635 HỒNG BÀNG Q6 P6";
+            cust.code = "12";
+            cust.code_tax = "0301640003";
+            cust.created_by = "Ba Tien";
+            cust.created_date = DateTime.Now;
+            cust.customerid = Guid.NewGuid();
+            cust.fax = "9692281";
+            cust.fullname = "CTY TNHH SXTM NHẤT LỢI";
+            cust.name = "NHẤT LỢI";
+            cust.status = "ACTIVE";
+            cust.telephone = "39605972-205(HẰNG)";
+            cust.updated_by = cust.created_by;
+            cust.updated_date = cust.created_date;
+
+            Printer printer = new Printer();
+            printer.address = "";
+            printer.code = cust.code;
+            printer.created_by = cust.created_by;
+            printer.created_date = cust.created_date;
+            printer.customer_id = cust.customerid;
+            printer.hole_stick = "70 x 15";
+            printer.name = "Anh Hà (BN) Máy 3";
+            printer.printer_id = Guid.NewGuid();
+            printer.slot_latch = "10 x 9 (1 Đầu)";
+            printer.status = "";
+            printer.updated_by = printer.created_by;
+            printer.updated_date = printer.updated_date;
+            cust.Printers.Add(printer);
+
+            return cust;
+        }
+
+        private Customer createCustomer2()
+        {
+            Customer cust = new Customer();
+            cust.address = "SỐ E50 Đường Nhật Tảo .p 7 Q.11 HCM";
+            cust.code = "14";
+            cust.code_tax = "302329400";
+            cust.created_by = "Ba Tien";
+            cust.created_date = DateTime.Now;
+            cust.customerid = Guid.NewGuid();
+            cust.fax = "9555479";
+            cust.fullname = "NHỰA TÂN HƯNG";
+            cust.name = "NHỰA TÂN HƯNG";
+            cust.status = "ACTIVE";
+            cust.telephone = "8562003-9556827- 0908622282";
+            cust.updated_by = cust.created_by;
+            cust.updated_date = cust.created_date;
+
+            Printer printer = new Printer();
+            printer.address = "";
+            printer.code = cust.code;
+            printer.created_by = cust.created_by;
+            printer.created_date = cust.created_date;
+            printer.customer_id = cust.customerid;
+            printer.hole_stick = "60 x 15";
+            printer.name = "Nhựa Tân Hưng";
+            printer.printer_id = Guid.NewGuid();
+            printer.slot_latch = "7 x 4";
+            printer.status = "";
+            printer.updated_by = printer.created_by;
+            printer.updated_date = printer.updated_date;
+            cust.Printers.Add(printer);
+
+            return cust;
+        }
+
+        private Customer createCustomer3()
+        {
+            Customer cust = new Customer();
+            cust.address = "27/4b Trần Xuân Soạn - P. Tân kiểng Q.7 TP.HCM";
+            cust.code = "1K";
+            cust.code_tax = "302751789";
+            cust.created_by = "Ba Tien";
+            cust.created_date = DateTime.Now;
+            cust.customerid = Guid.NewGuid();
+            cust.fax = "8.39321009";
+            cust.fullname = "Cty TNHH XNK Việt Gia";
+            cust.name = "Pb Việt Gia";
+            cust.status = "ACTIVE";
+            cust.telephone = "8.39320227";
+            cust.updated_by = cust.created_by;
+            cust.updated_date = cust.created_date;
+
+            return cust;
+        }
+
+        private Customer createCustomer4()
+        {
+            Customer cust = new Customer();
+            cust.address = "Lô 8 Đường Tân Tạo - KCN Tân Tạo - Q. Bình Tân - TP. HCM";
+            cust.code = "1Q";
+            cust.code_tax = "310261516";
+            cust.created_by = "Ba Tien";
+            cust.created_date = DateTime.Now;
+            cust.customerid = Guid.NewGuid();
+            cust.fax = "08. 37562692";
+            cust.fullname = "Công ty TNHH MTV SX TM DV và XNK Viky";
+            cust.name = "Viky";
+            cust.status = "ACTIVE";
+            cust.telephone = "08. 37562691";
+            cust.updated_by = cust.created_by;
+            cust.updated_date = cust.created_date;
+
+            Printer printer = new Printer();
+            printer.address = "";
+            printer.code = cust.code;
+            printer.created_by = cust.created_by;
+            printer.created_date = cust.created_date;
+            printer.customer_id = cust.customerid;
+            printer.hole_stick = "70 x 15";
+            printer.name = "Viky";
+            printer.printer_id = Guid.NewGuid();
+            printer.slot_latch = "12 x 5";
+            printer.status = "";
+            printer.updated_by = printer.created_by;
+            printer.updated_date = printer.updated_date;
+            cust.Printers.Add(printer);
+
+            return cust;
         }
 
         private void btnCreateWorkflow_Clicked(object sender, EventArgs e)
@@ -351,7 +449,7 @@ namespace Example
             try
             {
                 Order order = dbContext.Orders.Where(o => o.order_code.Equals("0001-B11")).FirstOrDefault();
-                Order_Detail orderDetail = order.Order_Detail.FirstOrDefault();
+                Order_Detail orderDetail = order.Order_Detail.SingleOrDefault();
                 Cylinder cyl = new Cylinder();
                 cyl.color_no = 1;
                 cyl.core_type = CylinderConst.CORETYPE_NEW;

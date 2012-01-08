@@ -63,6 +63,7 @@
     <Content Include="Admin\RoleAssignment_Approval.aspx" />
     <Content Include="Admin\Users.aspx" />
     <Content Include="Admin\BarCode.aspx" />
+    <Content Include="Admin\PrintOrderBarcode.aspx" />
     <Content Include="Admin\WorkflowErrorDescription.aspx" />
     <Content Include="AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll" />
     <Content Include="AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.pdb" />
@@ -170,6 +171,13 @@
     </Compile>
     <Compile Include="Admin\BarCode.aspx.designer.cs">
       <DependentUpon>BarCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\PrintOrderBarcode.aspx.cs">
+      <DependentUpon>PrintOrderBarcode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\PrintOrderBarcode.aspx.designer.cs">
+      <DependentUpon>PrintOrderBarcode.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\WorkflowErrorDescription.aspx.cs">
       <DependentUpon>WorkflowErrorDescription.aspx</DependentUpon>

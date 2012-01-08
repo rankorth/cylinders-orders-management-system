@@ -25,7 +25,7 @@ namespace BusinessLogics
             List<Access_Right> rightList = null;
 
             //TODO:check username & password
-            Employee dbEmpl = dbContext.Employees.Where(e => e.username.Equals(username)).FirstOrDefault();
+            Employee dbEmpl = dbContext.Employees.Where(e => e.username.Equals(username)).SingleOrDefault();
             if (dbEmpl == null)
             {
                 throw new Exception("" + SecurityConst.LOGIN_STATUS_NO_USERNAME);
