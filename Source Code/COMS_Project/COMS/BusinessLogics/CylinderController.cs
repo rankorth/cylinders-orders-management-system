@@ -194,10 +194,14 @@ namespace BusinessLogics
 
             return cylLog;
         }
-        //Tin
-        public void changeCylinderWorkflow(Cylinder cyl, Employee empl, Step stepBeforeNextWf, Error error, String remark) 
+        //Tin updated
+        public void changeCylinderWorkflow(Cylinder cyl, Employee empl, Step WorkflowStartingNode, Error error, String remark) 
         {
-            Cylinder_Log cylLog = generateCylinderLog(cyl, empl, stepBeforeNextWf, error, remark, DateTime.Now, DateTime.Now,0,CylinderConst.STATUS_COMPLETED,false);
+            //Tin updated
+            cyl.workflowId = WorkflowStartingNode.workflowId;
+            cyl.stepId  = WorkflowStartingNode.stepId;
+
+            Cylinder_Log cylLog = generateCylinderLog(cyl, empl, WorkflowStartingNode, error, remark, DateTime.Now, DateTime.Now,0,CylinderConst.STATUS_COMPLETED,false);
             dbContext.Cylinder_Log.AddObject(cylLog);
 
             dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
