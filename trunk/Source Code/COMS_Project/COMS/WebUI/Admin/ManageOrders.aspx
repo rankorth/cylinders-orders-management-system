@@ -35,9 +35,29 @@
                 ItemStyle-HorizontalAlign="Center" >
 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
+            <asp:TemplateField>
+               <ItemTemplate>
+                 <asp:LinkButton ID="lnkCylinders" runat="server">cylinders</asp:LinkButton>
+               </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
+    <br />
+    <asp:HiddenField ID="hOrderCode" runat="server" Value="" />
+    <asp:GridView ID="gvCylinders" runat="server" onrowdatabound="gvCylinders_RowDataBound" onrowcommand="gvCylinders_RowCommand" ViewStateMode="Enabled" Width="100%">
+        <Columns>
+            <asp:BoundField DataField="order_detailId" HeaderText="Order Detail" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="barcode" HeaderText="Bar Code" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="workflowId" HeaderText="Work Flow ID" ItemStyle-HorizontalAlign="Center" />
+            <asp:TemplateField>
+               <ItemTemplate>
+                 <asp:LinkButton ID="lnkPrint" runat="server">print</asp:LinkButton>
+               </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
 </asp:Content>
+
 <asp:Content ID="Content4" runat="server" contentplaceholderid="ModuleName">
                         <asp:Literal ID="ltrModule_name" runat="server"></asp:Literal>
 </asp:Content>
