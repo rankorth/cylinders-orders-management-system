@@ -112,6 +112,19 @@ namespace BusinessLogics
             return null;
         }
 
+        public Cylinder viewCylinderInfo(Guid cylinderID)
+        {
+            try
+            {
+                Cylinder cylinder = dbContext.Cylinders.Where(s => s.cylinderId.Equals(cylinderID)).SingleOrDefault();
+                return cylinder;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Sorry, there is an error occured while retrieving the cylinder information from the database. ", ex);
+            }
+        }
+
         public IQueryable<Cylinder> retrieveCylinderList(Guid orderDetailsID)
         {
             try
