@@ -35,6 +35,7 @@ namespace BusinessLogics
             Step     step= context.Steps.Where(s=>s.stepId.Equals(StepId)).SingleOrDefault();
 
             CylCtrl.changeCylinderStep(cyl,null, step,null, string.Empty, StartTime,DateTime.Now, 0, CylinderConst.STATUS_INPROD,false);
+
         }
 
         public void FinishCylinderWork(string Barcode, string EmployeeBarCode, Guid StepId, DateTime FinishTime)
@@ -49,10 +50,35 @@ namespace BusinessLogics
                                         && cl.status.Equals(CylinderConst.STATUS_INPROD)).SingleOrDefault();
             Cyl_Log.end_time    = FinishTime;
             Cyl_Log.employeeId  = emp.employeeId;
-            Cyl_Log.mark        = CalculateMark(Cyl_Log.start_time, FinishTime, Cyl_Log.formula);
+            Cyl_Log.mark        = step.isStep ? CalculateMark(Cyl_Log.start_time, FinishTime, Cyl_Log.formula) : 0 ;
             Cyl_Log.status      = CylinderConst.STATUS_COMPLETED;
+            
             context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
 
+            MoveToNextWorkflow(cyl, emp, step);// move to next workflow if this is the last step done.
+            
+        }
+
+        private void MoveToNextWorkflow(Cylinder cylinder, Employee employee, Step CurrentStep)
+        {
+            WorkflowController WorkflowCtrl = new WorkflowController();
+            IQueryable<Step> NextSteps = WorkflowCtrl.GetNextSteps(CurrentStep.workflowId, CurrentStep.stepId);
+            if (NextSteps.Count() == 1 && !NextSteps.ElementAt(0).isStep)
+            {
+                //next step is not a workflow step, it is the End Node.
+                if (!NextSteps.ElementAt(0).isStep && !NextSteps.ElementAt(0).isBegin)
+                {
+                    Step EndStep=NextSteps.ElementAt(0);
+                    Step NextWorkflowStartNode = context.Steps.Where(s => s.workflowId.Equals(EndStep.nextWorkFlowId)
+                                                    && s.isStep.Equals(false)
+                                                    && s.isBegin.Equals(true)).SingleOrDefault();
+                                    
+
+                    CylinderController CylCtrl = new CylinderController();
+                    CylCtrl.changeCylinderStep(cylinder, employee, NextWorkflowStartNode, null, "Sent from previous workflow", DateTime.Now, DateTime.Now, 0, CylinderConst.STATUS_COMPLETED, false);
+                    MoveToNextWorkflow(cylinder, employee, NextWorkflowStartNode);
+                }
+            }
         }
 
         public void FinishCylinderWorkWithError(string Barcode, string EmployeeBarCode, Guid StepId, DateTime FinishTime,Error ErrorReason)
