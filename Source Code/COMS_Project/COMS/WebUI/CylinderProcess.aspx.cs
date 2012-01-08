@@ -27,13 +27,21 @@ namespace WebUI
                 ChangeStep(step.scan_cylinder_start);
 
                 Session[pagesession] = PageData;
-                show_action_panel();
+                
             }
             else
             {
                 PageData = (CylinderProcessData)Session[pagesession];
             }
-           
+            show_action_panel();
+
+            if (!IsPostBack)
+            {
+                Load_ErrorReasons();
+                Load_Steps();
+            }
+
+            ShowInfo();
         }
 
         private void show_action_panel()
@@ -83,31 +91,55 @@ namespace WebUI
 
         protected void txtCylinderCodeToEnd_TextChanged(object sender, EventArgs e)
         {
+            ErrorMessage.Text = "";
             if (txtCylinderCodeToEnd.Text.Trim().Length > 0)
             {
                 if (txtCylinderCodeToEnd.Text.Trim().Equals(PageData.CylinderBarcode))
                 {
                     ChangeStep(step.scan_employee_code);
                 }
+                else
+                {
+                    ErrorMessage.Text = "This is not the cylinder which the process started.<br /> Please scan correct cylinder.";
+                }
             }
             show_action_panel();
         }
 
+        private void Load_Steps()
+        {
+            lstSteps.DataSource = (new WorkflowController()).GetNextSteps(PageData.CylinderBarcode);
+            lstSteps.DataTextField = "name";
+            lstSteps.DataValueField = "stepId";
+            lstSteps.DataBind();
+        }
         protected void txtScanCylinderCode_TextChanged(object sender, EventArgs e)
         {
             string CylinderBarCode = txtScanCylinderCode.Text.Trim();
 
             ChangeStep(step.scan_cylinder_start);
-
+            ErrorMessage.Text = "";
             if (!string.IsNullOrEmpty(CylinderBarCode))
             {
                 if (CylCtrl.isValidCylinder(CylinderBarCode))
                 {
-                    PageData.CylinderBarcode=CylinderBarCode;
+                    PageData.CylinderBarcode = CylinderBarCode;
                     ChangeStep(step.select_actions);
+
+                }
+                else
+                {
+                   ErrorMessage.Text ="Cylinder is not found.";
                 }
             }
+            else
+            {
+                CleanupInput();
+                ErrorMessage.Text = "Invalid Cylinder Barcode.";
+            }
             show_action_panel();
+
+            ShowInfo();
         }
 
         protected void ActionCommand(object sender, EventArgs e)
@@ -129,20 +161,30 @@ namespace WebUI
 
         private void Proceed()
         {
-            WorkflowController workflowCtrl = new WorkflowController();
-            IQueryable<Step> NextAvailableSteps =  workflowCtrl.GetNextSteps(PageData.CylinderBarcode);
-            
-            drpReasons.DataSource = NextAvailableSteps;
-            drpReasons.DataTextField  = "name";
-            drpReasons.DataValueField = "stepId";
-            drpReasons.DataBind();
+            Load_Steps();
 
             ChangeStep(step.select_step);
             show_action_panel();
         }
 
+        private void Load_ErrorReasons()
+        {
+            ErrorController ErrorCtrl  =new ErrorController();
+            IQueryable<Error> errors = ErrorCtrl.retrieveAllErrors();
+            drpReasons.DataSource = errors;
+            drpReasons.DataTextField = "name";
+            drpReasons.DataValueField = "errorId";
+            drpReasons.DataBind();
+
+            drpDamageReason.DataSource = errors;
+            drpDamageReason.DataTextField = "name";
+            drpDamageReason.DataValueField = "errorId";
+            drpDamageReason.DataBind();
+        }
         private void Reject()
         {
+            
+
             ChangeStep(step.error_reason);
             show_action_panel();
 
@@ -160,32 +202,59 @@ namespace WebUI
 
         protected void btnStepOK_Click(object sender, EventArgs e)
         {
-            if (drpReasons.SelectedItem != null)
+            ErrorMessage.Text = "";
+            if (lstSteps.SelectedItem != null)
             {
+                
                 WorkflowController WorkflowCtrl = new WorkflowController();
-                Step SelectedStep = WorkflowCtrl.getStep(new Guid( drpReasons.SelectedValue.ToString()));
+                Step SelectedStep = WorkflowCtrl.getStep(new Guid(lstSteps.SelectedValue.ToString()));
                 PageData.SelectedStep = SelectedStep;
                 Session[pagesession]=PageData;
 
-                UpdateCylCtrl.StartCylinderWork(PageData.CylinderBarcode, PageData.SelectedStep.stepId, DateTime.Now);
+                if (PageData.SelectedStep != null)
+                {
+                    UpdateCylCtrl.StartCylinderWork(PageData.CylinderBarcode, PageData.SelectedStep.stepId, DateTime.Now);
+                    ChangeStep(step.scan_cylinder_toend);
+                }
+                else
+                {
+                    ErrorMessage.Text = "This step is not found. Please contact Administrator.";
+                }
 
-                ChangeStep(step.scan_cylinder_toend);
+            }else
+            {
+                ErrorMessage.Text = "Please Select a step to proceed.";
             }
             
             show_action_panel();
+            ShowInfo();
         }
 
         protected void txtEmployeeBarCode_TextChanged(object sender, EventArgs e)
         {
+            ErrorMessage.Text = "";
             if (txtEmployeeBarCode.Text.Trim().Length > 0)
             {
                 EmployeeController employee = new EmployeeController();
                 Employee CurrentWorker =  employee.retrieveEmployeeByBarcode(txtEmployeeBarCode.Text.Trim());
-                if(CurrentWorker!=null)
+                if (CurrentWorker != null)
                 {
-                    PageData.EmployeeBarcode = CurrentWorker.barcode;
+                    if (drpWorkStatus.SelectedItem.Value.Equals("Complete"))
+                    {
+                        PageData.EmployeeBarcode = CurrentWorker.barcode;
+                        UpdateCylCtrl.FinishCylinderWork(PageData.CylinderBarcode, CurrentWorker.barcode, PageData.SelectedStep.stepId, DateTime.Now);
+                        
+                    }
+                    else
+                    {
+                    }
                     CleanupInput();
                     ChangeStep(step.scan_cylinder_start);
+                    ErrorMessage.Text = "The process has finish. Scan for another Cylinder.";
+                }
+                else
+                {
+                    ErrorMessage.Text = "Employee Code not found. Contact Administrator or Department head.";
                 }
             }
             show_action_panel();
@@ -203,9 +272,11 @@ namespace WebUI
             txtCylinderCodeToEnd.Text = string.Empty;
             txtEmployeeBarCode.Text = string.Empty;
             txtScanCylinderCode.Text = string.Empty;
+            txtEmployeeBarCodeToReport.Text = string.Empty;
 
             PageData = new CylinderProcessData();
-            Session.Clear();
+            PageData.PageStep = step.scan_cylinder_start;
+            Session[pagesession] = PageData;
 
         }
 
@@ -215,15 +286,52 @@ namespace WebUI
             Session[pagesession] = PageData;
         }
 
-        protected void btnSubmitErrorOK_Click(object sender, EventArgs e)
+        protected void txtEmployeeBarCodeToReport_TextChanged(object sender, EventArgs e)
         {
-            Error errorReason = new COMSdbEntity.Error();
-            errorReason.name = drpReasons.SelectedValue;
-            UpdateCylCtrl.RepoartCylinderWithError(PageData.CylinderBarcode, PageData.EmployeeBarcode,
-                                                    errorReason, string.Empty);
-            ChangeStep(step.scan_cylinder_start);
+            ErrorMessage.Text = "";
+            string employeeBarcode = txtEmployeeBarCodeToReport.Text.Trim();
+            Employee emp = (new EmployeeController()).retrieveEmployeeByBarcode(employeeBarcode);
+            if (emp != null)
+            {
+
+                PageData.EmployeeBarcode = emp.barcode;
+
+                Error errorReason = new COMSdbEntity.Error();
+                errorReason.errorId = new Guid(drpReasons.SelectedItem.Value);
+                errorReason.name = drpReasons.SelectedItem.Text;
+
+                UpdateCylCtrl.RepoartCylinderWithError(PageData.CylinderBarcode, PageData.EmployeeBarcode,
+                                                        errorReason, errorReason.name);
+                CleanupInput();
+                ChangeStep(step.scan_cylinder_start);
+            }
+            else
+            {
+                ErrorMessage.Text = "Employee Code not found. Please contact Administrator or Department Head.";
+            }
             show_action_panel();
         }
+
+        private void ShowInfo()
+        {
+            tCylinderBarcode.Text = PageData.CylinderBarcode;
+            if (PageData.SelectedStep != null)
+            {
+                tDesc.Text = PageData.SelectedStep.description;
+                tInstruct.Text = PageData.SelectedStep.instruction;
+                tNote.Text = PageData.SelectedStep.note;
+                tStep.Text = PageData.SelectedStep.name;
+            }
+        }
+
+        protected void btnCancelProcess_Click(object sender, EventArgs e)
+        {
+            ErrorMessage.Text = "";
+            Cancel();
+
+        }
+
+
     }
 
 

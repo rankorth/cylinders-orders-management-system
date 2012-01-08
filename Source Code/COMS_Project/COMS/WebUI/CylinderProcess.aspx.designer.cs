@@ -31,6 +31,15 @@ namespace WebUI {
         protected global::System.Web.UI.WebControls.TextBox txtScanCylinderCode;
         
         /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
         /// pnlPnlActionButtons control.
         /// </summary>
         /// <remarks>
@@ -94,6 +103,15 @@ namespace WebUI {
         protected global::System.Web.UI.WebControls.Button btnStepOK;
         
         /// <summary>
+        /// btnCancelProcess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelProcess;
+        
+        /// <summary>
         /// pnlCylinderCodeEnd control.
         /// </summary>
         /// <remarks>
@@ -119,6 +137,24 @@ namespace WebUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlEmployeeBarCode;
+        
+        /// <summary>
+        /// drpDamageReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpDamageReason;
+        
+        /// <summary>
+        /// drpWorkStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList drpWorkStatus;
         
         /// <summary>
         /// txtEmployeeBarCode control.
@@ -148,13 +184,22 @@ namespace WebUI {
         protected global::System.Web.UI.WebControls.DropDownList drpReasons;
         
         /// <summary>
-        /// btnSubmitErrorOK control.
+        /// txtEmployeeBarCodeToReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmitErrorOK;
+        protected global::System.Web.UI.WebControls.TextBox txtEmployeeBarCodeToReport;
+        
+        /// <summary>
+        /// ErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorMessage;
         
         /// <summary>
         /// tCylinderBarcode control.
