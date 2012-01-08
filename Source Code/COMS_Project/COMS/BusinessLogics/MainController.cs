@@ -92,7 +92,7 @@ namespace BusinessLogics
 
         public void sendCylinderToStep(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark) //renamed from confirm()
         {
-            (new CylinderController()).changeCylinderStep(cyl, empl, thisStep, error, remark);
+            (new CylinderController()).changeCylinderStep(cyl, empl, thisStep, error, remark,DateTime.Now,DateTime.Now,0,CylinderConst.STATUS_COMPLETED,false);
         }
 
         public IQueryable<Workflow> startSendCylinderToWorkflow()

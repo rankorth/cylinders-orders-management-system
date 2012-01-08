@@ -19,15 +19,13 @@ namespace BusinessLogics
         public const String STATUS_STOPPED = "STOPPED";
         public const String STATUS_COMPLETED = "COMP";
 
-        public const String LOG_STS_ERR = "ERR";
+        public const String LOG_STS_ERR_PREVIOUS = "ERR_PRV";
+        public const String LOG_STS_ERR_DAMAGE = "ERR_DAMG";
         public const String LOG_STS_OK = "OK";
         public const String LANG_ENG = "EN";
         public const String LANG_VN = "VN";
 
-        public static Dictionary<String, String> descDict = new Dictionary<String, String>() { 
-            {LOG_STS_ERR + LANG_ENG,"Cylinder has error!"},{LOG_STS_ERR + LANG_VN,"Ống có lỗi!"},
-            {LOG_STS_OK + LANG_ENG,"Process completed."},{LOG_STS_OK + LANG_VN,"Hoàn thành xử lý ống."}
-        };
+
         
     }
     public class CylinderController
@@ -139,7 +137,8 @@ namespace BusinessLogics
 
                     foreach (Order_Detail od in order.Order_Detail)
                     {
-                        updateCylinderStatus(od.order_detailId);
+                        //Tin (7-Jan-2012) added parameter to update cylinder status
+                        updateCylinderStatus(od.order_detailId,CylinderConst.STATUS_STOPPED);
                     }
                 }
             }
@@ -151,17 +150,19 @@ namespace BusinessLogics
             }
         }
 
-        public void changeCylinderStep(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark)
+        //Tin(7-Jan-2012)
+        public void changeCylinderStep(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark,DateTime starttime,DateTime endtime,int performance_mark,string status,bool isDamage)
         {
-            cyl.stepId = thisStep.stepId;
-
-            Cylinder_Log cylLog = generateCylinderLog(cyl, empl, thisStep, error, remark);
+            cyl.stepId = thisStep.stepId; 
+            //Tin (7-Jan-2012)
+            Cylinder_Log cylLog = generateCylinderLog(cyl, empl, thisStep, error, remark,starttime,endtime,performance_mark,status,isDamage);
             dbContext.Cylinder_Log.AddObject(cylLog);
 
             dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
         }
 
-        public Cylinder_Log generateCylinderLog(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark)
+        //Tin (7-Jan-2012) added start/end times
+        public Cylinder_Log generateCylinderLog(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark,DateTime starttime,DateTime endtime,int performance_mark,string status,bool isDamage)
         {
             Cylinder_Log cylLog = new Cylinder_Log();
             cylLog.created_by = empl.surname + " " + empl.given_name;
@@ -169,32 +170,34 @@ namespace BusinessLogics
             cylLog.cylinderlogId = Guid.NewGuid();
             cylLog.dept_name = dbContext.Departments.Where(d => d.departmentId.Equals(empl.departmentId)).FirstOrDefault().name;
             cylLog.employeeId = empl.employeeId;
-            cylLog.end_time = DateTime.Now; //TODO: logic to treat start_time and end_time differently
+            cylLog.end_time = endtime;
             cylLog.formula = dbContext.Formulae.Where(f => f.stepId.Equals(thisStep.stepId) & f.isactive == true).FirstOrDefault().formula1;
-            cylLog.mark = 0; //TODO: calculate mark from formula
+            cylLog.mark = performance_mark;
             cylLog.remark = remark;
-            cylLog.start_time = DateTime.Now;
+            cylLog.start_time = starttime;
+            cylLog.status = status;
+            //Tin (7-jan-2012)
             if (error != null)
             {
                 cylLog.error_desc = error.name;
-                cylLog.status = CylinderConst.descDict[CylinderConst.LOG_STS_ERR + "VN"] + " " + thisStep.description; //TODO: replace VN with language value from empl
+                if (isDamage)
+                {
+                    cylLog.status = CylinderConst.LOG_STS_ERR_DAMAGE;
+                }
+                else
+                {
+                    cylLog.status = CylinderConst.LOG_STS_ERR_PREVIOUS;
+                }
             }
-            else if (thisStep.isBegin == false && thisStep.isStep == false)
-            {//the last step
-                cylLog.status = CylinderConst.descDict[CylinderConst.LOG_STS_OK + "VN"] + " " + thisStep.description; //TODO: replace VN with language value from empl
-            }
-            else
-            {
-                cylLog.status = thisStep.description;
-            }
+
             cylLog.stepId = thisStep.stepId;
 
             return cylLog;
         }
-
+        //Tin
         public void changeCylinderWorkflow(Cylinder cyl, Employee empl, Step stepBeforeNextWf, Error error, String remark) 
         {
-            Cylinder_Log cylLog = generateCylinderLog(cyl, empl, stepBeforeNextWf, error, remark);
+            Cylinder_Log cylLog = generateCylinderLog(cyl, empl, stepBeforeNextWf, error, remark, DateTime.Now, DateTime.Now,0,CylinderConst.STATUS_COMPLETED,false);
             dbContext.Cylinder_Log.AddObject(cylLog);
 
             dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
@@ -212,7 +215,8 @@ namespace BusinessLogics
             return nextCylBc;
         }
 
-        public void updateCylinderStatus(Guid orderDetailsID)
+        //Tin (7-Jan-2012) added parameter to update cylinder status
+        public void updateCylinderStatus(Guid orderDetailsID,string CylinderStatus )
         {
             IQueryable<Cylinder> cylinders = dbContext.Cylinders.Where(s => s.order_detailId.Equals(orderDetailsID));
             if (null != cylinders)
@@ -220,10 +224,26 @@ namespace BusinessLogics
                 foreach (Cylinder cylinder in cylinders)
                 {
                     if (null != cylinder)
-                        cylinder.status = CylinderConst.STATUS_STOPPED;
+                        //Tin(7-Jan-2012) changed with variable status
+                        cylinder.status = CylinderStatus;
                 }
             }
             dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+        }
+
+        //tin (8-jan-2012) added
+        public bool isValidCylinder(string Barcode)
+        {
+            bool isValid = true;
+
+            Cylinder cylinder = dbContext.Cylinders.Where(c => c.barcode.Equals(Barcode)).SingleOrDefault();
+
+            if (cylinder == null)
+            {
+                isValid = false;
+            }
+
+            return isValid;
         }
     }
 }

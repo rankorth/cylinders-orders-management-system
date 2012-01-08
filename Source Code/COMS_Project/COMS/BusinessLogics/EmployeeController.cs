@@ -35,6 +35,12 @@ namespace BusinessLogics
             }
         }
 
+        //Tin (8-Jan-2012) added to retrieve by barcode
+        public Employee retrieveEmployeeInfo(string Barcode)
+        {
+            return dbContext.Employees.Where(e => e.barcode.Equals(Barcode)).SingleOrDefault();
+        }
+
         public Employee retrieveEmployeeInfo(Guid employeeID)
         {
             try
