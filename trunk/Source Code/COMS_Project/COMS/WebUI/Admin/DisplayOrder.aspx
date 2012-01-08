@@ -4,7 +4,7 @@
 <ul>
         <li><asp:LinkButton ID="lnkSave" runat="server" onclick="lnkSave_Click">Save</asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkPrintBarcode" runat="server" Enabled="false">Print Barcode</asp:LinkButton></li>
-        <li><asp:LinkButton ID="lnkCancel" runat="server" onclick="lnkCancel_Click">Cancel</asp:LinkButton></li>
+        <li><asp:LinkButton ID="lnkCancel" runat="server" onclick="lnkCancel_Click1" >Cancel</asp:LinkButton></li>
 </ul>
 
 </asp:Content>
@@ -30,6 +30,9 @@
         </tr>
         <tr>
             <td class="entry_data">Date: <asp:TextBox ID="txtCreateDate" runat="server" BorderWidth="1" ReadOnly="true" />
+                <asp:CalendarExtender ID="txtCreateDate_CalendarExtender" runat="server" 
+                    Enabled="True" TargetControlID="txtCreateDate">
+                </asp:CalendarExtender>
             </td>
             <td class="entry_data" colspan="5" align="left">
                 <asp:Image ID="imgBarCode" runat="server" />

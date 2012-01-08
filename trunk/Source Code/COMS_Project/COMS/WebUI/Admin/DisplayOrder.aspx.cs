@@ -184,7 +184,7 @@ namespace WebUI.Admin
                 order.orderId = Guid.NewGuid(); //generate new guid as primary key.
                 order.order_code = mainCtrl.getNextOrderBarCode();
                 order.created_by = txtCreatedBy.Text;
-                order.created_date = Convert.ToDateTime(txtCreateDate.Text);
+                order.created_date = Convert.ToDateTime(txtCreateDate_CalendarExtender.SelectedDate);
                 populate_order(order);
 
                 Order_Detail orderDetail = new Order_Detail();
@@ -223,7 +223,7 @@ namespace WebUI.Admin
             order.redo_pct = (txtRedoPct.Text != "") ? Convert.ToInt32(txtRedoPct.Text) : 0;
             order.old_core = chkBxOldCore.Checked;
             //order.delivery_date = calDeliveryDate.SelectedDate;
-            order.delivery_date = Convert.ToDateTime(txtDeliveryDate.Text);
+            order.delivery_date = Convert.ToDateTime(txtDeliveryDate_CalendarExtender.SelectedDate);
 
             order.order_type = (rBtnOrderTypeNew.Checked) ? OrderConst.ORDERTYPE_NEW : OrderConst.ORDERTYPE_REDO;
 
@@ -338,10 +338,10 @@ namespace WebUI.Admin
         {
         }
 
-        protected void lnkCancel_Click(object sender, EventArgs e)
+
+        protected void lnkCancel_Click1(object sender, EventArgs e)
         {
-            //go back to Main Order Page
-            Response.Redirect("ManageOrders.aspx");
+ Response.Redirect("ManageOrders.aspx");
         }
     }
 }
