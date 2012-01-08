@@ -7085,6 +7085,30 @@ namespace COMSdbEntity
         private global::System.Boolean _isBegin;
         partial void OnisBeginChanging(global::System.Boolean value);
         partial void OnisBeginChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Guid> nextWorkFlowId
+        {
+            get
+            {
+                return _nextWorkFlowId;
+            }
+            set
+            {
+                OnnextWorkFlowIdChanging(value);
+                ReportPropertyChanging("nextWorkFlowId");
+                _nextWorkFlowId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("nextWorkFlowId");
+                OnnextWorkFlowIdChanged();
+            }
+        }
+        private Nullable<global::System.Guid> _nextWorkFlowId;
+        partial void OnnextWorkFlowIdChanging(Nullable<global::System.Guid> value);
+        partial void OnnextWorkFlowIdChanged();
 
         #endregion
     
