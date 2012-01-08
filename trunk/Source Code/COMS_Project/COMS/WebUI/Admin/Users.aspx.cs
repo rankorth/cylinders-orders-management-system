@@ -43,7 +43,6 @@ namespace WebUI.Admin
             hUpdateID.Value = "";
             LitStatus.Text = "";
             txtBxSearchKey.Text = "";
-            DepartmentList.Items.Clear();
             loadDepartment();
         }
 
@@ -129,6 +128,7 @@ namespace WebUI.Admin
 
         private void loadDepartment()
         {
+            DepartmentList.Items.Clear();
             foreach (Department dep in mainctrl.retrieveDepartments())
             {
                 ListItem item = new ListItem(dep.name, (dep.departmentId).ToString());
