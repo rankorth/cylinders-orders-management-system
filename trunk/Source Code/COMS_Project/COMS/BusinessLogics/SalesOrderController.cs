@@ -160,10 +160,36 @@ namespace BusinessLogics
             return nextOrderBarCode;
         }
 
-        public List<Cylinder> getAllCylinders(String order_code) 
+        public List<Cylinder> getAllCylinders(String order_code)
         {
-            return null;
+            List<Cylinder> listOfCylinders = new List<Cylinder>();
+            try
+            {
+                Order order = retrieveSalesOrder(order_code);
+                if (null != order)
+                {
+                    foreach (Order_Detail od in order.Order_Detail)
+                    {
+                        IQueryable<Cylinder> cylinders = (new CylinderController()).retrieveCylinderList(od.order_detailId);
+                        if (null != cylinders)
+                        {
+                            foreach (Cylinder cylinder in cylinders)
+                            {
+                                listOfCylinders.Add(cylinder);
+                            }
+                        }
+                    }
+                }
+                return listOfCylinders;
+            }
+            catch (Exception ex)
+            {
+                //related to any errors, there may be only database error
+                //always create a meaningful error exception to catch and show up on UI.
+                throw new Exception("Sorry, there is an error occured while retrieving cylinder information for the order code", ex);
+            }
         }
+
         public int GenerateNextSequenceID()
         {
             return Convert.ToInt32( dbContext.GenerateNewID().First().SequenceCode);
