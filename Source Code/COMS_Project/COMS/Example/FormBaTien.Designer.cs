@@ -41,6 +41,7 @@
             this.btnCreateWorkflow = new System.Windows.Forms.Button();
             this.btnCreateCylinder = new System.Windows.Forms.Button();
             this.btnViewQueue = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCreateOrder
@@ -170,11 +171,22 @@
             this.btnViewQueue.UseVisualStyleBackColor = true;
             this.btnViewQueue.Click += new System.EventHandler(this.btnViewQueue_Clicked);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(155, 171);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Next Order ID";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormBaTien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(323, 262);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnViewQueue);
             this.Controls.Add(this.btnCreateCylinder);
             this.Controls.Add(this.btnCreateWorkflow);
@@ -210,5 +222,6 @@
         private System.Windows.Forms.Button btnCreateWorkflow;
         private System.Windows.Forms.Button btnCreateCylinder;
         private System.Windows.Forms.Button btnViewQueue;
+        private System.Windows.Forms.Button button1;
     }
 }

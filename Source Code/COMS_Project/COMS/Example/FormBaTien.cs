@@ -495,5 +495,11 @@ namespace Example
                 MessageBox.Show(ex.StackTrace);
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SalesOrderController Sales = new SalesOrderController();
+            MessageBox.Show("Next Order Sequence Number is : "+ Sales.GenerateNextSequenceID().ToString());
+        }
     }
 }
