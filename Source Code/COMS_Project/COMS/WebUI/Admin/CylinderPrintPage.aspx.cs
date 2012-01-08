@@ -27,13 +27,11 @@ namespace WebUI.Admin
                 Cylinder cylinder = mainctrl.viewCylinderInfo(cylinderID);
                 if (null != cylinder)
                 {
-                    txtArea.Text = "";
-                    txtCircumference.Text = "";
+                    // pending for answers
+                    txtArea.Text = calculateSurfaceArea((double)cylinder.diameter.GetValueOrDefault(), (double)cylinder.length.GetValueOrDefault());
+                    txtCircumference.Text = calculateCircumference((double)cylinder.diameter.GetValueOrDefault(), (double)cylinder.length.GetValueOrDefault()); ;
                     txtDiameter.Text = Math.Round(cylinder.diameter.GetValueOrDefault(), 2).ToString();
                     txtLength.Text = Math.Round(cylinder.length.GetValueOrDefault(), 2).ToString();
-                    
-                    txtKeyhole.Text = "";
-                    txtKeyway.Text = "";
                 }
 
                 Order order = mainctrl.getSalesOrderByCode(ordercode);
@@ -59,7 +57,7 @@ namespace WebUI.Admin
             {
                 foreach (Cylinder cy in od.Cylinders)
                 {
-                    if (cy.cylinderId.ToString().Equals(cylinderID))
+                    if (cy.cylinderId.ToString().Equals(cylinderID.ToString()))
                     {
                         keyhole = od.keyhole_type;
                         break;
@@ -76,7 +74,7 @@ namespace WebUI.Admin
             {
                 foreach (Cylinder cy in od.Cylinders)
                 {
-                    if (cy.cylinderId.ToString().Equals(cylinderID))
+                    if (cy.cylinderId.ToString().Equals(cylinderID.ToString()))
                     {
                         keyway = od.keyhole_keyway;
                         break;
@@ -84,6 +82,20 @@ namespace WebUI.Admin
                 }
             }
             return keyway;
+        }
+
+        private String calculateSurfaceArea(double radius, double height)
+        {
+            double pi = 3.1415926536;
+            double surfaceArea = 2 * pi * radius * (radius + height);
+            return Math.Round(surfaceArea, 2).ToString();
+        }
+
+        private String calculateCircumference(double radius, double height)
+        {
+            double pi = 3.1415926536;
+            double circumference = 2 * pi * radius;
+            return Math.Round(circumference, 2).ToString();
         }
     }
 }
