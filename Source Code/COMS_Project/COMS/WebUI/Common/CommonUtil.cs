@@ -12,7 +12,7 @@ namespace WebUI.Common
 {
     public static class Utility
     {
-        
+        public static string UpdateCylinderState = "pagestate";
         public static string ShowMessage(string msg)
         {
             return ("<script>alert(\"" + msg + "\");</script>");
