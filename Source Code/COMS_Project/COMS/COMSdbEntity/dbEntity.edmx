@@ -32,10 +32,6 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
           </AssociationSet>
-          <AssociationSet Name="FK_Cylinder_Log_Formula" Association="COMSModel.Store.FK_Cylinder_Log_Formula">
-            <End Role="Formula" EntitySet="Formula" />
-            <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
-          </AssociationSet>
           <AssociationSet Name="FK_Cylinder_Log_Step" Association="COMSModel.Store.FK_Cylinder_Log_Step">
             <End Role="Step" EntitySet="Step" />
             <End Role="Cylinder_Log" EntitySet="Cylinder_Log" />
@@ -397,6 +393,7 @@
           <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="isStep" Type="bit" Nullable="false" />
           <Property Name="isBegin" Type="bit" Nullable="false" />
+          <Property Name="nextWorkFlowId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Step_ref">
           <Key>
@@ -447,18 +444,6 @@
             </Principal>
             <Dependent Role="Cylinder_Log">
               <PropertyRef Name="employeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cylinder_Log_Formula">
-          <End Role="Formula" Type="COMSModel.Store.Formula" Multiplicity="1" />
-          <End Role="Cylinder_Log" Type="COMSModel.Store.Cylinder_Log" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Formula">
-              <PropertyRef Name="formulaId" />
-            </Principal>
-            <Dependent Role="Cylinder_Log">
-              <PropertyRef Name="formula" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1011,6 +996,7 @@
           <NavigationProperty Name="Step_ref1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step" ToRole="Step_ref" />
           <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_Workflow" FromRole="Step" ToRole="Workflow" />
           <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Step" FromRole="Step" ToRole="Cylinder_Log" />
+          <Property Type="Guid" Name="nextWorkFlowId" />
         </EntityType>
         <EntityType Name="Step_ref">
           <Key>
@@ -1609,6 +1595,7 @@
           <EntitySetMapping Name="Steps">
             <EntityTypeMapping TypeName="COMSModel.Step">
               <MappingFragment StoreEntitySet="Step">
+                <ScalarProperty Name="nextWorkFlowId" ColumnName="nextWorkFlowId" />
                 <ScalarProperty Name="isBegin" ColumnName="isBegin" />
                 <ScalarProperty Name="isStep" ColumnName="isStep" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
