@@ -66,6 +66,12 @@ a:hover
 {
     float: left;
     border-right:1px solid Gray;
+    text-decoration: none; 
+    color: #FFFFFF;
+
+    display:block;
+    text-align:center;
+    font-weight:normal;
     
 }
 
@@ -190,19 +196,21 @@ a:hover
     background-color:#ffe3ac;
 }
 
+
+
 .entry_table .entry_data textarea
 {
-    height:23px;
-    width:300px;
+    border-style: none;
+    border-color: inherit;
+    border-width: 0;
     font-size:14px;
-    border:0;
 }
-
 .entry_table .entry_data textarea:hover
 {
-    
-    background-color:#ffe3ac;
+       background-color:#ffe3ac;
 }
+
+
 
 .module_name
 {
@@ -232,4 +240,21 @@ a:hover
 .errorMsg
 {
     color:Red;
+}
+
+update_cylinder
+{
+    background-color:Gray;
+    color:White;
+    font-weight:bold;
+    font-size:15px;
+    width:100%;
+    height:100px;
+    
+}
+
+.step_selection
+{
+    font-size:14px;
+    font-weight:normal;
 }
