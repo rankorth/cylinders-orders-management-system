@@ -54,7 +54,7 @@ namespace BusinessLogics
         public const String CHANGEFILE_NO = "NEW FILE";
     }
 
-    class SalesOrderController
+    public class SalesOrderController
     {
         private COMSEntities dbContext = new COMSEntities();
 
@@ -163,6 +163,10 @@ namespace BusinessLogics
         public List<Cylinder> getAllCylinders(String order_code) 
         {
             return null;
+        }
+        public int GenerateNextSequenceID()
+        {
+            return Convert.ToInt32( dbContext.GenerateNewID().First().SequenceCode);
         }
     }
 }

@@ -151,11 +151,19 @@ namespace BusinessLogics
         }
 
         //Tin(7-Jan-2012)
-        public void changeCylinderStep(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark,DateTime starttime,DateTime endtime,int performance_mark,string status,bool isDamage)
+        public void changeCylinderStep(Cylinder cylinderinfo, Employee empl, Step thisStep, Error error, String remark,DateTime starttime,DateTime endtime,int performance_mark,string status,bool isDamage,bool isProductionCompleted=false)
         {
             //Tin updated
+            Cylinder cyl = dbContext.Cylinders.Where(c => c.cylinderId == cylinderinfo.cylinderId).SingleOrDefault();
             cyl.workflowId = thisStep.workflowId;
             cyl.stepId = thisStep.stepId; 
+            //Tin (8-Jan-2012- 6:30 pm)
+            cyl.status = CylinderConst.STATUS_INPROD;
+            if (isProductionCompleted)
+            {
+                cyl.status = CylinderConst.STATUS_COMPLETED;
+            }
+
             //Tin (7-Jan-2012)
             Cylinder_Log cylLog = generateCylinderLog(cyl, empl, thisStep, error, remark,starttime,endtime,performance_mark,status,isDamage);
             dbContext.Cylinder_Log.AddObject(cylLog);
@@ -166,18 +174,40 @@ namespace BusinessLogics
         //Tin (7-Jan-2012) added start/end times
         public Cylinder_Log generateCylinderLog(Cylinder cyl, Employee empl, Step thisStep, Error error, String remark,DateTime starttime,DateTime endtime,int performance_mark,string status,bool isDamage)
         {
+            //Tin added
+            Formula formula = dbContext.Formulae.Where(f => f.stepId.Equals(thisStep.stepId) & f.isactive == true).FirstOrDefault();
+            if (formula == null)
+            {
+                formula = new Formula();
+                formula.coef1 = 0;
+                formula.coef2 = 0;
+                formula.coef3 = 0;
+                formula.coef4 = 0;
+            }
             Cylinder_Log cylLog = new Cylinder_Log();
-            cylLog.created_by = empl.surname + " " + empl.given_name;
+            if (empl != null)
+            {
+                cylLog.created_by = empl.surname + " " + empl.given_name;
+                cylLog.employeeId = empl.employeeId;
+                cylLog.dept_name = dbContext.Departments.Where(d => d.departmentId.Equals(empl.departmentId)).FirstOrDefault().name;
+            }
+            else
+            {
+                cylLog.created_by = "system";
+                cylLog.dept_name = thisStep.Workflow.Department.name;
+            }
             cylLog.cylinderId = cyl.cylinderId;
             cylLog.cylinderlogId = Guid.NewGuid();
-            cylLog.dept_name = dbContext.Departments.Where(d => d.departmentId.Equals(empl.departmentId)).FirstOrDefault().name;
-            cylLog.employeeId = empl.employeeId;
+            
+            
             cylLog.end_time = endtime;
-            cylLog.formula = dbContext.Formulae.Where(f => f.stepId.Equals(thisStep.stepId) & f.isactive == true).FirstOrDefault().formula1;
+            cylLog.formula = "coef1=" + formula.coef1.ToString() + "," + "coef2=" + formula.coef2.ToString() + "," + "coef3=" + formula.coef3.ToString() + ","
+                             + "coef4=" + formula.coef4.ToString() + ",";
             cylLog.mark = performance_mark;
             cylLog.remark = remark;
             cylLog.start_time = starttime;
             cylLog.status = status;
+            cylLog.error_desc = "";//Tin added
             //Tin (7-jan-2012)
             if (error != null)
             {
@@ -197,11 +227,14 @@ namespace BusinessLogics
             return cylLog;
         }
         //Tin updated
-        public void changeCylinderWorkflow(Cylinder cyl, Employee empl, Step WorkflowStartingNode, Error error, String remark) 
+        public void changeCylinderWorkflow(Cylinder cylinderinfo, Employee empl, Step WorkflowStartingNode, Error error, String remark) 
         {
             //Tin updated
+            Cylinder cyl = dbContext.Cylinders.Where(c => c.cylinderId == cylinderinfo.cylinderId).SingleOrDefault();
             cyl.workflowId = WorkflowStartingNode.workflowId;
             cyl.stepId  = WorkflowStartingNode.stepId;
+            //Tin (8-Jan-20112 6:30 pm)
+            cyl.status = CylinderConst.STATUS_INPROD;
 
             Cylinder_Log cylLog = generateCylinderLog(cyl, empl, WorkflowStartingNode, error, remark, DateTime.Now, DateTime.Now,0,CylinderConst.STATUS_COMPLETED,false);
             dbContext.Cylinder_Log.AddObject(cylLog);
