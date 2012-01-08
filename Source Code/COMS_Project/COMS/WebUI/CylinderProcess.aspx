@@ -6,7 +6,8 @@
     Update Cylinder Status</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
     <ul>
-        <li></li>
+        <li><asp:Label ID="ErrorMessage" runat="server" Font-Bold="True" 
+            ForeColor="Yellow" meta:resourcekey="ErrorMessageResource1"></asp:Label></li>
     </ul>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="InputPlaceHolder" runat="server">
@@ -96,10 +97,15 @@
                 BorderColor="Black" MaxLength="50" 
                 meta:resourcekey="txtEmployeeBarCodeToReportResource1" 
                 ontextchanged="txtEmployeeBarCodeToReport_TextChanged" Width="336px"></asp:TextBox>
-            &nbsp;</asp:Panel>
+            &nbsp;<br /> &nbsp;
+            <asp:Button ID="btnReportOk" runat="server" 
+                onclick="txtEmployeeBarCodeToReport_TextChanged" Text="OK" Width="172px" />
+            &nbsp;
+            <asp:Button ID="btnReportCancel" runat="server" 
+                onclick="btnCancelProcess_Click" Text="Cancel" Width="156px" />
+        </asp:Panel>
             <br />
-        &nbsp;<asp:Label ID="ErrorMessage" runat="server" Font-Bold="True" 
-            ForeColor="Red" meta:resourcekey="ErrorMessageResource1"></asp:Label>
+       
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
