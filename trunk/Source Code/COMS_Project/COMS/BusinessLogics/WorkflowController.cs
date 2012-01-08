@@ -56,6 +56,13 @@ namespace BusinessLogics
                 .Join(dbContext.Steps, sf => sf.to_stepId, s => s.stepId, (sf, s) => s);
         }
 
+        //Tin (8-Jan-2012)
+        public IQueryable<Step> GetNextSteps(string CylinderBarCode)
+        {
+            Cylinder Cyl =  dbContext.Cylinders.Where(c => c.barcode.Equals(CylinderBarCode)).SingleOrDefault();
+            return GetNextSteps(Cyl.workflowId, (Guid) Cyl.stepId);
+        }
+
         public void UpdateWorkflow(Workflow workflow)
         {
             try
@@ -105,6 +112,11 @@ namespace BusinessLogics
                 orderList.Add(cyl.Order_Detail.Order);
             }
             return orderList;
+        }
+
+        public Step getStep(Guid StepId)
+        {
+            return dbContext.Steps.Where(s => s.stepId.Equals(StepId)).SingleOrDefault();
         }
 
 

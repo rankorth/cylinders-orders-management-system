@@ -54,6 +54,7 @@
     <Compile Include="SalesOrderController.cs" />
     <Compile Include="SecurityController.cs" />
     <Compile Include="StepController.cs" />
+    <Compile Include="UpdateCylinderController.cs" />
     <Compile Include="WorkflowController.cs" />
   </ItemGroup>
   <ItemGroup>
