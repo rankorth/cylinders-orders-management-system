@@ -13,6 +13,15 @@ namespace WebUI {
     public partial class CylinderProcess {
         
         /// <summary>
+        /// ErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorMessage;
+        
+        /// <summary>
         /// pnlCylinderBarCode control.
         /// </summary>
         /// <remarks>
@@ -193,13 +202,22 @@ namespace WebUI {
         protected global::System.Web.UI.WebControls.TextBox txtEmployeeBarCodeToReport;
         
         /// <summary>
-        /// ErrorMessage control.
+        /// btnReportOk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrorMessage;
+        protected global::System.Web.UI.WebControls.Button btnReportOk;
+        
+        /// <summary>
+        /// btnReportCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReportCancel;
         
         /// <summary>
         /// tCylinderBarcode control.
