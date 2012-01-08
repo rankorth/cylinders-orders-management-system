@@ -787,13 +787,22 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtSplitLineColor;
         
         /// <summary>
-        /// txtCustCode control.
+        /// txtCustomerCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCustCode;
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerCode;
+        
+        /// <summary>
+        /// ddlCustomerCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCustomerCode;
         
         /// <summary>
         /// ddlPrintMaterial control.
