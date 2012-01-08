@@ -60,11 +60,11 @@ namespace WorkflowManagement
                 block_element.CreatefromDB(ID, x, y, Title, Desc, WorkInstruct, Notes);
             }else if (isBegin)
             {
-                block_element.CreatefromDB_Begin(ID, x, y, Title, Desc, WorkInstruct, Notes);
+                block_element.CreatefromDB_Begin(ID, x, y, PreviousWorkflowName + " (BEGIN)", Desc, WorkInstruct, Notes);
             }
             else
             {
-                block_element.CreatefromDB_End(ID, x, y, Title, Desc, WorkInstruct, Notes);
+                block_element.CreatefromDB_End(ID, x, y, NextWorkflowName + "(END)", Desc, WorkInstruct, Notes);
             }
             Elements.Add(block_element.ID, block_element);
 
@@ -74,6 +74,23 @@ namespace WorkflowManagement
         {
             Block block_element = new Block();
             block_element.Create(x, y, Title);
+
+            Elements.Add(block_element.ID, block_element);
+
+            isDirty = true;
+        }
+        public void Create_Workflow_Block(int x, int y, string Title, bool isBegin)
+        {
+            Block block_element = new Block();
+
+            if (isBegin)
+            {
+                block_element.CreateBeginBlock(x, y, PreviousWorkflowName + " (BEGIN)");
+            }
+            else
+            {
+                block_element.CreateEndBlock( x, y, NextWorkflowName + "(END)");
+            }
 
             Elements.Add(block_element.ID, block_element);
 
@@ -379,6 +396,7 @@ namespace WorkflowManagement
                 }
                 foreach (Connector con in Connectors)
                 {
+                    if (!con.isActive) { continue; }
                     if (con.block1.Equals(NewConnection.belowBlock))
                     {
                         if (con.block2.Equals(NewConnection.topBlock) && con.isLeftToRight == NewConnection.isLeftToRight)
@@ -518,6 +536,10 @@ namespace WorkflowManagement
             if (isSavedPerformed)   //save steps first
             {
                 context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                foreach (Block element in Elements.Values)
+                {
+                    element.ChangedToDBObject();
+                }
             }
 
             foreach (Connector con in Connectors)
@@ -530,51 +552,74 @@ namespace WorkflowManagement
             if (isSavedPerformed)   //save connections now
             {
                 context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                foreach (Connector con in Connectors)
+                {
+                    con.ChangedToDBObject();
+                }
             }
 
             context.Dispose();
 
-            foreach (Block element in Elements.Values)
-            {
-                element.ChangedToDBObject();
-            }
-            foreach (Connector con in Connectors)
-            {
-                con.ChangedToDBObject();
-            }
+            
+            
         }
 
         public void LoadWorkflowFromDB()
         {
-            COMSEntities context = new COMSEntities();
-            Workflow workflow=   context.Workflows.Where(w => w.workflowId.Equals(this.WorkflowID)).SingleOrDefault();
-
-            Workflow PreviousWorkflow =  context.Workflows.Where(w => w.workflowId.Equals(workflow.prevWorkflowID)).SingleOrDefault();
-            Workflow NextWorkflow = context.Workflows.Where(w => w.workflowId.Equals(workflow.nextWorkflowID)).SingleOrDefault();
-            
-            PreviousWorkflowName = "Nil";
-            NextWorkflowName = "Nil";
-
-            if (PreviousWorkflow != null)
+            try
             {
-                PreviousWorkflowName = PreviousWorkflow.name;
-            }
-            
-            if (NextWorkflow != null)
-            {
-                NextWorkflowName = NextWorkflow.name;
-            }
+                COMSEntities context = new COMSEntities();
+                Workflow workflow = context.Workflows.Where(w => w.workflowId.Equals(this.WorkflowID)).SingleOrDefault();
 
-            foreach (Step s in workflow.Steps.Where(s=>s.isActive==true))
-            {
-                Create_Block_fromDB(s.stepId, s.x, s.y, s.name, s.description, s.instruction, s.note,s.isStep,s.isBegin);
-            }
+                Workflow PreviousWorkflow = context.Workflows.Where(w => w.workflowId==workflow.prevWorkflowID).SingleOrDefault();
+                Workflow NextWorkflow = context.Workflows.Where(w => w.workflowId==workflow.nextWorkflowID).SingleOrDefault();
 
-            foreach(Step_ref con in workflow.Step_ref)
-            {
-                Create_Connector_fromDB(con.Id, con.from_stepId, con.to_stepId);
-            }
+                PreviousWorkflowName = "Nil";
+                NextWorkflowName = "Nil";
 
+                if (PreviousWorkflow != null)
+                {
+                    PreviousWorkflowName = PreviousWorkflow.name;
+                }
+
+                if (NextWorkflow != null)
+                {
+                    NextWorkflowName = NextWorkflow.name;
+                }
+
+                bool isBeginFound = false;
+                bool isEndFound = false;
+                foreach (Step s in workflow.Steps.Where(s => s.isActive == true))
+                {
+                    if (!s.isStep && s.isBegin)
+                    {
+                        isBeginFound = true;
+                    }
+                    else if (!s.isStep && !s.isBegin)
+                    {
+                        isEndFound = true;
+                    }
+                    Create_Block_fromDB(s.stepId, s.x, s.y, s.name, s.description, s.instruction, s.note, s.isStep, s.isBegin);
+                }
+
+                if (!isBeginFound)
+                {
+                    Create_Workflow_Block(10, 10, PreviousWorkflowName + "(BEGIN)", true);
+                }
+                if (!isEndFound)
+                {
+                    Create_Workflow_Block(100, 100, PreviousWorkflowName + "(END)", false);
+                }
+
+                foreach (Step_ref con in workflow.Step_ref)
+                {
+                    Create_Connector_fromDB(con.Id, con.from_stepId, con.to_stepId);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

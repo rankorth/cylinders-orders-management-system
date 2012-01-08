@@ -90,6 +90,8 @@ namespace WorkflowManagement
 
         public void CreateBeginBlock(int x, int y, string Title)
         {
+            this.obj_id = Guid.Empty;
+            this.display_id = ID;
             this.x = x;
             this.y = y;
             this.Title = Title;
@@ -98,6 +100,8 @@ namespace WorkflowManagement
         }
         public void CreateEndBlock(int x, int y, string Title)
         {
+            this.obj_id = Guid.Empty;
+            this.display_id = ID;
             this.x = x;
             this.y = y;
             this.Title = Title;
