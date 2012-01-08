@@ -185,6 +185,11 @@ namespace BusinessLogics
             }
         }
 
+        public Cylinder viewCylinderInfo(Guid cylinderID)
+        {
+            return (new CylinderController()).viewCylinderInfo(cylinderID);
+        }
+
         public void startCylinderProd(Guid workflowID, String order_code)
         {
             try
