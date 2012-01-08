@@ -180,7 +180,7 @@ namespace WebUI
             if (txtEmployeeBarCode.Text.Trim().Length > 0)
             {
                 EmployeeController employee = new EmployeeController();
-                Employee CurrentWorker =  employee.retrieveEmployeeInfo(txtEmployeeBarCode.Text.Trim());
+                Employee CurrentWorker =  employee.retrieveEmployeeByBarcode(txtEmployeeBarCode.Text.Trim());
                 if(CurrentWorker!=null)
                 {
                     PageData.EmployeeBarcode = CurrentWorker.barcode;
