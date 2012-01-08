@@ -18,28 +18,27 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Role_Right_ref_Access_Right", "Access_Right", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Access_Right), "Role_Right_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Role_Right_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Customer), "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Printer_Customer", "Customer", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COMSdbEntity.Customer), "Printer", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Printer), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Log_Cylinder", "Cylinder", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Cylinder), "Cylinder_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder_Log), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Order_Detail", "Order_Detail", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order_Detail), "Cylinder", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Cylinder", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Log_Employee", "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(COMSdbEntity.Employee), "Cylinder_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder_Log), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Log_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Cylinder_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder_Log), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Employee_Department", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Department), "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Employee), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Workflow_Department", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Department), "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Workflow), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Employee", "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Employee), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Formula_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Formula", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Formula), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Detail_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Detail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Detail), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Log_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Log), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Log_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Order_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Log), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Role_Right_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Role_Right_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Role_Right_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Step1", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Log_Cylinder", "Cylinder", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Cylinder), "Cylinder_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder_Log), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Order_Detail", "Order_Detail", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order_Detail), "Cylinder", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Cylinder", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Log_Employee", "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Employee), "Cylinder_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder_Log), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Log_Formula", "Formula", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Formula), "Cylinder_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder_Log), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Cylinder_Log_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Cylinder_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Cylinder_Log), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Employee", "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Employee), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Role_Right_ref_Access_Right", "Access_Right", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Access_Right), "Role_Right_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Role_Right_ref), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Role_Right_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Role_Right_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Role_Right_ref), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Log_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Log), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Log_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Order_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Log), true)]
 
 #endregion
 
@@ -110,6 +109,22 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<AutoID> AutoIDs
+        {
+            get
+            {
+                if ((_AutoIDs == null))
+                {
+                    _AutoIDs = base.CreateObjectSet<AutoID>("AutoIDs");
+                }
+                return _AutoIDs;
+            }
+        }
+        private ObjectSet<AutoID> _AutoIDs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Customer> Customers
         {
             get
@@ -122,6 +137,38 @@ namespace COMSdbEntity
             }
         }
         private ObjectSet<Customer> _Customers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Cylinder> Cylinders
+        {
+            get
+            {
+                if ((_Cylinders == null))
+                {
+                    _Cylinders = base.CreateObjectSet<Cylinder>("Cylinders");
+                }
+                return _Cylinders;
+            }
+        }
+        private ObjectSet<Cylinder> _Cylinders;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Cylinder_Log> Cylinder_Log
+        {
+            get
+            {
+                if ((_Cylinder_Log == null))
+                {
+                    _Cylinder_Log = base.CreateObjectSet<Cylinder_Log>("Cylinder_Log");
+                }
+                return _Cylinder_Log;
+            }
+        }
+        private ObjectSet<Cylinder_Log> _Cylinder_Log;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -142,6 +189,22 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Emp_Role_ref> Emp_Role_ref
+        {
+            get
+            {
+                if ((_Emp_Role_ref == null))
+                {
+                    _Emp_Role_ref = base.CreateObjectSet<Emp_Role_ref>("Emp_Role_ref");
+                }
+                return _Emp_Role_ref;
+            }
+        }
+        private ObjectSet<Emp_Role_ref> _Emp_Role_ref;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Employee> Employees
         {
             get
@@ -154,6 +217,22 @@ namespace COMSdbEntity
             }
         }
         private ObjectSet<Employee> _Employees;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Error> Errors
+        {
+            get
+            {
+                if ((_Errors == null))
+                {
+                    _Errors = base.CreateObjectSet<Error>("Errors");
+                }
+                return _Errors;
+            }
+        }
+        private ObjectSet<Error> _Errors;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -206,6 +285,22 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Order_Log> Order_Log
+        {
+            get
+            {
+                if ((_Order_Log == null))
+                {
+                    _Order_Log = base.CreateObjectSet<Order_Log>("Order_Log");
+                }
+                return _Order_Log;
+            }
+        }
+        private ObjectSet<Order_Log> _Order_Log;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Printer> Printers
         {
             get
@@ -218,6 +313,38 @@ namespace COMSdbEntity
             }
         }
         private ObjectSet<Printer> _Printers;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Role> Roles
+        {
+            get
+            {
+                if ((_Roles == null))
+                {
+                    _Roles = base.CreateObjectSet<Role>("Roles");
+                }
+                return _Roles;
+            }
+        }
+        private ObjectSet<Role> _Roles;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Role_Right_ref> Role_Right_ref
+        {
+            get
+            {
+                if ((_Role_Right_ref == null))
+                {
+                    _Role_Right_ref = base.CreateObjectSet<Role_Right_ref>("Role_Right_ref");
+                }
+                return _Role_Right_ref;
+            }
+        }
+        private ObjectSet<Role_Right_ref> _Role_Right_ref;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -266,118 +393,6 @@ namespace COMSdbEntity
             }
         }
         private ObjectSet<Workflow> _Workflows;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Cylinder> Cylinders
-        {
-            get
-            {
-                if ((_Cylinders == null))
-                {
-                    _Cylinders = base.CreateObjectSet<Cylinder>("Cylinders");
-                }
-                return _Cylinders;
-            }
-        }
-        private ObjectSet<Cylinder> _Cylinders;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Cylinder_Log> Cylinder_Log
-        {
-            get
-            {
-                if ((_Cylinder_Log == null))
-                {
-                    _Cylinder_Log = base.CreateObjectSet<Cylinder_Log>("Cylinder_Log");
-                }
-                return _Cylinder_Log;
-            }
-        }
-        private ObjectSet<Cylinder_Log> _Cylinder_Log;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Error> Errors
-        {
-            get
-            {
-                if ((_Errors == null))
-                {
-                    _Errors = base.CreateObjectSet<Error>("Errors");
-                }
-                return _Errors;
-            }
-        }
-        private ObjectSet<Error> _Errors;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Emp_Role_ref> Emp_Role_ref
-        {
-            get
-            {
-                if ((_Emp_Role_ref == null))
-                {
-                    _Emp_Role_ref = base.CreateObjectSet<Emp_Role_ref>("Emp_Role_ref");
-                }
-                return _Emp_Role_ref;
-            }
-        }
-        private ObjectSet<Emp_Role_ref> _Emp_Role_ref;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Role> Roles
-        {
-            get
-            {
-                if ((_Roles == null))
-                {
-                    _Roles = base.CreateObjectSet<Role>("Roles");
-                }
-                return _Roles;
-            }
-        }
-        private ObjectSet<Role> _Roles;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Role_Right_ref> Role_Right_ref
-        {
-            get
-            {
-                if ((_Role_Right_ref == null))
-                {
-                    _Role_Right_ref = base.CreateObjectSet<Role_Right_ref>("Role_Right_ref");
-                }
-                return _Role_Right_ref;
-            }
-        }
-        private ObjectSet<Role_Right_ref> _Role_Right_ref;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Order_Log> Order_Log
-        {
-            get
-            {
-                if ((_Order_Log == null))
-                {
-                    _Order_Log = base.CreateObjectSet<Order_Log>("Order_Log");
-                }
-                return _Order_Log;
-            }
-        }
-        private ObjectSet<Order_Log> _Order_Log;
 
         #endregion
         #region AddTo Methods
@@ -391,11 +406,35 @@ namespace COMSdbEntity
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the AutoIDs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAutoIDs(AutoID autoID)
+        {
+            base.AddObject("AutoIDs", autoID);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Customers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToCustomers(Customer customer)
         {
             base.AddObject("Customers", customer);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Cylinders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCylinders(Cylinder cylinder)
+        {
+            base.AddObject("Cylinders", cylinder);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Cylinder_Log EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCylinder_Log(Cylinder_Log cylinder_Log)
+        {
+            base.AddObject("Cylinder_Log", cylinder_Log);
         }
     
         /// <summary>
@@ -407,11 +446,27 @@ namespace COMSdbEntity
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Emp_Role_ref EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToEmp_Role_ref(Emp_Role_ref emp_Role_ref)
+        {
+            base.AddObject("Emp_Role_ref", emp_Role_ref);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Employees EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToEmployees(Employee employee)
         {
             base.AddObject("Employees", employee);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Errors EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToErrors(Error error)
+        {
+            base.AddObject("Errors", error);
         }
     
         /// <summary>
@@ -439,11 +494,35 @@ namespace COMSdbEntity
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Order_Log EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToOrder_Log(Order_Log order_Log)
+        {
+            base.AddObject("Order_Log", order_Log);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Printers EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToPrinters(Printer printer)
         {
             base.AddObject("Printers", printer);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRoles(Role role)
+        {
+            base.AddObject("Roles", role);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Role_Right_ref EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToRole_Right_ref(Role_Right_ref role_Right_ref)
+        {
+            base.AddObject("Role_Right_ref", role_Right_ref);
         }
     
         /// <summary>
@@ -469,61 +548,16 @@ namespace COMSdbEntity
         {
             base.AddObject("Workflows", workflow);
         }
+
+        #endregion
+        #region Function Imports
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Cylinders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// No Metadata Documentation available.
         /// </summary>
-        public void AddToCylinders(Cylinder cylinder)
+        public ObjectResult<GenerateNewID_Result> GenerateNewID()
         {
-            base.AddObject("Cylinders", cylinder);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Cylinder_Log EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCylinder_Log(Cylinder_Log cylinder_Log)
-        {
-            base.AddObject("Cylinder_Log", cylinder_Log);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Errors EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToErrors(Error error)
-        {
-            base.AddObject("Errors", error);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Emp_Role_ref EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToEmp_Role_ref(Emp_Role_ref emp_Role_ref)
-        {
-            base.AddObject("Emp_Role_ref", emp_Role_ref);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Roles EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToRoles(Role role)
-        {
-            base.AddObject("Roles", role);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Role_Right_ref EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToRole_Right_ref(Role_Right_ref role_Right_ref)
-        {
-            base.AddObject("Role_Right_ref", role_Right_ref);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Order_Log EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToOrder_Log(Order_Log order_Log)
-        {
-            base.AddObject("Order_Log", order_Log);
+            return base.ExecuteFunction<GenerateNewID_Result>("GenerateNewID");
         }
 
         #endregion
@@ -549,19 +583,19 @@ namespace COMSdbEntity
         /// </summary>
         /// <param name="rightsId">Initial value of the rightsId property.</param>
         /// <param name="name">Initial value of the name property.</param>
+        /// <param name="action">Initial value of the action property.</param>
         /// <param name="created_by">Initial value of the created_by property.</param>
         /// <param name="created_date">Initial value of the created_date property.</param>
         /// <param name="isactive">Initial value of the isactive property.</param>
-        /// <param name="action">Initial value of the action property.</param>
-        public static Access_Right CreateAccess_Right(global::System.Guid rightsId, global::System.String name, global::System.String created_by, global::System.DateTime created_date, global::System.Boolean isactive, global::System.String action)
+        public static Access_Right CreateAccess_Right(global::System.Guid rightsId, global::System.String name, global::System.String action, global::System.String created_by, global::System.DateTime created_date, global::System.Boolean isactive)
         {
             Access_Right access_Right = new Access_Right();
             access_Right.rightsId = rightsId;
             access_Right.name = name;
+            access_Right.action = action;
             access_Right.created_by = created_by;
             access_Right.created_date = created_date;
             access_Right.isactive = isactive;
-            access_Right.action = action;
             return access_Right;
         }
 
@@ -618,6 +652,54 @@ namespace COMSdbEntity
         private global::System.String _name;
         partial void OnnameChanging(global::System.String value);
         partial void OnnameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String module_name
+        {
+            get
+            {
+                return _module_name;
+            }
+            set
+            {
+                Onmodule_nameChanging(value);
+                ReportPropertyChanging("module_name");
+                _module_name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("module_name");
+                Onmodule_nameChanged();
+            }
+        }
+        private global::System.String _module_name;
+        partial void Onmodule_nameChanging(global::System.String value);
+        partial void Onmodule_nameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String action
+        {
+            get
+            {
+                return _action;
+            }
+            set
+            {
+                OnactionChanging(value);
+                ReportPropertyChanging("action");
+                _action = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("action");
+                OnactionChanged();
+            }
+        }
+        private global::System.String _action;
+        partial void OnactionChanging(global::System.String value);
+        partial void OnactionChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -738,54 +820,6 @@ namespace COMSdbEntity
         private global::System.Boolean _isactive;
         partial void OnisactiveChanging(global::System.Boolean value);
         partial void OnisactiveChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String module_name
-        {
-            get
-            {
-                return _module_name;
-            }
-            set
-            {
-                Onmodule_nameChanging(value);
-                ReportPropertyChanging("module_name");
-                _module_name = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("module_name");
-                Onmodule_nameChanged();
-            }
-        }
-        private global::System.String _module_name;
-        partial void Onmodule_nameChanging(global::System.String value);
-        partial void Onmodule_nameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String action
-        {
-            get
-            {
-                return _action;
-            }
-            set
-            {
-                OnactionChanging(value);
-                ReportPropertyChanging("action");
-                _action = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("action");
-                OnactionChanged();
-            }
-        }
-        private global::System.String _action;
-        partial void OnactionChanging(global::System.String value);
-        partial void OnactionChanged();
 
         #endregion
     
@@ -814,6 +848,87 @@ namespace COMSdbEntity
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="COMSModel", Name="AutoID")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AutoID : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AutoID object.
+        /// </summary>
+        /// <param name="autoid1">Initial value of the autoid1 property.</param>
+        /// <param name="created_date">Initial value of the created_date property.</param>
+        public static AutoID CreateAutoID(global::System.Int64 autoid1, global::System.DateTime created_date)
+        {
+            AutoID autoID = new AutoID();
+            autoID.autoid1 = autoid1;
+            autoID.created_date = created_date;
+            return autoID;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 autoid1
+        {
+            get
+            {
+                return _autoid1;
+            }
+            set
+            {
+                if (_autoid1 != value)
+                {
+                    Onautoid1Changing(value);
+                    ReportPropertyChanging("autoid1");
+                    _autoid1 = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("autoid1");
+                    Onautoid1Changed();
+                }
+            }
+        }
+        private global::System.Int64 _autoid1;
+        partial void Onautoid1Changing(global::System.Int64 value);
+        partial void Onautoid1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime created_date
+        {
+            get
+            {
+                return _created_date;
+            }
+            set
+            {
+                Oncreated_dateChanging(value);
+                ReportPropertyChanging("created_date");
+                _created_date = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("created_date");
+                Oncreated_dateChanged();
+            }
+        }
+        private global::System.DateTime _created_date;
+        partial void Oncreated_dateChanging(global::System.DateTime value);
+        partial void Oncreated_dateChanged();
+
+        #endregion
+    
     }
     
     /// <summary>
@@ -1754,10 +1869,9 @@ namespace COMSdbEntity
         /// <param name="dept_name">Initial value of the dept_name property.</param>
         /// <param name="start_time">Initial value of the start_time property.</param>
         /// <param name="formula">Initial value of the formula property.</param>
-        /// <param name="employeeId">Initial value of the employeeId property.</param>
         /// <param name="stepId">Initial value of the stepId property.</param>
         /// <param name="created_by">Initial value of the created_by property.</param>
-        public static Cylinder_Log CreateCylinder_Log(global::System.Guid cylinderlogId, global::System.Guid cylinderId, global::System.String dept_name, global::System.DateTime start_time, global::System.String formula, global::System.Guid employeeId, global::System.Guid stepId, global::System.String created_by)
+        public static Cylinder_Log CreateCylinder_Log(global::System.Guid cylinderlogId, global::System.Guid cylinderId, global::System.String dept_name, global::System.DateTime start_time, global::System.String formula, global::System.Guid stepId, global::System.String created_by)
         {
             Cylinder_Log cylinder_Log = new Cylinder_Log();
             cylinder_Log.cylinderlogId = cylinderlogId;
@@ -1765,7 +1879,6 @@ namespace COMSdbEntity
             cylinder_Log.dept_name = dept_name;
             cylinder_Log.start_time = start_time;
             cylinder_Log.formula = formula;
-            cylinder_Log.employeeId = employeeId;
             cylinder_Log.stepId = stepId;
             cylinder_Log.created_by = created_by;
             return cylinder_Log;
@@ -1948,9 +2061,9 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Guid employeeId
+        public Nullable<global::System.Guid> employeeId
         {
             get
             {
@@ -1965,8 +2078,8 @@ namespace COMSdbEntity
                 OnemployeeIdChanged();
             }
         }
-        private global::System.Guid _employeeId;
-        partial void OnemployeeIdChanging(global::System.Guid value);
+        private Nullable<global::System.Guid> _employeeId;
+        partial void OnemployeeIdChanging(Nullable<global::System.Guid> value);
         partial void OnemployeeIdChanged();
     
         /// <summary>
@@ -2165,44 +2278,6 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Employee>("COMSModel.FK_Cylinder_Log_Employee", "Employee", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Log_Formula", "Formula")]
-        public Formula Formula1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Formula>("COMSModel.FK_Cylinder_Log_Formula", "Formula").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Formula>("COMSModel.FK_Cylinder_Log_Formula", "Formula").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Formula> Formula1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Formula>("COMSModel.FK_Cylinder_Log_Formula", "Formula");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Formula>("COMSModel.FK_Cylinder_Log_Formula", "Formula", value);
                 }
             }
         }
@@ -3199,6 +3274,28 @@ namespace COMSdbEntity
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Log_Employee", "Cylinder_Log")]
+        public EntityCollection<Cylinder_Log> Cylinder_Log
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Employee", "Cylinder_Log");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Employee", "Cylinder_Log", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Employee_Department", "Department")]
         public Department Department
         {
@@ -3227,28 +3324,6 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Department>("COMSModel.FK_Employee_Department", "Department", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Log_Employee", "Cylinder_Log")]
-        public EntityCollection<Cylinder_Log> Cylinder_Log
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Employee", "Cylinder_Log");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Employee", "Cylinder_Log", value);
                 }
             }
         }
@@ -3682,28 +3757,6 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Step>("COMSModel.FK_Formula_Step", "Step", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Log_Formula", "Cylinder_Log")]
-        public EntityCollection<Cylinder_Log> Cylinder_Log
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Formula", "Cylinder_Log");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Formula", "Cylinder_Log", value);
                 }
             }
         }
@@ -5390,6 +5443,28 @@ namespace COMSdbEntity
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Order_Detail", "Cylinder")]
+        public EntityCollection<Cylinder> Cylinders
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cylinder>("COMSModel.FK_Cylinder_Order_Detail", "Cylinder");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder>("COMSModel.FK_Cylinder_Order_Detail", "Cylinder", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Order_Detail_Order", "Order")]
         public Order Order
         {
@@ -5418,28 +5493,6 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Order>("COMSModel.FK_Order_Detail_Order", "Order", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Order_Detail", "Cylinder")]
-        public EntityCollection<Cylinder> Cylinders
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cylinder>("COMSModel.FK_Cylinder_Order_Detail", "Cylinder");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder>("COMSModel.FK_Cylinder_Order_Detail", "Cylinder", value);
                 }
             }
         }
@@ -7085,34 +7138,32 @@ namespace COMSdbEntity
         private global::System.Boolean _isBegin;
         partial void OnisBeginChanging(global::System.Boolean value);
         partial void OnisBeginChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Guid> nextWorkFlowId
-        {
-            get
-            {
-                return _nextWorkFlowId;
-            }
-            set
-            {
-                OnnextWorkFlowIdChanging(value);
-                ReportPropertyChanging("nextWorkFlowId");
-                _nextWorkFlowId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("nextWorkFlowId");
-                OnnextWorkFlowIdChanged();
-            }
-        }
-        private Nullable<global::System.Guid> _nextWorkFlowId;
-        partial void OnnextWorkFlowIdChanging(Nullable<global::System.Guid> value);
-        partial void OnnextWorkFlowIdChanged();
 
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Log_Step", "Cylinder_Log")]
+        public EntityCollection<Cylinder_Log> Cylinder_Log
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Step", "Cylinder_Log");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Step", "Cylinder_Log", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -7214,28 +7265,6 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Workflow>("COMSModel.FK_Step_Workflow", "Workflow", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Log_Step", "Cylinder_Log")]
-        public EntityCollection<Cylinder_Log> Cylinder_Log
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Step", "Cylinder_Log");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder_Log>("COMSModel.FK_Cylinder_Log_Step", "Cylinder_Log", value);
                 }
             }
         }
@@ -7880,6 +7909,28 @@ namespace COMSdbEntity
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Workflow", "Cylinder")]
+        public EntityCollection<Cylinder> Cylinders
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cylinder>("COMSModel.FK_Cylinder_Workflow", "Cylinder");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder>("COMSModel.FK_Cylinder_Workflow", "Cylinder", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Workflow_Department", "Department")]
         public Department Department
         {
@@ -7908,6 +7959,28 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Department>("COMSModel.FK_Workflow_Department", "Department", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Order_Log_Workflow", "Order_Log")]
+        public EntityCollection<Order_Log> Order_Log
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Order_Log>("COMSModel.FK_Order_Log_Workflow", "Order_Log");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Order_Log>("COMSModel.FK_Order_Log_Workflow", "Order_Log", value);
                 }
             }
         }
@@ -7955,50 +8028,46 @@ namespace COMSdbEntity
                 }
             }
         }
+
+        #endregion
+    }
+
+    #endregion
+    #region ComplexTypes
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="COMSModel", Name="GenerateNewID_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class GenerateNewID_Result : ComplexObject
+    {
+        #region Primitive Properties
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Cylinder_Workflow", "Cylinder")]
-        public EntityCollection<Cylinder> Cylinders
+        public Nullable<global::System.Int64> SequenceCode
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Cylinder>("COMSModel.FK_Cylinder_Workflow", "Cylinder");
+                return _SequenceCode;
             }
             set
             {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Cylinder>("COMSModel.FK_Cylinder_Workflow", "Cylinder", value);
-                }
+                OnSequenceCodeChanging(value);
+                ReportPropertyChanging("SequenceCode");
+                _SequenceCode = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SequenceCode");
+                OnSequenceCodeChanged();
             }
         }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Order_Log_Workflow", "Order_Log")]
-        public EntityCollection<Order_Log> Order_Log
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Order_Log>("COMSModel.FK_Order_Log_Workflow", "Order_Log");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Order_Log>("COMSModel.FK_Order_Log_Workflow", "Order_Log", value);
-                }
-            }
-        }
+        private Nullable<global::System.Int64> _SequenceCode;
+        partial void OnSequenceCodeChanging(Nullable<global::System.Int64> value);
+        partial void OnSequenceCodeChanged();
 
         #endregion
     }
