@@ -3,16 +3,10 @@
 <head id="Head1" runat="server">
     <title>COMS Cylinder Information</title>
     <style type="text/css">
-        .style1
-        {
-        }
         .style2
         {
             text-decoration: underline;
-            font-size: medium;
-        }
-        .style3
-        {
+            font-size: x-large;
         }
         .style4
         {
@@ -24,7 +18,7 @@
         }
         .style6
         {
-            width: 139px;
+            width: 163px;
             text-align: right;
             height: 23px;
             font-weight: bold;
@@ -129,6 +123,20 @@
             font-weight: bold;
             width: 136px;
         }
+        .style62
+        {
+            font-size: x-large;
+        }
+        .style63
+        {
+            text-align: right;
+            font-weight: bold;
+            width: 163px;
+        }
+        .style64
+        {
+            height: 26px;
+        }
     </style>
 </head>
 <body>
@@ -136,24 +144,16 @@
     <div>
         <table style="width: 100%;">
             <tr>
-                <td class="style1" colspan="2">
+                <td class="style64" colspan="6">
                     &nbsp;<span class="style47"> </span>
                 <span class="style2"><strong>Production Progress Form</strong></span><span 
-                        class="style47">&nbsp;
+                        class="style62">&nbsp;
                 </span>
-                </td>
-                <td colspan="4">
                     &nbsp;
                 </td>
-                <td colspan="2" rowspan="2">
-                    <asp: Image ID="imgBarCode" runat="server" /></td>
-            </tr>
-            <tr>
-                <td class="style3" colspan="6">
-                    &nbsp;
-                    &nbsp;
-                    &nbsp;
-                </td>
+                <td colspan="2" style="text-align: center" class="style64">
+                    <asp:Image ID="imgBarCode" runat="server" style="text-align: center" 
+                        ImageAlign="Middle" /></td>
             </tr>
             <tr>
                 <td class="style6">
@@ -167,14 +167,14 @@
                 </td>
             </tr>
             <tr>
-                <td class="style46">
+                <td class="style63">
                     Production Name:
                 </td>
                 <td class="style5" colspan="7">
                 <asp:Label ID="txtProductionName" runat="server" /></td>
             </tr>
             <tr>
-                <td class="style46">
+                <td class="style63">
                     &nbsp;</td>
                 <td class="style59">
                     &nbsp;</td>
@@ -182,7 +182,7 @@
                     &nbsp;</td>
             </tr>
             <tr>
-                <td class="style46">
+                <td class="style63">
                     Order Code: </td>
                 <td class="style60" align="left">
                 <asp:Label ID="txtOrderCode" runat="server" style="text-align: left" 
@@ -205,7 +205,7 @@
                     &nbsp;</td>
             </tr>
             <tr>
-                <td class="style46">
+                <td class="style63">
                     Area: </td>
                 <td class="style60">
                     <asp:Label ID="txtArea" runat="server" style="text-align: left" Width="100px" /></td>
