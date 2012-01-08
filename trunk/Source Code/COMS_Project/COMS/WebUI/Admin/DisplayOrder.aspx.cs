@@ -18,16 +18,20 @@ namespace WebUI.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request["orderId"] == null)
+            if (!IsPostBack)
             {
-                load_new_data();
-                ltrModule_name.Text = NAME_NEW;
-            }
-            else
-            {
-                load_data();
-                ltrModule_name.Text = NAME_UPDATE;
-                lnkSave.Text = "Update";
+                if (Request["orderId"] == null)
+                {
+                    load_new_data();
+                    ltrModule_name.Text = NAME_NEW;
+                }
+                else
+                {
+
+                    load_data();
+                    ltrModule_name.Text = NAME_UPDATE;
+                    lnkSave.Text = "Update";
+                }
             }
         }
 
