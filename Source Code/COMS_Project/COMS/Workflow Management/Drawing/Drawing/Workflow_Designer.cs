@@ -89,7 +89,17 @@ namespace Drawing
             Drawing_Canvas.MouseUp();
         }
 
-    
+        private void tblAddNewStep_Click(object sender, EventArgs e)
+        {
+            frmAddNewStep step = new frmAddNewStep();
+            if (step.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                NewStep = step.StepName;
+                pnlCanvas.Cursor = Cursors.Cross;
+                isAddingNewStep = true;
+                tblMenu.Enabled = false;
+            }
+        }
 
         public void RePaint()
         {

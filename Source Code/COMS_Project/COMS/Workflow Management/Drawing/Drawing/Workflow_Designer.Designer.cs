@@ -34,8 +34,6 @@
             this.tblAddNewCon = new System.Windows.Forms.ToolStripButton();
             this.tblDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.cmbNextWorkflow = new System.Windows.Forms.ToolStripComboBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pnlContainer = new System.Windows.Forms.Panel();
             this.tblMenu.SuspendLayout();
@@ -68,9 +66,7 @@
             this.tblAddNewStep,
             this.tblAddNewCon,
             this.tblDelete,
-            this.toolStripSeparator1,
-            this.toolStripLabel1,
-            this.cmbNextWorkflow});
+            this.toolStripSeparator1});
             this.tblMenu.Location = new System.Drawing.Point(0, 0);
             this.tblMenu.Name = "tblMenu";
             this.tblMenu.Padding = new System.Windows.Forms.Padding(0);
@@ -86,6 +82,7 @@
             this.tblAddNewStep.Name = "tblAddNewStep";
             this.tblAddNewStep.Size = new System.Drawing.Size(23, 22);
             this.tblAddNewStep.Text = "Add New Step";
+            this.tblAddNewStep.Click += new System.EventHandler(this.tblAddNewStep_Click);
             // 
             // tblAddNewCon
             // 
@@ -111,17 +108,6 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(120, 22);
-            this.toolStripLabel1.Text = "Next Workflow Name";
-            // 
-            // cmbNextWorkflow
-            // 
-            this.cmbNextWorkflow.Name = "cmbNextWorkflow";
-            this.cmbNextWorkflow.Size = new System.Drawing.Size(121, 25);
             // 
             // tableLayoutPanel1
             // 
@@ -188,8 +174,6 @@
         private System.Windows.Forms.ToolStripButton tblAddNewCon;
         private System.Windows.Forms.ToolStripButton tblDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripComboBox cmbNextWorkflow;
     }
 }
 
