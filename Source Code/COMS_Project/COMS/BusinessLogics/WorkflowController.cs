@@ -34,7 +34,7 @@ namespace BusinessLogics
 
         public IQueryable<Step> GetSteps(Guid WorkflowID)
         {
-            return dbContext.Steps.Where(s => s.workflowId.Equals(WorkflowID) && s.isActive==true && s.isStep==true);
+            return dbContext.Steps.Where(s => s.workflowId == WorkflowID && s.isActive==true && s.isStep==true);
         }
 
         public IQueryable<Step> getAllSteps()
@@ -44,7 +44,7 @@ namespace BusinessLogics
 
         public IQueryable<Workflow> GetAllWorkflow()
         {
-            return dbContext.Workflows;
+            return dbContext.Workflows.Where(w=>w.isactive==true);
         }
 
         public IQueryable<Step> GetNextSteps(Guid WorkflowID, Guid CurrentStepID)
@@ -120,7 +120,12 @@ namespace BusinessLogics
 
         public Step getStep(Guid StepId)
         {
-            return dbContext.Steps.Where(s => s.stepId.Equals(StepId)).SingleOrDefault();
+            return dbContext.Steps.Where(s => s.stepId==StepId).SingleOrDefault();
+        }
+
+        public Workflow GetWorkflow(Guid WorkflowId)
+        {
+            return dbContext.Workflows.Where(w => w.workflowId == WorkflowId && w.isactive == true).SingleOrDefault();
         }
 
 
