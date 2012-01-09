@@ -1,13 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ManageOrders.aspx.cs" Inherits="WebUI.Admin.ManageOrders" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
-    <ul>
-        <li><asp:TextBox ID="txtBxSearchKey" runat="server" /></li>
-        <li><asp:DropDownList ID="ddlSearchType" runat="server">
+<%//Tin (9-Jan-2012) added to show search boxes at properly middle aligned. %>
+    <div style="vertical-align:middle;display:block;line-height:35px;float:left;">
+    <asp:TextBox ID="txtBxSearchKey" runat="server" />
+    <asp:DropDownList ID="ddlSearchType" runat="server">
             <asp:ListItem Value="order_code" Text="Order Barcode"/>
             <asp:ListItem Value="cyl_code" Text="Cylinder Barcode"/>
             <asp:ListItem Value="set_code" Text="Set Code"/>
             <asp:ListItem Value="product_name" Text="Product Name"/>
-        </asp:DropDownList></li>
+        </asp:DropDownList>
+    </div>
+<ul>
         <li><asp:LinkButton ID="lnkSearch" runat="server" onclick="lnkSearch_Click">Search</asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkAddOrder" runat="server" onclick="lnkAddOrder_Click">New Order</asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkCancel" runat="server">Cancel Order</asp:LinkButton></li>
