@@ -95,7 +95,7 @@ namespace Example
                 //add above prepared detail record into Order
                 order.Order_Detail.Add(orderDetail);
 
-                mainCtrl.createSalesOrder(order);
+                mainCtrl.createSalesOrder(order, dbContext.Employees.Where(s => s.staff_code.Equals("staff-code-111")).SingleOrDefault());
 
                 ////add order record into databse
                 //context.Orders.AddObject(order);
@@ -129,7 +129,8 @@ namespace Example
                     {
                         orderDetail.updated_by = "System";
                     }
-                    mainCtrl.updateSalesOrder(order);
+
+                    mainCtrl.updateSalesOrder(order, context.Employees.Where(s => s.staff_code.Equals("staff-code-111")).SingleOrDefault());
                     MessageBox.Show("Updated");
                 }
                 else
@@ -420,19 +421,50 @@ namespace Example
             COMSEntities dbContext = new COMSEntities();
             try
             {
-                Workflow workflow = new Workflow();
-                workflow.created_by = "Ba Tien";
-                workflow.created_date = DateTime.Now;
-                workflow.departmentId = dbContext.Departments.Where(d => d.name.Equals("Sales Dept")).FirstOrDefault().departmentId;
-                workflow.isactive = true;
-                workflow.name = "Sales to Mechanical";
-                workflow.nextWorkflowID = null;
-                workflow.prevWorkflowID = null;
-                workflow.updated_by = workflow.created_by;
-                workflow.updated_date = workflow.created_date;
-                workflow.workflowId = Guid.NewGuid();
+                Department salesDept = dbContext.Departments.Where(d => d.name.IndexOf("Sales") != -1).SingleOrDefault();
+                Department graphicDept = dbContext.Departments.Where(d => d.name.IndexOf("Graphic") != -1).SingleOrDefault();
+                Department mechDept = dbContext.Departments.Where(d => d.name.IndexOf("Mechanical") != -1).SingleOrDefault();
+                Department prodDept = dbContext.Departments.Where(d => d.name.IndexOf("Production Dept") != -1).SingleOrDefault();
+                Department engravingDept = dbContext.Departments.Where(d => d.name.IndexOf("Engraving") != -1).SingleOrDefault();
+                Department printingDept = dbContext.Departments.Where(d => d.name.IndexOf("Printing") != -1).SingleOrDefault();
+                Department qc2Dept = dbContext.Departments.Where(d => d.name.IndexOf("Quality Control") != -1).SingleOrDefault();
+                Department prodMgmtDepet = dbContext.Departments.Where(d => d.name.IndexOf("Production Mgmt") != -1).SingleOrDefault();
 
-                dbContext.Workflows.AddObject(workflow);
+                Workflow salesToGraphicWf = createSalesToGraphicWf(salesDept);
+                Workflow salesToMechanicalWf = createSalesToMechanicalWf(salesDept);
+                Workflow mechToProdWf = createMechToProdWf(mechDept);
+                Workflow prodToEngravingWf = createProdToEngravignWf(prodDept);
+                Workflow graphicToEngravingWf = createGraphicToEngravingWf(graphicDept);
+                Workflow engravingToProdWf = createEngravingToProdWf(engravingDept);
+                Workflow prodToPrintWf = createProdToPrinting(prodDept);
+                Workflow printToQC2Wf = createPrintingToQC2Wf(printingDept);
+                Workflow qc2ToProdMgmtWf = createQC2ToProdMgmtWf(qc2Dept);
+
+                salesToMechanicalWf.nextWorkflowID = mechToProdWf.workflowId;
+                mechToProdWf.prevWorkflowID = salesToMechanicalWf.workflowId;
+                mechToProdWf.nextWorkflowID = prodToEngravingWf.workflowId;
+                prodToEngravingWf.prevWorkflowID = mechToProdWf.workflowId;
+                prodToEngravingWf.nextWorkflowID = engravingToProdWf.workflowId;
+                salesToGraphicWf.nextWorkflowID = graphicToEngravingWf.workflowId;
+                graphicToEngravingWf.prevWorkflowID = salesToGraphicWf.workflowId;
+                graphicToEngravingWf.nextWorkflowID = engravingToProdWf.workflowId;
+                engravingToProdWf.prevWorkflowID = prodToEngravingWf.workflowId;
+                engravingToProdWf.nextWorkflowID = prodToPrintWf.workflowId;
+                prodToPrintWf.prevWorkflowID = engravingToProdWf.workflowId;
+                prodToPrintWf.nextWorkflowID = printToQC2Wf.workflowId;
+                printToQC2Wf.prevWorkflowID = prodToPrintWf.workflowId;
+                printToQC2Wf.nextWorkflowID = qc2ToProdMgmtWf.workflowId;
+                qc2ToProdMgmtWf.prevWorkflowID = printToQC2Wf.workflowId;
+
+                dbContext.Workflows.AddObject(salesToGraphicWf);
+                dbContext.Workflows.AddObject(salesToMechanicalWf);
+                dbContext.Workflows.AddObject(mechToProdWf);
+                dbContext.Workflows.AddObject(prodToEngravingWf);
+                dbContext.Workflows.AddObject(graphicToEngravingWf);
+                dbContext.Workflows.AddObject(engravingToProdWf);
+                dbContext.Workflows.AddObject(prodToPrintWf);
+                dbContext.Workflows.AddObject(printToQC2Wf);
+                dbContext.Workflows.AddObject(qc2ToProdMgmtWf);
                 //make changes permanent 
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 MessageBox.Show("Workflow Created");
@@ -443,12 +475,148 @@ namespace Example
             }
         }
 
+        private Workflow createSalesToGraphicWf(Department salesDept)
+        {
+            Workflow workflow = new Workflow();
+            workflow.created_by = "Ba Tien";
+            workflow.created_date = DateTime.Now;
+            workflow.departmentId = salesDept.departmentId;
+            workflow.isactive = true;
+            workflow.name = "Sales to Graphic";
+            workflow.nextWorkflowID = null;
+            workflow.prevWorkflowID = null;
+            workflow.updated_by = workflow.created_by;
+            workflow.updated_date = workflow.created_date;
+            workflow.workflowId = Guid.NewGuid();
+            return workflow;
+        }
+        private Workflow createSalesToMechanicalWf(Department salesDept)
+        {
+            Workflow workflow = new Workflow();
+            workflow.created_by = "Ba Tien";
+            workflow.created_date = DateTime.Now;
+            workflow.departmentId = salesDept.departmentId;
+            workflow.isactive = true;
+            workflow.name = "Sales to Mechanical";
+            workflow.nextWorkflowID = null;
+            workflow.prevWorkflowID = null;
+            workflow.updated_by = workflow.created_by;
+            workflow.updated_date = workflow.created_date;
+            workflow.workflowId = Guid.NewGuid();
+            return workflow;
+        }
+        private Workflow createGraphicToEngravingWf(Department graphicDept)
+        {
+            Workflow workflow = new Workflow();
+            workflow.created_by = "Ba Tien";
+            workflow.created_date = DateTime.Now;
+            workflow.departmentId = graphicDept.departmentId;
+            workflow.isactive = true;
+            workflow.name = "Graphic to Engraving";
+            workflow.nextWorkflowID = null;
+            workflow.prevWorkflowID = null;
+            workflow.updated_by = workflow.created_by;
+            workflow.updated_date = workflow.created_date;
+            workflow.workflowId = Guid.NewGuid();
+            return workflow;
+        }
+        private Workflow createMechToProdWf(Department mechDept)
+        {
+            Workflow workflow = new Workflow();
+            workflow.created_by = "Ba Tien";
+            workflow.created_date = DateTime.Now;
+            workflow.departmentId = mechDept.departmentId;
+            workflow.isactive = true;
+            workflow.name = "Mechanical To Production";
+            workflow.nextWorkflowID = null;
+            workflow.prevWorkflowID = null;
+            workflow.updated_by = workflow.created_by;
+            workflow.updated_date = workflow.created_date;
+            workflow.workflowId = Guid.NewGuid();
+            return workflow;
+        }
+        private Workflow createProdToEngravignWf(Department prodDept)
+        {
+            Workflow workflow = new Workflow();
+            workflow.created_by = "Ba Tien";
+            workflow.created_date = DateTime.Now;
+            workflow.departmentId = prodDept.departmentId;
+            workflow.isactive = true;
+            workflow.name = "Production to Engraving";
+            workflow.nextWorkflowID = null;
+            workflow.prevWorkflowID = null;
+            workflow.updated_by = workflow.created_by;
+            workflow.updated_date = workflow.created_date;
+            workflow.workflowId = Guid.NewGuid();
+            return workflow;
+        }
+        private Workflow createEngravingToProdWf(Department engravingDept)
+        {
+            Workflow workflow = new Workflow();
+            workflow.created_by = "Ba Tien";
+            workflow.created_date = DateTime.Now;
+            workflow.departmentId = engravingDept.departmentId;
+            workflow.isactive = true;
+            workflow.name = "Engraving To Production";
+            workflow.nextWorkflowID = null;
+            workflow.prevWorkflowID = null;
+            workflow.updated_by = workflow.created_by;
+            workflow.updated_date = workflow.created_date;
+            workflow.workflowId = Guid.NewGuid();
+            return workflow;
+        }
+        private Workflow createProdToPrinting(Department prodDept)
+        {
+            Workflow workflow = new Workflow();
+            workflow.created_by = "Ba Tien";
+            workflow.created_date = DateTime.Now;
+            workflow.departmentId = prodDept.departmentId;
+            workflow.isactive = true;
+            workflow.name = "Production to Printing";
+            workflow.nextWorkflowID = null;
+            workflow.prevWorkflowID = null;
+            workflow.updated_by = workflow.created_by;
+            workflow.updated_date = workflow.created_date;
+            workflow.workflowId = Guid.NewGuid();
+            return workflow;
+        }
+        private Workflow createPrintingToQC2Wf(Department printingDept)
+        {
+            Workflow workflow = new Workflow();
+            workflow.created_by = "Ba Tien";
+            workflow.created_date = DateTime.Now;
+            workflow.departmentId = printingDept.departmentId;
+            workflow.isactive = true;
+            workflow.name = "Printing to QC2";
+            workflow.nextWorkflowID = null;
+            workflow.prevWorkflowID = null;
+            workflow.updated_by = workflow.created_by;
+            workflow.updated_date = workflow.created_date;
+            workflow.workflowId = Guid.NewGuid();
+            return workflow;
+        }
+        private Workflow createQC2ToProdMgmtWf(Department qc2Dept)
+        {
+            Workflow workflow = new Workflow();
+            workflow.created_by = "Ba Tien";
+            workflow.created_date = DateTime.Now;
+            workflow.departmentId = qc2Dept.departmentId;
+            workflow.isactive = true;
+            workflow.name = "QC2 To Prod Mgmt";
+            workflow.nextWorkflowID = null;
+            workflow.prevWorkflowID = null;
+            workflow.updated_by = workflow.created_by;
+            workflow.updated_date = workflow.created_date;
+            workflow.workflowId = Guid.NewGuid();
+            return workflow;
+        }
+
         private void btnCreateCylinder_Clicked(object sender, EventArgs e)
         {
             COMSEntities dbContext = new COMSEntities();
             try
             {
-                Order order = dbContext.Orders.Where(o => o.order_code.Equals("0001-B11")).FirstOrDefault();
+                Order order = dbContext.Orders.Where(o => o.order_code.Equals("0001-112")).FirstOrDefault();
                 Order_Detail orderDetail = order.Order_Detail.SingleOrDefault();
                 Cylinder cyl = new Cylinder();
                 cyl.color_no = 1;

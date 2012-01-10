@@ -37,9 +37,14 @@
             </asp:BoundField>
             <asp:BoundField DataField="set_code" HeaderText="Set Code" 
                 ItemStyle-HorizontalAlign="Center" >
-<ItemStyle HorizontalAlign="Center"></ItemStyle>
+				<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
-            <asp:TemplateField>
+            <asp:TemplateField HeaderText="Progress" ItemStyle-HorizontalAlign="Center">
+                <ItemTemplate>
+                    <asp:LinkButton ID="lnkViewLog" runat="server"></asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>            
+			<asp:TemplateField>
                <ItemTemplate>
                  <asp:LinkButton ID="lnkCylinders" runat="server" >cylinders info</asp:LinkButton>
                </ItemTemplate>
@@ -63,6 +68,6 @@
 </asp:Content>
 
 <asp:Content ID="Content4" runat="server" contentplaceholderid="ModuleName">
-                        <asp:Literal ID="ltrModule_name" runat="server"></asp:Literal>
+    <asp:Literal ID="ltrModule_name" runat="server"></asp:Literal>
 </asp:Content>
 

@@ -70,6 +70,8 @@
     <Content Include="Admin\Users.aspx" />
     <Content Include="Admin\BarCode.aspx" />
     <Content Include="Admin\PrintOrderBarcode.aspx" />
+    <Content Include="Admin\ViewOrderLog.aspx" />
+    <Content Include="Admin\ViewQueue.aspx" />
     <Content Include="Admin\WorkflowErrorDescription.aspx" />
     <Content Include="AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll" />
     <Content Include="AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.pdb" />
@@ -206,6 +208,20 @@
     </Compile>
     <Compile Include="Admin\PrintOrderBarcode.aspx.designer.cs">
       <DependentUpon>PrintOrderBarcode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewOrderLog.aspx.cs">
+      <DependentUpon>ViewOrderLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewOrderLog.aspx.designer.cs">
+      <DependentUpon>ViewOrderLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewQueue.aspx.cs">
+      <DependentUpon>ViewQueue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewQueue.aspx.designer.cs">
+      <DependentUpon>ViewQueue.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\WorkflowErrorDescription.aspx.cs">
       <DependentUpon>WorkflowErrorDescription.aspx</DependentUpon>

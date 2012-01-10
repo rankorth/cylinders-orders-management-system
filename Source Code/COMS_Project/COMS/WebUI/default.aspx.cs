@@ -44,7 +44,7 @@ namespace WebUI
                 order.Order_Detail.Add(orderdetails);
 
                 MainController mainCtrl = new MainController();
-                mainCtrl.createSalesOrder(order);
+                mainCtrl.createSalesOrder(order, null);
                 ltrMsg.Text = Common.Utility.ShowMessage("successfully placed order");
             }
             catch(Exception ex)
