@@ -212,7 +212,7 @@
                 <td class="style19">
                     Circumference: </td>
                 <td class="style57">
-                    <asp:Label ID="txtCircumference" runat="server" Width="100px" /></td>
+                    <asp:Label ID="txtCircumference" runat="server" style="text-align: left" Width="100px" /></td>
                 <td class="style61">
                     Keyhole: </td>
                 <td class="style54">
