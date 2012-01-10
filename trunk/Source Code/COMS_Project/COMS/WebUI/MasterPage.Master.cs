@@ -40,7 +40,8 @@ namespace WebUI
             Common.BasePage bp = new Common.BasePage();
             if (bp.GetCurentUser() == null)
             {
-                if (!Request.Url.Segments[Request.Url.Segments.Count() - 1].ToUpper().Equals("INDEX.ASPX"))
+                if (!Request.Url.Segments[Request.Url.Segments.Count() - 1].ToUpper().Equals("INDEX.ASPX")
+                    && !Request.Url.Segments[Request.Url.Segments.Count() - 1].ToUpper().Equals("CYLINDERPROCESS.ASPX"))
                 {
                     RedirectToLoginPage();
                 }
