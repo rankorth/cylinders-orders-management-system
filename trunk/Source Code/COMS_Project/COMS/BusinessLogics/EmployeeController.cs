@@ -99,6 +99,15 @@ namespace BusinessLogics
                 if (null != dbContext && null != employeeID)
                 {
                     Employee emp = dbContext.Employees.Where(s => s.employeeId.Equals(employeeID)).SingleOrDefault();
+                    IQueryable<Emp_Role_ref> emp_role_refs = dbContext.Emp_Role_ref.Where(err => err.employeeId.Equals(employeeID));
+                    if (null != emp_role_refs)
+                    {
+                        foreach (Emp_Role_ref err in emp_role_refs)
+                        {
+                            dbContext.DeleteObject(err);
+                        }
+                    }
+
                     dbContext.DeleteObject(emp);
                     dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
