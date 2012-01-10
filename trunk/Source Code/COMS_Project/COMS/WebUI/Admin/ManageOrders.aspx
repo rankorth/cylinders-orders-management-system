@@ -23,7 +23,8 @@
 <asp:Label ID="lblMsg" CssClass="errorMsg" runat="server" />
 
     <asp:GridView ID="gvOrders" runat="server" ViewStateMode="Enabled" Width="100%" 
-        onrowdatabound="gvOrders_RowDataBound" OnRowCommand="gvOrders_RowCommand">
+        onrowdatabound="gvOrders_RowDataBound" OnRowCommand="gvOrders_RowCommand" 
+        style="text-align: center">
         <Columns>
             <asp:TemplateField HeaderText="Order Code" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
@@ -40,7 +41,7 @@
             </asp:BoundField>
             <asp:TemplateField>
                <ItemTemplate>
-                 <asp:LinkButton ID="lnkCylinders" runat="server">cylinders</asp:LinkButton>
+                 <asp:LinkButton ID="lnkCylinders" runat="server" >cylinders info</asp:LinkButton>
                </ItemTemplate>
             </asp:TemplateField>
         </Columns>
