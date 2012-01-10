@@ -233,6 +233,7 @@
     <Compile Include="Common\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Common\Permission.cs" />
     <Compile Include="Common\PageState.cs" />
     <Compile Include="CylinderProcess.aspx.cs">
       <DependentUpon>CylinderProcess.aspx</DependentUpon>
@@ -307,7 +308,7 @@
     <Content Include="MasterPage.Master" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\Report_Files\Report1.rdlc" />
+    <EmbeddedResource Include="Reports\Report_Files\CylinderInfo.rdlc" />
     <EmbeddedResource Include="Reports\Report_Files\Steps.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
