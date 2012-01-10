@@ -9,7 +9,7 @@ using COMSdbEntity;
 
 namespace WebUI.Admin
 {
-    public partial class ErrorManagement : System.Web.UI.Page
+    public partial class ErrorManagement : Common.BasePage
     {
         MainController mainctrl = new MainController();
         protected void Page_Load(object sender, EventArgs e)

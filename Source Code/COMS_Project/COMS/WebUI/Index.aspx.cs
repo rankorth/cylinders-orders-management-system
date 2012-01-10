@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WebUI
 {
-    public partial class Index : System.Web.UI.Page
+    public partial class Index : Common.BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,7 +27,14 @@ namespace WebUI
         }
         protected void lnkLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Admin/Role.aspx");
+            if (base.login(txtUserName.Text.Trim(), txtPassword.Text))
+            {
+                Response.Redirect("/Admin/Blank.aspx");
+            }
+            else
+            {
+                lblMessage.Text = "Login Username (or) Password is wrong! Please try again.";
+            }
         }
 
 

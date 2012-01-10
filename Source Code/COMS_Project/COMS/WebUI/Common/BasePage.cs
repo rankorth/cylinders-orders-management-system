@@ -12,26 +12,42 @@ namespace WebUI.Common
 {
     public class BasePage:System.Web.UI.Page
     {
-        public void login(string username, string password)
-        {
-            Employee user=new Employee();
-            user.username = "user1";
-            
-            // do checking
-            //..
-            //..
+        private string userobj = "userobj";
 
-            Session.Add("userobj", user);
+        public bool login(string username, string password)
+        {
+            SecurityController SecurityCtrl = new SecurityController();
+            Employee User =  SecurityCtrl.login(username, password);
+            bool IsLogin = false;
+            if (User != null)
+            {
+                Session.Add(userobj, User);
+                IsLogin = true;
+            }
+            else
+            {
+                Session.Clear();
+                Session.Add(userobj, null);
+            }
+            return IsLogin;
         }
 
         public Employee GetCurentUser()
         {
-            Employee user =(Employee) Session["userobj"];
+            Employee User =null;
 
-            return user;
+            if (Session[userobj] != null)
+            {
+                User = (Employee)Session[userobj];
+            }
+
+            return User;
         }
-
-
+        public void Logout()
+        {
+            Session.Clear();
+            Session.Add(userobj, null);  
+        }
         public void GenerateMenu(Panel menu_panel)
         {
             //get current user's roles access
@@ -49,9 +65,6 @@ namespace WebUI.Common
             module.Add("Cylinder Que", "/Admin/CylinderQue.aspx");
             module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
             module.Add("Reports", "/Admin/Reports.aspx");
-            
-
-
 
             foreach (string name in module.Keys)
             {
@@ -90,10 +103,6 @@ namespace WebUI.Common
 
                 menu_panel.Controls.Add(lnkButton);
             }
-
         }
-
-        
-
     }
 }
