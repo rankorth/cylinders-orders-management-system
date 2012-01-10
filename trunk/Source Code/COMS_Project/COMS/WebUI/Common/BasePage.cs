@@ -63,7 +63,7 @@ namespace WebUI.Common
             module.Add("Approve Assign Roles", "/Admin/RoleAssignment_Approval.aspx");
             module.Add("Workflow Error Message", "/Admin/ErrorManagement.aspx");
             module.Add("View Current Queue", "/Admin/ViewQueue.aspx");
-            module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
+            
             module.Add("Reports", "/Admin/Reports.aspx");
 
             foreach (string name in module.Keys)
