@@ -52,12 +52,13 @@ namespace WorkflowManagement
             LoadWorkflowFromDB();
         }
         public void Create_Block_fromDB(Guid ID, int x, int y, string Title,
-                                 string Desc, string WorkInstruct, string Notes,bool isStep, bool isBegin)
+                                 string Desc, string WorkInstruct, string Notes,bool isStep, bool isBegin,Formula StepFormula)
         {
             Block block_element = new Block();
             if (isStep)
             {
-                block_element.CreatefromDB(ID, x, y, Title, Desc, WorkInstruct, Notes);
+
+                block_element.CreatefromDB(ID, x, y, Title, Desc, WorkInstruct, Notes, PrepareFormula(StepFormula));
             }else if (isBegin)
             {
                 block_element.CreatefromDB_Begin(ID, x, y, PreviousWorkflowName + " (BEGIN)", Desc, WorkInstruct, Notes);
@@ -521,6 +522,9 @@ namespace WorkflowManagement
         public void SaveToDatabase()
         {
             COMSEntities context=new COMSEntities();
+            COMSdbEntity.Workflow workflow = context.Workflows.Where(w => w.workflowId == this.WorkflowID).SingleOrDefault();
+            workflow.updated_by = "system";
+            workflow.updated_date = DateTime.Now;
 
             bool isSavedPerformed = false;
             foreach (Block element in Elements.Values)
@@ -599,7 +603,8 @@ namespace WorkflowManagement
                     {
                         isEndFound = true;
                     }
-                    Create_Block_fromDB(s.stepId, s.x, s.y, s.name, s.description, s.instruction, s.note, s.isStep, s.isBegin);
+                    Create_Block_fromDB(s.stepId, s.x, s.y, s.name, s.description, s.instruction, s.note, s.isStep, s.isBegin,
+                        s.Formulae.Count>0? s.Formulae.First():null);
                 }
 
                 if (!isBeginFound)
@@ -620,6 +625,20 @@ namespace WorkflowManagement
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public formula PrepareFormula(Formula StepFormula)
+        {
+            formula Formula = new formula();
+
+            if (StepFormula != null)
+            {
+                Formula.coef1 = StepFormula.coef1;
+                Formula.coef2 = StepFormula.coef2;
+                Formula.coef3 = StepFormula.coef3;
+                Formula.coef4 = StepFormula.coef4;
+            }
+            return Formula;
         }
     }
 }

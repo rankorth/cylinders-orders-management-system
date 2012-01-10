@@ -5,18 +5,48 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkflowManagement", "Drawi
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Workflow Designer Setup", "Workflow Designer Setup\Workflow Designer Setup.vdproj", "{72CE8949-FED4-4AA9-AF59-B0766D56564C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COMSdbEntity", "..\..\COMSdbEntity\COMSdbEntity.csproj", "{10317340-98EE-41F1-A43B-E07E80C442DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF29CCF2-97BF-40E4-AA38-ECFF692849EB}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{AF29CCF2-97BF-40E4-AA38-ECFF692849EB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{AF29CCF2-97BF-40E4-AA38-ECFF692849EB}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{AF29CCF2-97BF-40E4-AA38-ECFF692849EB}.Debug|x86.ActiveCfg = Debug|x86
 		{AF29CCF2-97BF-40E4-AA38-ECFF692849EB}.Debug|x86.Build.0 = Debug|x86
+		{AF29CCF2-97BF-40E4-AA38-ECFF692849EB}.Release|Any CPU.ActiveCfg = Release|x86
+		{AF29CCF2-97BF-40E4-AA38-ECFF692849EB}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{AF29CCF2-97BF-40E4-AA38-ECFF692849EB}.Release|Mixed Platforms.Build.0 = Release|x86
 		{AF29CCF2-97BF-40E4-AA38-ECFF692849EB}.Release|x86.ActiveCfg = Release|x86
 		{AF29CCF2-97BF-40E4-AA38-ECFF692849EB}.Release|x86.Build.0 = Release|x86
+		{72CE8949-FED4-4AA9-AF59-B0766D56564C}.Debug|Any CPU.ActiveCfg = Debug
+		{72CE8949-FED4-4AA9-AF59-B0766D56564C}.Debug|Any CPU.Build.0 = Debug
+		{72CE8949-FED4-4AA9-AF59-B0766D56564C}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{72CE8949-FED4-4AA9-AF59-B0766D56564C}.Debug|Mixed Platforms.Build.0 = Debug
 		{72CE8949-FED4-4AA9-AF59-B0766D56564C}.Debug|x86.ActiveCfg = Debug
+		{72CE8949-FED4-4AA9-AF59-B0766D56564C}.Release|Any CPU.ActiveCfg = Release
+		{72CE8949-FED4-4AA9-AF59-B0766D56564C}.Release|Any CPU.Build.0 = Release
+		{72CE8949-FED4-4AA9-AF59-B0766D56564C}.Release|Mixed Platforms.ActiveCfg = Release
+		{72CE8949-FED4-4AA9-AF59-B0766D56564C}.Release|Mixed Platforms.Build.0 = Release
 		{72CE8949-FED4-4AA9-AF59-B0766D56564C}.Release|x86.ActiveCfg = Release
+		{10317340-98EE-41F1-A43B-E07E80C442DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10317340-98EE-41F1-A43B-E07E80C442DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10317340-98EE-41F1-A43B-E07E80C442DC}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{10317340-98EE-41F1-A43B-E07E80C442DC}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{10317340-98EE-41F1-A43B-E07E80C442DC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{10317340-98EE-41F1-A43B-E07E80C442DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10317340-98EE-41F1-A43B-E07E80C442DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10317340-98EE-41F1-A43B-E07E80C442DC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{10317340-98EE-41F1-A43B-E07E80C442DC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{10317340-98EE-41F1-A43B-E07E80C442DC}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
