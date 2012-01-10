@@ -7,8 +7,18 @@ using COMSdbEntity;
 
 namespace WorkflowManagement
 {
+    public class formula
+    {
+        public int coef1=0;
+        public int coef2=0;
+        public int coef3=0;
+        public int coef4=0;
+    }
+
     public class Block
     {
+        private formula Formula = new formula();
+
         private Guid display_id = Guid.NewGuid();
         public  Guid obj_id = Guid.Empty;
         public int x { get; set; }
@@ -36,7 +46,7 @@ namespace WorkflowManagement
             }
         }
         public void CreatefromDB(Guid ID, int x, int y, string Title,
-                                 string Desc, string WorkInstruct, string Notes)
+                                 string Desc, string WorkInstruct, string Notes,formula Formula)
         {
             this.obj_id = ID;
             this.display_id = ID;
@@ -48,6 +58,8 @@ namespace WorkflowManagement
             this.Notes = Notes;
             this.isStep = true;
             this.isBegin = false;
+
+            this.Formula = Formula;
         }
 
         public void CreatefromDB_Begin(Guid ID, int x, int y, string Title,
@@ -86,6 +98,9 @@ namespace WorkflowManagement
             this.y = y;
             this.Title = Title;
             this.isStep = true;
+            this.Description = "";
+            this.WorkInstruction = "";
+            this.Notes = "";
         }
 
         public void CreateBeginBlock(int x, int y, string Title)
@@ -236,9 +251,9 @@ namespace WorkflowManagement
 
                 step.stepId = this.obj_id;
                 step.name = this.Title;
-                step.description = this.Description;
-                step.instruction = this.WorkInstruction;
-                step.note = this.Notes;
+                step.description = this.Description == null ? "" : this.Description;
+                step.instruction = this.WorkInstruction == null ? "" : this.WorkInstruction;
+                step.note = this.Notes == null ? "" : this.Notes;
                 step.x = this.x;
                 step.y = this.y;
                 step.isActive = this.isActive;
@@ -246,6 +261,40 @@ namespace WorkflowManagement
                 step.isBegin = this.isBegin;
                 step.updated_by = "workflow_app";
                 step.updated_date = DateTime.Now;
+
+                COMSdbEntity.Formula StepFormula = null;
+
+                if (step.Formulae.Count > 0)
+                {
+                    StepFormula = step.Formulae.First();
+                    StepFormula.coef1 = this.Formula.coef1;
+                    StepFormula.coef2 = this.Formula.coef2;
+                    StepFormula.coef3 = this.Formula.coef3;
+                    StepFormula.coef4 = this.Formula.coef4;
+
+                    StepFormula.isactive = true;
+                    StepFormula.formula1 = "";
+                    StepFormula.created_by = "system";
+                    StepFormula.created_date = DateTime.Now;
+
+                }
+                else
+                {
+                    StepFormula = new COMSdbEntity.Formula();
+                    StepFormula.coef1 = this.Formula.coef1;
+                    StepFormula.coef2 = this.Formula.coef2;
+                    StepFormula.coef3 = this.Formula.coef3;
+                    StepFormula.coef4 = this.Formula.coef4;
+
+                    StepFormula.isactive = true;
+                    StepFormula.formula1 = "";
+                    StepFormula.created_by = "system";
+                    StepFormula.created_date = DateTime.Now;
+                    StepFormula.formulaId = Guid.NewGuid();
+
+                    step.Formulae.Add(StepFormula);
+                }
+
 
             }
             else //new obj
@@ -257,9 +306,9 @@ namespace WorkflowManagement
                     step.workflowId = this.workflowid;
                     step.stepId = this.display_id;
                     step.name = this.Title;
-                    step.description = this.Description;
-                    step.instruction = this.WorkInstruction;
-                    step.note = this.Notes;
+                    step.description = this.Description == null ? "" : this.Description;
+                    step.instruction = this.WorkInstruction == null ? "" : this.WorkInstruction;
+                    step.note = this.Notes == null ? "" : this.Notes;
                     step.x = this.x;
                     step.y = this.y;
                     step.isActive=this.isActive;
@@ -267,15 +316,41 @@ namespace WorkflowManagement
                     step.isBegin = this.isBegin;
                     step.created_by = "workflow_app";
                     step.created_date = DateTime.Now;
+                    
+
+                    COMSdbEntity.Formula StepFormula = new COMSdbEntity.Formula();
+                    StepFormula.isactive = true;
+                    StepFormula.formula1 = "";
+
+                    StepFormula.coef1 = this.Formula.coef1;
+                    StepFormula.coef2 = this.Formula.coef2;
+                    StepFormula.coef3 = this.Formula.coef3;
+                    StepFormula.coef4 = this.Formula.coef4;
+
+                    StepFormula.created_by = "system";
+                    StepFormula.created_date = DateTime.Now;
+                    StepFormula.formulaId = Guid.NewGuid();
+
+                    step.Formulae.Add(StepFormula);
+
                     context.Steps.AddObject(step);
                 }
             }
 
         }
-
+        
         public void ChangedToDBObject()
         {
             this.obj_id = this.display_id;
+        }
+
+        public void SetFormula(formula Formula)
+        {
+            this.Formula = Formula;
+        }
+        public formula GetFormula()
+        {
+            return this.Formula;
         }
     }
 

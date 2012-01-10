@@ -68,6 +68,16 @@
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.pnlProperties = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtCoef4 = new System.Windows.Forms.MaskedTextBox();
+            this.txtCoef3 = new System.Windows.Forms.MaskedTextBox();
+            this.txtCoef2 = new System.Windows.Forms.MaskedTextBox();
+            this.txtCoef1 = new System.Windows.Forms.MaskedTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.txtWorkInstruction = new System.Windows.Forms.TextBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
@@ -81,6 +91,7 @@
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.pnlProperties.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -400,6 +411,8 @@
             // 
             // pnlProperties
             // 
+            this.pnlProperties.Controls.Add(this.label6);
+            this.pnlProperties.Controls.Add(this.tableLayoutPanel1);
             this.pnlProperties.Controls.Add(this.txtNotes);
             this.pnlProperties.Controls.Add(this.txtWorkInstruction);
             this.pnlProperties.Controls.Add(this.txtDescription);
@@ -416,21 +429,134 @@
             this.pnlProperties.Size = new System.Drawing.Size(1035, 149);
             this.pnlProperties.TabIndex = 4;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(790, 17);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(97, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Formula Coefficient";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.08696F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.91304F));
+            this.tableLayoutPanel1.Controls.Add(this.txtCoef4, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.txtCoef3, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtCoef2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtCoef1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 3);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(793, 34);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(230, 107);
+            this.tableLayoutPanel1.TabIndex = 9;
+            // 
+            // txtCoef4
+            // 
+            this.txtCoef4.Location = new System.Drawing.Point(63, 81);
+            this.txtCoef4.Mask = "000";
+            this.txtCoef4.Name = "txtCoef4";
+            this.txtCoef4.Size = new System.Drawing.Size(100, 20);
+            this.txtCoef4.TabIndex = 17;
+            this.txtCoef4.TextChanged += new System.EventHandler(this.PropertyChanged);
+            // 
+            // txtCoef3
+            // 
+            this.txtCoef3.Location = new System.Drawing.Point(63, 55);
+            this.txtCoef3.Mask = "000";
+            this.txtCoef3.Name = "txtCoef3";
+            this.txtCoef3.Size = new System.Drawing.Size(100, 20);
+            this.txtCoef3.TabIndex = 16;
+            this.txtCoef3.TextChanged += new System.EventHandler(this.PropertyChanged);
+            // 
+            // txtCoef2
+            // 
+            this.txtCoef2.Location = new System.Drawing.Point(63, 29);
+            this.txtCoef2.Mask = "000";
+            this.txtCoef2.Name = "txtCoef2";
+            this.txtCoef2.Size = new System.Drawing.Size(100, 20);
+            this.txtCoef2.TabIndex = 15;
+            this.txtCoef2.TextChanged += new System.EventHandler(this.PropertyChanged);
+            // 
+            // txtCoef1
+            // 
+            this.txtCoef1.Location = new System.Drawing.Point(63, 3);
+            this.txtCoef1.Mask = "000";
+            this.txtCoef1.Name = "txtCoef1";
+            this.txtCoef1.Size = new System.Drawing.Size(100, 20);
+            this.txtCoef1.TabIndex = 11;
+            this.txtCoef1.TextChanged += new System.EventHandler(this.PropertyChanged);
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(13, 6);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "coef1";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label8.Location = new System.Drawing.Point(13, 32);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "coef2";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(13, 58);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 13);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "coef3";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(13, 86);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "coef4";
+            // 
             // txtNotes
             // 
-            this.txtNotes.Location = new System.Drawing.Point(689, 34);
+            this.txtNotes.Location = new System.Drawing.Point(553, 34);
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(307, 107);
+            this.txtNotes.Size = new System.Drawing.Size(234, 107);
             this.txtNotes.TabIndex = 8;
             this.txtNotes.TextChanged += new System.EventHandler(this.PropertyChanged);
             // 
             // txtWorkInstruction
             // 
-            this.txtWorkInstruction.Location = new System.Drawing.Point(340, 34);
+            this.txtWorkInstruction.Location = new System.Drawing.Point(311, 34);
             this.txtWorkInstruction.Multiline = true;
             this.txtWorkInstruction.Name = "txtWorkInstruction";
-            this.txtWorkInstruction.Size = new System.Drawing.Size(307, 107);
+            this.txtWorkInstruction.Size = new System.Drawing.Size(236, 107);
             this.txtWorkInstruction.TabIndex = 7;
             this.txtWorkInstruction.TextChanged += new System.EventHandler(this.PropertyChanged);
             // 
@@ -457,7 +583,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(686, 18);
+            this.label5.Location = new System.Drawing.Point(550, 18);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 13);
             this.label5.TabIndex = 4;
@@ -477,7 +603,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(337, 18);
+            this.label3.Location = new System.Drawing.Point(308, 18);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 2;
@@ -532,6 +658,8 @@
             this.toolStrip.PerformLayout();
             this.pnlProperties.ResumeLayout(false);
             this.pnlProperties.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -589,6 +717,16 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.MaskedTextBox txtCoef4;
+        private System.Windows.Forms.MaskedTextBox txtCoef3;
+        private System.Windows.Forms.MaskedTextBox txtCoef2;
+        private System.Windows.Forms.MaskedTextBox txtCoef1;
     }
 }
 
