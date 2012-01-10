@@ -13,6 +13,8 @@
         <tr>
             <td class="entry_label">
                 Role Name
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                    ControlToValidate="txtRoleName" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
             <td class="entry_data">
                 <asp:TextBox BorderColor="black" ID="txtRoleName" runat="server" MaxLength="50" Width="336px"></asp:TextBox>
