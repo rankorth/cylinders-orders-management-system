@@ -62,7 +62,7 @@ namespace WebUI.Common
             module.Add("Customer", "/Admin/Customers.aspx");
             module.Add("Approve Assign Roles", "/Admin/RoleAssignment_Approval.aspx");
             module.Add("Workflow Error Message", "/Admin/ErrorManagement.aspx");
-            module.Add("Cylinder Que", "/Admin/CylinderQue.aspx");
+            module.Add("View Current Queue", "/Admin/ViewQueue.aspx");
             module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
             module.Add("Reports", "/Admin/Reports.aspx");
 

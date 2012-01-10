@@ -18,8 +18,12 @@ namespace WebUI.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["user"] = mainCtrl.retrieveEmployee("staff-code-111"); //TODO: remove
+
             if (!IsPostBack)
             {
+                load_customers();
+                load_priorities();
                 if (Request["orderId"] == null)
                 {
                     load_new_data();
@@ -35,16 +39,28 @@ namespace WebUI.Admin
             }
         }
 
+        //load customer list into drop down list
+        private void load_customers() {
+            IQueryable<Customer> customerList = mainCtrl.getAllCustomers();
+            foreach (Customer cust in customerList)
+            {
+                ddlCustomer.Items.Add(new ListItem(cust.fullname, cust.customerid.ToString()));
+                ddlCustomerCode.Items.Add(new ListItem(cust.code, cust.customerid.ToString()));
+            }
+        }
+
+        private void load_priorities()
+        {
+            ddlPriority.Items.Add(new ListItem("MEDIUM", OrderConst.PRIORITY_MEDIUM));
+            ddlPriority.Items.Add(new ListItem("HIGH", OrderConst.PRIORITY_HIGH));
+            ddlPriority.Items.Add(new ListItem("LOW", OrderConst.PRIORITY_LOW));
+        }
+
         //load new data into web form
         private void load_new_data()
         {
             txtCreateDate.Text = DateTime.Now.ToShortDateString();
-            //load customer list into drop down list
-            IQueryable<Customer> customerList = mainCtrl.getAllCustomers();
-            foreach (Customer cust in customerList) {
-                ddlCustomer.Items.Add(new ListItem(cust.fullname, cust.customerid.ToString()));
-                ddlCustomerCode.Items.Add(new ListItem(cust.code, cust.customerid.ToString()));
-            }
+            load_status(NAME_NEW, null);
         }
 
         //load existing order data into web form
@@ -54,20 +70,35 @@ namespace WebUI.Admin
             Order order = mainCtrl.getSalesOrder(orderId);
             display_order(order);
             hdOrderId.Value = orderId.ToString();
+            load_status(NAME_UPDATE, order.status);
+        }
+
+        //load available statuses to drop down list
+        private void load_status(String moduleName, String status)
+        {
+            //status should be one of the constant string from OrderConst (STATUS_ABC)
+            if (NAME_NEW.Equals(moduleName))
+            {
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_NEW), OrderConst.STATUS_NEW));
+            }
+            else if (NAME_UPDATE.Equals(moduleName))
+            {
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_UPDATED), OrderConst.STATUS_UPDATED));
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_SENT_TO_GRPH), OrderConst.STATUS_SENT_TO_GRPH));
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_GRPH_EDITED), OrderConst.STATUS_GRPH_EDITED));
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_GRPH_VERIFIED), OrderConst.STATUS_GRPH_VERIFIED));
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_SENT_TO_MECH), OrderConst.STATUS_SENT_TO_MECH));
+
+                ddlOrderStatus.SelectedValue = status;
+            }
         }
 
         //display order data in web form
         private void display_order(Order order)
         {
-            //load customer list into drop down list, the current customer will be auto-selected
-            IQueryable<Customer> customerList = mainCtrl.getAllCustomers();
-            foreach (Customer cust in customerList)
-            {
-                ddlCustomer.Items.Add(new ListItem(cust.fullname, cust.customerid.ToString()));
-                ddlCustomerCode.Items.Add(new ListItem(cust.code, cust.customerid.ToString()));
-            }
             ddlCustomer.SelectedValue = order.customer_id.ToString();
             ddlCustomerCode.SelectedValue = ddlCustomer.SelectedValue;
+            ddlPriority.SelectedValue = order.priority;
             txtCustomerCode.Text = ddlCustomerCode.SelectedItem.Text;
 
             txtCustomerRep.Text = order.customer_rep;
@@ -75,8 +106,8 @@ namespace WebUI.Admin
             txtPriceType.Text = order.price_type;
             txtRedoPct.Text = "" + order.redo_pct;
             chkBxOldCore.Checked = (bool)order.old_core;
-            //calDeliveryDate.SelectedDate = (DateTime)order.delivery_date;
             txtDeliveryDate_CalendarExtender.SelectedDate = order.delivery_date;
+            txtDeliveryDate.Text = order.delivery_date.ToString();
             rBtnOrderTypeNew.Checked = (order.order_type == OrderConst.ORDERTYPE_NEW);
             txtSetCode.Text = order.set_code;
             txtCylType.Text = order.cylinder_type;
@@ -188,7 +219,8 @@ namespace WebUI.Admin
                 order.orderId = Guid.NewGuid(); //generate new guid as primary key.
                 order.order_code = mainCtrl.getNextOrderBarCode();
                 order.created_by = txtCreatedBy.Text;
-                order.created_date = Convert.ToDateTime(txtCreateDate_CalendarExtender.SelectedDate);
+                //order.created_date = Convert.ToDateTime(txtCreateDate_CalendarExtender.SelectedDate);
+                order.created_date = Convert.ToDateTime(txtCreateDate.Text);
                 populate_order(order);
 
                 Order_Detail orderDetail = new Order_Detail();
@@ -198,7 +230,12 @@ namespace WebUI.Admin
                 orderDetail.created_date = order.created_date;
                 populate_orderDetail(order, orderDetail);
 
-                mainCtrl.createSalesOrder(order);
+                //add orderDetail to order
+                order.Order_Detail.Add(orderDetail);
+
+                mainCtrl.createSalesOrder(order, (Employee)Session["user"]); //TODO: replace with actual Employee object from Session
+                lblMsg.Text = "Order created successfully. Please click Print Barcode to print out the barcode on the paper order.";
+                lblMsg.CssClass = "okMsg";
             }
             else if (NAME_UPDATE.Equals(ltrModule_name.Text))
             {
@@ -207,6 +244,10 @@ namespace WebUI.Admin
 
                 Order_Detail orderDetail = order.Order_Detail.SingleOrDefault();
                 populate_orderDetail(order, orderDetail);
+
+                mainCtrl.updateSalesOrder(order, (Employee)Session["user"]); //TODO: replace with actual Employee object from Session
+                lblMsg.Text = "Order updated successfully.";
+                lblMsg.CssClass = "okMsg";
             }
 
             //enable Print Barcode button
@@ -220,14 +261,15 @@ namespace WebUI.Admin
         private void populate_order(Order order)
         {
             //populate form values into order object
+            order.status = ddlOrderStatus.SelectedValue;
             order.customer_id = new Guid(ddlCustomer.SelectedItem.Value);
             order.customer_rep = txtCustomerRep.Text;
             order.product_name = txtProdName.Text;
             order.price_type = txtPriceType.Text;
             order.redo_pct = (txtRedoPct.Text != "") ? Convert.ToInt32(txtRedoPct.Text) : 0;
             order.old_core = chkBxOldCore.Checked;
-            //order.delivery_date = calDeliveryDate.SelectedDate;
-            order.delivery_date = Convert.ToDateTime(txtDeliveryDate_CalendarExtender.SelectedDate);
+            //order.delivery_date = Convert.ToDateTime(txtDeliveryDate_CalendarExtender.SelectedDate);
+            order.delivery_date = Convert.ToDateTime(txtDeliveryDate.Text);
 
             order.order_type = (rBtnOrderTypeNew.Checked) ? OrderConst.ORDERTYPE_NEW : OrderConst.ORDERTYPE_REDO;
 
@@ -333,9 +375,6 @@ namespace WebUI.Admin
                 orderDetail.img_orientation = txtOrientOther.Text;
 
             orderDetail.changes = (chkBxChangeFile.Checked) ? OrderConst.CHANGEFILE_YES : OrderConst.CHANGEFILE_NO;
-
-            //add orderDetail to order
-            order.Order_Detail.Add(orderDetail);
         }
 
         protected void lnkPrintBarcode_Click(object sender, EventArgs e)
@@ -343,9 +382,14 @@ namespace WebUI.Admin
         }
 
 
-        protected void lnkCancel_Click1(object sender, EventArgs e)
+        protected void lnkCancel_Click(object sender, EventArgs e)
         {
- Response.Redirect("ManageOrders.aspx");
+
+        }
+
+        protected void lnkBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ManageOrders.aspx");
         }
     }
 }

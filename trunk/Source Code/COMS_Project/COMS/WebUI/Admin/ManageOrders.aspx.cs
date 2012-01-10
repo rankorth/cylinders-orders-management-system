@@ -21,7 +21,7 @@ namespace WebUI.Admin
         protected void lnkAddOrder_Click(object sender, EventArgs e)
         {
             clearCylindersData();
-            Response.Redirect("DisplayOrder.aspx");
+            Response.Redirect("/Admin/DisplayOrder.aspx");
         }
 
         protected void lnkSearch_Click(object sender, EventArgs e)
@@ -34,13 +34,13 @@ namespace WebUI.Admin
                 gvOrders.AutoGenerateColumns = false;
                 gvOrders.DataBind();
                 lblMsg.Text = "Search found "+orderList.Count()+" result(s).";
-                lblMsg.CssClass = "OkMsg";
+                lblMsg.CssClass = "okMsg";
             }
             else
             {
-
+                lblMsg.Text = "Search found no result.";
+                lblMsg.CssClass = "errMsg";
             }
-
         }
 
         protected void gvOrders_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -48,12 +48,19 @@ namespace WebUI.Admin
             Order order = null;
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-               LinkButton lnkOrderCode = (LinkButton) e.Row.FindControl("lnkOrderCode");
+                //set up link to view order details
+                LinkButton lnkOrderCode = (LinkButton) e.Row.FindControl("lnkOrderCode");
 
-               order =(Order) e.Row.DataItem;
-               lnkOrderCode.Text = order.order_code.ToString();
-               lnkOrderCode.CommandName = "OrderDetail";
-               lnkOrderCode.CommandArgument = order.orderId.ToString();
+                order =(Order) e.Row.DataItem;
+                lnkOrderCode.Text = order.order_code.ToString();
+                lnkOrderCode.CommandName = "OrderInfo";
+                lnkOrderCode.CommandArgument = order.orderId.ToString();
+
+                //set up link to view order logs
+                LinkButton lnkViewLog = (LinkButton)e.Row.FindControl("lnkViewLog");
+                lnkViewLog.Text = "View Progress";
+                lnkViewLog.CommandName = "OrderLog";
+                lnkViewLog.CommandArgument = order.orderId.ToString();
 
                LinkButton lnkCylinders = ((LinkButton)e.Row.Cells[0].FindControl("lnkCylinders"));
                lnkCylinders.CommandName = "ShowAllCylinderDetails";
@@ -63,12 +70,17 @@ namespace WebUI.Admin
 
         protected void gvOrders_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName.Equals("OrderDetail"))
+            if (e.CommandName.Equals("OrderInfo"))
             {
                 Response.Redirect("/Admin/DisplayOrder.aspx?orderId="+e.CommandArgument.ToString());
             }
 
-            if (e.CommandName.Equals("ShowAllCylinderDetails"))
+            else if (e.CommandName.Equals("OrderLog"))
+            {
+                Response.Redirect("/Admin/ViewOrderLog.aspx?orderId=" + e.CommandArgument.ToString());
+            }
+
+            else if (e.CommandName.Equals("ShowAllCylinderDetails"))
             {
                 load_Cylinders_data(e.CommandArgument.ToString());
             }

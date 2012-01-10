@@ -22,6 +22,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.LinkButton lnkSave;
         
         /// <summary>
+        /// lnkSave_ConfirmButtonExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ConfirmButtonExtender lnkSave_ConfirmButtonExtender;
+        
+        /// <summary>
         /// lnkPrintBarcode control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,24 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkCancel;
+        
+        /// <summary>
+        /// lnkCancel_ConfirmButtonExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ConfirmButtonExtender lnkCancel_ConfirmButtonExtender;
+        
+        /// <summary>
+        /// lnkBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkBack;
         
         /// <summary>
         /// hdOrderId control.
@@ -76,13 +103,13 @@ namespace WebUI.Admin {
         protected global::AjaxControlToolkit.CalendarExtender txtCreateDate_CalendarExtender;
         
         /// <summary>
-        /// imgBarCode control.
+        /// ddlOrderStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgBarCode;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOrderStatus;
         
         /// <summary>
         /// ddlCustomer control.

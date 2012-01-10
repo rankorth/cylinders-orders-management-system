@@ -46,9 +46,9 @@ namespace BusinessLogics
             return (new WorkflowController()).viewCurrentQueue(workflowId);
         }
 
-        public void createSalesOrder(Order order)
+        public void createSalesOrder(Order order, Employee empl)
         {
-            (new SalesOrderController()).createSalesOrder(order);
+            (new SalesOrderController()).createSalesOrder(order, empl);
         }
 
         public Order getSalesOrder(Guid orderId)
@@ -66,9 +66,9 @@ namespace BusinessLogics
             return (new SalesOrderController()).getSalesOrders(searchKey, searchType);
         }
 
-        public void updateSalesOrder(Order order) //renamed from updateParticularSalesOrder
+        public void updateSalesOrder(Order order, Employee empl) //renamed from updateParticularSalesOrder
         {
-            (new SalesOrderController()).updateSalesOrder(order);
+            (new SalesOrderController()).updateSalesOrder(order, empl);
         }
 
         public void deleteSpecificOrder(Order order)
@@ -376,6 +376,10 @@ namespace BusinessLogics
             return (new SalesOrderController()).getNextOrderBarCode();
         }
 
+        public IQueryable<Order_Log> getOrderLogs(Guid orderId)
+        {
+            return (new SalesOrderController()).getOrderLogs(orderId);
+        }
 
         //- Export Cylinder Queues
         //- Manage Sales Order - coded-tested
