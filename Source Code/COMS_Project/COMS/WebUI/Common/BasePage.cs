@@ -104,5 +104,13 @@ namespace WebUI.Common
                 menu_panel.Controls.Add(lnkButton);
             }
         }
+
+        //Check user Authorization at page and Allowed Action level per module
+        public bool CheckPermission(string Permission_Module_Name,string Permission_Action,Employee UserObj)
+        {
+            Permission permission = new Permission();
+            return permission.CheckPermission(Permission_Module_Name, Permission_Action, UserObj);
+
+        }
     }
 }
