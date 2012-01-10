@@ -19,7 +19,8 @@ namespace BusinessLogics
         //private EmployeeController employeeCtrl = new EmployeeController();
         //commented to prevent DB connection being held in each controller for long periods
 
-        public List<Access_Right> login(String username, String password)
+        //Tin (10-Jan-2012) make changes to return Employee object as login session
+        public Employee login(String username, String password)
         {
             return (new SecurityController()).login(username, password);
             //TODO: web UI page to save access right list into Session by Session[""] = list;
