@@ -97,7 +97,6 @@
     <Content Include="AjaxControlToolkit.Binary.NET4\zh-CHS\AjaxControlToolkit.resources.dll" />
     <Content Include="AjaxControlToolkit.Binary.NET4\zh-CHT\AjaxControlToolkit.resources.dll" />
     <Content Include="CylinderProcess.aspx" />
-    <Content Include="default.aspx" />
     <Content Include="Index.aspx" />
     <Content Include="Reports\StepList.aspx" />
     <Content Include="Styles\Images\Background\logo.png" />
@@ -241,13 +240,6 @@
     </Compile>
     <Compile Include="CylinderProcess.aspx.designer.cs">
       <DependentUpon>CylinderProcess.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="default.aspx.cs">
-      <DependentUpon>default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="default.aspx.designer.cs">
-      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
