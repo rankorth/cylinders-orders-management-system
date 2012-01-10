@@ -48,7 +48,6 @@
     <Compile Include="EmployeeController.cs" />
     <Compile Include="ErrorController.cs" />
     <Compile Include="MainController.cs" />
-    <Compile Include="ObjectCopier.cs" />
     <Compile Include="PerformanceController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoleController.cs" />
