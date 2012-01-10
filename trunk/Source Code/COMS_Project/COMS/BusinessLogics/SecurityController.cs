@@ -15,16 +15,26 @@ namespace BusinessLogics
         LOGIN_STATUS_NO_USERNAME = 1,
         LOGIN_STATUS_WRONG_PASS = 2,
     }
-    class SecurityController
+    public class SecurityController
     {
         private COMSEntities dbContext = new COMSEntities();
         
-
-        public List<Access_Right> login(String username, String password)
+        //Tin (10-Jan-2012)
+        public Employee login(String username, String password)
         {
-            List<Access_Right> rightList = null;
-
-            //TODO:check username & password
+            //after login, we need user object to store as session.
+            //Tin (10-Jan-2012)
+            Employee EmpObj =null;
+            try
+            {
+                EmpObj = dbContext.Employees.Where(e => e.username.Trim().Equals(username.Trim()) && e.password.Equals(password)).SingleOrDefault();
+            }
+            catch
+            {
+                // Do Nothing, we will throw null object as no login found.
+            }
+            /*
+             *  List<Access_Right> rightList = null;
             Employee dbEmpl = dbContext.Employees.Where(e => e.username.Equals(username)).SingleOrDefault();
             if (dbEmpl == null)
             {
@@ -37,8 +47,8 @@ namespace BusinessLogics
             else
             {
                 throw new Exception("" + SecurityConst.LOGIN_STATUS_WRONG_PASS);
-            }
-            return rightList;
+            }*/
+            return EmpObj;
         }
 
         public List<Role> GetRoles(Employee emp)
@@ -80,6 +90,8 @@ namespace BusinessLogics
         public void logOut()
         {
             //TODO: destroy session
+            //Tin (10-Jan-2012)
+            // We will do in Web UI level project to destroy session.
         }
     }
 
