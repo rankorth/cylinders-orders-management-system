@@ -10,7 +10,7 @@ using COMSdbEntity;
 
 namespace WebUI.Admin
 {
-    public partial class Reports : System.Web.UI.Page
+    public partial class Reports : Common.BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

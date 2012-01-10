@@ -10,7 +10,7 @@ using BusinessLogics;
 
 namespace WebUI.Admin
 {
-    public partial class RoleAssignment_Approval : System.Web.UI.Page
+    public partial class RoleAssignment_Approval : Common.BasePage
     {
         private RoleController RoleCtrl = new RoleController();
 

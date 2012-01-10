@@ -8,7 +8,9 @@
     </ul>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="InputPlaceHolder" runat="server">
-    <br /><br />
+    <br />&nbsp;To setup auto login, just predifine username password in 
+    Common\BasePage.cs<br />
+    public bool login(string username, string password) function.<br />
     <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td class="entry_label">
@@ -29,4 +31,6 @@
 </table>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
+    &nbsp;<asp:Label ID="lblMessage" runat="server" Font-Bold="True" 
+    ForeColor="Red"></asp:Label>
 </asp:Content>

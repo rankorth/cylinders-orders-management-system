@@ -58,6 +58,8 @@
     <Reference Include="System.Web.ApplicationServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Blank.aspx" />
+    <Content Include="Admin\CylinderPrintPage.aspx" />
     <Content Include="Admin\DisplayOrder.aspx" />
     <Content Include="Admin\Departments.aspx" />
     <Content Include="Admin\ErrorManagement.aspx" />
@@ -121,6 +123,20 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Blank.aspx.cs">
+      <DependentUpon>Blank.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Blank.aspx.designer.cs">
+      <DependentUpon>Blank.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\CylinderPrintPage.aspx.cs">
+      <DependentUpon>CylinderPrintPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CylinderPrintPage.aspx.designer.cs">
+      <DependentUpon>CylinderPrintPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\DisplayOrder.aspx.cs">
       <DependentUpon>DisplayOrder.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
