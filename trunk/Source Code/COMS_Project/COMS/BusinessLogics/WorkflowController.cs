@@ -128,6 +128,9 @@ namespace BusinessLogics
             return dbContext.Workflows.Where(w => w.workflowId == WorkflowId && w.isactive == true).SingleOrDefault();
         }
 
-
+        public Workflow GetWorkflow(String wfName1, String wfName2)
+        {
+            return dbContext.Workflows.Where(w => w.name.IndexOf(wfName1) > -1 && w.name.IndexOf(wfName2) > -1 && w.isactive == true).SingleOrDefault();
+        }
     }
 }

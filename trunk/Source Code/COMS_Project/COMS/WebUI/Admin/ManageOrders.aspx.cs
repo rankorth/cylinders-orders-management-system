@@ -71,7 +71,6 @@ namespace WebUI.Admin
 
                 //set up link to view order logs
                 LinkButton lnkViewLog = (LinkButton)e.Row.FindControl("lnkViewLog");
-                lnkViewLog.Text = "View Progress";
                 lnkViewLog.CommandName = "OrderLog";
                 lnkViewLog.CommandArgument = order.orderId.ToString();
 

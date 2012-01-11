@@ -20,6 +20,10 @@ namespace WebUI.Admin
         public const String MSG_UPDATE_OK_DESC = "Order updated successfully.";
         public const String MSG_CANCEL_OK = "cancelOk";
         public const String MSG_CANCEL_OK_DESC = "Order cancelled successfully.";
+        public const String MSG_STARTPROD_OK = "startProdOk";
+        public const String MSG_STARTPROD_OK_DESC = "Cylinder production has been started for order ";
+        public const String MSG_STOPPROD_OK = "startProdOk";
+        public const String MSG_STOPPROD_OK_DESC = "Cylinder production has been stopped for order ";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,13 +35,18 @@ namespace WebUI.Admin
                 {
                     load_new_data();
                     ltrModule_name.Text = NAME_NEW;
+                    lnkPrintBarcode.Visible = false; //only allow user to print once order has been saved
+                    lnkCancel.Visible = false; //only allow user to cancel order during update
+                    lnkStartProd.Visible = false; //only allow user to start production during update
+                    lnkStopProd.Visible = false; //only allow user to stop production during update
                 }
                 else
                 {
-
                     load_data();
                     ltrModule_name.Text = NAME_UPDATE;
                     lnkSave.Text = "Update";
+                    lnkPrintBarcode.Visible = true;
+                    lnkCancel.Visible = true; //allow user to cancel order during update
                 }
             }
         }
@@ -73,7 +82,19 @@ namespace WebUI.Admin
             Order order = mainCtrl.getSalesOrder(orderId);
             display_order(order);
             hdOrderId.Value = orderId.ToString();
+            hdOrderCode.Value = order.order_code;
             load_status(NAME_UPDATE, order.status);
+
+            if (OrderConst.statusesToStartProd.ContainsKey(order.status))
+            {
+                lnkStartProd.Visible = true; //user can start production
+                lnkStopProd.Visible = false;
+            } 
+            else if (OrderConst.statusesToStopProd.ContainsKey(order.status))
+            {
+                lnkStartProd.Visible = false;
+                lnkStopProd.Visible = true; //user can stop production
+            }
         }
 
         //load available statuses to drop down list
@@ -388,6 +409,22 @@ namespace WebUI.Admin
         {
         }
 
+        protected void lnkStartProd_Click(object sender, EventArgs e)
+        {
+            mainCtrl.startCylinderProd(hdOrderCode.Value);
+
+            //in start production case, need to redirect to ManageOrders.aspx
+            Response.Redirect(BasePage.MANAGE_ORDERS_URL + "?msg=" + MSG_STARTPROD_OK + hdOrderCode.Value);
+        }
+
+        protected void lnkStopProd_Click(object sender, EventArgs e)
+        {
+            Order order = new Order();
+            mainCtrl.stopCylinderProd(order);
+
+            //in start production case, need to redirect to ManageOrders.aspx
+            Response.Redirect(BasePage.MANAGE_ORDERS_URL + "?msg=" + MSG_CANCEL_OK);
+        }
 
         protected void lnkCancel_Click(object sender, EventArgs e)
         {

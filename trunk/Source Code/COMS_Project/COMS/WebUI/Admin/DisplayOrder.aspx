@@ -8,6 +8,16 @@
             </asp:ConfirmButtonExtender>
         </li>
         <li><asp:LinkButton ID="lnkPrintBarcode" runat="server" Enabled="false">Print Barcode</asp:LinkButton></li>
+        <li><asp:LinkButton ID="lnkStartProd" runat="server" onclick="lnkStartProd_Click" >Start Production</asp:LinkButton>
+            <asp:ConfirmButtonExtender ID="lnkStartProd_ConfirmButtonExtender" runat="server" 
+                ConfirmText="Do you want to start production?" Enabled="True" TargetControlID="lnkStartProd">
+            </asp:ConfirmButtonExtender>
+        </li>
+        <li><asp:LinkButton ID="lnkStopProd" runat="server" onclick="lnkStopProd_Click" >Stop Production</asp:LinkButton>
+            <asp:ConfirmButtonExtender ID="lnkStopProd_ConfirmButtonExtender" runat="server" 
+                ConfirmText="Do you want to stop production?" Enabled="True" TargetControlID="lnkStopProd">
+            </asp:ConfirmButtonExtender>
+        </li>
         <li><asp:LinkButton ID="lnkCancel" runat="server" onclick="lnkCancel_Click" >Cancel Order</asp:LinkButton>
             <asp:ConfirmButtonExtender ID="lnkCancel_ConfirmButtonExtender" runat="server" 
                 ConfirmText="Do you want to cancel this order?" Enabled="True" TargetControlID="lnkCancel">
@@ -20,6 +30,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="InputPlaceHolder" runat="server">
 
 <asp:HiddenField ID="hdOrderId" runat="server" />
+<asp:HiddenField ID="hdOrderCode" runat="server" />
 
 <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>

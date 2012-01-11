@@ -9,7 +9,14 @@ using System.Data.Entity;
 
 namespace BusinessLogics
 {
-
+    public class DeptConst
+    {
+        public const String DEPT_SALES = "Sales";
+        public const String DEPT_GRAPHIC = "Graphic";
+        public const String DEPT_MECHANICAL = "Mechanical";
+        public const String DEPT_PROD = "Production";
+        public const String DEPT_ENGRAVING = "Engraving";
+    }
     public class DepartmentController
     {
         private COMSEntities dbContext = new COMSEntities();

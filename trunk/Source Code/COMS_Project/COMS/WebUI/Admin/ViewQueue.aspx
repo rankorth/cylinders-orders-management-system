@@ -17,21 +17,19 @@
 <asp:Label ID="lblMsg" CssClass="errorMsg" runat="server" />
 <asp:HiddenField ID="hdWorkflowName" runat="server" />
 
-    <asp:GridView ID="gvOrders" runat="server" ViewStateMode="Enabled" Width="100%" 
-        onrowdatabound="gvOrders_RowDataBound" OnRowCommand="gvOrders_RowCommand">
+    <asp:GridView ID="gvOrders" runat="server" ViewStateMode="Enabled" Width="100%">
         <Columns>
-            <asp:TemplateField HeaderText="Order Code" ItemStyle-HorizontalAlign="Center">
-                <ItemTemplate>
-                    <asp:LinkButton ID="lnkOrderCode" runat="server"></asp:LinkButton>
-                </ItemTemplate>
-            </asp:TemplateField>
+            <asp:BoundField DataField="order_code" HeaderText="Order Code" 
+                ItemStyle-HorizontalAlign="Center" >
+                <ItemStyle HorizontalAlign="Center"></ItemStyle>
+            </asp:BoundField>
             <asp:BoundField DataField="product_name" HeaderText="Product Name" 
                 ItemStyle-HorizontalAlign="Center" >
-<ItemStyle HorizontalAlign="Center"></ItemStyle>
+                <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
             <asp:BoundField DataField="set_code" HeaderText="Set Code" 
                 ItemStyle-HorizontalAlign="Center" >
-<ItemStyle HorizontalAlign="Center"></ItemStyle>
+                <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
         </Columns>
     </asp:GridView>

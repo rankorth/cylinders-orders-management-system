@@ -191,12 +191,13 @@ namespace BusinessLogics
             return (new CylinderController()).viewCylinderInfo(cylinderID);
         }
 
-        public void startCylinderProd(Guid workflowID, String order_code)
+        public void startCylinderProd(String order_code)
         {
             try
             {
-                if (null != order_code && !order_code.Equals("") && null!=workflowID)
-                    (new CylinderController()).create(order_code, workflowID);
+                Workflow mechToProdWF = (new WorkflowController()).GetWorkflow(DeptConst.DEPT_MECHANICAL, DeptConst.DEPT_PROD);
+                if (null != order_code && !order_code.Equals("") && null != mechToProdWF.workflowId)
+                    (new CylinderController()).create(order_code, mechToProdWF.workflowId);
             }
             catch (Exception ex)
             {
