@@ -44,7 +44,7 @@
                     <asp:LinkButton ID="lnkViewLog" runat="server"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>            
-			<asp:TemplateField>
+			<asp:TemplateField HeaderText="Cylinders" ItemStyle-HorizontalAlign="Center">
                <ItemTemplate>
                  <asp:LinkButton ID="lnkCylinders" runat="server" >cylinders info</asp:LinkButton>
                </ItemTemplate>
@@ -58,9 +58,14 @@
             <asp:BoundField DataField="order_detailId" HeaderText="Order Detail" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="barcode" HeaderText="Bar Code" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="workflowId" HeaderText="Work Flow ID" ItemStyle-HorizontalAlign="Center" />
-            <asp:TemplateField>
+            <asp:TemplateField HeaderText="Print Info" ItemStyle-HorizontalAlign="Center">
                <ItemTemplate>
                  <asp:LinkButton ID="lnkPrint" runat="server">print</asp:LinkButton>
+               </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Progress" ItemStyle-HorizontalAlign="Center">
+               <ItemTemplate>
+                 <asp:LinkButton ID="lnkCylLog" runat="server">print</asp:LinkButton>
                </ItemTemplate>
             </asp:TemplateField>
         </Columns>

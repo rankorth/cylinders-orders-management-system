@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ViewOrderLog.aspx.cs" Inherits="WebUI.Admin.ViewOrderLog" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ViewCylinderLog.aspx.cs" Inherits="WebUI.Admin.ViewCylinderLog" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ModuleName" runat="server">
     <asp:Literal ID="ltrModule_name" runat="server"></asp:Literal>
 </asp:Content>
@@ -12,38 +12,44 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
 
 <asp:Label ID="lblMsg" CssClass="errorMsg" runat="server" />
-<asp:HiddenField ID="hdOrderId" runat="server" />
 
+<asp:HiddenField ID="hdCylinderId" runat="server" />
 <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
     <tr>
-        <td class="entry_label" align="left">Order Code: <asp:Label ID="lblOrderCode" runat="server" /></td>
-        <td class="entry_data" align="left">Product Name: <asp:Label ID="lblProductName" runat="server" /></td>
+        <td class="entry_label" align="left">Cyl No: <asp:Label ID="lblCylNo" runat="server" /></td>
+        <td class="entry_data" align="left">Color No: <asp:Label ID="lblColorNo" runat="server" /></td>
+        <td class="entry_label" align="left">Barcode: <asp:Label ID="lblCylCode" runat="server" /></td>
+    </tr>
+    <tr>
+        <td class="entry_label" align="left">Core Type: <asp:Label ID="lblCoreType" runat="server" /></td>
+        <td class="entry_data" align="left">Diameter: <asp:Label ID="lblDiameter" runat="server" /></td>
+        <td class="entry_label" align="left">Length: <asp:Label ID="lblLength" runat="server" /></td>
     </tr>
 </table>
 
-    <asp:GridView ID="gvOrderLogs" runat="server" ViewStateMode="Enabled" Width="100%">
+    <asp:GridView ID="gvCylLogs" runat="server" ViewStateMode="Enabled" Width="100%">
         <Columns>
             <asp:BoundField DataField="dept_name" HeaderText="Department" 
                 ItemStyle-HorizontalAlign="Center" >
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
-            <asp:BoundField DataField="updated_by" HeaderText="Performed By" 
+            <asp:BoundField DataField="created_by" HeaderText="Performed By" 
                 ItemStyle-HorizontalAlign="Center" >
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
-            <asp:BoundField DataField="updated_date" HeaderText="Time" 
+            <asp:BoundField DataField="start_time" HeaderText="Start Time" 
                 ItemStyle-HorizontalAlign="Center" >
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
-            <asp:BoundField DataField="order_status" HeaderText="Description" 
+            <asp:BoundField DataField="end_time" HeaderText="End Time" 
                 ItemStyle-HorizontalAlign="Center" >
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
-            <asp:BoundField DataField="related_cyl" HeaderText="Related Cylinders" 
+            <asp:BoundField DataField="status" HeaderText="Description" 
                 ItemStyle-HorizontalAlign="Center" >
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
-            <asp:BoundField DataField="remarks" HeaderText="Remarks" 
+            <asp:BoundField DataField="remark" HeaderText="Remarks" 
                 ItemStyle-HorizontalAlign="Center" >
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 using BusinessLogics;
 using COMSdbEntity;
+using WebUI.Common;
 
 namespace WebUI.Admin 
 {
@@ -15,11 +16,13 @@ namespace WebUI.Admin
         MainController mainCtrl = new MainController();
         const String NAME_NEW = "Add New Order";
         const String NAME_UPDATE = "Display Order";
+        public const String MSG_UPDATE_OK = "updateOk";
+        public const String MSG_UPDATE_OK_DESC = "Order updated successfully.";
+        public const String MSG_CANCEL_OK = "cancelOk";
+        public const String MSG_CANCEL_OK_DESC = "Order cancelled successfully.";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["user"] = mainCtrl.retrieveEmployee("staff-code-111"); //TODO: remove
-
             if (!IsPostBack)
             {
                 load_customers();
@@ -214,6 +217,7 @@ namespace WebUI.Admin
         protected void lnkSave_Click(object sender, EventArgs e)
         {
             Order order = null;
+            Employee user = (Employee)Session[BasePage.userobj];
             if (NAME_NEW.Equals(ltrModule_name.Text)) {
                 order = new Order();
                 order.orderId = Guid.NewGuid(); //generate new guid as primary key.
@@ -221,7 +225,7 @@ namespace WebUI.Admin
                 order.created_by = txtCreatedBy.Text;
                 //order.created_date = Convert.ToDateTime(txtCreateDate_CalendarExtender.SelectedDate);
                 order.created_date = Convert.ToDateTime(txtCreateDate.Text);
-                populate_order(order);
+                populate_order(order, user);
 
                 Order_Detail orderDetail = new Order_Detail();
                 orderDetail.order_detailId = Guid.NewGuid();
@@ -233,21 +237,24 @@ namespace WebUI.Admin
                 //add orderDetail to order
                 order.Order_Detail.Add(orderDetail);
 
-                mainCtrl.createSalesOrder(order, (Employee)Session["user"]); //TODO: replace with actual Employee object from Session
+                mainCtrl.createSalesOrder(order, user);
                 lblMsg.Text = "Order created successfully. Please click Print Barcode to print out the barcode on the paper order.";
                 lblMsg.CssClass = "okMsg";
             }
             else if (NAME_UPDATE.Equals(ltrModule_name.Text))
             {
                 order = mainCtrl.getSalesOrder(new Guid(hdOrderId.Value));
-                populate_order(order);
+                populate_order(order, user);
 
                 Order_Detail orderDetail = order.Order_Detail.SingleOrDefault();
                 populate_orderDetail(order, orderDetail);
 
-                mainCtrl.updateSalesOrder(order, (Employee)Session["user"]); //TODO: replace with actual Employee object from Session
-                lblMsg.Text = "Order updated successfully.";
-                lblMsg.CssClass = "okMsg";
+                mainCtrl.updateSalesOrder(order, user);
+                //lblMsg.Text = "Order updated successfully.";
+                //lblMsg.CssClass = "okMsg";
+
+                //in update case, need to redirect to ManageOrders.aspx
+                Response.Redirect(BasePage.MANAGE_ORDERS_URL + "?msg=" + MSG_UPDATE_OK);
             }
 
             //enable Print Barcode button
@@ -258,7 +265,7 @@ namespace WebUI.Admin
         }
 
         //convert web form data into order object
-        private void populate_order(Order order)
+        private void populate_order(Order order, Employee user)
         {
             //populate form values into order object
             order.status = ddlOrderStatus.SelectedValue;
@@ -270,14 +277,14 @@ namespace WebUI.Admin
             order.old_core = chkBxOldCore.Checked;
             //order.delivery_date = Convert.ToDateTime(txtDeliveryDate_CalendarExtender.SelectedDate);
             order.delivery_date = Convert.ToDateTime(txtDeliveryDate.Text);
-
             order.order_type = (rBtnOrderTypeNew.Checked) ? OrderConst.ORDERTYPE_NEW : OrderConst.ORDERTYPE_REDO;
-
             order.set_code = txtSetCode.Text;
             order.cylinder_type = txtCylType.Text;
-            //order.old_order_code = ???
+            //order.old_order_code = 
             order.priority = ddlPriority.SelectedItem.Value;
             order.belong_to_set = txtBelongsToSet.Text;
+            order.updated_date = DateTime.Now;
+            order.updated_by = user.username;
         }
 
         //convert web form data into order_detail object
@@ -384,12 +391,17 @@ namespace WebUI.Admin
 
         protected void lnkCancel_Click(object sender, EventArgs e)
         {
+            Order order = new Order();
+            order.orderId = new Guid(hdOrderId.Value);
+            mainCtrl.deleteSpecificOrder(order);
 
+            //in cancel case, need to redirect to ManageOrders.aspx
+            Response.Redirect(BasePage.MANAGE_ORDERS_URL + "?msg=" + MSG_CANCEL_OK);
         }
 
         protected void lnkBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ManageOrders.aspx");
+            Response.Redirect(BasePage.MANAGE_ORDERS_URL);
         }
     }
 }
