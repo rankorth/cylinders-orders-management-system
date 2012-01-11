@@ -11,9 +11,9 @@ namespace BusinessLogics
 {
     public static class FormulaUtility
     {
-        public static VsaEngine _engine = VsaEngine.CreateEngine();
+        private static VsaEngine _engine = VsaEngine.CreateEngine();
 
-        public static double EvaluateFormula(Formula FormulaRec,double Diameter, double Area)
+        public static double EvaluateFormula(Formula FormulaRec,double Diameter)
         {
             double result = 0;
             string formula = FormulaRec.formula1.Trim();
@@ -22,7 +22,7 @@ namespace BusinessLogics
             {
                 return 0;
             }
-
+            double Area = 2 * Math.PI * Diameter / 2;
             formula = formula.Replace("D", Diameter.ToString() );
             formula = formula.Replace("S", Area.ToString());
             formula = formula.Replace("a", FormulaRec.coef1.ToString());
