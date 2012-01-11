@@ -19,4 +19,10 @@ namespace WebUI.Common
         }
 
     }
+
+    public static class PageUrls
+    {
+        public const string ManageOrdersPage = "/Admin/ManageOrders.aspx";
+
+    }
 }

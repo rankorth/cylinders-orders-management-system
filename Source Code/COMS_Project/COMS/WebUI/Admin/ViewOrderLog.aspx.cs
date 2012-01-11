@@ -42,7 +42,7 @@ namespace WebUI.Admin
 
         protected void linkBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect(BasePage.MANAGE_ORDERS_URL);
+            Response.Redirect(Common.PageUrls.ManageOrdersPage);
         }
     }
 }
