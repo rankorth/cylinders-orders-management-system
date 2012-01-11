@@ -238,7 +238,9 @@ namespace WebUI.Admin
         protected void lnkSave_Click(object sender, EventArgs e)
         {
             Order order = null;
-            Employee user = (Employee)Session[BasePage.userobj];
+            //Tin 
+            //Employee user = (Employee)Session[BasePage.userobj];
+            Employee user = base.GetCurentUser();
             if (NAME_NEW.Equals(ltrModule_name.Text)) {
                 order = new Order();
                 order.orderId = Guid.NewGuid(); //generate new guid as primary key.
@@ -275,7 +277,7 @@ namespace WebUI.Admin
                 //lblMsg.CssClass = "okMsg";
 
                 //in update case, need to redirect to ManageOrders.aspx
-                Response.Redirect(BasePage.MANAGE_ORDERS_URL + "?msg=" + MSG_UPDATE_OK);
+                Response.Redirect(Common.PageUrls.ManageOrdersPage + "?msg=" + MSG_UPDATE_OK);
             }
 
             //enable Print Barcode button
@@ -414,7 +416,7 @@ namespace WebUI.Admin
             mainCtrl.startCylinderProd(hdOrderCode.Value);
 
             //in start production case, need to redirect to ManageOrders.aspx
-            Response.Redirect(BasePage.MANAGE_ORDERS_URL + "?msg=" + MSG_STARTPROD_OK + hdOrderCode.Value);
+            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?msg=" + MSG_STARTPROD_OK + hdOrderCode.Value);
         }
 
         protected void lnkStopProd_Click(object sender, EventArgs e)
@@ -423,7 +425,7 @@ namespace WebUI.Admin
             mainCtrl.stopCylinderProd(order);
 
             //in start production case, need to redirect to ManageOrders.aspx
-            Response.Redirect(BasePage.MANAGE_ORDERS_URL + "?msg=" + MSG_CANCEL_OK);
+            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?msg=" + MSG_CANCEL_OK);
         }
 
         protected void lnkCancel_Click(object sender, EventArgs e)
@@ -433,12 +435,12 @@ namespace WebUI.Admin
             mainCtrl.deleteSpecificOrder(order);
 
             //in cancel case, need to redirect to ManageOrders.aspx
-            Response.Redirect(BasePage.MANAGE_ORDERS_URL + "?msg=" + MSG_CANCEL_OK);
+            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?msg=" + MSG_CANCEL_OK);
         }
 
         protected void lnkBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect(BasePage.MANAGE_ORDERS_URL);
+            Response.Redirect(Common.PageUrls.ManageOrdersPage);
         }
     }
 }
