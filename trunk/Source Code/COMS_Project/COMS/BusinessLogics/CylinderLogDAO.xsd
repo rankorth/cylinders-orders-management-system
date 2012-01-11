@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CylinderLogDAO" targetNamespace="http://tempuri.org/CylinderLogDAO.xsd" xmlns:mstns="http://tempuri.org/CylinderLogDAO.xsd" xmlns="http://tempuri.org/CylinderLogDAO.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CylinderLogDAO" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CylinderLogDAO" msprop:Generator_UserDSName="CylinderLogDAO">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CylinderLogInfo" msprop:Generator_TableClassName="CylinderLogInfoDataTable" msprop:Generator_TableVarName="tableCylinderLogInfo" msprop:Generator_TablePropName="CylinderLogInfo" msprop:Generator_RowDeletingName="CylinderLogInfoRowDeleting" msprop:Generator_UserTableName="CylinderLogInfo" msprop:Generator_RowChangingName="CylinderLogInfoRowChanging" msprop:Generator_RowEvHandlerName="CylinderLogInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="CylinderLogInfoRowDeleted" msprop:Generator_RowEvArgName="CylinderLogInfoRowChangeEvent" msprop:Generator_RowChangedName="CylinderLogInfoRowChanged" msprop:Generator_RowClassName="CylinderLogInfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CylinderBarcode" msprop:Generator_ColumnVarNameInTable="columnCylinderBarcode" msprop:Generator_ColumnPropNameInRow="CylinderBarcode" msprop:Generator_ColumnPropNameInTable="CylinderBarcodeColumn" msprop:Generator_UserColumnName="CylinderBarcode" type="xs:string" minOccurs="0" />
+              <xs:element name="Department" msprop:Generator_ColumnVarNameInTable="columnDepartment" msprop:Generator_ColumnPropNameInRow="Department" msprop:Generator_ColumnPropNameInTable="DepartmentColumn" msprop:Generator_UserColumnName="Department" type="xs:string" minOccurs="0" />
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="StartTime" msprop:Generator_ColumnVarNameInTable="columnStartTime" msprop:Generator_ColumnPropNameInRow="StartTime" msprop:Generator_ColumnPropNameInTable="StartTimeColumn" msprop:Generator_UserColumnName="StartTime" type="xs:string" minOccurs="0" />
+              <xs:element name="EndTime" msprop:Generator_ColumnVarNameInTable="columnEndTime" msprop:Generator_ColumnPropNameInRow="EndTime" msprop:Generator_ColumnPropNameInTable="EndTimeColumn" msprop:Generator_UserColumnName="EndTime" type="xs:string" minOccurs="0" />
+              <xs:element name="Formula" msprop:Generator_ColumnVarNameInTable="columnFormula" msprop:Generator_ColumnPropNameInRow="Formula" msprop:Generator_ColumnPropNameInTable="FormulaColumn" msprop:Generator_UserColumnName="Formula" type="xs:string" minOccurs="0" />
+              <xs:element name="Mark" msprop:Generator_ColumnVarNameInTable="columnMark" msprop:Generator_ColumnPropNameInRow="Mark" msprop:Generator_ColumnPropNameInTable="MarkColumn" msprop:Generator_UserColumnName="Mark" type="xs:string" minOccurs="0" />
+              <xs:element name="ErrorDescription" msprop:Generator_ColumnVarNameInTable="columnErrorDescription" msprop:Generator_ColumnPropNameInRow="ErrorDescription" msprop:Generator_ColumnPropNameInTable="ErrorDescriptionColumn" msprop:Generator_UserColumnName="ErrorDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="StepName" msprop:Generator_ColumnVarNameInTable="columnStepName" msprop:Generator_ColumnPropNameInRow="StepName" msprop:Generator_ColumnPropNameInTable="StepNameColumn" msprop:Generator_UserColumnName="StepName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CylinderLogDAO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CylinderLogDAO.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DepartmentController.cs" />
     <Compile Include="CustomerController.cs" />
     <Compile Include="Crypto.cs" />
@@ -62,6 +67,19 @@
       <Project>{10317340-98EE-41F1-A43B-E07E80C442DC}</Project>
       <Name>COMSdbEntity</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CylinderLogDAO.xsc">
+      <DependentUpon>CylinderLogDAO.xsd</DependentUpon>
+    </None>
+    <None Include="CylinderLogDAO.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CylinderLogDAO.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CylinderLogDAO.xss">
+      <DependentUpon>CylinderLogDAO.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

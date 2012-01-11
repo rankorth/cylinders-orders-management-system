@@ -214,8 +214,8 @@ namespace BusinessLogics
             
             
             cylLog.end_time = endtime;
-            cylLog.formula = "coef1=" + formula.coef1.ToString() + "," + "coef2=" + formula.coef2.ToString() + "," + "coef3=" + formula.coef3.ToString() + ","
-                             + "coef4=" + formula.coef4.ToString() + ",";
+            cylLog.formula =formula.formula1.ToString()+ ",coef1=" + formula.coef1.ToString() + "," + "coef2=" + formula.coef2.ToString() + "," + "coef3=" + formula.coef3.ToString() + ","
+                             + "coef4=" + formula.coef4.ToString();
             cylLog.mark = performance_mark;
             cylLog.remark = remark;
             cylLog.start_time = starttime;
