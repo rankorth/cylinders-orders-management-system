@@ -50,7 +50,7 @@ namespace BusinessLogics
                                         && cl.status.Equals(CylinderConst.STATUS_INPROD) && cl.employeeId==null ).SingleOrDefault();
             Cyl_Log.end_time    = FinishTime;
             Cyl_Log.employeeId  = emp.employeeId;
-            Cyl_Log.mark        = step.isStep ? CalculateMark(Cyl_Log.start_time, FinishTime, Cyl_Log.formula) : 0 ;
+            Cyl_Log.mark        = step.isStep ? CalculateMark(Cyl_Log.start_time, FinishTime, step.Formulae.First(),cyl.diameter) : 0 ;
             Cyl_Log.remark = step.isStep ? "" : "Sent from previous workflow";
             Cyl_Log.status      = CylinderConst.STATUS_COMPLETED;
             
@@ -172,9 +172,9 @@ namespace BusinessLogics
             CylCtrl.changeCylinderStep(cyl, emp, step, ErrorReason, Remark, DateTime.Now, DateTime.Now, 0, CylinderConst.LOG_STS_ERR_PREVIOUS, false);
         }
 
-        private int CalculateMark(DateTime Start, DateTime End, string Formula)
+        private double CalculateMark(DateTime Start, DateTime End, Formula formula,double Diameter)
         {
-            return 1;
+            return FormulaUtility.EvaluateFormula(formula, Diameter);
         }
     }
 }
