@@ -24,24 +24,24 @@ namespace WebUI.Reports
 
         private void load_report()
         {
-            if(txtEmpBarcode.Text.Trim().Length<=0 || txtStartDate.Text.Trim().Length<=0 ||txtEndDate.Text.Trim().Length<=0)
+            if (txtEmpBarcode.Text.Trim().Length <= 0 || txtStartDate.Text.Trim().Length <= 0 || txtEndDate.Text.Trim().Length <= 0)
             {
                 return;
             }
             Employee employee = (new EmployeeController()).retrieveEmployeeByBarcode(txtEmpBarcode.Text.Trim());
 
-            IEnumerable<Cylinder_Log> cylinder_logs =  employee.Cylinder_Log.Where(cl => cl.start_time >= Convert.ToDateTime(txtStartDate.Text) &&
-                                             cl.end_time <=Convert.ToDateTime(txtEndDate.Text) );
+            IEnumerable<Cylinder_Log> cylinder_logs = employee.Cylinder_Log.Where(cl => cl.start_time >= Convert.ToDateTime(txtStartDate.Text) &&
+                                             cl.end_time <= Convert.ToDateTime(txtEndDate.Text));
 
-            CylinderLogDAO.CylinderLogInfoDataTable CylinderLogsInfoTable =new CylinderLogDAO.CylinderLogInfoDataTable();
-             
+            CylinderLogDAO.CylinderLogInfoDataTable CylinderLogsInfoTable = new CylinderLogDAO.CylinderLogInfoDataTable();
+
             foreach (Cylinder_Log cyl in cylinder_logs)
             {
                 CylinderLogDAO.CylinderLogInfoRow row = CylinderLogsInfoTable.NewCylinderLogInfoRow();
                 row.CylinderBarcode = cyl.Cylinder.barcode;
-                row.Department  =cyl.dept_name;
-                row.Remark=cyl.remark;
-                row.Status  =cyl.status;
+                row.Department = cyl.dept_name;
+                row.Remark = cyl.remark;
+                row.Status = cyl.status;
                 row.StartTime = cyl.start_time.ToString();
                 row.EndTime = cyl.end_time.ToString();
                 row.Formula = cyl.formula;
@@ -58,7 +58,7 @@ namespace WebUI.Reports
             ReportParameter UserName = new ReportParameter("UserName", employee.username);
 
             ReportDataSource CylinderInfoTable = new ReportDataSource("CylinderInfo", (System.Data.DataTable)CylinderLogsInfoTable);
-            
+
             rvPerformance.LocalReport.DataSources.Clear();
             rvPerformance.LocalReport.DataSources.Add(CylinderInfoTable);
             rvPerformance.LocalReport.SetParameters(GivenName);
@@ -70,7 +70,9 @@ namespace WebUI.Reports
 
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
+
+
+        protected void lnkSearch_Click(object sender, EventArgs e)
         {
             load_report();
         }

@@ -8,6 +8,10 @@
     Employee Performance Marks
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
+<ul>
+        <li>
+            <asp:LinkButton ID="lnkSearch" runat="server" onclick="lnkSearch_Click" >Search</asp:LinkButton></li>
+    </ul>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="InputPlaceHolder" runat="server">
     <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
