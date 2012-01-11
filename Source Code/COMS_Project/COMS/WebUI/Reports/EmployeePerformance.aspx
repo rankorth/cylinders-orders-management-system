@@ -42,14 +42,7 @@
             </asp:CalendarExtender>
             </td>
         </tr>
-        <tr>
-            <td class="entry_label">
-                &nbsp;</td>
-            <td class="entry_data" colspan="3">
-            <asp:Button ID="btnSearch" runat="server" Text="Search" onclick="btnSearch_Click" />
-            </td>
-        </tr>
-    </table>
+        </table>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
     <rsweb:ReportViewer ID="rvPerformance" runat="server" Font-Names="Verdana" 
