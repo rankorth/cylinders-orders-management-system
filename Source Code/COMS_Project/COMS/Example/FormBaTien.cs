@@ -263,8 +263,8 @@ namespace Example
         {
             try
             {
-                List<Access_Right> rightList = mainCtrl.login(txtBxUsername.Text, Crypto.EncryptStringAES(txtBxPassword.Text, "password"));
-                MessageBox.Show("Logged in successfully!"+rightList.Count);
+                //List<Access_Right> rightList = mainCtrl.login(txtBxUsername.Text, Crypto.EncryptStringAES(txtBxPassword.Text, "password"));
+                //MessageBox.Show("Logged in successfully!"+rightList.Count);
             }
             catch (Exception ex)
             {

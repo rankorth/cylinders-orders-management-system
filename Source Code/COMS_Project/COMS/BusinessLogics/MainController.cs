@@ -381,7 +381,12 @@ namespace BusinessLogics
             return (new SalesOrderController()).getOrderLogs(orderId);
         }
 
-        //- Export Cylinder Queues
+        public IQueryable<Cylinder_Log> getCylinderLogs(Guid cylinderId)
+        {
+            return (new CylinderController()).getCylinderLogs(cylinderId);
+        }
+
+        //- Export Cylinder Queues - coded-tested
         //- Manage Sales Order - coded-tested
         //- Login - coded-tested
         //- Logout - coded

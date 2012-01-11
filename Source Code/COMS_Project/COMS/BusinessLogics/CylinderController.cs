@@ -297,5 +297,10 @@ namespace BusinessLogics
 
             return isValid;
         }
+
+        public IQueryable<Cylinder_Log> getCylinderLogs(Guid cylinderId)
+        {
+            return dbContext.Cylinder_Log.Where(cl => cl.cylinderId.Equals(cylinderId));
+        }
     }
 }

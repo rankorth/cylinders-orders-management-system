@@ -7,12 +7,14 @@ using System.Web.UI.WebControls;
 
 using COMSdbEntity;
 using BusinessLogics;
+using WebUI.Admin;
 
 namespace WebUI.Common
 {
     public class BasePage:System.Web.UI.Page
     {
-        private string userobj = "userobj";
+        public const string userobj = "userobj";
+        public const String MANAGE_ORDERS_URL = "/Admin/ManageOrders.aspx";
 
         public bool login(string username, string password)
         {
@@ -56,14 +58,14 @@ namespace WebUI.Common
             LinkButton lnkButton;
 
             //replace with actual code once all done
-            module.Add("Orders", "/Admin/ManageOrders.aspx");
+            module.Add("Orders", MANAGE_ORDERS_URL);
             module.Add("Roles", "/Admin/Role.aspx");
             module.Add("Employee", "/Admin/Users.aspx");
             module.Add("Customer", "/Admin/Customers.aspx");
             module.Add("Approve Assign Roles", "/Admin/RoleAssignment_Approval.aspx");
             module.Add("Workflow Error Message", "/Admin/ErrorManagement.aspx");
             module.Add("View Current Queue", "/Admin/ViewQueue.aspx");
-            
+            module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
             module.Add("Reports", "/Admin/Reports.aspx");
 
             foreach (string name in module.Keys)

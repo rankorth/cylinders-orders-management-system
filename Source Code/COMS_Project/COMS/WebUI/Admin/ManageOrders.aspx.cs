@@ -13,9 +13,22 @@ namespace WebUI.Admin
     public partial class ManageOrders : Common.BasePage
     {
         MainController mainctrl = new MainController();
+        const String REQ_MSG = "msg";
         protected void Page_Load(object sender, EventArgs e)
         {
             ltrModule_name.Text = "Orders Management";
+            if (Request[REQ_MSG] != null) {
+                if (DisplayOrder.MSG_UPDATE_OK.Equals(Request[REQ_MSG]))
+                {
+                    lblMsg.Text = DisplayOrder.MSG_UPDATE_OK_DESC;
+                    lblMsg.CssClass = "okMsg";
+                }
+                else if (DisplayOrder.MSG_CANCEL_OK.Equals(Request[REQ_MSG]))
+                {
+                    lblMsg.Text = DisplayOrder.MSG_CANCEL_OK_DESC;
+                    lblMsg.CssClass = "okMsg";
+                }
+            }
         }
 
         protected void lnkAddOrder_Click(object sender, EventArgs e)
@@ -77,7 +90,7 @@ namespace WebUI.Admin
 
             else if (e.CommandName.Equals("OrderLog"))
             {
-                Response.Redirect("/Admin/ViewOrderLog.aspx?orderId=" + e.CommandArgument.ToString());
+                Response.Write("<SCRIPT language=\"javascript\">open('" + "/Admin/ViewOrderLog.aspx?orderId=" + e.CommandArgument.ToString() + "','_blank','top=0,left=0,status=yes,resizable=yes,scrollbars=yes');</script>");
             }
 
             else if (e.CommandName.Equals("ShowAllCylinderDetails"))
@@ -94,6 +107,10 @@ namespace WebUI.Admin
                 LinkButton lnkprint = ((LinkButton)e.Row.Cells[0].FindControl("lnkPrint"));
                 lnkprint.CommandName = "ShowCylinderDetails";
                 lnkprint.CommandArgument = cylinderID;
+
+                LinkButton lnkCylLog = ((LinkButton)e.Row.Cells[0].FindControl("lnkCylLog"));
+                lnkCylLog.CommandName = "ViewCylinderLogs";
+                lnkCylLog.CommandArgument = cylinderID;
             }
         }
 
@@ -102,6 +119,10 @@ namespace WebUI.Admin
             if (e.CommandName.Equals("ShowCylinderDetails"))
             {
                 Response.Write("<SCRIPT language=\"javascript\">open('" + "/Admin/CylinderPrintPage.aspx?cylinderId=" + e.CommandArgument.ToString()+"&orderCode="+hOrderCode.Value+ "','_blank','top=0,left=0,status=yes,resizable=yes,scrollbars=yes');</script>");
+            }
+            else if (e.CommandName.Equals("ViewCylinderLogs"))
+            {
+                Response.Write("<SCRIPT language=\"javascript\">open('" + "/Admin/ViewCylinderLog.aspx?cylinderId=" + e.CommandArgument.ToString() + "&orderCode=" + hOrderCode.Value + "','_blank','top=0,left=0,status=yes,resizable=yes,scrollbars=yes');</script>");
             }
         }
 

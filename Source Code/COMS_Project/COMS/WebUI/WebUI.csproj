@@ -70,6 +70,7 @@
     <Content Include="Admin\Users.aspx" />
     <Content Include="Admin\BarCode.aspx" />
     <Content Include="Admin\PrintOrderBarcode.aspx" />
+    <Content Include="Admin\ViewCylinderLog.aspx" />
     <Content Include="Admin\ViewOrderLog.aspx" />
     <Content Include="Admin\ViewQueue.aspx" />
     <Content Include="Admin\WorkflowErrorDescription.aspx" />
@@ -207,6 +208,13 @@
     </Compile>
     <Compile Include="Admin\PrintOrderBarcode.aspx.designer.cs">
       <DependentUpon>PrintOrderBarcode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewCylinderLog.aspx.cs">
+      <DependentUpon>ViewCylinderLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewCylinderLog.aspx.designer.cs">
+      <DependentUpon>ViewCylinderLog.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ViewOrderLog.aspx.cs">
       <DependentUpon>ViewOrderLog.aspx</DependentUpon>

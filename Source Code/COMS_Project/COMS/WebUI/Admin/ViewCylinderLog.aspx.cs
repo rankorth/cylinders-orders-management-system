@@ -5,30 +5,34 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using COMSdbEntity;
 using BusinessLogics;
+using COMSdbEntity;
 using WebUI.Common;
 
 namespace WebUI.Admin
 {
-    public partial class ViewOrderLog : Common.BasePage
+    public partial class ViewCylinderLog : Common.BasePage
     {
         MainController mainCtrl = new MainController();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                Guid orderId = new Guid(Request["orderId"]);
-                IQueryable<Order_Log> logList = mainCtrl.getOrderLogs(orderId);
+                Guid cylinderId = new Guid(Request["cylinderId"]);
+                IQueryable<Cylinder_Log> logList = mainCtrl.getCylinderLogs(cylinderId);
                 if (logList != null && logList.Count() > 0)
                 {
-                    Order_Log log = logList.First();
-                    lblOrderCode.Text = log.Order.order_code;
-                    lblProductName.Text = log.Order.product_name;
+                    Cylinder_Log log = logList.First();
+                    lblColorNo.Text = ""+log.Cylinder.color_no;
+                    lblCoreType.Text = log.Cylinder.core_type;
+                    lblCylCode.Text = log.Cylinder.barcode;
+                    lblCylNo.Text = "" + log.Cylinder.cyl_no;
+                    lblDiameter.Text = "" + log.Cylinder.diameter;
+                    lblLength.Text = "" + log.Cylinder.length;
 
-                    gvOrderLogs.DataSource = logList;
-                    gvOrderLogs.AutoGenerateColumns = false;
-                    gvOrderLogs.DataBind();
+                    gvCylLogs.DataSource = logList;
+                    gvCylLogs.AutoGenerateColumns = false;
+                    gvCylLogs.DataBind();
                     lblMsg.Text = "Search found " + logList.Count() + " result(s).";
                     lblMsg.CssClass = "okMsg";
                 }
