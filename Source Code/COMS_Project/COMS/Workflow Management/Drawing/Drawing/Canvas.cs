@@ -637,6 +637,7 @@ namespace WorkflowManagement
                 Formula.coef2 = StepFormula.coef2;
                 Formula.coef3 = StepFormula.coef3;
                 Formula.coef4 = StepFormula.coef4;
+                Formula.strFormula = StepFormula.formula1;
             }
             return Formula;
         }
