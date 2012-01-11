@@ -70,11 +70,10 @@ namespace WebUI.Reports
 
         }
 
-
-
         protected void lnkSearch_Click(object sender, EventArgs e)
         {
             load_report();
         }
+
     }
 }
