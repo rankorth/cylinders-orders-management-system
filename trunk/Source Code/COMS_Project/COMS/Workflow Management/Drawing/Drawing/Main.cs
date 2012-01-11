@@ -8,10 +8,15 @@ using System.Text;
 using System.Windows.Forms;
 using Drawing;
 
+using Microsoft.JScript;
+using Microsoft.JScript.Vsa;
+
+
 namespace WorkflowManagement
 {
     public partial class Main : Form
     {
+        public static VsaEngine _engine = VsaEngine.CreateEngine();
         private int childFormNumber = 0;
         //private int currentActiveChildNo=-1;
         private Block currentWorkflowActivity = null;
@@ -117,6 +122,7 @@ namespace WorkflowManagement
                 txtCoef2.Text = "";
                 txtCoef3.Text = "";
                 txtCoef4.Text = "";
+                txtFormula.Text = "";
 
                 return;
             }
@@ -131,6 +137,7 @@ namespace WorkflowManagement
                 txtCoef2.Text = WorkflowActivity.GetFormula().coef2.ToString();
                 txtCoef3.Text = WorkflowActivity.GetFormula().coef3.ToString();
                 txtCoef4.Text = WorkflowActivity.GetFormula().coef4.ToString();
+                txtFormula.Text = WorkflowActivity.GetFormula().strFormula.ToString().Trim();
 
 
                 currentWorkflowActivity = WorkflowActivity;
@@ -148,7 +155,7 @@ namespace WorkflowManagement
                 txtCoef2.Text = "";
                 txtCoef3.Text = "";
                 txtCoef4.Text = "";
-
+                txtFormula.Text = "";
                 return;
             }
         }
@@ -170,10 +177,12 @@ namespace WorkflowManagement
                 txtCoef4.Text = txtCoef4.Text.Trim().Length == 0 ? "0" : txtCoef4.Text.Trim().Replace(" ", "");
 
                 formula Formula = new formula();
-                Formula.coef1 = Convert.ToInt32(txtCoef1.Text.Trim());
-                Formula.coef2 = Convert.ToInt32(txtCoef2.Text.Trim());
-                Formula.coef3 = Convert.ToInt32(txtCoef3.Text.Trim());
-                Formula.coef4 = Convert.ToInt32(txtCoef4.Text.Trim());
+                Formula.coef1 = System.Convert.ToInt32(txtCoef1.Text.Trim());
+                Formula.coef2 = System.Convert.ToInt32(txtCoef2.Text.Trim());
+                Formula.coef3 = System.Convert.ToInt32(txtCoef3.Text.Trim());
+                Formula.coef4 = System.Convert.ToInt32(txtCoef4.Text.Trim());
+                Formula.strFormula = txtFormula.Text;
+
                 currentWorkflowActivity.SetFormula(Formula);
 
 
@@ -238,6 +247,62 @@ namespace WorkflowManagement
                 //call open workflow rotine
 
             }
+        }
+
+        private void txtFormula_TextChanged(object sender, EventArgs e)
+        {
+            txtFormula.Text = txtFormula.Text.Trim();
+            if (txtFormula.Text.Length <= 0)
+            {
+                return;
+            }
+            if (!CheckFormula(txtFormula.Text.Trim()))
+            {
+                txtFormula.Focus();
+                MessageBox.Show("Wrong formula. Please verify.");
+            }
+            PropertyChanged(sender, e);
+        }
+
+        public bool CheckFormula(string formula)
+        {
+            bool isCorrect = false;
+
+            formula = formula.Replace('D', '1');
+            formula = formula.Replace('S', '1');
+            formula = formula.Replace('a', '1');
+            formula = formula.Replace('b', '1');
+            formula = formula.Replace('c', '1');
+            formula = formula.Replace('d', '1');
+            if (formula.Length == 0)
+            {
+                return true;
+            }
+            char lastchar = formula[formula.Length-1];
+            if (lastchar.Equals('+') || lastchar.Equals('-') || lastchar.Equals('*') 
+                || lastchar.Equals('/'))
+            {
+                formula = formula.Substring(0, formula.Length - 1);
+            }
+
+
+
+            try
+            {
+                double.Parse(Eval.JScriptEvaluate(formula, _engine).ToString());
+                isCorrect=true;
+            }
+            catch
+            {
+                isCorrect=false;
+            }
+                return isCorrect;
+        }
+
+        private void txtFormula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+
         }
     }
 }

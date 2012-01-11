@@ -13,6 +13,7 @@ namespace WorkflowManagement
         public int coef2=0;
         public int coef3=0;
         public int coef4=0;
+        public string strFormula = "";
     }
 
     public class Block
@@ -271,9 +272,9 @@ namespace WorkflowManagement
                     StepFormula.coef2 = this.Formula.coef2;
                     StepFormula.coef3 = this.Formula.coef3;
                     StepFormula.coef4 = this.Formula.coef4;
+                    StepFormula.formula1 = this.Formula.strFormula;
 
                     StepFormula.isactive = true;
-                    StepFormula.formula1 = "";
                     StepFormula.created_by = "system";
                     StepFormula.created_date = DateTime.Now;
 
@@ -285,9 +286,9 @@ namespace WorkflowManagement
                     StepFormula.coef2 = this.Formula.coef2;
                     StepFormula.coef3 = this.Formula.coef3;
                     StepFormula.coef4 = this.Formula.coef4;
+                    StepFormula.formula1 = this.Formula.strFormula;
 
                     StepFormula.isactive = true;
-                    StepFormula.formula1 = "";
                     StepFormula.created_by = "system";
                     StepFormula.created_date = DateTime.Now;
                     StepFormula.formulaId = Guid.NewGuid();
@@ -320,12 +321,12 @@ namespace WorkflowManagement
 
                     COMSdbEntity.Formula StepFormula = new COMSdbEntity.Formula();
                     StepFormula.isactive = true;
-                    StepFormula.formula1 = "";
 
                     StepFormula.coef1 = this.Formula.coef1;
                     StepFormula.coef2 = this.Formula.coef2;
                     StepFormula.coef3 = this.Formula.coef3;
                     StepFormula.coef4 = this.Formula.coef4;
+                    StepFormula.formula1 = this.Formula.strFormula;
 
                     StepFormula.created_by = "system";
                     StepFormula.created_date = DateTime.Now;
