@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.JScript" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -52,6 +53,7 @@
     <Compile Include="CylinderController.cs" />
     <Compile Include="EmployeeController.cs" />
     <Compile Include="ErrorController.cs" />
+    <Compile Include="FormulaUtility.cs" />
     <Compile Include="MainController.cs" />
     <Compile Include="PerformanceController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
