@@ -106,11 +106,21 @@ namespace WebUI.Common
         }
 
         //Check user Authorization at page and Allowed Action level per module
-        public bool CheckPermission(string Permission_Module_Name,string Permission_Action,Employee UserObj)
+        public bool CheckPermission(string Permission_Module_Name,string Permission_Action)
         {
             Permission permission = new Permission();
-            return permission.CheckPermission(Permission_Module_Name, Permission_Action, UserObj);
+            Employee UserObj = GetCurentUser();
+            bool IsAuthorized = false;
+            if (UserObj == null)
+            {
+                return permission.CheckPermission(Permission_Module_Name, Permission_Action, UserObj);
+            }
+            else
+            {
+                IsAuthorized = true;
+            }
 
+            return IsAuthorized;
         }
     }
 }
