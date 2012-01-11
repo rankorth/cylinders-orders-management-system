@@ -40,6 +40,42 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.LinkButton lnkPrintBarcode;
         
         /// <summary>
+        /// lnkStartProd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkStartProd;
+        
+        /// <summary>
+        /// lnkStartProd_ConfirmButtonExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ConfirmButtonExtender lnkStartProd_ConfirmButtonExtender;
+        
+        /// <summary>
+        /// lnkStopProd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkStopProd;
+        
+        /// <summary>
+        /// lnkStopProd_ConfirmButtonExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ConfirmButtonExtender lnkStopProd_ConfirmButtonExtender;
+        
+        /// <summary>
         /// lnkCancel control.
         /// </summary>
         /// <remarks>
@@ -74,6 +110,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdOrderId;
+        
+        /// <summary>
+        /// hdOrderCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdOrderCode;
         
         /// <summary>
         /// lblMsg control.

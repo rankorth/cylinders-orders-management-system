@@ -13,7 +13,6 @@
 <ul>
         <li><asp:LinkButton ID="lnkSearch" runat="server" onclick="lnkSearch_Click">Search</asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkAddOrder" runat="server" onclick="lnkAddOrder_Click">New Order</asp:LinkButton></li>
-        <li><asp:LinkButton ID="lnkCancel" runat="server">Cancel Order</asp:LinkButton></li>
 </ul>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="InputPlaceHolder" runat="server">
@@ -41,7 +40,7 @@
             </asp:BoundField>
             <asp:TemplateField HeaderText="Progress" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lnkViewLog" runat="server"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkViewLog" runat="server">view</asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>            
 			<asp:TemplateField HeaderText="Cylinders" ItemStyle-HorizontalAlign="Center">
@@ -65,7 +64,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Progress" ItemStyle-HorizontalAlign="Center">
                <ItemTemplate>
-                 <asp:LinkButton ID="lnkCylLog" runat="server">print</asp:LinkButton>
+                 <asp:LinkButton ID="lnkCylLog" runat="server">view</asp:LinkButton>
                </ItemTemplate>
             </asp:TemplateField>
         </Columns>

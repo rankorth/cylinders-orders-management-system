@@ -19,17 +19,21 @@ namespace BusinessLogics
         public const String STATUS_SENT_TO_MECH = "STM";
         public const String STATUS_INPROD = "PROD";
         public const String STATUS_CANCELLED = "CNL";
+
+        public static Dictionary<String, String> statusesToStartProd = new Dictionary<String, String>()
+        {
+            {STATUS_NEW,""}, {STATUS_UPDATED,""}, {STATUS_SENT_TO_GRPH,""}, 
+            {STATUS_GRPH_EDITED,""}, {STATUS_GRPH_VERIFIED,""}, {STATUS_SENT_TO_MECH,""}
+        };
+        public static Dictionary<String, String> statusesToStopProd = new Dictionary<String, String>()
+        {
+            {STATUS_INPROD,""}
+        };
         //public const int STATUS_UPDATED = 1;
         //public const int STATUS_SENT_TO_GRPH = 2;
         //public const int STATUS_GRPH_EDITED = 3;
         //public const int STATUS_GRPH_VERIFIED = 4;
         //public const int STATUS_SENT_TO_MECH = 5;
-
-        public const String DEPT_SALES = "Sales";
-        public const String DEPT_GRAPHIC = "Graphic";
-        public const String DEPT_MECHANICAL = "Mechanical";
-        public const String DEPT_ENGRAVING = "Engraving";
-
         
         public const String PRIORITY_LOW = "LOW";
         public const String PRIORITY_MEDIUM = "MED";
@@ -137,7 +141,6 @@ namespace BusinessLogics
 
                 //save an Order_Log entry
                 Order_Log log = new Order_Log();
-                log.dept_name = empl.Department.name;
                 log.id = Guid.NewGuid();
                 log.order_status = order.status;
                 log.orderId = order.orderId;
@@ -147,6 +150,7 @@ namespace BusinessLogics
                 log.updated_date = order.created_date;
                 Workflow salesToGraphicWF = getWfForOrderStatus(dbContext, order.status);
                 log.workflowId = salesToGraphicWF.workflowId;
+                log.dept_name = salesToGraphicWF.Department.name;
                 dbContext.Order_Log.AddObject(log);
 
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
@@ -165,11 +169,11 @@ namespace BusinessLogics
             if (status == null || context == null) return null;
 
             if (OrderConst.STATUS_SENT_TO_GRPH.Equals(status))
-                return context.Workflows.Where(w => w.name.IndexOf(OrderConst.DEPT_SALES) != -1 && w.name.IndexOf(OrderConst.DEPT_GRAPHIC) != -1).SingleOrDefault();
+                return context.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_SALES) != -1 && w.name.IndexOf(DeptConst.DEPT_GRAPHIC) != -1).SingleOrDefault();
             else if (OrderConst.STATUS_SENT_TO_MECH.Equals(status))
-                return context.Workflows.Where(w => w.name.IndexOf(OrderConst.DEPT_SALES) != -1 && w.name.IndexOf(OrderConst.DEPT_MECHANICAL) != -1).SingleOrDefault();
+                return context.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_SALES) != -1 && w.name.IndexOf(DeptConst.DEPT_MECHANICAL) != -1).SingleOrDefault();
             else if (OrderConst.STATUS_GRPH_EDITED.Equals(status) || OrderConst.STATUS_GRPH_VERIFIED.Equals(status))
-                return context.Workflows.Where(w => w.name.IndexOf(OrderConst.DEPT_GRAPHIC) != -1 && w.name.IndexOf(OrderConst.DEPT_ENGRAVING) != -1).SingleOrDefault();
+                return context.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_GRAPHIC) != -1 && w.name.IndexOf(DeptConst.DEPT_ENGRAVING) != -1).SingleOrDefault();
 
             return null;
         }
@@ -234,16 +238,16 @@ namespace BusinessLogics
             {
                 //save an Order_Log entry
                 Order_Log log = new Order_Log();
-                log.dept_name = empl.Department.name;
                 log.id = Guid.NewGuid();
                 log.order_status = order.status;
                 log.orderId = order.orderId;
                 log.related_cyl = null;
                 log.remarks = null;
-                log.updated_by = order.created_by;
-                log.updated_date = order.created_date;
+                log.updated_by = empl.username;
+                log.updated_date = DateTime.Now;
                 Workflow workflow = getWfForOrderStatus(dbContext, order.status);
                 log.workflowId = workflow.workflowId;
+                log.dept_name = workflow.Department.name;
                 dbContext.Order_Log.AddObject(log);
 
                 ////dbOrder status can be a String or the form a-b, a is Sales status, b is Graphic status

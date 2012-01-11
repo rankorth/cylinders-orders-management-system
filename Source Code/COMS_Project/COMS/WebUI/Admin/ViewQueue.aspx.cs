@@ -16,10 +16,13 @@ namespace WebUI.Admin
         MainController mainCtrl = new MainController();
         protected void Page_Load(object sender, EventArgs e)
         {
-            IQueryable<Workflow> workflowList = mainCtrl.getAllWorkflow();
-            foreach (Workflow wf in workflowList)
+            if (!IsPostBack)
             {
-                ddlWorkflow.Items.Add(new ListItem(wf.name, wf.workflowId.ToString()));
+                IQueryable<Workflow> workflowList = mainCtrl.getAllWorkflow();
+                foreach (Workflow wf in workflowList)
+                {
+                    ddlWorkflow.Items.Add(new ListItem(wf.name, wf.workflowId.ToString()));
+                }
             }
         }
 
@@ -39,28 +42,6 @@ namespace WebUI.Admin
             {
                 lblMsg.Text = "Search found no result.";
                 lblMsg.CssClass = "errMsg";
-            }
-        }
-
-        protected void gvOrders_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            Order order = null;
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                LinkButton lnkOrderCode = (LinkButton)e.Row.FindControl("lnkOrderCode");
-
-                order = (Order)e.Row.DataItem;
-                lnkOrderCode.Text = order.order_code.ToString();
-                lnkOrderCode.CommandName = "OrderDetail";
-                lnkOrderCode.CommandArgument = order.orderId.ToString();
-            }
-        }
-
-        protected void gvOrders_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName.Equals("OrderDetail"))
-            {
-                
             }
         }
 
