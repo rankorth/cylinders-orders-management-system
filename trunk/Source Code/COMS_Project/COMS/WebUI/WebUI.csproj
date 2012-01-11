@@ -70,7 +70,6 @@
     <Content Include="Admin\Users.aspx" />
     <Content Include="Admin\BarCode.aspx" />
     <Content Include="Admin\PrintOrderBarcode.aspx" />
-    <Content Include="Admin\ViewCylinderLog.aspx" />
     <Content Include="Admin\ViewOrderLog.aspx" />
     <Content Include="Admin\ViewQueue.aspx" />
     <Content Include="Admin\WorkflowErrorDescription.aspx" />
@@ -99,6 +98,7 @@
     <Content Include="AjaxControlToolkit.Binary.NET4\zh-CHT\AjaxControlToolkit.resources.dll" />
     <Content Include="CylinderProcess.aspx" />
     <Content Include="Index.aspx" />
+    <Content Include="Reports\EmployeePerformance.aspx" />
     <Content Include="Reports\StepList.aspx" />
     <Content Include="Styles\Images\Background\logo.png" />
     <Content Include="Styles\Images\Background\metallic_bg.png" />
@@ -209,13 +209,6 @@
     <Compile Include="Admin\PrintOrderBarcode.aspx.designer.cs">
       <DependentUpon>PrintOrderBarcode.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ViewCylinderLog.aspx.cs">
-      <DependentUpon>ViewCylinderLog.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\ViewCylinderLog.aspx.designer.cs">
-      <DependentUpon>ViewCylinderLog.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\ViewOrderLog.aspx.cs">
       <DependentUpon>ViewOrderLog.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -268,6 +261,13 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\CommonUtil.cs" />
+    <Compile Include="Reports\EmployeePerformance.aspx.cs">
+      <DependentUpon>EmployeePerformance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\EmployeePerformance.aspx.designer.cs">
+      <DependentUpon>EmployeePerformance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\StepList.aspx.cs">
       <DependentUpon>StepList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -309,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Reports\Report_Files\CylinderInfo.rdlc" />
+    <EmbeddedResource Include="Reports\Report_Files\Performance.rdlc" />
     <EmbeddedResource Include="Reports\Report_Files\Steps.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
