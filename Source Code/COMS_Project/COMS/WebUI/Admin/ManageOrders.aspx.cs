@@ -41,8 +41,17 @@ namespace WebUI.Admin
                     lblMsg.CssClass = "okMsg";
                 }
             }
-        }
 
+            if (!IsPostBack)
+            {
+                Authorize();
+            }
+        }
+        //Tin 14-jan-2012
+        private void Authorize()
+        {
+            lnkAddOrder.Visible = base.CheckPermission(Common.Permission.ModuleName_Order, Common.Permission.Action_Edit);
+        }
         protected void lnkAddOrder_Click(object sender, EventArgs e)
         {
             clearCylindersData();

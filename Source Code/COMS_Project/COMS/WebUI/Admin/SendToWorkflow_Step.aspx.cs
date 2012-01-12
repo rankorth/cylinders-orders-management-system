@@ -16,11 +16,15 @@ namespace WebUI.Admin
             base.PageLoad(Page);
             if (!IsPostBack)
             {
+                Authorize();
                 load_Workflow_Data();
             }
             Load_ErrorCylinders();
         }
-
+        private void Authorize()
+        {
+            lnkSend.Visible = CheckPermission(Common.Permission.ModuleName_SendToWorkflow, Common.Permission.Action_Edit);
+        }
         private void load_Workflow_Data()
         {
             WorkflowController WorkflowCtrl = new WorkflowController();

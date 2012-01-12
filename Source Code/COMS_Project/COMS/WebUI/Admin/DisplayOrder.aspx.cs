@@ -30,6 +30,7 @@ namespace WebUI.Admin
             base.PageLoad(Page);
             if (!IsPostBack)
             {
+                Authorize();
                 load_customers();
                 load_priorities();
                 load_coreType();
@@ -51,6 +52,11 @@ namespace WebUI.Admin
             }
         }
 
+        //Tin 14-01-2012
+        private void Authorize()
+        {
+            lnkSave.Visible = lnkStartProd.Visible = lnkStopProd.Visible = base.CheckPermission(Common.Permission.ModuleName_Order, Common.Permission.Action_Edit);
+        }
         //load customer list into drop down list
         private void load_customers() {
             IQueryable<Customer> customerList = mainCtrl.getAllCustomers();

@@ -18,6 +18,7 @@ namespace WebUI.Admin
             base.PageLoad(Page);
             if (!IsPostBack)
             {
+                Authorize();
                 hPageState.Value = Common.PageState.New;
                 load_data();
                 load_Roles_data();
@@ -25,7 +26,10 @@ namespace WebUI.Admin
             }
             ltrModule_name.Text = "User Management";
         }
-
+        private void Authorize()
+        {
+            lnkDelete.Visible = lnkSave.Visible = CheckPermission(Common.Permission.ModuleName_Employee, Common.Permission.Action_Edit);
+        }
         private void retrieveEmployeeDetail(Guid employeeID)
         {
                 Employee employee = mainctrl.retrieveEmployee(employeeID);

@@ -19,11 +19,15 @@ namespace WebUI.Admin
             base.PageLoad(Page);
             if (!IsPostBack)
             {
+                Authorize();
                 load_data();
             }
         }
 
-
+        private void Authorize()
+        {
+          lnkReject.Visible=  lnkApprove.Visible = base.CheckPermission(Common.Permission.ModuleName_RoleApproval, Common.Permission.Action_Edit);
+        }
 
         private void load_data()
         {
