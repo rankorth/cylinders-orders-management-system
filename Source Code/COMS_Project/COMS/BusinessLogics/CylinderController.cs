@@ -206,6 +206,7 @@ namespace BusinessLogics
                 formula.coef2 = 0;
                 formula.coef3 = 0;
                 formula.coef4 = 0;
+                formula.formula1 = "";
             }
             Cylinder_Log cylLog = new Cylinder_Log();
             if (empl != null)
