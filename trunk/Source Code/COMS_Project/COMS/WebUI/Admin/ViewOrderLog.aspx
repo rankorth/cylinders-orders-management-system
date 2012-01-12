@@ -21,7 +21,8 @@
     </tr>
 </table>
 
-    <asp:GridView ID="gvOrderLogs" runat="server" ViewStateMode="Enabled" Width="100%">
+    <asp:GridView ID="gvOrderLogs" runat="server" ViewStateMode="Enabled" 
+        Width="100%" onrowdatabound="gvOrderLogs_RowDataBound">
         <Columns>
             <asp:BoundField DataField="dept_name" HeaderText="Department" 
                 ItemStyle-HorizontalAlign="Center" >
@@ -35,10 +36,11 @@
                 ItemStyle-HorizontalAlign="Center" >
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
-            <asp:BoundField DataField="order_status" HeaderText="Description" 
-                ItemStyle-HorizontalAlign="Center" >
-                <ItemStyle HorizontalAlign="Center"></ItemStyle>
-            </asp:BoundField>
+            <asp:TemplateField HeaderText="Status" ItemStyle-HorizontalAlign="Center">
+                <ItemTemplate>
+                    <asp:Label ID="lblOrderStatus" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="related_cyl" HeaderText="Related Cylinders" 
                 ItemStyle-HorizontalAlign="Center" >
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>

@@ -14,6 +14,7 @@ namespace Example
     public partial class FormBaTien : Form
     {
         private MainController mainCtrl = new MainController();
+        private Employee empl = (new COMSEntities()).Employees.Where(s => s.staff_code.Equals("staff-code-111")).SingleOrDefault();
 
         public FormBaTien()
         {
@@ -23,7 +24,6 @@ namespace Example
         private void btnCreateOrder_Clicked(object sender, EventArgs e)
         {
             COMSEntities dbContext = new COMSEntities();
-
             try
             {
                 //prepare Order
@@ -95,7 +95,7 @@ namespace Example
                 //add above prepared detail record into Order
                 order.Order_Detail.Add(orderDetail);
 
-                mainCtrl.createSalesOrder(order, dbContext.Employees.Where(s => s.staff_code.Equals("staff-code-111")).SingleOrDefault());
+                mainCtrl.createSalesOrder(order, empl);
 
                 ////add order record into databse
                 //context.Orders.AddObject(order);
@@ -150,7 +150,7 @@ namespace Example
             try
             {
                 Order dbOrder = mainCtrl.getSalesOrderByCode("0001-B11");
-                mainCtrl.deleteSpecificOrder(dbOrder);
+                mainCtrl.deleteSpecificOrder(dbOrder.orderId, empl);
                 MessageBox.Show("Order "+dbOrder.order_code+"Deleted");
             }
             catch (Exception ex)

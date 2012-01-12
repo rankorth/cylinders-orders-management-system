@@ -76,24 +76,6 @@ namespace WebUI.Admin {
         protected global::AjaxControlToolkit.ConfirmButtonExtender lnkStopProd_ConfirmButtonExtender;
         
         /// <summary>
-        /// lnkCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkCancel;
-        
-        /// <summary>
-        /// lnkCancel_ConfirmButtonExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ConfirmButtonExtender lnkCancel_ConfirmButtonExtender;
-        
-        /// <summary>
         /// lnkBack control.
         /// </summary>
         /// <remarks>
@@ -256,13 +238,13 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtBelongsToSet;
         
         /// <summary>
-        /// chkBxOldCore control.
+        /// ddlCoreType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkBxOldCore;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCoreType;
         
         /// <summary>
         /// txtProdWidth control.
@@ -895,13 +877,13 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlPrintMaterial;
         
         /// <summary>
-        /// txtMaterialOther control.
+        /// txtPrintMaterialOther control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMaterialOther;
+        protected global::System.Web.UI.WebControls.TextBox txtPrintMaterialOther;
         
         /// <summary>
         /// rBtnResultGraphic control.

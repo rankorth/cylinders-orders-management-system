@@ -22,7 +22,7 @@ namespace WebUI.Admin
         public const String MSG_CANCEL_OK_DESC = "Order cancelled successfully.";
         public const String MSG_STARTPROD_OK = "startProdOk";
         public const String MSG_STARTPROD_OK_DESC = "Cylinder production has been started for order ";
-        public const String MSG_STOPPROD_OK = "startProdOk";
+        public const String MSG_STOPPROD_OK = "stopProdOk";
         public const String MSG_STOPPROD_OK_DESC = "Cylinder production has been stopped for order ";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -31,12 +31,12 @@ namespace WebUI.Admin
             {
                 load_customers();
                 load_priorities();
+                load_coreType();
                 if (Request["orderId"] == null)
                 {
                     load_new_data();
                     ltrModule_name.Text = NAME_NEW;
                     lnkPrintBarcode.Visible = false; //only allow user to print once order has been saved
-                    lnkCancel.Visible = false; //only allow user to cancel order during update
                     lnkStartProd.Visible = false; //only allow user to start production during update
                     lnkStopProd.Visible = false; //only allow user to stop production during update
                 }
@@ -46,7 +46,6 @@ namespace WebUI.Admin
                     ltrModule_name.Text = NAME_UPDATE;
                     lnkSave.Text = "Update";
                     lnkPrintBarcode.Visible = true;
-                    lnkCancel.Visible = true; //allow user to cancel order during update
                 }
             }
         }
@@ -68,6 +67,13 @@ namespace WebUI.Admin
             ddlPriority.Items.Add(new ListItem("LOW", OrderConst.PRIORITY_LOW));
         }
 
+        private void load_coreType()
+        {
+            ddlCoreType.Items.Add(new ListItem("NEW", OrderConst.CORETYPE_NEW));
+            ddlCoreType.Items.Add(new ListItem("USED", OrderConst.CORETYPE_USED));
+            ddlCoreType.Items.Add(new ListItem("BACKUP", OrderConst.CORETYPE_BACKUP));
+        }
+
         //load new data into web form
         private void load_new_data()
         {
@@ -85,16 +91,20 @@ namespace WebUI.Admin
             hdOrderCode.Value = order.order_code;
             load_status(NAME_UPDATE, order.status);
 
-            if (OrderConst.statusesToStartProd.ContainsKey(order.status))
+            //check whether this order can start/stop production for this order
+            if (OrderConst.StatusesToStartProd.ContainsKey(order.status))
             {
                 lnkStartProd.Visible = true; //user can start production
                 lnkStopProd.Visible = false;
             } 
-            else if (OrderConst.statusesToStopProd.ContainsKey(order.status))
+            else if (OrderConst.StatusesToStopProd.ContainsKey(order.status))
             {
                 lnkStartProd.Visible = false;
                 lnkStopProd.Visible = true; //user can stop production
             }
+            //create Print Barcode button
+            lnkPrintBarcode.Attributes.Add("href", "/Admin/PrintOrderBarcode.aspx?code=" + order.order_code);
+            lnkPrintBarcode.Attributes.Add("target", "_blank");
         }
 
         //load available statuses to drop down list
@@ -103,16 +113,27 @@ namespace WebUI.Admin
             //status should be one of the constant string from OrderConst (STATUS_ABC)
             if (NAME_NEW.Equals(moduleName))
             {
-                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_NEW), OrderConst.STATUS_NEW));
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_NEW], OrderConst.STATUS_NEW));
             }
             else if (NAME_UPDATE.Equals(moduleName))
             {
-                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_UPDATED), OrderConst.STATUS_UPDATED));
-                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_SENT_TO_GRPH), OrderConst.STATUS_SENT_TO_GRPH));
-                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_GRPH_EDITED), OrderConst.STATUS_GRPH_EDITED));
-                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_GRPH_VERIFIED), OrderConst.STATUS_GRPH_VERIFIED));
-                ddlOrderStatus.Items.Add(new ListItem(OrderConst.getStatusDisp(OrderConst.STATUS_SENT_TO_MECH), OrderConst.STATUS_SENT_TO_MECH));
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_UPDATED], OrderConst.STATUS_UPDATED));
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_SENT_TO_GRPH], OrderConst.STATUS_SENT_TO_GRPH));
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_GRPH_EDITED], OrderConst.STATUS_GRPH_EDITED));
+                ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_GRPH_VERIFIED], OrderConst.STATUS_GRPH_VERIFIED));
+                
+                //only show INPROD and CANCELLED status is order is already INPROD or CANCELLED
+                if (OrderConst.StatusesToStartProd.ContainsKey(status) == false)
+                {
+                    ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_INPROD], OrderConst.STATUS_INPROD));
+                    ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_STOPPED], OrderConst.STATUS_STOPPED));
+                }
 
+                //don't allow update for certain statuses (INPROD, CANCELLED)
+                if (OrderConst.StatusesToUpdate.ContainsKey(status) == false)
+                {
+                    lnkSave.Visible = false;
+                }
                 ddlOrderStatus.SelectedValue = status;
             }
         }
@@ -129,20 +150,19 @@ namespace WebUI.Admin
             txtProdName.Text = order.product_name;
             txtPriceType.Text = order.price_type;
             txtRedoPct.Text = "" + order.redo_pct;
-            chkBxOldCore.Checked = (bool)order.old_core;
             txtDeliveryDate_CalendarExtender.SelectedDate = order.delivery_date;
             txtDeliveryDate.Text = order.delivery_date.ToString();
             rBtnOrderTypeNew.Checked = (order.order_type == OrderConst.ORDERTYPE_NEW);
             txtSetCode.Text = order.set_code;
             txtCylType.Text = order.cylinder_type;
-            //order.old_order_code = ???
+            //order.old_order_code = 
             ddlPriority.SelectedValue = order.priority;
             txtBelongsToSet.Text = order.belong_to_set;
             txtCreatedBy.Text = order.created_by;
             txtCreateDate.Text = order.created_date.ToString();
 
             Order_Detail orderDetail = order.Order_Detail.SingleOrDefault();
-            chkBxOldCore.Checked = OrderConst.CORETYPE_OLD.Equals(orderDetail.core_type) ? true : false;
+            ddlCoreType.SelectedValue = orderDetail.core_type;
             txtProdWidth.Text = "" + orderDetail.prod_print_width;
             txtWidthStretch.Text = "" + orderDetail.prod_width_stretch;
             txtProdHeight.Text = "" + orderDetail.prod_print_height;
@@ -152,7 +172,7 @@ namespace WebUI.Admin
             txtWebPrintWidth.Text = "" + orderDetail.web_print_width;
             txtWebTotalWidth.Text = "" + orderDetail.web_total_width;
             txtCylLength.Text = "" + orderDetail.cyl_length;
-            txtCylCircum.Text = "" + (orderDetail.cyl_diameter * (decimal)3.1416);
+            txtCylCircum.Text = Math.Round((double)orderDetail.cyl_diameter * Math.PI, 2).ToString();
 
             chkBxEyeMark.Checked = !String.IsNullOrEmpty(orderDetail.eyemark_color);
             txtEMHeight.Text = "" + orderDetail.eyemark_height;
@@ -197,14 +217,7 @@ namespace WebUI.Admin
             chkBxSplitLine2Side.Checked = OrderConst.SPLITLINE_2SIDE.Equals(orderDetail.splitline_type);
             txtSplitLineColor.Text = orderDetail.splitline_color;
 
-            foreach (ListItem item in ddlPrintMaterial.Items)
-            {
-                if (item.Value.Equals(orderDetail.print_material))
-                {
-                    item.Selected = true;
-                    break;
-                }
-            }
+            ddlPrintMaterial.SelectedValue = orderDetail.print_material;
 
             //result can be compared with either graphic proof, printing sample or fingerprint
             rBtnResultSample.Checked = OrderConst.RESULT_FROM_SAMPLE.Equals(orderDetail.result_based_on);
@@ -239,7 +252,6 @@ namespace WebUI.Admin
         {
             Order order = null;
             //Tin 
-            //Employee user = (Employee)Session[BasePage.userobj];
             Employee user = base.GetCurentUser();
             if (NAME_NEW.Equals(ltrModule_name.Text)) {
                 order = new Order();
@@ -263,6 +275,10 @@ namespace WebUI.Admin
                 mainCtrl.createSalesOrder(order, user);
                 lblMsg.Text = "Order created successfully. Please click Print Barcode to print out the barcode on the paper order.";
                 lblMsg.CssClass = "okMsg";
+                //create Print Barcode button
+                lnkPrintBarcode.Visible = true;
+                lnkPrintBarcode.Attributes.Add("href", "/Admin/PrintOrderBarcode.aspx?code=" + order.order_code);
+                lnkPrintBarcode.Attributes.Add("target", "_blank");
             }
             else if (NAME_UPDATE.Equals(ltrModule_name.Text))
             {
@@ -277,14 +293,10 @@ namespace WebUI.Admin
                 //lblMsg.CssClass = "okMsg";
 
                 //in update case, need to redirect to ManageOrders.aspx
-                Response.Redirect(Common.PageUrls.ManageOrdersPage + "?msg=" + MSG_UPDATE_OK);
+                Response.Redirect(Common.PageUrls.ManageOrdersPage + "?"+ManageOrders.REQ_MSG+"=" + MSG_UPDATE_OK);
             }
 
-            //enable Print Barcode button
             lnkSave.Enabled = false;
-            lnkPrintBarcode.Enabled = true;
-            lnkPrintBarcode.Attributes.Add("href", "PrintOrderBarcode.aspx?code=" + order.order_code);
-            lnkPrintBarcode.Attributes.Add("target", "_blank");
         }
 
         //convert web form data into order object
@@ -297,7 +309,6 @@ namespace WebUI.Admin
             order.product_name = txtProdName.Text;
             order.price_type = txtPriceType.Text;
             order.redo_pct = (txtRedoPct.Text != "") ? Convert.ToInt32(txtRedoPct.Text) : 0;
-            order.old_core = chkBxOldCore.Checked;
             //order.delivery_date = Convert.ToDateTime(txtDeliveryDate_CalendarExtender.SelectedDate);
             order.delivery_date = Convert.ToDateTime(txtDeliveryDate.Text);
             order.order_type = (rBtnOrderTypeNew.Checked) ? OrderConst.ORDERTYPE_NEW : OrderConst.ORDERTYPE_REDO;
@@ -316,8 +327,8 @@ namespace WebUI.Admin
             //populate form values into orderDetail object
             orderDetail.updated_by = order.updated_by;
             orderDetail.updated_date = order.updated_date;
-            
-            orderDetail.core_type = (chkBxOldCore.Checked) ? OrderConst.CORETYPE_OLD : OrderConst.CORETYPE_NEW;
+
+            orderDetail.core_type = ddlCoreType.SelectedValue;
 
             orderDetail.prod_print_width = Convert.ToDecimal(txtProdWidth.Text);
             orderDetail.prod_width_stretch = (txtWidthStretch.Text != "") ? Convert.ToDecimal(txtWidthStretch.Text) : 0;
@@ -366,7 +377,7 @@ namespace WebUI.Admin
             orderDetail.color_list = txtColorList.Text;
 
             //the number of cylinders depends on whether old cores are being reused
-            if (chkBxOldCore.Checked)
+            if (OrderConst.CORETYPE_USED.Equals(ddlCoreType.SelectedValue))
             {
                 orderDetail.new_cyl_count = 0;
                 orderDetail.used_cyl_count = Convert.ToInt32(txtCylCount.Text);
@@ -387,7 +398,10 @@ namespace WebUI.Admin
                 orderDetail.splitline_type = (chkBxSplitLine2Side.Checked) ? OrderConst.SPLITLINE_2SIDE : OrderConst.SPLITLINE_1SIDE;
                 orderDetail.splitline_color = txtSplitLineColor.Text;
             }
-            orderDetail.print_material = ddlPrintMaterial.SelectedItem.Value;
+            if (ddlPrintMaterial.SelectedIndex != -1)
+                orderDetail.print_material = ddlPrintMaterial.SelectedItem.Value;
+            else
+                orderDetail.print_material = txtPrintMaterialOther.Text;
 
             //result can be compared with either graphic proof, printing sample or fingerprint
             orderDetail.result_based_on = (rBtnResultSample.Checked) ? OrderConst.RESULT_FROM_SAMPLE
@@ -413,34 +427,44 @@ namespace WebUI.Admin
 
         protected void lnkStartProd_Click(object sender, EventArgs e)
         {
-            mainCtrl.startCylinderProd(hdOrderCode.Value);
+            mainCtrl.startCylinderProd(new Guid(hdOrderId.Value), base.GetCurentUser());
 
             //in start production case, need to redirect to ManageOrders.aspx
-            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?msg=" + MSG_STARTPROD_OK + hdOrderCode.Value);
+            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?" + ManageOrders.REQ_MSG + "=" + MSG_STARTPROD_OK 
+                                + "&" + ManageOrders .REQ_ORDERCODE+ "=" + hdOrderCode.Value);
         }
 
         protected void lnkStopProd_Click(object sender, EventArgs e)
         {
-            Order order = new Order();
-            mainCtrl.stopCylinderProd(order);
+            mainCtrl.stopCylinderProd(new Guid(hdOrderId.Value), base.GetCurentUser());
 
             //in start production case, need to redirect to ManageOrders.aspx
-            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?msg=" + MSG_CANCEL_OK);
+            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?"+ManageOrders.REQ_MSG+"=" + MSG_STOPPROD_OK);
         }
 
         protected void lnkCancel_Click(object sender, EventArgs e)
         {
-            Order order = new Order();
-            order.orderId = new Guid(hdOrderId.Value);
-            mainCtrl.deleteSpecificOrder(order);
+            mainCtrl.deleteSpecificOrder(new Guid(hdOrderId.Value), base.GetCurentUser());
 
             //in cancel case, need to redirect to ManageOrders.aspx
-            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?msg=" + MSG_CANCEL_OK);
+            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?"+ManageOrders.REQ_MSG+"=" + MSG_CANCEL_OK
+							+ "&" + ManageOrders.REQ_ORDERCODE + "=" + hdOrderCode.Value);
+
         }
 
         protected void lnkBack_Click(object sender, EventArgs e)
         {
             Response.Redirect(Common.PageUrls.ManageOrdersPage);
+        }
+
+        protected void txtColorCount_TextChanged(object sender, EventArgs e)
+        {
+            txtCylCount.Text = txtColorCount.Text;
+        }
+
+        protected void txtCylCount_TextChanged(object sender, EventArgs e)
+        {
+            txtColorCount.Text = txtCylCount.Text;
         }
     }
 }

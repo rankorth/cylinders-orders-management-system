@@ -44,5 +44,17 @@ namespace WebUI.Admin
         {
             Response.Redirect(Common.PageUrls.ManageOrdersPage);
         }
+
+        protected void gvOrderLogs_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Order_Log log = (Order_Log)e.Row.DataItem;
+
+                //display user-friendly order statuses
+                Label lblOrderStatus = (Label)e.Row.FindControl("lblOrderStatus");
+                lblOrderStatus.Text = OrderConst.DispStatusDict[log.order_status];
+            }
+        }
     }
 }
