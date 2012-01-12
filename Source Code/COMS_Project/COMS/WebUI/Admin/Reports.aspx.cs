@@ -28,7 +28,10 @@ namespace WebUI.Admin
 
             foreach(Access_Right ar in reportlist)
             {
-                ddlReports.Items.Add(new ListItem(ar.name, "/Reports/"+ ar.module_name));
+                if (base.CheckPermission(ar.module_name, ar.action))
+                {
+                    ddlReports.Items.Add(new ListItem(ar.name, "/Reports/" + ar.module_name));
+                }
             }
         }
 

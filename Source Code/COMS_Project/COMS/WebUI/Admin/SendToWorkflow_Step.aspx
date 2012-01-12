@@ -1,15 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="SendToWorkflow_Step.aspx.cs" Inherits="WebUI.Admin.SendToWorkflow_Step" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ModuleName" runat="server">
-Send to Workflow / Step
+    Send to Workflow / Step
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
-<ul>
+    <ul>
         <li>
             <asp:LinkButton ID="lnkSend" runat="server" onclick="lnkSend_Click" >Send</asp:LinkButton></li>
     </ul>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="InputPlaceHolder" runat="server">
- <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
+    <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td class="entry_label">
                 Send to Workflow
@@ -54,7 +54,7 @@ Send to Workflow / Step
     <asp:GridView ID="gvResult" runat="server" CellPadding="4" CssClass="grid" 
         ForeColor="#333333" GridLines="None" OnRowCommand="gvResult_RowCommand" 
         OnRowDataBound="gvResult_RowDataBound" ViewStateMode="Enabled" 
-        Width="100%" AutoGenerateColumns="False">
+    Width="100%" AutoGenerateColumns="False">
         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:TemplateField>

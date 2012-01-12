@@ -18,7 +18,10 @@ namespace WebUI
                 
                 if (module_panel.Controls.Count < 1)
                 {
-                    bp.GenerateMenu(module_panel);
+                    if (bp.GetCurentUser() != null)
+                    {
+                        bp.GenerateMenu(module_panel);
+                    }
                 }
 
         }

@@ -65,17 +65,38 @@ namespace WebUI.Common
 
             Dictionary<string, string> module = new Dictionary<string, string>();
             LinkButton lnkButton;
+            Employee User =GetCurentUser();
 
-            //replace with actual code once all done
-            module.Add("Orders", "/Admin/ManageOrders.aspx");
-            module.Add("Roles", "/Admin/Role.aspx");
-            module.Add("Employee", "/Admin/Users.aspx");
-            module.Add("Customer", "/Admin/Customers.aspx");
-            module.Add("Approve Assign Roles", "/Admin/RoleAssignment_Approval.aspx");
-            module.Add("Workflow Error Message", "/Admin/ErrorManagement.aspx");
-            module.Add("View Current Queue", "/Admin/ViewQueue.aspx");
-            module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
-            module.Add("Reports", "/Admin/Reports.aspx");
+
+            if (Permission.CheckModuleAccess(Permission.ModuleName_Order, User))
+                module.Add("Orders", "/Admin/ManageOrders.aspx");
+
+            if (Permission.CheckModuleAccess(Permission.ModuleName_Role, User)) 
+                module.Add("Roles", "/Admin/Role.aspx");
+
+            if (Permission.CheckModuleAccess(Permission.ModuleName_Employee, User)) 
+                module.Add("Employee", "/Admin/Users.aspx");
+
+            if (Permission.CheckModuleAccess(Permission.ModuleName_Customer, User)) 
+                module.Add("Customer", "/Admin/Customers.aspx");
+
+            if (Permission.CheckModuleAccess(Permission.ModuleName_RoleApproval, User)) 
+                module.Add("Approve Assign Roles", "/Admin/RoleAssignment_Approval.aspx");
+
+            if (Permission.CheckModuleAccess(Permission.ModuleName_WorkflowError, User)) 
+                module.Add("Workflow Error Message", "/Admin/ErrorManagement.aspx");
+
+            if (Permission.CheckModuleAccess(Permission.ModuleName_ViewQue, User)) 
+                module.Add("View Current Queue", "/Admin/ViewQueue.aspx");
+
+            if (Permission.CheckModuleAccess(Permission.ModuleName_CylinderInfo, User)) 
+                module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
+
+            if (Permission.CheckModuleAccess(Permission.ModuleName_Report, User)) 
+                module.Add("Reports", "/Admin/Reports.aspx");
+
+            Employee user = GetCurentUser();
+            SecurityController SecurityCtrl = new SecurityController();
 
             foreach (string name in module.Keys)
             {
@@ -120,16 +141,12 @@ namespace WebUI.Common
         //Check user Authorization at page and Allowed Action level per module
         public bool CheckPermission(string Permission_Module_Name,string Permission_Action)
         {
-            Permission permission = new Permission();
+
             Employee UserObj = GetCurentUser();
             bool IsAuthorized = false;
-            if (UserObj == null)
+            if (UserObj != null)
             {
-                return permission.CheckPermission(Permission_Module_Name, Permission_Action, UserObj);
-            }
-            else
-            {
-                IsAuthorized = true;
+                IsAuthorized =  Permission.CheckPermission(Permission_Module_Name, Permission_Action, UserObj);
             }
 
             return IsAuthorized;

@@ -74,7 +74,7 @@
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:LinkButton ID="lnkEdit" runat="server">edit</asp:LinkButton>
+                    <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False">edit</asp:LinkButton>
                 </ItemTemplate>
                 <HeaderStyle Width="10px" />
             </asp:TemplateField>
