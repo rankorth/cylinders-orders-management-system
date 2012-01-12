@@ -23,6 +23,7 @@ namespace WebUI.Common
         public const string ModuleName_Customer = "Customer";
         public const string ModuleName_Report = "Report";
         public const string ModuleName_WorkflowError = "Workflow Error";
+        public const string ModuleName_SendToWorkflow = "Send To Workflow";
 
 
         public const string Action_Edit = "Edit";
