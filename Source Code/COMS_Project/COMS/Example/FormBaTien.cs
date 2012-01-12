@@ -667,7 +667,7 @@ namespace Example
         private void button1_Click(object sender, EventArgs e)
         {
             SalesOrderController Sales = new SalesOrderController();
-            MessageBox.Show("Next Order Sequence Number is : "+ Sales.GenerateNextSequenceID().ToString());
+            MessageBox.Show("Next Order Sequence Number is : " + Sales.getNextOrderBarCode());
         }
     }
 }
