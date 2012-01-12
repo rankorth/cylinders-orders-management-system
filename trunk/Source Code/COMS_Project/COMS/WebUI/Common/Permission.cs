@@ -8,20 +8,30 @@ using BusinessLogics;
 
 namespace WebUI.Common
 {
-    public class Permission
+    public static class Permission
     {
         public const string ModuleName_Employee = "Employee";
+        public const string ModuleName_RoleApproval = "RoleApproval";
         public const string ModuleName_Role = "Role";
+        public const string ModuleName_Assignment = "Role Assignment";
         public const string ModuleName_Workflow = "Workflow";
         public const string ModuleName_StepList_Report = "StepList.aspx";
         public const string ModuleName_Employee_Performance_Report = "EmployeePerformance.aspx";
+        public const string ModuleName_CylinderInfo = "Cylinder Info";
+        public const string ModuleName_Order = "Order";
+        public const string ModuleName_ViewQue = "ViewQue";
+        public const string ModuleName_Customer = "Customer";
+        public const string ModuleName_Report = "Report";
+        public const string ModuleName_WorkflowError = "Workflow Error";
+
 
         public const string Action_Edit = "Edit";
-        public const string Action_Delete ="Delete";
+        private const string Action_Delete = "Delete";
         public const string Action_Report = "Report";
-        public const string Action_Add = "Add";
+        private const string Action_Add = "Add";
+        public const string Action_View = "View";
 
-        public bool CheckPermission(string Permission_Module_Name, string Permission_Action, Employee UserObj)
+        public static bool CheckPermission(string Permission_Module_Name, string Permission_Action, Employee UserObj)
         {
             SecurityController SecurityCtrl = new SecurityController();
 
@@ -39,6 +49,21 @@ namespace WebUI.Common
                 }
             }
             return isPermissionFound;
+        }
+
+        public static bool CheckModuleAccess(string Permission_Module_Name, Employee UserObj)
+        {
+            if (CheckPermission(Permission_Module_Name, Action_Add, UserObj) ||
+                CheckPermission(Permission_Module_Name, Action_Delete, UserObj) ||
+                CheckPermission(Permission_Module_Name, Action_Edit, UserObj) ||
+                CheckPermission(Permission_Module_Name, Action_Report, UserObj) ||
+                CheckPermission(Permission_Module_Name, Action_View, UserObj))
+            {
+                return true;
+            }
+
+            return false;
+
         }
     }
 }

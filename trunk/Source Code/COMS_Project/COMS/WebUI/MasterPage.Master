@@ -25,7 +25,7 @@
                         Main Menu</div>
                     <asp:Panel ID="module_panel" runat="server"></asp:Panel>
                     <asp:LinkButton ID="lnkLogout" runat="server" CssClass="module_menu" 
-                        onclick="lnkLogout_Click">Logout</asp:LinkButton>
+                        onclick="lnkLogout_Click" CausesValidation="False">Logout</asp:LinkButton>
                 </div>
             </td>
             <td style="vertical-align: top; padding-left: 5px; width: auto;">

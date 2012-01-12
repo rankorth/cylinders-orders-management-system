@@ -18,11 +18,16 @@ namespace WebUI.Admin
             base.PageLoad(Page);
             if (!IsPostBack)
             {
+                Authorize();
                 hPageState.Value = Common.PageState.New;
                 load_data();
             }
         }
-
+        //function authorization
+        private void Authorize()
+        {
+            lnkSave.Visible = base.CheckPermission(Common.Permission.ModuleName_Role, Common.Permission.Action_Edit);
+        }
         private bool ValidateInput()
         {
             bool isValid = true;
