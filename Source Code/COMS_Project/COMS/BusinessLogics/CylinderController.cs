@@ -212,7 +212,9 @@ namespace BusinessLogics
             {
                 cylLog.created_by = empl.surname + " " + empl.given_name;
                 cylLog.employeeId = empl.employeeId;
-                cylLog.dept_name = dbContext.Departments.Where(d => d.departmentId.Equals(empl.departmentId)).FirstOrDefault().name;
+                //Tin , no need to retrived
+                //cylLog.dept_name = dbContext.Departments.Where(d => d.departmentId.Equals(empl.departmentId)).FirstOrDefault().name;
+                cylLog.dept_name = empl.Department.name;
             }
             else
             {
