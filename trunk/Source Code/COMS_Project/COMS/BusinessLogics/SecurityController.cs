@@ -54,10 +54,13 @@ namespace BusinessLogics
         public List<Role> GetRoles(Employee emp)
         {
             List<Role> roles=new List<Role>();
-
-            foreach (Emp_Role_ref rf in emp.Emp_Role_ref)
+            //Tin (14-Jan-2012)
+            if (emp.Emp_Role_ref != null)
             {
-                roles.Add(rf.Role);
+                foreach (Emp_Role_ref rf in emp.Emp_Role_ref)
+                {
+                    roles.Add(rf.Role);
+                }
             }
             return roles;
         }
@@ -66,10 +69,13 @@ namespace BusinessLogics
         {
 
             List<Access_Right> access =new List<Access_Right>();
-
-            foreach(Role_Right_ref rf in role.Role_Right_ref)
+            //Tin 13-Jan-2012
+            if (role.Role_Right_ref != null)
             {
-                access.Add(rf.Access_Right);
+                foreach (Role_Right_ref rf in role.Role_Right_ref)
+                {
+                    access.Add(rf.Access_Right);
+                }
             }
             return access;
         }
