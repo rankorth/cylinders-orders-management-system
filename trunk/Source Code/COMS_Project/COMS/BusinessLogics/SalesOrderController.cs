@@ -340,7 +340,18 @@ namespace BusinessLogics
             //nnnn: the th order of the month, starts at 0001
             //M: the current month, starts at 1(Jan), 2(Feb),...,0(Oct), A(Nov), B(Dec)
             //yy: the current year, '11' for 2011.
-            String nextOrderBarCode = "" + GenerateNextSequenceID() + "-";
+            String nextOrderBarCode = "";
+            int sequence = GenerateNextSequenceID();
+            if (sequence / 10 == 0) //1-digit
+                nextOrderBarCode = "000" + sequence;
+            else if (sequence / 100 == 0) //2-digit
+                nextOrderBarCode = "00" + sequence;
+            else if (sequence / 1000 == 0) //3-digit
+                nextOrderBarCode = "0" + sequence;
+            else
+                nextOrderBarCode = "" + (sequence % 10000);
+
+            nextOrderBarCode += "-";
             switch (DateTime.Today.Month)
             {
                 case 10: nextOrderBarCode += "0";
