@@ -29,7 +29,7 @@ namespace WebUI
         {
             if (base.login(txtUserName.Text.Trim(), txtPassword.Text))
             {
-                Response.Redirect("/Admin/Blank.aspx");
+                Response.Redirect(Common.PageUrls.BlankAdminPage);
             }
             else
             {

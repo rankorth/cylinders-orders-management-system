@@ -14,6 +14,7 @@ namespace WebUI.Admin
         MainController mainctrl = new MainController();
         protected void Page_Load(object sender, EventArgs e)
         {
+            base.PageLoad(Page);
             if (!IsPostBack)
             {
                 hPageState.Value = Common.PageState.New;

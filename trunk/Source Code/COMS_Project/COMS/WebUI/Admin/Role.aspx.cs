@@ -15,6 +15,7 @@ namespace WebUI.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            base.PageLoad(Page);
             if (!IsPostBack)
             {
                 hPageState.Value = Common.PageState.New;
