@@ -72,6 +72,7 @@ namespace WebUI.Common
                 lnkButton.Text = name;
                 lnkButton.CssClass = "module_menu";
                 lnkButton.Attributes.Add("module_id", "module_id");// replace with actual module ID
+                lnkButton.CausesValidation = false;
                 // lnkButton.Click+=new EventHandler(e);
 
                 lnkButton.PostBackUrl = Page.ResolveClientUrl(module[name]);

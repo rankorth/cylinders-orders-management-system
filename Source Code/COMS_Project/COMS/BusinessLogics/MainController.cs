@@ -23,7 +23,6 @@ namespace BusinessLogics
         public Employee login(String username, String password)
         {
             return (new SecurityController()).login(username, password);
-            //TODO: web UI page to save access right list into Session by Session[""] = list;
         }
 
         public void logOut()
@@ -71,9 +70,9 @@ namespace BusinessLogics
             (new SalesOrderController()).updateSalesOrder(order, empl);
         }
 
-        public void deleteSpecificOrder(Order order)
+        public void deleteSpecificOrder(Guid orderId, Employee empl)
         {
-            (new SalesOrderController()).deleteSpecificOrder(order);
+            (new SalesOrderController()).deleteSpecificOrder(orderId, empl);
         }
 
         public IQueryable<Workflow> getAllWorkflow()
@@ -191,13 +190,14 @@ namespace BusinessLogics
             return (new CylinderController()).viewCylinderInfo(cylinderID);
         }
 
-        public void startCylinderProd(String order_code)
+        public void startCylinderProd(Guid orderId, Employee empl)
         {
             try
             {
-                Workflow mechToProdWF = (new WorkflowController()).GetWorkflow(DeptConst.DEPT_MECHANICAL, DeptConst.DEPT_PROD);
-                if (null != order_code && !order_code.Equals("") && null != mechToProdWF.workflowId)
-                    (new CylinderController()).create(order_code, mechToProdWF.workflowId);
+                if (null != orderId) {
+                    Workflow salesToMechWF = (new WorkflowController()).GetWorkflow(DeptConst.DEPT_SALES, DeptConst.DEPT_MECHANICAL);
+                    (new CylinderController()).create(orderId, salesToMechWF.workflowId, empl);
+                }
             }
             catch (Exception ex)
             {
@@ -205,14 +205,13 @@ namespace BusinessLogics
             }
         }
 
-        public void stopCylinderProd(Order order)
+        public void stopCylinderProd(Guid orderId, Employee empl)
         {
             try
             {
-                if (null != order)
+                if (null != orderId)
                 {
-                    (new SalesOrderController()).deleteSpecificOrder(order);
-                    (new CylinderController()).stopProduction(order);
+                    (new CylinderController()).stopProduction(orderId, empl);
                 }
             }
             catch (Exception ex)

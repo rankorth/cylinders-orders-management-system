@@ -13,7 +13,8 @@ namespace WebUI.Admin
     public partial class ManageOrders : Common.BasePage
     {
         MainController mainctrl = new MainController();
-        const String REQ_MSG = "msg";
+        public const String REQ_MSG = "msg";
+        public const String REQ_ORDERCODE = "orderCode";
         protected void Page_Load(object sender, EventArgs e)
         {
             ltrModule_name.Text = "Orders Management";
@@ -26,6 +27,16 @@ namespace WebUI.Admin
                 else if (DisplayOrder.MSG_CANCEL_OK.Equals(Request[REQ_MSG]))
                 {
                     lblMsg.Text = DisplayOrder.MSG_CANCEL_OK_DESC;
+                    lblMsg.CssClass = "okMsg";
+                }
+                else if (DisplayOrder.MSG_STARTPROD_OK.Equals(Request[REQ_MSG]))
+                {
+                    lblMsg.Text = DisplayOrder.MSG_STARTPROD_OK_DESC + Request[REQ_ORDERCODE];
+                    lblMsg.CssClass = "okMsg";
+                }
+                else if (DisplayOrder.MSG_STOPPROD_OK.Equals(Request[REQ_MSG]))
+                {
+                    lblMsg.Text = DisplayOrder.MSG_STOPPROD_OK_DESC + Request[REQ_ORDERCODE];
                     lblMsg.CssClass = "okMsg";
                 }
             }
@@ -69,14 +80,19 @@ namespace WebUI.Admin
                 lnkOrderCode.CommandName = "OrderInfo";
                 lnkOrderCode.CommandArgument = order.orderId.ToString();
 
+                //display user-friendly order statuses
+                Label lblOrderStatus = (Label)e.Row.FindControl("lblOrderStatus");
+                lblOrderStatus.Text = OrderConst.DispStatusDict[order.status];
+
                 //set up link to view order logs
                 LinkButton lnkViewLog = (LinkButton)e.Row.FindControl("lnkViewLog");
                 lnkViewLog.CommandName = "OrderLog";
                 lnkViewLog.CommandArgument = order.orderId.ToString();
 
-               LinkButton lnkCylinders = ((LinkButton)e.Row.Cells[0].FindControl("lnkCylinders"));
-               lnkCylinders.CommandName = "ShowAllCylinderDetails";
-               lnkCylinders.CommandArgument = order.order_code.ToString();
+                //set up link to view cylinders under this order
+                LinkButton lnkCylinders = ((LinkButton)e.Row.Cells[0].FindControl("lnkCylinders"));
+                lnkCylinders.CommandName = "ShowAllCylinderDetails";
+                lnkCylinders.CommandArgument = order.order_code.ToString();
             }
         }
 

@@ -89,7 +89,6 @@ namespace BusinessLogics
 
         public void logOut()
         {
-            //TODO: destroy session
             //Tin (10-Jan-2012)
             // We will do in Web UI level project to destroy session.
         }

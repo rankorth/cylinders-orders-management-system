@@ -16,25 +16,32 @@ namespace BusinessLogics
         public const String STATUS_SENT_TO_GRPH = "STG";
         public const String STATUS_GRPH_EDITED = "GE";
         public const String STATUS_GRPH_VERIFIED = "GV";
-        public const String STATUS_SENT_TO_MECH = "STM";
+        //public const String STATUS_SENT_TO_MECH = "STM"; //switch to using STATUS_INPROD
         public const String STATUS_INPROD = "PROD";
+        public const String STATUS_STOPPED = "STOP";
         public const String STATUS_CANCELLED = "CNL";
 
-        public static Dictionary<String, String> statusesToStartProd = new Dictionary<String, String>()
+        public static Dictionary<String, String> StatusesToStartProd = new Dictionary<String, String>()
         {
             {STATUS_NEW,""}, {STATUS_UPDATED,""}, {STATUS_SENT_TO_GRPH,""}, 
-            {STATUS_GRPH_EDITED,""}, {STATUS_GRPH_VERIFIED,""}, {STATUS_SENT_TO_MECH,""}
+            {STATUS_GRPH_EDITED,""}, {STATUS_GRPH_VERIFIED,""}, {STATUS_STOPPED,""}
         };
-        public static Dictionary<String, String> statusesToStopProd = new Dictionary<String, String>()
+        public static Dictionary<String, String> StatusesToStopProd = new Dictionary<String, String>()
         {
             {STATUS_INPROD,""}
         };
-        //public const int STATUS_UPDATED = 1;
-        //public const int STATUS_SENT_TO_GRPH = 2;
-        //public const int STATUS_GRPH_EDITED = 3;
-        //public const int STATUS_GRPH_VERIFIED = 4;
-        //public const int STATUS_SENT_TO_MECH = 5;
-        
+        public static Dictionary<String, String> StatusesToUpdate = new Dictionary<String, String>()
+        {
+            {STATUS_NEW,""}, {STATUS_UPDATED,""}, {STATUS_SENT_TO_GRPH,""}, 
+            {STATUS_GRPH_EDITED,""}, {STATUS_GRPH_VERIFIED,""}
+        };
+        public static Dictionary<String, String> DispStatusDict = new Dictionary<String, String>()
+        {
+            {STATUS_NEW,"New"}, {STATUS_UPDATED,"Updated"}, {STATUS_SENT_TO_GRPH,"Sent To Graphic"}, 
+            {STATUS_GRPH_EDITED,"Graphics Edited"}, {STATUS_GRPH_VERIFIED,"Graphics Verified"},
+            {STATUS_INPROD,"In Production"}, {STATUS_STOPPED,"Stopped Production"}, {STATUS_CANCELLED,"Cancelled"}
+        };
+
         public const String PRIORITY_LOW = "LOW";
         public const String PRIORITY_MEDIUM = "MED";
         public const String PRIORITY_HIGH = "HIGH";
@@ -47,8 +54,9 @@ namespace BusinessLogics
         public const String SEARCHTYPE_SETCODE = "set_code";
         public const String SEARCHTYPE_PROD_NAME = "product_name";
 
-        public const String CORETYPE_NEW = "NEW";
-        public const String CORETYPE_OLD = "OLD";
+        public const String CORETYPE_NEW = "1";
+        public const String CORETYPE_USED = "0";
+        public const String CORETYPE_BACKUP = "2";
 
         public const String EM_LOC_1SIDE = "1SIDE";
         public const String EM_LOC_2SIDE = "2SIDE";
@@ -73,59 +81,6 @@ namespace BusinessLogics
         public const String CHANGEFILE_YES = "CHANGE FILE";
         public const String CHANGEFILE_NO = "NEW FILE";
 
-        public static String getStatusDisp(String status) {
-            //status should be one of the constant string above (STATUS_ABC)
-            String statusDisplay = null;
-
-            if (status == null) return null;
-            else if (OrderConst.STATUS_SENT_TO_MECH.Equals(status))
-            {
-                statusDisplay = "Sales Sent To Mechanical";
-            }
-            else if (OrderConst.STATUS_GRPH_VERIFIED.Equals(status))
-            {
-                statusDisplay = "Graphics Verified";
-            }
-            else if (OrderConst.STATUS_GRPH_EDITED.Equals(status))
-            {
-                statusDisplay = "Graphics Edited";
-            }
-            else if (OrderConst.STATUS_SENT_TO_GRPH.Equals(status))
-            {
-                statusDisplay = "Sales Sent To Graphic";
-            }
-            else if (OrderConst.STATUS_UPDATED.Equals(status))
-            {
-                statusDisplay = "Updated";
-            }
-
-            //else if (status.IndexOf("-") != -1)
-            //{
-            //    return status;
-            //}
-            //else if (status.Length == 3)
-            //{
-            //    int salesStatus = Convert.ToInt32(status.Substring(0,1));
-            //    int graphicStatus = Convert.ToInt32(status.Substring(2,1));
-            //    if (salesStatus == OrderConst.STATUS_SENT_TO_MECH)
-            //    {
-            //        return "Sales Sent To Mechanical";
-            //    }
-            //    else if (graphicStatus == OrderConst.STATUS_GRPH_VERIFIED)
-            //    {
-            //        return "Graphics Verified";
-            //    }
-            //    else if (graphicStatus == OrderConst.STATUS_GRPH_EDITED)
-            //    {
-            //        return "Graphics Edited";
-            //    }
-            //    else if (salesStatus == OrderConst.STATUS_SENT_TO_GRPH)
-            //    {
-            //        return "Sales Sent To Graphic";
-            //    }
-            //}
-            return statusDisplay;
-        }
     }
 
     public class SalesOrderController
@@ -140,18 +95,7 @@ namespace BusinessLogics
                 dbContext.Orders.AddObject(order);
 
                 //save an Order_Log entry
-                Order_Log log = new Order_Log();
-                log.id = Guid.NewGuid();
-                log.order_status = order.status;
-                log.orderId = order.orderId;
-                log.related_cyl = null;
-                log.remarks = null;
-                log.updated_by = order.created_by;
-                log.updated_date = order.created_date;
-                Workflow salesToGraphicWF = getWfForOrderStatus(dbContext, order.status);
-                log.workflowId = salesToGraphicWF.workflowId;
-                log.dept_name = salesToGraphicWF.Department.name;
-                dbContext.Order_Log.AddObject(log);
+                createOrderLog(order, empl);
 
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
@@ -164,16 +108,22 @@ namespace BusinessLogics
         }
 
         //method to return the workflow for an order status
-        private Workflow getWfForOrderStatus(COMSEntities context, String status)
+        private Workflow getWfForOrderStatus(String status)
         {
-            if (status == null || context == null) return null;
+            if (status == null || dbContext == null) return null;
 
             if (OrderConst.STATUS_SENT_TO_GRPH.Equals(status))
-                return context.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_SALES) != -1 && w.name.IndexOf(DeptConst.DEPT_GRAPHIC) != -1).SingleOrDefault();
-            else if (OrderConst.STATUS_SENT_TO_MECH.Equals(status))
-                return context.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_SALES) != -1 && w.name.IndexOf(DeptConst.DEPT_MECHANICAL) != -1).SingleOrDefault();
+            {
+                return dbContext.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_SALES) != -1 && w.name.IndexOf(DeptConst.DEPT_GRAPHIC) != -1).SingleOrDefault();
+            }
+            else if (OrderConst.STATUS_INPROD.Equals(status) || OrderConst.STATUS_STOPPED.Equals(status) || OrderConst.STATUS_CANCELLED.Equals(status))
+            {
+                return dbContext.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_SALES) != -1 && w.name.IndexOf(DeptConst.DEPT_MECHANICAL) != -1).SingleOrDefault();
+            }
             else if (OrderConst.STATUS_GRPH_EDITED.Equals(status) || OrderConst.STATUS_GRPH_VERIFIED.Equals(status))
-                return context.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_GRAPHIC) != -1 && w.name.IndexOf(DeptConst.DEPT_ENGRAVING) != -1).SingleOrDefault();
+            {
+                return dbContext.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_GRAPHIC) != -1 && w.name.IndexOf(DeptConst.DEPT_ENGRAVING) != -1).SingleOrDefault();
+            }
 
             return null;
         }
@@ -237,35 +187,7 @@ namespace BusinessLogics
             else
             {
                 //save an Order_Log entry
-                Order_Log log = new Order_Log();
-                log.id = Guid.NewGuid();
-                log.order_status = order.status;
-                log.orderId = order.orderId;
-                log.related_cyl = null;
-                log.remarks = null;
-                log.updated_by = empl.username;
-                log.updated_date = DateTime.Now;
-                Workflow workflow = getWfForOrderStatus(dbContext, order.status);
-                log.workflowId = workflow.workflowId;
-                log.dept_name = workflow.Department.name;
-                dbContext.Order_Log.AddObject(log);
-
-                ////dbOrder status can be a String or the form a-b, a is Sales status, b is Graphic status
-                ////order status is the int values from OrderConst.STATUS_ABC passed in by web form
-                //int orderStatus = Convert.ToInt32(order.status);
-                //int dbOrderSalesStatus = Convert.ToInt32(dbOrder.status.Substring(0, 1));
-                //int dbOrderGraphicStatus = Convert.ToInt32(dbOrder.status.Substring(2, 1));
-                //switch (Convert.ToInt32(order.status))
-                //{
-                //    case OrderConst.STATUS_SENT_TO_GRPH:
-                //    case OrderConst.STATUS_SENT_TO_MECH:
-                //        dbOrder.status = "" + orderStatus + "-" + dbOrderGraphicStatus; //update a in a-b
-                //        break;
-                //    case OrderConst.STATUS_GRPH_EDITED:
-                //    case OrderConst.STATUS_GRPH_VERIFIED:
-                //        dbOrder.status = "" + dbOrderSalesStatus + "-" + orderStatus; //update b in a-b
-                //        break;
-                //}
+                createOrderLog(order, empl);
 
                 //copy order to dbOrder and update
                 copyOrder(order, dbOrder);
@@ -377,13 +299,31 @@ namespace BusinessLogics
             dest.web_total_width = src.web_total_width;
         }
 
+        public void createOrderLog(Order order, Employee empl)
+        {
+            //save an Order_Log entry
+            Order_Log log = new Order_Log();
+            log.id = Guid.NewGuid();
+            log.order_status = order.status;
+            log.orderId = order.orderId;
+            log.related_cyl = null;
+            log.remarks = null;
+            log.updated_by = empl.username;
+            log.updated_date = DateTime.Now;
+            Workflow workflow = getWfForOrderStatus(order.status);
+            log.workflowId = workflow.workflowId;
+            log.dept_name = workflow.Department.name;
+            dbContext.Order_Log.AddObject(log);
+            dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+        }
 
-        public void deleteSpecificOrder(Order order)
+        public void deleteSpecificOrder(Guid orderId, Employee empl)
         {
             try
             {
-                Order dbOrder = dbContext.Orders.Where(o => o.orderId.Equals(order.orderId)).SingleOrDefault();
+                Order dbOrder = dbContext.Orders.Where(o => o.orderId.Equals(orderId)).SingleOrDefault();
                 dbOrder.status = OrderConst.STATUS_CANCELLED;
+                createOrderLog(dbOrder, empl);
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
             catch (Exception ex)
@@ -456,7 +396,7 @@ namespace BusinessLogics
 
         public IQueryable<Order_Log> getOrderLogs(Guid orderId)
         {
-            return dbContext.Order_Log.Where(ol => ol.orderId.Equals(orderId));
+            return dbContext.Order_Log.Where(ol => ol.orderId.Equals(orderId)).OrderByDescending(ol => ol.updated_date);
         }
     }
 }

@@ -50,7 +50,7 @@ namespace BusinessLogics
                                         && cl.status.Equals(CylinderConst.STATUS_INPROD) && cl.employeeId==null ).SingleOrDefault();
             Cyl_Log.end_time    = FinishTime;
             Cyl_Log.employeeId  = emp.employeeId;
-            Cyl_Log.mark        = step.isStep ? CalculateMark(Cyl_Log.start_time, FinishTime, step.Formulae.First(),cyl.diameter) : 0 ;
+            Cyl_Log.mark        = step.isStep ? (int)CalculateMark(Cyl_Log.start_time, FinishTime, step.Formulae.First(),(double)cyl.diameter) : 0 ;
             Cyl_Log.remark = step.isStep ? "" : "Sent from previous workflow";
             Cyl_Log.status      = CylinderConst.STATUS_COMPLETED;
             

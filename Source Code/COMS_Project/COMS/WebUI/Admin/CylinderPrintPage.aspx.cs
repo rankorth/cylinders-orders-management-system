@@ -29,7 +29,7 @@ namespace WebUI.Admin
                 {
                     // pending for answers
                     txtArea.Text = calculateSurfaceArea((double)cylinder.diameter.GetValueOrDefault(), (double)cylinder.length.GetValueOrDefault());
-                    txtCircumference.Text = calculateCircumference((double)cylinder.diameter.GetValueOrDefault(), (double)cylinder.length.GetValueOrDefault()); ;
+                    txtCircumference.Text = calculateCircumference((double)cylinder.diameter.GetValueOrDefault()); ;
                     txtDiameter.Text = Math.Round(cylinder.diameter.GetValueOrDefault(), 2).ToString();
                     txtLength.Text = Math.Round(cylinder.length.GetValueOrDefault(), 2).ToString();
                 }
@@ -84,18 +84,14 @@ namespace WebUI.Admin
             return keyway;
         }
 
-        private String calculateSurfaceArea(double radius, double height)
+        private String calculateSurfaceArea(double diameter, double height)
         {
-            double pi = 3.1415926536;
-            double surfaceArea = 2 * pi * radius * (radius + height);
-            return Math.Round(surfaceArea, 2).ToString();
+            return Math.Round(Math.PI * diameter * height, 2).ToString();
         }
 
-        private String calculateCircumference(double radius, double height)
+        private String calculateCircumference(double diameter)
         {
-            double pi = 3.1415926536;
-            double circumference = 2 * pi * radius;
-            return Math.Round(circumference, 2).ToString();
+            return Math.Round(Math.PI * diameter, 2).ToString();
         }
     }
 }

@@ -38,6 +38,11 @@
                 ItemStyle-HorizontalAlign="Center" >
 				<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
+            <asp:TemplateField HeaderText="Status" ItemStyle-HorizontalAlign="Center">
+                <ItemTemplate>
+                    <asp:Label ID="lblOrderStatus" runat="server" />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="Progress" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
                     <asp:LinkButton ID="lnkViewLog" runat="server">view</asp:LinkButton>
@@ -52,11 +57,15 @@
     </asp:GridView>
     <br />
     <asp:HiddenField ID="hOrderCode" runat="server" Value="" />
-    <asp:GridView ID="gvCylinders" runat="server" onrowdatabound="gvCylinders_RowDataBound" onrowcommand="gvCylinders_RowCommand" ViewStateMode="Enabled" Width="100%">
+    <asp:GridView ID="gvCylinders" runat="server" onrowdatabound="gvCylinders_RowDataBound" 
+        onrowcommand="gvCylinders_RowCommand" ViewStateMode="Enabled" Width="100%" EmptyDataText="No cylinder found.">
         <Columns>
-            <asp:BoundField DataField="order_detailId" HeaderText="Order Detail" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="cyl_no" HeaderText="Cylinder No" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="barcode" HeaderText="Bar Code" ItemStyle-HorizontalAlign="Center" />
-            <asp:BoundField DataField="workflowId" HeaderText="Work Flow ID" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="color_no" HeaderText="Color No" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="core_type" HeaderText="Core Type" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="diameter" HeaderText="Diameter" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="length" HeaderText="Length" ItemStyle-HorizontalAlign="Center" />
             <asp:TemplateField HeaderText="Print Info" ItemStyle-HorizontalAlign="Center">
                <ItemTemplate>
                  <asp:LinkButton ID="lnkPrint" runat="server">print</asp:LinkButton>

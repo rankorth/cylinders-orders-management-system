@@ -32,29 +32,31 @@ namespace BusinessLogics
     {
         private COMSEntities dbContext = new COMSEntities();
 
-        public void create(String ordercode, Guid workflowID)
+        public void create(Guid orderId, Guid workflowId, Employee empl)
         {
             try
             {
-                if (null != ordercode && null != workflowID && !ordercode.Equals(""))
+                if (null != orderId && null != workflowId)
                 {
-                    SalesOrderController soc = new SalesOrderController();
-                    if (null != soc)
+                    Order order = (new SalesOrderController()).retrieveSalesOrder(orderId);
+                    foreach (Order_Detail od in order.Order_Detail)
                     {
-                        Order order = soc.retrieveSalesOrder(ordercode);
-                        if (null != order)
+                        //new order started production, starts creating cylinders
+                        if (od.Cylinders.Count() == 0)
                         {
-                            foreach (Order_Detail od in order.Order_Detail)
-                            {
-                                generateCylinder(od, workflowID);
-                            }
-
-                            dbContext.GetObjectByKey(order.EntityKey);
-                            order.status = OrderConst.STATUS_INPROD;
-                            dbContext.Orders.ApplyCurrentValues(order);
-                            dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
+                            generateCylinder(od, workflowId);
+                        }
+                        else if (od.Cylinders.Count() > 0) //order previously in production, resume production for cylinders
+                        {
+                            updateCylinderStatus(od.order_detailId, CylinderConst.STATUS_INPROD, empl);
                         }
                     }
+
+                    dbContext.GetObjectByKey(order.EntityKey);
+                    order.status = OrderConst.STATUS_INPROD;
+                    (new SalesOrderController()).createOrderLog(order, empl);
+                    dbContext.Orders.ApplyCurrentValues(order);
+                    dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
                 }
             }
             catch (Exception ex)
@@ -69,23 +71,26 @@ namespace BusinessLogics
             {
                 if (null != orderDetail && null != dbContext && null!=workflowID)
                 {
-                    for (int i = 0; i < (orderDetail.new_cyl_count + orderDetail.used_cyl_count); i++)
+                    int colorNo = 1;
+                    for (int cylNo = 1; cylNo <= (orderDetail.new_cyl_count + orderDetail.used_cyl_count); cylNo++)
                     {
-
-                        Guid generatedId = Guid.NewGuid(); ;
                         Cylinder newCylinder = new Cylinder();
-                        newCylinder.barcode = generatedId.ToString();
+                        newCylinder.color_no = colorNo;
+                        newCylinder.core_type = orderDetail.core_type;
+                        newCylinder.cyl_no = cylNo;
+                        newCylinder.barcode = getCylinderBarCode(orderDetail.Order.order_code, "" + cylNo, ""+colorNo, orderDetail.core_type);
                         newCylinder.created_by = orderDetail.created_by;
                         newCylinder.created_date = orderDetail.created_date;
-                        newCylinder.cylinderId = generatedId;
-                        newCylinder.length = (decimal)orderDetail.cyl_length;
+                        newCylinder.cylinderId = Guid.NewGuid();
                         newCylinder.diameter = (decimal)orderDetail.cyl_diameter;
+                        newCylinder.length = (decimal)orderDetail.cyl_length;
+                        newCylinder.order_detailId = orderDetail.order_detailId;
                         newCylinder.status = CylinderConst.STATUS_INPROD;
                         newCylinder.updated_by = orderDetail.updated_by;
                         newCylinder.updated_date = orderDetail.updated_date;
-                        newCylinder.order_detailId = orderDetail.order_detailId;
                         newCylinder.workflowId = workflowID;
                         dbContext.Cylinders.AddObject(newCylinder);
+                        colorNo++;
                     }
                 }
             }
@@ -142,18 +147,23 @@ namespace BusinessLogics
             return null;
         }
 
-        public void stopProduction(Order order)
+        public void stopProduction(Guid orderId, Employee empl)
         {
             try
             {
+                Order order = dbContext.Orders.Where(o => o.orderId.Equals(orderId)).SingleOrDefault();
                 if(null!= order && null!=dbContext){
 
                     foreach (Order_Detail od in order.Order_Detail)
                     {
                         //Tin (7-Jan-2012) added parameter to update cylinder status
-                        updateCylinderStatus(od.order_detailId,CylinderConst.STATUS_STOPPED);
+                        updateCylinderStatus(od.order_detailId,CylinderConst.STATUS_STOPPED, empl);
                     }
                 }
+                order.status = OrderConst.STATUS_STOPPED;
+                (new SalesOrderController()).createOrderLog(order, empl);
+                dbContext.Orders.ApplyCurrentValues(order);
+                dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }
             catch (Exception ex)
             {
@@ -255,20 +265,21 @@ namespace BusinessLogics
             dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
         }
 
-        public String getNextCylinderBarCode(Order order, Cylinder cylinder)
+        public String getCylinderBarCode(String order_code, String colorNo, String cylNo, String coreType)
         {
             //cylinder barcode format: '[order_code]aa+bbc'
             //[order_code]: the barcode of the sales order
             //aa: the number of the cylinder, starts at 01
             //bb: the color number of the cylinder, starts at 01
             //c: the type of cylinder core: 0 for recycled core, 1 for new core, 2 for backup core
-            String nextCylBc = "";
-
-            return nextCylBc;
+            colorNo = (colorNo.Length == 1) ? ("0" + colorNo) : colorNo;
+            cylNo = (cylNo.Length == 1) ? ("0" + cylNo) : cylNo;
+            
+            return order_code + colorNo + "+" + cylNo + coreType;
         }
 
         //Tin (7-Jan-2012) added parameter to update cylinder status
-        public void updateCylinderStatus(Guid orderDetailsID,string CylinderStatus )
+        public void updateCylinderStatus(Guid orderDetailsID,string CylinderStatus, Employee empl)
         {
             IQueryable<Cylinder> cylinders = dbContext.Cylinders.Where(s => s.order_detailId.Equals(orderDetailsID));
             if (null != cylinders)
@@ -276,8 +287,12 @@ namespace BusinessLogics
                 foreach (Cylinder cylinder in cylinders)
                 {
                     if (null != cylinder)
+                    {
                         //Tin(7-Jan-2012) changed with variable status
                         cylinder.status = CylinderStatus;
+                        cylinder.updated_by = empl.username;
+                        cylinder.updated_date = DateTime.Now;
+                    }
                 }
             }
             dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
@@ -300,7 +315,7 @@ namespace BusinessLogics
 
         public IQueryable<Cylinder_Log> getCylinderLogs(Guid cylinderId)
         {
-            return dbContext.Cylinder_Log.Where(cl => cl.cylinderId.Equals(cylinderId));
+            return dbContext.Cylinder_Log.Where(cl => cl.cylinderId.Equals(cylinderId)).OrderByDescending(cl => cl.start_time);
         }
     }
 }
