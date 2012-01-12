@@ -151,6 +151,8 @@ namespace BusinessLogics
             Cyl_Log.mark = 0; //no mark due to error
             Cyl_Log.status = CylinderConst.LOG_STS_ERR_DAMAGE;
             Cyl_Log.error_desc = ErrorReason.name;
+            Cyl_Log.dept_name = emp.Department.name;
+            Cyl_Log.created_by = emp.username;
             context.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
         }
 
@@ -176,5 +178,26 @@ namespace BusinessLogics
         {
             return FormulaUtility.EvaluateFormula(formula, Diameter);
         }
+
+        public void SendToWorkflowOrStep(Guid cylinderId, Employee employee, Guid StepToSendId,string Remark)
+        {               
+            CylinderController CylCtrl = new CylinderController();
+            Cylinder cylinder = CylCtrl.viewCylinderInfo(cylinderId);
+            Guid fromStepId = context.Step_ref.Where(sf => sf.to_stepId == StepToSendId).First().from_stepId;
+            Step PreviousStep = context.Steps.Where(s => s.stepId == fromStepId).SingleOrDefault();
+            Step SendToStep = context.Steps.Where(s => s.stepId == StepToSendId).SingleOrDefault();
+            CylCtrl.changeCylinderStep(cylinder, employee, PreviousStep, null, Remark, DateTime.Now, DateTime.Now, 0, "Rejected (or) Damaged, sent to [Step:" + SendToStep.name + "] [Workflow:" + SendToStep.Workflow.name + "]", false);
+                        
+        }
+
+        public IQueryable<Cylinder_Log> GetAllDamageOrRejectedCylinders(Employee Supervisor)
+        {
+            IQueryable<Cylinder_Log> ErrorCylLogs =  context.Cylinder_Log.Where(cl => (cl.status.Equals(CylinderConst.LOG_STS_ERR_DAMAGE) ||
+                                        cl.status.Equals(CylinderConst.LOG_STS_ERR_PREVIOUS)) &&
+                                        (cl.Cylinder.status.Equals(CylinderConst.STATUS_INPROD)));
+
+            return ErrorCylLogs;
+        }
+
     }
 }
