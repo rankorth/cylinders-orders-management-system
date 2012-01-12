@@ -16,6 +16,7 @@ namespace WebUI.Admin
         MainController mainCtrl = new MainController();
         protected void Page_Load(object sender, EventArgs e)
         {
+            base.PageLoad(Page);
             if (!IsPostBack)
             {
                 IQueryable<Workflow> workflowList = mainCtrl.getAllWorkflow();

@@ -15,7 +15,7 @@ namespace WebUI
         {
                 Common.BasePage bp = new Common.BasePage();
                 
-                CheckAuthentication();
+                
                 if (module_panel.Controls.Count < 1)
                 {
                     bp.GenerateMenu(module_panel);
@@ -27,26 +27,12 @@ namespace WebUI
         {
             Common.BasePage bp = new Common.BasePage();
             bp.Logout();
-            RedirectToLoginPage();
+            bp.RedirectToLoginPage(Page);
             
         }
 
-        private void RedirectToLoginPage()
-        {
-            Response.Redirect(Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/Index.aspx"));
-        }
-        private void CheckAuthentication()
-        {
-            Common.BasePage bp = new Common.BasePage();
-            if (bp.GetCurentUser() == null)
-            {
-                if (!Request.Url.Segments[Request.Url.Segments.Count() - 1].ToUpper().Equals("INDEX.ASPX")
-                    && !Request.Url.Segments[Request.Url.Segments.Count() - 1].ToUpper().Equals("CYLINDERPROCESS.ASPX"))
-                {
-                    RedirectToLoginPage();
-                }
-            }
-        }
+        
+        
         
     }
 }

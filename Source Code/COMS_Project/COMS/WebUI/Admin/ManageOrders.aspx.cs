@@ -17,6 +17,7 @@ namespace WebUI.Admin
         public const String REQ_ORDERCODE = "orderCode";
         protected void Page_Load(object sender, EventArgs e)
         {
+            base.PageLoad(Page);
             ltrModule_name.Text = "Orders Management";
             if (Request[REQ_MSG] != null) {
                 if (DisplayOrder.MSG_UPDATE_OK.Equals(Request[REQ_MSG]))

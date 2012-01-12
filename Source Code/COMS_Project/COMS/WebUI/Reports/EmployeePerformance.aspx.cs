@@ -12,10 +12,11 @@ using BusinessLogics;
 
 namespace WebUI.Reports
 {
-    public partial class EmployeePerformance : System.Web.UI.Page
+    public partial class EmployeePerformance : Common.BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            base.PageLoad(Page);
             if (!IsPostBack)
             {
 

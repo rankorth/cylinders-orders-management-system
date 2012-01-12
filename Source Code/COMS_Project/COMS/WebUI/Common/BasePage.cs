@@ -13,21 +13,32 @@ namespace WebUI.Common
     public class BasePage:System.Web.UI.Page
     {
         private string userobj = "userobj";
-
+        protected void PageLoad(Page CurrentPage)
+        {
+            CheckAuthentication(CurrentPage);
+        }
         public bool login(string username, string password)
         {
-            SecurityController SecurityCtrl = new SecurityController();
-            Employee User =  SecurityCtrl.login(username, password);
             bool IsLogin = false;
-            if (User != null)
+            try
             {
-                Session.Add(userobj, User);
-                IsLogin = true;
+                SecurityController SecurityCtrl = new SecurityController();
+                Employee User = SecurityCtrl.login(username, password);
+
+                if (User != null)
+                {
+                    Session.Add(userobj, User);
+                    IsLogin = true;
+                }
+                else
+                {
+                    Session.Clear();
+                    Session.Add(userobj, null);
+                }
             }
-            else
+            catch
             {
-                Session.Clear();
-                Session.Add(userobj, null);
+                Common.Utility.ShowMessage("Error connecting to Data Storage. Please contact System Administrator.", this.Page);
             }
             return IsLogin;
         }
@@ -122,6 +133,31 @@ namespace WebUI.Common
             }
 
             return IsAuthorized;
+        }
+        public void RedirectToLoginPage(Page CurrentPage)
+        {
+            CurrentPage.Response.Redirect(CurrentPage.Request.Url.GetLeftPart(UriPartial.Authority) + VirtualPathUtility.ToAbsolute("~/Index.aspx"));
+        }
+        private void CheckAuthentication(Page CurrentPage)
+        {
+            try
+            {
+                Common.BasePage bp = new Common.BasePage();
+                if (bp.GetCurentUser() == null)
+                {
+                    if (!Request.Url.Segments[Request.Url.Segments.Count() - 1].ToUpper().Equals("INDEX.ASPX")
+                        && !Request.Url.Segments[Request.Url.Segments.Count() - 1].ToUpper().Equals("CYLINDERPROCESS.ASPX"))
+                    {
+                        RedirectToLoginPage(CurrentPage);
+                    }
+                }
+            }
+            catch
+            {
+                
+                Common.Utility.ShowMessage("Error connecting to Data Storage. Please contact System Administrator.", this.Page);
+            
+            }
         }
     }
 }

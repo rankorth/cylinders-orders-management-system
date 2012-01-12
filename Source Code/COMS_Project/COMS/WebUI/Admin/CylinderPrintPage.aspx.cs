@@ -15,6 +15,7 @@ namespace WebUI.Admin
         MainController mainctrl = new MainController();
         protected void Page_Load(object sender, EventArgs e)
         {
+            base.PageLoad(Page);
             load_data();
         }
 

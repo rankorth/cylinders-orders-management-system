@@ -11,6 +11,7 @@ namespace WebUI.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            base.PageLoad(Page);
             ltrModule_name.Text = "Workflow Error Message Management";
         }
     }

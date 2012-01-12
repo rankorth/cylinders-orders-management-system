@@ -13,9 +13,10 @@ namespace WebUI.Common
     public static class Utility
     {
         public static string UpdateCylinderState = "pagestate";
-        public static string ShowMessage(string msg)
+        //Tin (12-Jan-2012)
+        public static void  ShowMessage(string msg, Page CurrentPage)
         {
-            return ("<script>alert(\"" + msg + "\");</script>");
+            CurrentPage.Response.Write("<script>alert(\"" + msg + "\");</script>");
         }
 
     }
@@ -23,6 +24,7 @@ namespace WebUI.Common
     public static class PageUrls
     {
         public const string ManageOrdersPage = "/Admin/ManageOrders.aspx";
-
+        
+        public static string BlankAdminPage = "/Admin/Blank.aspx";
     }
 }
