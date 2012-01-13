@@ -32,7 +32,8 @@ namespace WebUI.Admin
                     txtArea.Text = calculateSurfaceArea((double)cylinder.diameter.GetValueOrDefault(), (double)cylinder.length.GetValueOrDefault());
                     txtCircumference.Text = calculateCircumference((double)cylinder.diameter.GetValueOrDefault()); ;
                     txtDiameter.Text = Math.Round(cylinder.diameter.GetValueOrDefault(), 2).ToString();
-                    txtLength.Text = Math.Round(cylinder.length.GetValueOrDefault(), 2).ToString();
+                    txtLength.Text = Math.Round(cylinder.length.GetValueOrDefault(), 2).ToString(); 
+                    imgBarCode.ImageUrl = "BarCode.aspx?code=" + cylinder.barcode;
                 }
 
                 Order order = mainctrl.getSalesOrderByCode(ordercode);
@@ -43,7 +44,7 @@ namespace WebUI.Admin
                     txtCustomer.Text = order.Customer.name;
                     txtProductionName.Text = order.product_name;
                     txtType.Text = order.cylinder_type;
-                    imgBarCode.ImageUrl = "BarCode.aspx?code=" + order.order_code;
+
                     txtKeyhole.Text = findKeyhole(order, cylinderID);
                     txtKeyway.Text = findKeyway(order, cylinderID);
                 }
