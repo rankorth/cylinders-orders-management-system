@@ -37,7 +37,8 @@
             <td class="entry_label" colspan="6" align="left"><asp:Label ID="lblMsg" CssClass="errorMsg" runat="server" /></td>
         </tr>
         <tr>
-            <td class="entry_data" style="width: 78px">Date: <asp:TextBox ID="txtCreateDate" runat="server" BorderWidth="1" ReadOnly="true" Width="80px" />
+            <td class="entry_data" style="width: 78px">Date: <asp:TextBox ID="txtCreateDate" 
+                    runat="server" BorderWidth="1" Width="80px" />
                 <asp:CalendarExtender ID="txtCreateDate_CalendarExtender" runat="server" 
                     Enabled="True" TargetControlID="txtCreateDate" 
                     DaysModeTitleFormat="dd/MM/yyyy" Format="dd/MM/yyyy" 
