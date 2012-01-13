@@ -39,7 +39,9 @@
         <tr>
             <td class="entry_data" style="width: 78px">Date: <asp:TextBox ID="txtCreateDate" runat="server" BorderWidth="1" ReadOnly="true" Width="80px" />
                 <asp:CalendarExtender ID="txtCreateDate_CalendarExtender" runat="server" 
-                    Enabled="True" TargetControlID="txtCreateDate">
+                    Enabled="True" TargetControlID="txtCreateDate" 
+                    DaysModeTitleFormat="dd/MM/yyyy" Format="dd/MM/yyyy" 
+                    TodaysDateFormat="dd/MM/yyyy">
                 </asp:CalendarExtender>
             </td>
             <td class="entry_data" colspan="5" align="left">
@@ -346,7 +348,8 @@
              <td class="entry_data" style="width: 101px">
                  <asp:TextBox ID="txtDeliveryDate" runat="server" BorderWidth="1" ReadOnly="false" Width="80px"></asp:TextBox>
                  <asp:CalendarExtender ID="txtDeliveryDate_CalendarExtender" runat="server" 
-                     Enabled="True" TargetControlID="txtDeliveryDate" Format="dd/MM/yyyy">
+                     Enabled="True" TargetControlID="txtDeliveryDate" Format="dd/MM/yyyy" 
+                     DaysModeTitleFormat="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy">
                  </asp:CalendarExtender>
                  <asp:RequiredFieldValidator ID="vldTxtDeliveryDate2" runat="server" ErrorMessage="*Required"
                     ControlToValidate="txtDeliveryDate" SetFocusOnError="True" ForeColor="Red"/>
