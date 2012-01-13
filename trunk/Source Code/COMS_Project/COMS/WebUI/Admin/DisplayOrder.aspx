@@ -18,6 +18,11 @@
                 ConfirmText="Do you want to stop production?" Enabled="True" TargetControlID="lnkStopProd">
             </asp:ConfirmButtonExtender>
         </li>
+        <li><asp:LinkButton ID="lnkDelete" runat="server" onclick="lnkDelete_Click" CausesValidation="false" >Delete Order</asp:LinkButton>
+            <asp:ConfirmButtonExtender ID="lnkDelete_ConfirmButtonExtender" runat="server" 
+                ConfirmText="Do you want to delete this order?" Enabled="True" TargetControlID="lnkDelete">
+            </asp:ConfirmButtonExtender>
+        </li>
         <li><asp:LinkButton ID="lnkBack" runat="server" onclick="lnkBack_Click" CausesValidation="false" >Back</asp:LinkButton></li>
 </ul>
 
@@ -47,7 +52,10 @@
                     runat="server" style="margin-bottom: 0px"></asp:DropDownList></td>
              <td class="entry_label" style="width: 80px">Set Code</td>
             <td class="entry_data" style="width: 80px"><asp:TextBox ID="txtSetCode" runat="server" BorderWidth="1" 
-                    MaxLength="10" Width="80px" /></td>
+                    MaxLength="10" Width="80px" />
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="*Required"
+                    ControlToValidate="txtSetCode" SetFocusOnError="True" ForeColor="Red"/>
+                    </td>
         </tr>
         <tr>
             <td class="entry_label" style="width: 78px">2.Contact Person</td>
@@ -62,10 +70,12 @@
         <tr>
             <td class="entry_label" style="width: 78px">3.Product Name</td>
             <td class="entry_data" colspan="5"><asp:TextBox ID="txtProdName" runat="server" 
-                    BorderWidth="1" Width="500px" MaxLength="255" /></td>
+                    BorderWidth="1" Width="500px" MaxLength="255" />
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ErrorMessage="*Required"
+                    ControlToValidate="txtProdName" SetFocusOnError="True" ForeColor="Red"/></td>
         </tr>
         <tr>
-            <td class="entry_label" style="width: 78px">4.<asp:RadioButton ID="rBtnOrderTypeNew" GroupName="rBtnOrderType" runat="server" Text="New Order" TextAlign="Left" /></td>
+            <td class="entry_label" style="width: 78px">4.<asp:RadioButton ID="rBtnOrderTypeNew" GroupName="rBtnOrderType" runat="server" Text="New Order" TextAlign="Left"  Checked="true"/></td>
              <td class="entry_data" style="width: 98px"><asp:RadioButton ID="rBtnOrderTypeReDo" GroupName="rBtnOrderType" runat="server" Text="Re-Order" TextAlign="Left" /></td>
              <td class="entry_label" style="width: 70px"><asp:CheckBox ID="chkBxChangeFile" runat="server" Text="Change File" TextAlign="Left" /></td>
              <td class="entry_data" style="width: 101px">Redo: <asp:TextBox ID="txtRedoPct" runat="server" BorderWidth="1" MaxLength="3" Width="40px" />%</td>
@@ -185,7 +195,7 @@
              <td class="entry_label" style="width: 101px">Color</td>
              <td class="entry_label" style="width: 80px">EM Sign</td>
              <td class="entry_data" style="width: 80px">Location: 
-                <asp:RadioButton ID="rBtnEMLoc1Side" GroupName="rBtnEMLoc" runat="server" Text="1-sided" TextAlign="Left"/>  
+                <asp:RadioButton ID="rBtnEMLoc1Side" GroupName="rBtnEMLoc" runat="server" Text="1-sided" TextAlign="Left" Checked="true"/>  
                 <asp:RadioButton ID="rBtnEMLoc2Side" GroupName="rBtnEMLoc" runat="server" Text="2-sided" TextAlign="Left" />
             </td>
         </tr>
@@ -208,7 +218,7 @@
             </td>
         </tr>
         <tr>
-            <td class="entry_label" colspan="2">10.Key Hole: <asp:RadioButton ID="rBtnKeyHoleStd" GroupName="rBtnKeyHole" runat="server" Text="Standard" TextAlign="Left" /></td>
+            <td class="entry_label" colspan="2">10.Key Hole: <asp:RadioButton ID="rBtnKeyHoleStd" GroupName="rBtnKeyHole" runat="server" Text="Standard" TextAlign="Left" Checked="true" /></td>
              <td class="entry_label" style="width: 70px"><asp:RadioButton ID="rBtnKeyHoleOther" GroupName="rBtnKeyHole" runat="server" Text="Other" TextAlign="Left" />
                  <asp:TextBox ID="txtKeyHoleOther" runat="server" BorderWidth="1" Width="80px" 
                      MaxLength="10" /></td>
@@ -236,7 +246,7 @@
                  <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*Required"
                     ControlToValidate="txtColorCount" SetFocusOnError="True" ForeColor="Red"/>
                 <asp:RangeValidator ID="vldTxtColorCount" runat="server" 
-                    ControlToValidate="txtColorCount" ErrorMessage="*Must be number"  MaximumValue="12" 
+                    ControlToValidate="txtColorCount" ErrorMessage="*Must be from 1 to 12"  MaximumValue="12" 
                     MinimumValue="1" Type="Integer" SetFocusOnError="True" ForeColor="Red"/>
             </td>
              <td class="entry_label" style="width: 70px">Cyl. Count: </td>
@@ -247,12 +257,12 @@
                  <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="*Required"
                     ControlToValidate="txtCylCount" SetFocusOnError="True" ForeColor="Red"/>
                 <asp:RangeValidator ID="vldTxtCylCount" runat="server" 
-                    ControlToValidate="txtCylCount" ErrorMessage="*Must be number"  MaximumValue="12" 
+                    ControlToValidate="txtCylCount" ErrorMessage="*Must be from 1 to 12"  MaximumValue="12" 
                     MinimumValue="1" Type="Integer" SetFocusOnError="True" ForeColor="Red"/>
             </td>
              <td class="entry_label" style="width: 80px">12.Print Method: </td>
              <td class="entry_data" style="width: 80px">
-                 <asp:RadioButton ID="rBtnMethodSurface" GroupName="rBtnMethod" runat="server" Text="Surface" TextAlign="Left"/> 
+                 <asp:RadioButton ID="rBtnMethodSurface" GroupName="rBtnMethod" runat="server" Text="Surface" TextAlign="Left" Checked="true"/> 
                  <asp:RadioButton ID="rBtnMethodReserve" GroupName="rBtnMethod" runat="server" Text="Reverse" TextAlign="Left"/>
              </td>
         </tr>
@@ -266,7 +276,7 @@
         <tr>
             <td class="entry_label" colspan="2">13. Registration Mark:</td>
              <td class="entry_data" colspan="4">
-                <asp:RadioButton ID="rBtnRegMarkStd" GroupName="rBtnRegMark" runat="server" Text="Standard" TextAlign="Left"/>
+                <asp:RadioButton ID="rBtnRegMarkStd" GroupName="rBtnRegMark" runat="server" Text="Standard" TextAlign="Left" Checked="true"/>
                 <asp:RadioButton ID="rBtnRegMarkOther" GroupName="rBtnRegMark" runat="server" Text="Other" TextAlign="Left"/> 
                  <asp:TextBox ID="txtRegMarkOther" runat="server" BorderWidth="1" Width="80px" 
                      MaxLength="10" /></td>
@@ -309,7 +319,7 @@
         <tr>
             <td class="entry_label" colspan="2">17.Result Based On:</td>
             <td class="entry_data" colspan="2">
-                <asp:RadioButton ID="rBtnResultGraphic" GroupName="rBtnResult" runat="server" Text="Graphic Proof" TextAlign="Left"/> 
+                <asp:RadioButton ID="rBtnResultGraphic" GroupName="rBtnResult" runat="server" Text="Graphic Proof" TextAlign="Left" Checked="true"/> 
                 <asp:RadioButton ID="rBtnResultSample" GroupName="rBtnResult" runat="server" Text="Printing Sample" TextAlign="Left"/> 
                 <asp:RadioButton ID="rBtnResultFp" GroupName="rBtnResult" runat="server" Text="Fingerprint" TextAlign="Left"/>
             </td>
@@ -320,7 +330,7 @@
         <tr>
             <td class="entry_label" colspan="2">Image Orientation: </td>
             <td class="entry_data" colspan="4">
-                <asp:RadioButton ID="rBtnOrientUp" GroupName="rBtnOrient" Text="Up" runat="server" TextAlign="Left"/>
+                <asp:RadioButton ID="rBtnOrientUp" GroupName="rBtnOrient" Text="Up" runat="server" TextAlign="Left" Checked="true"/>
                 <asp:RadioButton ID="rBtnOrientDown" GroupName="rBtnOrient" Text="Down" runat="server" TextAlign="Left"/>
                 <asp:RadioButton ID="rBtnOrientLeft" GroupName="rBtnOrient" Text="Left" runat="server" TextAlign="Left"/>
                 <asp:RadioButton ID="rBtnOrientRight" GroupName="rBtnOrient" Text="Right" runat="server" TextAlign="Left"/>

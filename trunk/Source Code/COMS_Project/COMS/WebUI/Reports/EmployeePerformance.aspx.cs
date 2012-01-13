@@ -31,8 +31,9 @@ namespace WebUI.Reports
             }
             Employee employee = (new EmployeeController()).retrieveEmployeeByBarcode(txtEmpBarcode.Text.Trim());
 
-            IEnumerable<Cylinder_Log> cylinder_logs = employee.Cylinder_Log.Where(cl => cl.start_time >= Convert.ToDateTime(txtStartDate.Text) &&
-                                             cl.end_time <= Convert.ToDateTime(txtEndDate.Text));
+            IEnumerable<Cylinder_Log> cylinder_logs = employee.Cylinder_Log.Where(cl => cl.start_time >= 
+                                                    DateTime.ParseExact(txtStartDate.Text, "dd/mm/yyyy", null) &&
+                                             cl.end_time <= DateTime.ParseExact(txtEndDate.Text, "dd/mm/yyyy", null));
 
             CylinderLogDAO.CylinderLogInfoDataTable CylinderLogsInfoTable = new CylinderLogDAO.CylinderLogInfoDataTable();
 

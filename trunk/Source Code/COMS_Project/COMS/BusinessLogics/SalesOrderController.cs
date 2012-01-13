@@ -19,7 +19,7 @@ namespace BusinessLogics
         //public const String STATUS_SENT_TO_MECH = "STM"; //switch to using STATUS_INPROD
         public const String STATUS_INPROD = "PROD";
         public const String STATUS_STOPPED = "STOP";
-        public const String STATUS_CANCELLED = "CNL";
+        public const String STATUS_DELETED = "DL";
 
         public static Dictionary<String, String> StatusesToStartProd = new Dictionary<String, String>()
         {
@@ -39,7 +39,7 @@ namespace BusinessLogics
         {
             {STATUS_NEW,"New"}, {STATUS_UPDATED,"Updated"}, {STATUS_SENT_TO_GRPH,"Sent To Graphic"}, 
             {STATUS_GRPH_EDITED,"Graphics Edited"}, {STATUS_GRPH_VERIFIED,"Graphics Verified"},
-            {STATUS_INPROD,"In Production"}, {STATUS_STOPPED,"Stopped Production"}, {STATUS_CANCELLED,"Cancelled"}
+            {STATUS_INPROD,"In Production"}, {STATUS_STOPPED,"Stopped Production"}, {STATUS_DELETED,"Deleted"}
         };
 
         public const String PRIORITY_LOW = "LOW";
@@ -116,7 +116,7 @@ namespace BusinessLogics
             {
                 return dbContext.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_SALES) != -1 && w.name.IndexOf(DeptConst.DEPT_GRAPHIC) != -1).SingleOrDefault();
             }
-            else if (OrderConst.STATUS_INPROD.Equals(status) || OrderConst.STATUS_STOPPED.Equals(status) || OrderConst.STATUS_CANCELLED.Equals(status))
+            else if (OrderConst.STATUS_INPROD.Equals(status) || OrderConst.STATUS_STOPPED.Equals(status) || OrderConst.STATUS_DELETED.Equals(status))
             {
                 return dbContext.Workflows.Where(w => w.name.IndexOf(DeptConst.DEPT_SALES) != -1 && w.name.IndexOf(DeptConst.DEPT_MECHANICAL) != -1).SingleOrDefault();
             }
@@ -179,7 +179,7 @@ namespace BusinessLogics
                 dbContext.Refresh(RefreshMode.StoreWins, order);
                 throw new Exception("Order already in production, cannot update");
             }
-            else if (dbOrder.status.Equals(OrderConst.STATUS_CANCELLED))
+            else if (dbOrder.status.Equals(OrderConst.STATUS_DELETED))
             {
                 dbContext.Refresh(RefreshMode.StoreWins, order);
                 throw new Exception("Order already cancelled, cannot update");
@@ -322,7 +322,7 @@ namespace BusinessLogics
             try
             {
                 Order dbOrder = dbContext.Orders.Where(o => o.orderId.Equals(orderId)).SingleOrDefault();
-                dbOrder.status = OrderConst.STATUS_CANCELLED;
+                dbOrder.status = OrderConst.STATUS_DELETED;
                 createOrderLog(dbOrder, empl);
                 dbContext.SaveChanges(System.Data.Objects.SaveOptions.AcceptAllChangesAfterSave);
             }

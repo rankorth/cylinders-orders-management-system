@@ -76,6 +76,24 @@ namespace WebUI.Admin {
         protected global::AjaxControlToolkit.ConfirmButtonExtender lnkStopProd_ConfirmButtonExtender;
         
         /// <summary>
+        /// lnkDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkDelete;
+        
+        /// <summary>
+        /// lnkDelete_ConfirmButtonExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ConfirmButtonExtender lnkDelete_ConfirmButtonExtender;
+        
+        /// <summary>
         /// lnkBack control.
         /// </summary>
         /// <remarks>
@@ -157,6 +175,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtSetCode;
         
         /// <summary>
+        /// RequiredFieldValidator13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator13;
+        
+        /// <summary>
         /// txtCustomerRep control.
         /// </summary>
         /// <remarks>
@@ -191,6 +218,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProdName;
+        
+        /// <summary>
+        /// RequiredFieldValidator14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator14;
         
         /// <summary>
         /// rBtnOrderTypeNew control.
