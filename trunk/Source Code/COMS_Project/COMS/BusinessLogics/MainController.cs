@@ -195,8 +195,8 @@ namespace BusinessLogics
             try
             {
                 if (null != orderId) {
-                    Workflow salesToMechWF = (new WorkflowController()).GetWorkflow(DeptConst.DEPT_SALES, DeptConst.DEPT_MECHANICAL);
-                    (new CylinderController()).create(orderId, salesToMechWF.workflowId, empl);
+                    Workflow MechToProdWF = (new WorkflowController()).GetWorkflow(DeptConst.DEPT_MECHANICAL, DeptConst.DEPT_PROD);
+                    (new CylinderController()).create(orderId, MechToProdWF, empl);
                 }
             }
             catch (Exception ex)
