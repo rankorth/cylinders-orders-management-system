@@ -18,8 +18,8 @@ namespace WebUI.Admin
         const String NAME_UPDATE = "Display Order";
         public const String MSG_UPDATE_OK = "updateOk";
         public const String MSG_UPDATE_OK_DESC = "Order updated successfully.";
-        public const String MSG_CANCEL_OK = "cancelOk";
-        public const String MSG_CANCEL_OK_DESC = "Order cancelled successfully.";
+        public const String MSG_DELETE_OK = "deleteOk";
+        public const String MSG_CANCEL_OK_DESC = "Order deleted successfully.";
         public const String MSG_STARTPROD_OK = "startProdOk";
         public const String MSG_STARTPROD_OK_DESC = "Cylinder production has been started for order ";
         public const String MSG_STOPPROD_OK = "stopProdOk";
@@ -41,6 +41,7 @@ namespace WebUI.Admin
                     lnkPrintBarcode.Visible = false; //only allow user to print once order has been saved
                     lnkStartProd.Visible = false; //only allow user to start production during update
                     lnkStopProd.Visible = false; //only allow user to stop production during update
+                    lnkDelete.Visible = false; //only allow user to stop production during update
                 }
                 else
                 {
@@ -128,12 +129,13 @@ namespace WebUI.Admin
                 ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_SENT_TO_GRPH], OrderConst.STATUS_SENT_TO_GRPH));
                 ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_GRPH_EDITED], OrderConst.STATUS_GRPH_EDITED));
                 ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_GRPH_VERIFIED], OrderConst.STATUS_GRPH_VERIFIED));
-                
-                //only show INPROD and CANCELLED status is order is already INPROD or CANCELLED
+
+                //only show INPROD and DELETED status if order is already INPROD or DELETED
                 if (OrderConst.StatusesToStartProd.ContainsKey(status) == false)
                 {
                     ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_INPROD], OrderConst.STATUS_INPROD));
                     ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_STOPPED], OrderConst.STATUS_STOPPED));
+                    ddlOrderStatus.Items.Add(new ListItem(OrderConst.DispStatusDict[OrderConst.STATUS_DELETED], OrderConst.STATUS_DELETED));
                 }
 
                 //don't allow update for certain statuses (INPROD, CANCELLED)
@@ -266,7 +268,8 @@ namespace WebUI.Admin
                 order.order_code = mainCtrl.getNextOrderBarCode();
                 order.created_by = txtCreatedBy.Text;
                 //order.created_date = Convert.ToDateTime(txtCreateDate_CalendarExtender.SelectedDate);
-                order.created_date = Convert.ToDateTime(txtCreateDate.Text);
+                //order.created_date = Convert.ToDateTime(txtCreateDate.Text);
+                order.delivery_date = DateTime.ParseExact(txtDeliveryDate.Text, "dd/mm/yyyy", null);
                 populate_order(order, user);
 
                 Order_Detail orderDetail = new Order_Detail();
@@ -317,7 +320,8 @@ namespace WebUI.Admin
             order.price_type = txtPriceType.Text;
             order.redo_pct = (txtRedoPct.Text != "") ? Convert.ToInt32(txtRedoPct.Text) : 0;
             //order.delivery_date = Convert.ToDateTime(txtDeliveryDate_CalendarExtender.SelectedDate);
-            order.delivery_date = Convert.ToDateTime(txtDeliveryDate.Text);
+            //order.delivery_date = Convert.ToDateTime(txtDeliveryDate.Text);
+            order.delivery_date = DateTime.ParseExact(txtDeliveryDate.Text, "dd/mm/yyyy", null);
             order.order_type = (rBtnOrderTypeNew.Checked) ? OrderConst.ORDERTYPE_NEW : OrderConst.ORDERTYPE_REDO;
             order.set_code = txtSetCode.Text;
             order.cylinder_type = txtCylType.Text;
@@ -449,12 +453,12 @@ namespace WebUI.Admin
             Response.Redirect(Common.PageUrls.ManageOrdersPage + "?"+ManageOrders.REQ_MSG+"=" + MSG_STOPPROD_OK);
         }
 
-        protected void lnkCancel_Click(object sender, EventArgs e)
+        protected void lnkDelete_Click(object sender, EventArgs e)
         {
             mainCtrl.deleteSpecificOrder(new Guid(hdOrderId.Value), base.GetCurentUser());
 
             //in cancel case, need to redirect to ManageOrders.aspx
-            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?"+ManageOrders.REQ_MSG+"=" + MSG_CANCEL_OK
+            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?"+ManageOrders.REQ_MSG+"=" + MSG_DELETE_OK
 							+ "&" + ManageOrders.REQ_ORDERCODE + "=" + hdOrderCode.Value);
 
         }

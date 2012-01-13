@@ -25,7 +25,7 @@ namespace WebUI.Admin
                     lblMsg.Text = DisplayOrder.MSG_UPDATE_OK_DESC;
                     lblMsg.CssClass = "okMsg";
                 }
-                else if (DisplayOrder.MSG_CANCEL_OK.Equals(Request[REQ_MSG]))
+                else if (DisplayOrder.MSG_DELETE_OK.Equals(Request[REQ_MSG]))
                 {
                     lblMsg.Text = DisplayOrder.MSG_CANCEL_OK_DESC;
                     lblMsg.CssClass = "okMsg";
