@@ -99,7 +99,7 @@
                 ontextchanged="txtEmployeeBarCodeToReport_TextChanged" Width="336px"></asp:TextBox>
             &nbsp;<br /> &nbsp;
             <asp:Button ID="btnReportOk" runat="server" 
-                onclick="txtEmployeeBarCodeToReport_TextChanged" Text="OK" Width="172px" />
+                onclick="txtEmployeeBarCode_TextChanged" Text="OK" Width="172px" />
             &nbsp;
             <asp:Button ID="btnReportCancel" runat="server" 
                 onclick="btnCancelProcess_Click" Text="Cancel" Width="156px" />

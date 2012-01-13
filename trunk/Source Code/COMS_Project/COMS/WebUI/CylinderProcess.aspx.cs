@@ -247,6 +247,19 @@ namespace WebUI
                     }
                     else
                     {
+                        try
+                        {
+                            Error errorReason = new COMSdbEntity.Error();
+                            errorReason.errorId = new Guid(drpDamageReason.SelectedItem.Value);
+                            errorReason.name = drpDamageReason.SelectedItem.Text;
+
+                            PageData.EmployeeBarcode = CurrentWorker.barcode;
+                            UpdateCylCtrl.FinishCylinderWorkWithError(PageData.CylinderBarcode, CurrentWorker.barcode, PageData.SelectedStep.stepId, DateTime.Now, errorReason);
+                        }
+                        catch
+                        {
+                            Common.Utility.ShowMessage("There has been error while reporting of this damage. Please contact System Administrator", this.Page);
+                        }
                     }
                     CleanupInput();
                     ChangeStep(step.scan_cylinder_start);
