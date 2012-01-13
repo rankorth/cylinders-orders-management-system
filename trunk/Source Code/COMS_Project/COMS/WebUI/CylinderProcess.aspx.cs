@@ -25,7 +25,7 @@ namespace WebUI
             {
                 CleanupInput();
                 ChangeStep(step.scan_cylinder_start);
-
+                
                 Session[pagesession] = PageData;
                 
             }
@@ -297,6 +297,27 @@ namespace WebUI
         {
             PageData.PageStep = StepToChange;
             Session[pagesession] = PageData;
+
+            if (StepToChange == step.scan_cylinder_start)
+            {
+                txtScanCylinderCode.Focus();
+            }
+            else if (StepToChange == step.select_actions)
+            {
+            }
+            else if (StepToChange == step.select_step)
+            {
+            }
+            else if (StepToChange == step.error_reason)
+            {
+            }
+            else if (StepToChange == step.scan_cylinder_toend)
+            {
+                txtCylinderCodeToEnd.Focus();
+            }
+            else if (StepToChange == step.scan_employee_code)
+            {
+            }
         }
 
         protected void txtEmployeeBarCodeToReport_TextChanged(object sender, EventArgs e)
