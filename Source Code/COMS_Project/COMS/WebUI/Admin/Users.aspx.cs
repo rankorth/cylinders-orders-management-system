@@ -20,7 +20,7 @@ namespace WebUI.Admin
             {
                 Authorize();
                 hPageState.Value = Common.PageState.New;
-                load_data();
+                //load_data();
                 load_Roles_data();
                 loadDepartment();
             }
@@ -154,27 +154,31 @@ namespace WebUI.Admin
 
         protected void lnkSearch_Click(object sender, EventArgs e)
         {
+            Employee emp=null;
             hPageState.Value = Common.PageState.Update;
-            Employee emp = mainctrl.retrieveEmployee(txtBxSearchKey.Text);
-            if (null != emp)
+            if (!txtBxSearchKey.Text.Equals(""))
             {
-                txtName.Text = emp.given_name;
-                txtSurname.Text = emp.surname;
-                txtBarCode.Text = emp.barcode;
-                txtPosition.Text = emp.position;
-                txtStaffCode.Text = emp.staff_code;
-                txtUsername.Text = emp.username;
-                txtPassword.Text = emp.password;
-                loadDepartment();
-                load_Roles_data(emp.employeeId);
-                hUpdateID.Value = emp.employeeId.ToString();
-                LitStatus.Text = "";
-            }
-            else
-            {
+                emp = mainctrl.retrieveEmployee(txtBxSearchKey.Text);
+                if (null != emp)
+                {
+                    txtName.Text = emp.given_name;
+                    txtSurname.Text = emp.surname;
+                    txtBarCode.Text = emp.barcode;
+                    txtPosition.Text = emp.position;
+                    txtStaffCode.Text = emp.staff_code;
+                    txtUsername.Text = emp.username;
+                    txtPassword.Text = emp.password;
+                    loadDepartment();
+                    load_Roles_data(emp.employeeId);
+                    hUpdateID.Value = emp.employeeId.ToString();
+                    LitStatus.Text = "";
+                }
+            }else{
                 txtBxSearchKey.Text = "";
-                LitStatus.Text = "Staff Code does not exist";
+                CleanPageState();
+                load_data();
             }
+
         }
 
         protected void lnkDelete_Click(object sender, EventArgs e)

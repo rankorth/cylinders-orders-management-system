@@ -8,8 +8,28 @@
         <li><asp:LinkButton ID="lnkDelete" runat="server" onclick="lnkDelete_Click">Delete</asp:LinkButton></li>
 </ul>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="InputPlaceHolder" runat="server">
-    <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
+<asp:Content ID="Content2" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
+    
+    </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="InputPlaceHolder" runat="server">
+    
+    <asp:GridView ID="gvUserInfo" runat="server" 
+        onrowdatabound="gvUserInfo_RowDataBound" ViewStateMode="Enabled" Width="55%" 
+        onrowcommand="gvUserInfo_RowCommand">
+        <Columns>
+            <asp:TemplateField>
+               <ItemTemplate>
+                    <asp:CheckBox ID="chk2ID" runat="server" />
+                    &nbsp;<asp:LinkButton ID="lnkEdit" runat="server">edit</asp:LinkButton>
+               </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="staff_code" HeaderText="Staff Code" />
+            <asp:BoundField DataField="barcode" HeaderText="Bar Code" />
+            <asp:BoundField DataField="surname" HeaderText="Surname" />
+            <asp:BoundField DataField="given_name" HeaderText="Name" />
+        </Columns>
+    </asp:GridView>
+&nbsp;<table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td class="entry_label">
                 Name
@@ -100,25 +120,6 @@
         </table>
             <asp:HiddenField ID="hPageState" runat="server" Value="NEW" />
             <asp:HiddenField ID="hUpdateID" runat="server" Value="" />
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="OutputPlaceHolder" runat="server">
-    
-    <asp:GridView ID="gvUserInfo" runat="server" 
-        onrowdatabound="gvUserInfo_RowDataBound" ViewStateMode="Enabled" Width="55%" 
-        onrowcommand="gvUserInfo_RowCommand">
-        <Columns>
-            <asp:TemplateField>
-               <ItemTemplate>
-                    <asp:CheckBox ID="chk2ID" runat="server" />
-                    &nbsp;<asp:LinkButton ID="lnkEdit" runat="server">edit</asp:LinkButton>
-               </ItemTemplate>
-            </asp:TemplateField>
-            <asp:BoundField DataField="staff_code" HeaderText="Staff Code" />
-            <asp:BoundField DataField="barcode" HeaderText="Bar Code" />
-            <asp:BoundField DataField="surname" HeaderText="Surname" />
-            <asp:BoundField DataField="given_name" HeaderText="Name" />
-        </Columns>
-    </asp:GridView>
 </asp:Content>
 <asp:Content ID="Content4" runat="server" contentplaceholderid="ModuleName">
                         <asp:Literal ID="ltrModule_name" runat="server"></asp:Literal>

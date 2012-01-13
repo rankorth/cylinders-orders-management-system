@@ -242,7 +242,9 @@ namespace BusinessLogics
                 if (null != staff_code && !staff_code.Trim().Equals(""))
                     return (new EmployeeController()).retrieveEmployeeInfo(staff_code);
                 else
+                {
                     return null;
+                }
             }
             catch (Exception ex)
             {

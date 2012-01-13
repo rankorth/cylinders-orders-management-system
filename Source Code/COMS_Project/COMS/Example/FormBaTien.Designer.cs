@@ -52,6 +52,7 @@
             this.btnCreateOrder.TabIndex = 0;
             this.btnCreateOrder.Text = "Create Order";
             this.btnCreateOrder.UseVisualStyleBackColor = true;
+            this.btnCreateOrder.Visible = false;
             this.btnCreateOrder.Click += new System.EventHandler(this.btnCreateOrder_Clicked);
             // 
             // btnUpdateOrder
@@ -62,6 +63,7 @@
             this.btnUpdateOrder.TabIndex = 1;
             this.btnUpdateOrder.Text = "Update Order";
             this.btnUpdateOrder.UseVisualStyleBackColor = true;
+            this.btnUpdateOrder.Visible = false;
             this.btnUpdateOrder.Click += new System.EventHandler(this.btnUpdateOrder_Clicked);
             // 
             // btnDeleteOrder
@@ -72,6 +74,7 @@
             this.btnDeleteOrder.TabIndex = 2;
             this.btnDeleteOrder.Text = "Delete Orders";
             this.btnDeleteOrder.UseVisualStyleBackColor = true;
+            this.btnDeleteOrder.Visible = false;
             this.btnDeleteOrder.Click += new System.EventHandler(this.btnDeleteOrder_Clicked);
             // 
             // btnCreateDept
@@ -111,6 +114,7 @@
             this.txtBxUsername.Size = new System.Drawing.Size(100, 20);
             this.txtBxUsername.TabIndex = 7;
             this.txtBxUsername.Text = "username";
+            this.txtBxUsername.Visible = false;
             // 
             // txtBxPassword
             // 
@@ -120,6 +124,7 @@
             this.txtBxPassword.Size = new System.Drawing.Size(100, 20);
             this.txtBxPassword.TabIndex = 8;
             this.txtBxPassword.Text = "password";
+            this.txtBxPassword.Visible = false;
             // 
             // btnLogin
             // 
@@ -129,6 +134,7 @@
             this.btnLogin.TabIndex = 9;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Visible = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Clicked);
             // 
             // btnCreateCustomer
@@ -159,6 +165,7 @@
             this.btnCreateCylinder.TabIndex = 12;
             this.btnCreateCylinder.Text = "Create Cylinder";
             this.btnCreateCylinder.UseVisualStyleBackColor = true;
+            this.btnCreateCylinder.Visible = false;
             this.btnCreateCylinder.Click += new System.EventHandler(this.btnCreateCylinder_Clicked);
             // 
             // btnViewQueue
