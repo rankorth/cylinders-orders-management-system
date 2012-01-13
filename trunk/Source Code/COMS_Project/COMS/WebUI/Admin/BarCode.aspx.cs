@@ -46,7 +46,7 @@ namespace WebUI.Admin
 
             // We have to put prefix and sufix of an asterisk (*),
             // in order to be a valid barcode
-            oGraphics.DrawString("*" + Code + "*", oFont, oBrushWrite, oPoint);
+            oGraphics.DrawString(Code, oFont, oBrushWrite, oPoint);
 
             // Then we send the Graphics with the actual barcode
             Response.ContentType = "image/jpeg";
