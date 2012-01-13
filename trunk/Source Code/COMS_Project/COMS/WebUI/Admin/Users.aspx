@@ -93,7 +93,8 @@
                 Password<span class="errorMsg" style="font-family: Arial">*</span>
             </td>
             <td class="entry_data">
-            <asp:TextBox BorderColor="black" ID="txtPassword" style="width:200px;" runat="server"></asp:TextBox>
+            <asp:TextBox BorderColor="black" ID="txtPassword" style="width:200px;" 
+                    runat="server" TextMode="Password"></asp:TextBox>
             </td>
         </tr>
         </table>
