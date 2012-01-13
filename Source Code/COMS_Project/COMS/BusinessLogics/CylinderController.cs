@@ -32,11 +32,11 @@ namespace BusinessLogics
     {
         private COMSEntities dbContext = new COMSEntities();
 
-        public void create(Guid orderId, Guid workflowId, Employee empl)
+        public void create(Guid orderId, Workflow workflow, Employee empl)
         {
             try
             {
-                if (null != orderId && null != workflowId)
+                if (null != orderId && null != workflow)
                 {
                     Order order = (new SalesOrderController()).retrieveSalesOrder(orderId);
                     foreach (Order_Detail od in order.Order_Detail)
@@ -44,7 +44,7 @@ namespace BusinessLogics
                         //new order started production, starts creating cylinders
                         if (od.Cylinders.Count() == 0)
                         {
-                            generateCylinder(od, workflowId);
+                            generateCylinder(od, workflow);
                         }
                         else if (od.Cylinders.Count() > 0) //order previously in production, resume production for cylinders
                         {
@@ -65,11 +65,11 @@ namespace BusinessLogics
             }
         }
 
-        private void generateCylinder(Order_Detail orderDetail, Guid workflowID)
+        private void generateCylinder(Order_Detail orderDetail, Workflow workflow)
         {
             try
             {
-                if (null != orderDetail && null != dbContext && null!=workflowID)
+                if (null != orderDetail && null != dbContext && null != workflow.workflowId)
                 {
                     int colorNo = 1;
                     for (int cylNo = 1; cylNo <= (orderDetail.new_cyl_count + orderDetail.used_cyl_count); cylNo++)
@@ -88,7 +88,9 @@ namespace BusinessLogics
                         newCylinder.status = CylinderConst.STATUS_INPROD;
                         newCylinder.updated_by = orderDetail.updated_by;
                         newCylinder.updated_date = orderDetail.updated_date;
-                        newCylinder.workflowId = workflowID;
+                        newCylinder.workflowId = workflow.workflowId;
+                        //Tin 14-Jan-2012
+                        newCylinder.stepId = dbContext.Steps.Where(s => s.workflowId == workflow.workflowId && s.isStep == false && s.isBegin == true).SingleOrDefault().stepId;
                         dbContext.Cylinders.AddObject(newCylinder);
                         colorNo++;
                     }
