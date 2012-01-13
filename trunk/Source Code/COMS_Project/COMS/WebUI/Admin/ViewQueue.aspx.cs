@@ -63,5 +63,29 @@ namespace WebUI.Admin
         public override void VerifyRenderingInServerForm(Control control)
         {
         }
+
+        protected void gvOrders_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Order order = (Order)e.Row.DataItem;
+                Order_Detail detail = order.Order_Detail.SingleOrDefault();
+                
+                Label lblCustomer = (Label)e.Row.FindControl("lblCustomer");
+                lblCustomer.Text = order.Customer.name;
+
+                Label lblNewCyl = (Label)e.Row.FindControl("lblNewCyl");
+                lblNewCyl.Text = ""+detail.new_cyl_count;
+
+                Label lblUsedCyl = (Label)e.Row.FindControl("lblUsedCyl");
+                lblUsedCyl.Text = ""+detail.used_cyl_count;
+
+                Label lblDiameter = (Label)e.Row.FindControl("lblDiameter");
+                lblDiameter.Text = detail.cyl_diameter.ToString();
+
+                Label lblLength = (Label)e.Row.FindControl("lblLength");
+                lblLength.Text = detail.cyl_length.ToString();
+            }
+        }
     }
 }
