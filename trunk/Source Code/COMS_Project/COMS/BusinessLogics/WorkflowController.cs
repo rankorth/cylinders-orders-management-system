@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using COMSdbEntity;
-using System.Data.EntityClient;
-using System.Data.Entity;
+
 
 namespace BusinessLogics
 {
@@ -112,8 +111,20 @@ namespace BusinessLogics
         {
             List<Order> orderList = new List<Order>();
             IQueryable<Cylinder> cylList = dbContext.Cylinders.Where(c => c.workflowId.Equals(workflowId));
+            List<Guid> orderIdList = new List<Guid>();
+
             foreach (Cylinder cyl in cylList) {
-                orderList.Add(cyl.Order_Detail.Order);
+                bool added = false;
+                foreach (Guid id in orderIdList) {
+                    if (id == cyl.Order_Detail.orderId) added = true;
+                }   
+                if (!added) orderIdList.Add(cyl.Order_Detail.orderId);
+            }
+
+            SalesOrderController orderCtrl = new SalesOrderController();
+            foreach (Guid id in orderIdList)
+            {
+                orderList.Add(dbContext.Orders.Where(o => o.orderId == id).SingleOrDefault());
             }
             return orderList;
         }
