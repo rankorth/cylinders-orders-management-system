@@ -18,7 +18,9 @@
 <asp:HiddenField ID="hdWorkflowName" runat="server" />
 
     <asp:GridView ID="gvOrders" runat="server" ViewStateMode="Enabled" Width="100%" 
-        onrowdatabound="gvOrders_RowDataBound">
+        onrowdatabound="gvOrders_RowDataBound" CellPadding="4" ForeColor="#333333" 
+        GridLines="None">
+        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:BoundField DataField="priority" HeaderText="Priority" 
                 ItemStyle-HorizontalAlign="Center" >
@@ -36,6 +38,8 @@
                 <ItemTemplate>
                     <asp:Label ID="lblCustomer" runat="server" />
                 </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
             <asp:BoundField DataField="delivery_date" HeaderText="Delivery Date" 
                 ItemStyle-HorizontalAlign="Center" >
@@ -45,23 +49,41 @@
                 <ItemTemplate>
                     <asp:Label ID="lblNewCyl" runat="server" />
                 </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Used Cylinders" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
                     <asp:Label ID="lblUsedCyl" runat="server" />
                 </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Diameter" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
                     <asp:Label ID="lblDiameter" runat="server" />
                 </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Length" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
                     <asp:Label ID="lblLength" runat="server" />
                 </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
         </Columns>
+        <EditRowStyle BackColor="#999999" />
+        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
 </asp:Content>
 

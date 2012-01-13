@@ -25,7 +25,9 @@
 
     <asp:GridView ID="gvErrorMsgs" runat="server" 
     onrowdatabound="gvErrorMsgs_RowDataBound" ViewStateMode="Enabled" Width="100%" 
-        onrowcommand="gvErrorMsgs_RowCommand">
+        onrowcommand="gvErrorMsgs_RowCommand" CellPadding="4" ForeColor="#333333" 
+        GridLines="None">
+        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:TemplateField>
                <ItemTemplate>
@@ -33,7 +35,20 @@
                     &nbsp;<asp:LinkButton ID="lnkEdit" runat="server">edit</asp:LinkButton>
                </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="name" HeaderStyle-HorizontalAlign="Left" HeaderText="Error Message" />
+            <asp:BoundField DataField="name" HeaderStyle-HorizontalAlign="Left" 
+                HeaderText="Error Message" >
+<HeaderStyle HorizontalAlign="Left"></HeaderStyle>
+            </asp:BoundField>
         </Columns>
+        <EditRowStyle BackColor="#999999" />
+        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
 </asp:Content>

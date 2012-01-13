@@ -14,8 +14,10 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="InputPlaceHolder" runat="server">
     
     <asp:GridView ID="gvUserInfo" runat="server" 
-        onrowdatabound="gvUserInfo_RowDataBound" ViewStateMode="Enabled" Width="55%" 
-        onrowcommand="gvUserInfo_RowCommand">
+        onrowdatabound="gvUserInfo_RowDataBound" ViewStateMode="Enabled" Width="100%" 
+        onrowcommand="gvUserInfo_RowCommand" CellPadding="4" ForeColor="#333333" 
+        GridLines="None">
+        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:TemplateField>
                <ItemTemplate>
@@ -28,6 +30,16 @@
             <asp:BoundField DataField="surname" HeaderText="Surname" />
             <asp:BoundField DataField="given_name" HeaderText="Name" />
         </Columns>
+        <EditRowStyle BackColor="#999999" />
+        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
 &nbsp;<table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>
