@@ -34,6 +34,11 @@ namespace WebUI.Common
 
         public static bool CheckPermission(string Permission_Module_Name, string Permission_Action, Employee UserObj)
         {
+            if (UserObj.employeeId == Guid.Empty)
+            {
+                //this is super user. go off
+                return true;
+            }
             SecurityController SecurityCtrl = new SecurityController();
 
             List<Access_Right> AccessRights =  SecurityCtrl.GetEmployee_AccessRights(UserObj);
@@ -54,6 +59,11 @@ namespace WebUI.Common
 
         public static bool CheckModuleAccess(string Permission_Module_Name, Employee UserObj)
         {
+            if (UserObj.employeeId == Guid.Empty)
+            {
+                //this is super user. go off
+                return true;
+            }
             if (CheckPermission(Permission_Module_Name, Action_Add, UserObj) ||
                 CheckPermission(Permission_Module_Name, Action_Delete, UserObj) ||
                 CheckPermission(Permission_Module_Name, Action_Edit, UserObj) ||
