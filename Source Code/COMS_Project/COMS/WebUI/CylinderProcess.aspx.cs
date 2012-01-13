@@ -239,7 +239,7 @@ namespace WebUI
                 Employee CurrentWorker =  employee.retrieveEmployeeByBarcode(txtEmployeeBarCode.Text.Trim());
                 if (CurrentWorker != null)
                 {
-                    if (drpWorkStatus.SelectedItem.Value.Equals("Complete"))
+                    if (drpWorkStatus.SelectedItem.Value.Equals("Completed"))
                     {
                         PageData.EmployeeBarcode = CurrentWorker.barcode;
                         UpdateCylCtrl.FinishCylinderWork(PageData.CylinderBarcode, CurrentWorker.barcode, PageData.SelectedStep.stepId, DateTime.Now);
