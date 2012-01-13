@@ -22,7 +22,9 @@
 </table>
 
     <asp:GridView ID="gvOrderLogs" runat="server" ViewStateMode="Enabled" 
-        Width="100%" onrowdatabound="gvOrderLogs_RowDataBound">
+        Width="100%" onrowdatabound="gvOrderLogs_RowDataBound" CellPadding="4" 
+        ForeColor="#333333" GridLines="None">
+        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:BoundField DataField="dept_name" HeaderText="Department" 
                 ItemStyle-HorizontalAlign="Center" >
@@ -40,6 +42,8 @@
                 <ItemTemplate>
                     <asp:Label ID="lblOrderStatus" runat="server" />
                 </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
             <asp:BoundField DataField="related_cyl" HeaderText="Related Cylinders" 
                 ItemStyle-HorizontalAlign="Center" >
@@ -50,5 +54,15 @@
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:BoundField>
         </Columns>
+        <EditRowStyle BackColor="#999999" />
+        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
 </asp:Content>

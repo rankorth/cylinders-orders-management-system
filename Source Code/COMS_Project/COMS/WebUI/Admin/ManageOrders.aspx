@@ -23,12 +23,16 @@
 
     <asp:GridView ID="gvOrders" runat="server" ViewStateMode="Enabled" Width="100%" 
         onrowdatabound="gvOrders_RowDataBound" OnRowCommand="gvOrders_RowCommand" 
-        style="text-align: center">
+        style="text-align: center" CellPadding="4" ForeColor="#333333" 
+        GridLines="None">
+        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
         <Columns>
             <asp:TemplateField HeaderText="Order Code" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
                     <asp:LinkButton ID="lnkOrderCode" runat="server"></asp:LinkButton>
                 </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
             <asp:BoundField DataField="product_name" HeaderText="Product Name" 
                 ItemStyle-HorizontalAlign="Center" >
@@ -42,18 +46,34 @@
                 <ItemTemplate>
                     <asp:Label ID="lblOrderStatus" runat="server" />
                 </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Progress" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
                     <asp:LinkButton ID="lnkViewLog" runat="server">view</asp:LinkButton>
                 </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>            
 			<asp:TemplateField HeaderText="Cylinders" ItemStyle-HorizontalAlign="Center">
                <ItemTemplate>
                  <asp:LinkButton ID="lnkCylinders" runat="server" >cylinders info</asp:LinkButton>
                </ItemTemplate>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
             </asp:TemplateField>
         </Columns>
+        <EditRowStyle BackColor="#999999" />
+        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
     </asp:GridView>
     <br />
     <asp:HiddenField ID="hOrderCode" runat="server" Value="" />

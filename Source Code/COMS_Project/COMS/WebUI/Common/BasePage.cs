@@ -77,8 +77,8 @@ namespace WebUI.Common
             if (Permission.CheckModuleAccess(Permission.ModuleName_Employee, User)) 
                 module.Add("Employee", "/Admin/Users.aspx");
 
-            if (Permission.CheckModuleAccess(Permission.ModuleName_Customer, User)) 
-                module.Add("Customer", "/Admin/Customers.aspx");
+           // if (Permission.CheckModuleAccess(Permission.ModuleName_Customer, User)) 
+           //     module.Add("Customer", "/Admin/Customers.aspx");
 
             if (Permission.CheckModuleAccess(Permission.ModuleName_RoleApproval, User)) 
                 module.Add("Approve Assign Roles", "/Admin/RoleAssignment_Approval.aspx");
@@ -89,8 +89,8 @@ namespace WebUI.Common
             if (Permission.CheckModuleAccess(Permission.ModuleName_ViewQue, User)) 
                 module.Add("View Current Queue", "/Admin/ViewQueue.aspx");
 
-            if (Permission.CheckModuleAccess(Permission.ModuleName_CylinderInfo, User)) 
-                module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
+           // if (Permission.CheckModuleAccess(Permission.ModuleName_CylinderInfo, User)) 
+          //      module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
 
             if (Permission.CheckModuleAccess(Permission.ModuleName_Report, User)) 
                 module.Add("Reports", "/Admin/Reports.aspx");

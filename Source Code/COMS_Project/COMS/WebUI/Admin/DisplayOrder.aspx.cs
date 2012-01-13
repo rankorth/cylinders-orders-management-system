@@ -269,7 +269,7 @@ namespace WebUI.Admin
                 order.created_by = txtCreatedBy.Text;
                 //order.created_date = Convert.ToDateTime(txtCreateDate_CalendarExtender.SelectedDate);
                 //order.created_date = Convert.ToDateTime(txtCreateDate.Text);
-                order.delivery_date = DateTime.ParseExact(txtDeliveryDate.Text, "dd/mm/yyyy", null);
+                order.created_date = DateTime.ParseExact(txtDeliveryDate.Text, "dd/mm/yyyy", null);
                 populate_order(order, user);
 
                 Order_Detail orderDetail = new Order_Detail();
