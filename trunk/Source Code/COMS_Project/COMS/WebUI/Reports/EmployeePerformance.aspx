@@ -18,7 +18,9 @@
         <tr>
             <td class="entry_label">
                 Employee Barcode
-            </td>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                    ControlToValidate="txtEmpBarcode" ErrorMessage=" *" ForeColor="Red"></asp:RequiredFieldValidator>
+&nbsp;</td>
             <td class="entry_data" colspan="3">
             <asp:TextBox ID="txtEmpBarcode" runat="server" Width="150px"></asp:TextBox>
             </td>
@@ -26,19 +28,25 @@
         <tr>
             <td class="entry_label">
                 Start Time
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                    ControlToValidate="txtStartDate" ErrorMessage=" *" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
             <td class="entry_data">
-            <asp:TextBox ID="txtStartDate" runat="server" Width="150px"></asp:TextBox>
+            <asp:TextBox ID="txtStartDate" runat="server" Width="150px" ReadOnly="True"></asp:TextBox>
             <asp:CalendarExtender ID="txtStartDate_CalendarExtender" runat="server" 
-                Enabled="True" TargetControlID="txtStartDate">
+                Enabled="True" TargetControlID="txtStartDate" Format="dd/MM/yyyy" 
+                    TodaysDateFormat="dd/MM/yyyy">
             </asp:CalendarExtender>
             </td>
                  <td class="entry_label">
-                     End Time</td>
+                     End Time<asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                         ControlToValidate="txtEndDate" ErrorMessage=" *" ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
             <td class="entry_data">
-            <asp:TextBox ID="txtEndDate" runat="server" Width="150px"></asp:TextBox>
+            <asp:TextBox ID="txtEndDate" runat="server" Width="150px" ReadOnly="True"></asp:TextBox>
             <asp:CalendarExtender ID="txtEndDate_CalendarExtender" runat="server" 
-                Enabled="True" TargetControlID="txtEndDate">
+                Enabled="True" TargetControlID="txtEndDate" Format="dd/MM/yyyy" 
+                    TodaysDateFormat="dd/MM/yyyy">
             </asp:CalendarExtender>
             </td>
         </tr>
