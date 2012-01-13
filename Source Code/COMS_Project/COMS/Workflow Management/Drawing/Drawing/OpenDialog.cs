@@ -53,10 +53,26 @@ namespace WorkflowManagement
             COMSEntities context = new COMSEntities();
 
             IQueryable<Workflow> workflows = context.Workflows.Where(w => w.isactive==true);
+            List<WorkflowInfo> WorkflowInfos = new List<WorkflowInfo>();
+            foreach (Workflow w in workflows)
+            {
+                WorkflowInfo wInfo = new WorkflowInfo();
+                wInfo.Name = w.name;
+                wInfo.GUID = w.workflowId;
+                Workflow nextworkflow = context.Workflows.Where(wa => wa.workflowId == w.nextWorkflowID).SingleOrDefault();
+
+                wInfo.NextWorkflowName = "--End Of Production--";
+                if (nextworkflow != null)
+                {
+                    wInfo.NextWorkflowName = nextworkflow.name;
+                }
+               
+                WorkflowInfos.Add(wInfo);
+            }
 
             dgWorkflows.AutoGenerateColumns = false;
 
-            dgWorkflows.DataSource = workflows;
+            dgWorkflows.DataSource = WorkflowInfos;
 
             context.Dispose();
         }
@@ -64,6 +80,13 @@ namespace WorkflowManagement
         private void dgWorkflows_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             
+        }
+
+        class WorkflowInfo
+        {
+            public string Name { get; set; }
+            public Guid GUID { get; set; }
+            public string NextWorkflowName { get; set; }
         }
     }
 }

@@ -32,6 +32,7 @@
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NextWorkflowName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgWorkflows)).BeginInit();
             this.SuspendLayout();
@@ -43,6 +44,7 @@
             this.dgWorkflows.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgWorkflows.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colName,
+            this.NextWorkflowName,
             this.ID});
             this.dgWorkflows.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgWorkflows.Location = new System.Drawing.Point(0, 0);
@@ -76,15 +78,23 @@
             // 
             // colName
             // 
-            this.colName.DataPropertyName = "name";
+            this.colName.DataPropertyName = "Name";
             this.colName.HeaderText = "Name";
             this.colName.Name = "colName";
             this.colName.ReadOnly = true;
-            this.colName.Width = 300;
+            this.colName.Width = 200;
+            // 
+            // NextWorkflowName
+            // 
+            this.NextWorkflowName.DataPropertyName = "NextWorkflowName";
+            this.NextWorkflowName.HeaderText = "Next Workflow Name";
+            this.NextWorkflowName.Name = "NextWorkflowName";
+            this.NextWorkflowName.ReadOnly = true;
+            this.NextWorkflowName.Width = 200;
             // 
             // ID
             // 
-            this.ID.DataPropertyName = "workflowId";
+            this.ID.DataPropertyName = "GUID";
             this.ID.HeaderText = "GUID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
@@ -114,6 +124,7 @@
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NextWorkflowName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
 
     }
