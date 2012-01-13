@@ -29,7 +29,7 @@ namespace WorkflowManagement
             {
                 DocName = dgWorkflows.SelectedRows[0].Cells[0].Value.ToString();
                 if (string.IsNullOrEmpty(DocName.Trim())) { DocName = "null"; }
-                workflowId =(Guid) dgWorkflows.SelectedRows[0].Cells[1].Value;
+                workflowId =(Guid) dgWorkflows.SelectedRows[0].Cells["ID"].Value;
             }
             
             if (!string.IsNullOrEmpty(DocName))
