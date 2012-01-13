@@ -92,8 +92,11 @@ namespace WebUI.Common
            // if (Permission.CheckModuleAccess(Permission.ModuleName_CylinderInfo, User)) 
           //      module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
 
-            if (Permission.CheckModuleAccess(Permission.ModuleName_Report, User)) 
+            if (Permission.CheckModuleAccess(Permission.ModuleName_Report, User))
                 module.Add("Reports", "/Admin/Reports.aspx");
+
+            if (Permission.CheckModuleAccess(Permission.ModuleName_SendToWorkflow, User))
+                module.Add("Send Cylinder to Workflow/Step", "/Admin/SendToWorkflow_Step.aspx");
 
             Employee user = GetCurentUser();
             SecurityController SecurityCtrl = new SecurityController();

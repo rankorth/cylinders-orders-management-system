@@ -31,8 +31,10 @@
         </tr>
         <tr>
             <td class="entry_label">
-                Cylinder Barcode To Send
-            </td>
+                Cylinder Barcode To Send<asp:RequiredFieldValidator 
+                    ID="RequiredFieldValidator2" runat="server" 
+                    ControlToValidate="txtCylinderBarCode" ErrorMessage=" *" ForeColor="Red"></asp:RequiredFieldValidator>
+&nbsp;</td>
             <td class="entry_data">
                 <asp:TextBox ID="txtCylinderBarCode" runat="server" ReadOnly="True" 
                     Width="250px"></asp:TextBox>
@@ -59,7 +61,7 @@
         <Columns>
             <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:LinkButton ID="lnkSend" runat="server">send</asp:LinkButton>
+                    <asp:LinkButton ID="lnkSend" runat="server" CausesValidation="False">send</asp:LinkButton>
                 </ItemTemplate>
                 <HeaderStyle Width="10px" />
             </asp:TemplateField>

@@ -32,7 +32,7 @@
                     ControlToValidate="txtStartDate" ErrorMessage=" *" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
             <td class="entry_data">
-            <asp:TextBox ID="txtStartDate" runat="server" Width="150px" ReadOnly="True"></asp:TextBox>
+            <asp:TextBox ID="txtStartDate" runat="server" Width="150px"></asp:TextBox>
             <asp:CalendarExtender ID="txtStartDate_CalendarExtender" runat="server" 
                 Enabled="True" TargetControlID="txtStartDate" Format="dd/MM/yyyy" 
                     TodaysDateFormat="dd/MM/yyyy">
@@ -43,7 +43,7 @@
                          ControlToValidate="txtEndDate" ErrorMessage=" *" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
             <td class="entry_data">
-            <asp:TextBox ID="txtEndDate" runat="server" Width="150px" ReadOnly="True"></asp:TextBox>
+            <asp:TextBox ID="txtEndDate" runat="server" Width="150px"></asp:TextBox>
             <asp:CalendarExtender ID="txtEndDate_CalendarExtender" runat="server" 
                 Enabled="True" TargetControlID="txtEndDate" Format="dd/MM/yyyy" 
                     TodaysDateFormat="dd/MM/yyyy">
