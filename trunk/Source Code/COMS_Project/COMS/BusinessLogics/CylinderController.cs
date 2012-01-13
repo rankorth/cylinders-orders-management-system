@@ -278,7 +278,7 @@ namespace BusinessLogics
             colorNo = (colorNo.Length == 1) ? ("0" + colorNo) : colorNo;
             cylNo = (cylNo.Length == 1) ? ("0" + cylNo) : cylNo;
             
-            return order_code + colorNo + "+" + cylNo + coreType;
+            return order_code + colorNo + "-" + cylNo + coreType;
         }
 
         //Tin (7-Jan-2012) added parameter to update cylinder status
