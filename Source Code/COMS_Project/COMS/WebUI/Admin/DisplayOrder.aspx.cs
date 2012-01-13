@@ -269,7 +269,7 @@ namespace WebUI.Admin
                 order.created_by = txtCreatedBy.Text;
                 //order.created_date = Convert.ToDateTime(txtCreateDate_CalendarExtender.SelectedDate);
                 //order.created_date = Convert.ToDateTime(txtCreateDate.Text);
-                order.created_date = DateTime.ParseExact(txtDeliveryDate.Text, "dd/mm/yyyy", null);
+                order.created_date = DateTime.ParseExact(txtCreateDate.Text, "dd/MM/yyyy", null);
                 populate_order(order, user);
 
                 Order_Detail orderDetail = new Order_Detail();
@@ -321,7 +321,7 @@ namespace WebUI.Admin
             order.redo_pct = (txtRedoPct.Text != "") ? Convert.ToInt32(txtRedoPct.Text) : 0;
             //order.delivery_date = Convert.ToDateTime(txtDeliveryDate_CalendarExtender.SelectedDate);
             //order.delivery_date = Convert.ToDateTime(txtDeliveryDate.Text);
-            order.delivery_date = DateTime.ParseExact(txtDeliveryDate.Text, "dd/mm/yyyy", null);
+            order.delivery_date = DateTime.ParseExact(txtDeliveryDate.Text, "dd/MM/yyyy", null);
             order.order_type = (rBtnOrderTypeNew.Checked) ? OrderConst.ORDERTYPE_NEW : OrderConst.ORDERTYPE_REDO;
             order.set_code = txtSetCode.Text;
             order.cylinder_type = txtCylType.Text;
