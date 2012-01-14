@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ErrorManagement.aspx.cs" Inherits="WebUI.Admin.ErrorManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ModuleName" runat="server">
-<asp:Literal ID="ltrModule_name" runat="server"></asp:Literal>
+    <asp:Literal ID="ltrModule_name" runat="server"></asp:Literal>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
     <ul>
@@ -14,7 +14,8 @@
             <td class="entry_label">
                 Error Code Message</td>
             <td class="entry_data">
-                <asp:TextBox BorderColor="black" maxlength="50" style="border-color:Black;width:336px;" ID="txtErrorCode" runat="server"></asp:TextBox>
+                <asp:TextBox BorderColor="black" maxlength="100" 
+                    style="border-color:Black;width:336px;" ID="txtErrorCode" runat="server"></asp:TextBox>
             </td>
         </tr>
     </table>

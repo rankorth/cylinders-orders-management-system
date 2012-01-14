@@ -40,50 +40,58 @@ namespace WebUI.Admin
         }
         protected void lnkSave_Click(object sender, EventArgs e)
         {
-            if (!ValidateInput())
+            try
             {
-                return;
-            }
-            if (hPageState.Value.Equals(Common.PageState.New))
-            {
-                COMSdbEntity.Role newRole = new COMSdbEntity.Role();
-                newRole.name = txtRoleName.Text.Trim();
-                newRole.created_by = base.GetCurentUser().username;
-                newRole.isactive = chkIsActive.Checked;
-
-                RoleController RoleCtrl = new RoleController();
-                RoleCtrl.SaveRole(newRole);
-                foreach (Guid ID in GetSelectedAccessIDs())
+                if (!ValidateInput())
                 {
-                    RoleCtrl.AddRightToRole(newRole, ID, newRole.created_by);
+                    return;
+                }
+                if (hPageState.Value.Equals(Common.PageState.New))
+                {
+                    COMSdbEntity.Role newRole = new COMSdbEntity.Role();
+                    newRole.name = txtRoleName.Text.Trim();
+                    newRole.created_by = base.GetCurentUser().username;
+                    newRole.isactive = chkIsActive.Checked;
+
+                    RoleController RoleCtrl = new RoleController();
+                    RoleCtrl.SaveRole(newRole);
+                    foreach (Guid ID in GetSelectedAccessIDs())
+                    {
+                        RoleCtrl.AddRightToRole(newRole, ID, newRole.created_by);
+                    }
+
+                    Common.Utility.ShowMessage("New Role has been added", Page);
+                }
+                if (hPageState.Value.Equals(Common.PageState.Update))
+                {
+                    Guid updateId = new Guid(hUpdateID.Value);
+                    RoleController RoleCtrl = new RoleController();
+                    COMSdbEntity.Role role = RoleCtrl.GetRoles(updateId);
+                    role.name = txtRoleName.Text.Trim();
+                    role.isactive = chkIsActive.Checked;
+                    role.updated_by = base.GetCurentUser().username;
+                    role.updated_date = DateTime.Now;
+
+
+                    List<Guid> selected_updateAccess = GetSelectedAccessIDs();
+                    RoleCtrl.RemoveAllRights(role);
+
+                    foreach (Guid id in selected_updateAccess)
+                    {
+                        RoleCtrl.AddRightToRole(role, id, base.GetCurentUser().username);
+                    }
+
                 }
 
-                
+
+                load_data();
+                CleanPageState();
+                Common.Utility.ShowMessage("Role has been updated", Page);
             }
-            if (hPageState.Value.Equals(Common.PageState.Update))
+            catch (Exception ex)
             {
-                Guid updateId = new Guid(hUpdateID.Value);
-                RoleController RoleCtrl = new RoleController();
-                COMSdbEntity.Role role = RoleCtrl.GetRoles(updateId);
-                role.name = txtRoleName.Text.Trim();
-                role.isactive = chkIsActive.Checked;
-                role.updated_by = base.GetCurentUser().username;
-                role.updated_date = DateTime.Now;
-
-
-                List<Guid> selected_updateAccess = GetSelectedAccessIDs();
-                RoleCtrl.RemoveAllRights(role);
-
-                foreach (Guid id in selected_updateAccess)
-                {
-                    RoleCtrl.AddRightToRole(role, id, base.GetCurentUser().username);
-                }
-
+                Common.Utility.ShowMessage("Production has been started now.", Page);
             }
-
-
-            load_data();
-            CleanPageState();
 
         }
 

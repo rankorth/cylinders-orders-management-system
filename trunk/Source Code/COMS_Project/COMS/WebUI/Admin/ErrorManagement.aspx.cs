@@ -40,23 +40,33 @@ namespace WebUI.Admin
         }
         protected void lnkSave_Click(object sender, EventArgs e)
         {
-            if (!ValidateInput())
+            try
             {
-                return;
+                if (!ValidateInput())
+                {
+                    return;
+                }
+                if (hPageState.Value.Equals(Common.PageState.New))
+                {
+                    Error newError = new Error();
+                    newError.name = txtErrorCode.Text.Trim();
+                    mainctrl.createError(newError);
+                }
+                if (hPageState.Value.Equals(Common.PageState.Update))
+                {
+                    Guid updateId = new Guid(hUpdateID.Value);
+                    mainctrl.updateError(updateId, txtErrorCode.Text.Trim());
+                }
+                load_data();
+            
+                CleanPageState();
+
+                Common.Utility.ShowMessage("New Workflow Error message has saved", Page);
             }
-            if (hPageState.Value.Equals(Common.PageState.New))
+            catch(Exception ex)
             {
-                Error newError = new Error();
-                newError.name = txtErrorCode.Text.Trim();
-                mainctrl.createError(newError);
+                Common.Utility.ShowMessage("There has been system error happened. Please contact Administrator", Page);
             }
-            if (hPageState.Value.Equals(Common.PageState.Update))
-            {
-                Guid updateId = new Guid(hUpdateID.Value);
-                mainctrl.updateError(updateId, txtErrorCode.Text.Trim());
-            }
-            load_data();
-            CleanPageState();
         }
 
         private void CleanPageState()
@@ -75,13 +85,21 @@ namespace WebUI.Admin
 
         protected void lnkDelete_Click(object sender, EventArgs e)
         {
-            foreach (Guid ID in GetSelectedIDs())
+            try
             {
-                mainctrl.deleteError(ID);
-            }
+                foreach (Guid ID in GetSelectedIDs())
+                {
+                    mainctrl.deleteError(ID);
+                }
 
-            load_data();
-            CleanPageState();
+                load_data();
+                CleanPageState();
+                Common.Utility.ShowMessage("Successfully deleted.", Page);
+            }
+            catch (Exception ex)
+            {
+                Common.Utility.ShowMessage("There has been system error happened. Please contact Administrator", Page);
+            }
         }
 
         protected void gvErrorMsgs_RowDataBound(object sender, GridViewRowEventArgs e)

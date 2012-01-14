@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="DisplayOrder.aspx.cs" Inherits="WebUI.Admin.DisplayOrder" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
-<ul>
+    <ul>
         <li><asp:LinkButton ID="lnkSave" runat="server" onclick="lnkSave_Click" CausesValidation="true">Save</asp:LinkButton>
             <asp:ConfirmButtonExtender ID="lnkSave_ConfirmButtonExtender" runat="server" 
                 ConfirmText="Do you want to save/update this order?" Enabled="True" TargetControlID="lnkSave">
@@ -37,8 +37,9 @@
             <td class="entry_label" colspan="6" align="left"><asp:Label ID="lblMsg" CssClass="errorMsg" runat="server" /></td>
         </tr>
         <tr>
-            <td class="entry_data" style="width: 78px">Date: <asp:TextBox ID="txtCreateDate" 
-                    runat="server" BorderWidth="1" Width="80px" />
+            <td class="entry_data" style="width: 78px">Date: 
+                <asp:TextBox ID="txtCreateDate" 
+                    runat="server" BorderWidth="1" Width="80px" MaxLength="20" />
                 <asp:CalendarExtender ID="txtCreateDate_CalendarExtender" runat="server" 
                     Enabled="True" TargetControlID="txtCreateDate" 
                     DaysModeTitleFormat="dd/MM/yyyy" Format="dd/MM/yyyy" 
@@ -65,7 +66,8 @@
             <td class="entry_data" style="width: 98px"><asp:TextBox ID="txtCustomerRep" runat="server" 
                     BorderWidth="1" MaxLength="50" Width="80px" /></td>
              <td class="entry_label" style="width: 70px">Cylinder Type</td>
-            <td class="entry_data" style="width: 101px"><asp:TextBox ID="txtCylType" runat="server" BorderWidth="1" Width="40px" /></td>
+            <td class="entry_data" style="width: 101px"><asp:TextBox ID="txtCylType" 
+                    runat="server" BorderWidth="1" Width="40px" MaxLength="50" /></td>
              <td class="entry_label" style="width: 80px">Price Type</td>
             <td class="entry_data" style="width: 80px"><asp:TextBox ID="txtPriceType" runat="server" 
                     BorderWidth="1" MaxLength="10" Width="80px"/></td>
@@ -347,7 +349,8 @@
                      BorderWidth="1" Width="120px" MaxLength="20" /></td>
              <td class="entry_label" style="width: 70px">Delivery Date:</td>
              <td class="entry_data" style="width: 101px">
-                 <asp:TextBox ID="txtDeliveryDate" runat="server" BorderWidth="1" ReadOnly="false" Width="80px"></asp:TextBox>
+                 <asp:TextBox ID="txtDeliveryDate" runat="server" BorderWidth="1" 
+                     ReadOnly="false" Width="80px" MaxLength="20"></asp:TextBox>
                  <asp:CalendarExtender ID="txtDeliveryDate_CalendarExtender" runat="server" 
                      Enabled="True" TargetControlID="txtDeliveryDate" Format="dd/MM/yyyy" 
                      DaysModeTitleFormat="dd/MM/yyyy" TodaysDateFormat="dd/MM/yyyy">

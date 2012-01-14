@@ -98,6 +98,7 @@
     <Content Include="AjaxControlToolkit.Binary.NET4\tr-TR\AjaxControlToolkit.resources.dll" />
     <Content Include="AjaxControlToolkit.Binary.NET4\zh-CHS\AjaxControlToolkit.resources.dll" />
     <Content Include="AjaxControlToolkit.Binary.NET4\zh-CHT\AjaxControlToolkit.resources.dll" />
+    <Content Include="Blank.aspx" />
     <Content Include="CylinderProcess.aspx" />
     <Content Include="Index.aspx" />
     <Content Include="Reports\EmployeePerformance.aspx" />
@@ -245,6 +246,13 @@
     </Compile>
     <Compile Include="Admin\WorkflowErrorDescription.aspx.designer.cs">
       <DependentUpon>WorkflowErrorDescription.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Blank.aspx.cs">
+      <DependentUpon>Blank.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Blank.aspx.designer.cs">
+      <DependentUpon>Blank.aspx</DependentUpon>
     </Compile>
     <Compile Include="Common\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
