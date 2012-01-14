@@ -18,8 +18,10 @@ namespace WebUI
                 
                 if (module_panel.Controls.Count < 1)
                 {
+                    lblLoginUserName.Text = "";
                     if (bp.GetCurentUser() != null)
                     {
+                        lblLoginUserName.Text = "Welcome : " + bp.GetCurentUser().username;
                         bp.GenerateMenu(module_panel);
                     }
                 }

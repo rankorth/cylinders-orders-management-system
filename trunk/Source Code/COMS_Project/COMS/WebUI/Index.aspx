@@ -24,7 +24,8 @@
             Password</td>
         <td class="entry_data">
             <asp:TextBox BorderColor="black" ID="txtPassword" runat="server" MaxLength="50" 
-                Width="336px" TextMode="Password"></asp:TextBox>
+                Width="336px" TextMode="Password" ontextchanged="lnkLogin_Click" 
+                AutoPostBack="True"></asp:TextBox>
         </td>
     </tr>
 </table>
