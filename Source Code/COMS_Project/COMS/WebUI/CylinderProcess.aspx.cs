@@ -27,6 +27,7 @@ namespace WebUI
                 ChangeStep(step.scan_cylinder_start);
                 
                 Session[pagesession] = PageData;
+                txtScanCylinderCode.Focus();
                 
             }
             else
@@ -101,6 +102,8 @@ namespace WebUI
                 else
                 {
                     ErrorMessage.Text = "This is not the cylinder which the process started.<br /> Please scan correct cylinder.";
+                    txtCylinderCodeToEnd.Text = "";
+                    txtCylinderCodeToEnd.Focus();
                 }
             }
             show_action_panel();
@@ -268,6 +271,8 @@ namespace WebUI
                 else
                 {
                     ErrorMessage.Text = "Employee Code not found. Contact Administrator or Department head.";
+                    txtEmployeeBarCode.Text = "";
+                    txtEmployeeBarCode.Focus();
                 }
             }
             show_action_panel();
@@ -299,8 +304,9 @@ namespace WebUI
             Session[pagesession] = PageData;
 
             if (StepToChange == step.scan_cylinder_start)
-            {
+            {txtScanCylinderCode.Text = "";
                 txtScanCylinderCode.Focus();
+                
             }
             else if (StepToChange == step.select_actions)
             {
@@ -310,13 +316,19 @@ namespace WebUI
             }
             else if (StepToChange == step.error_reason)
             {
+                txtEmployeeBarCodeToReport.Text = "";
+                txtEmployeeBarCodeToReport.Focus();
             }
             else if (StepToChange == step.scan_cylinder_toend)
             {
+                
+                txtCylinderCodeToEnd.Text = "";
                 txtCylinderCodeToEnd.Focus();
             }
             else if (StepToChange == step.scan_employee_code)
             {
+                txtEmployeeBarCode.Text = "";
+                txtEmployeeBarCode.Focus();
             }
         }
 
