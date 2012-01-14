@@ -127,6 +127,7 @@ namespace WebUI.Admin
                 {
                     UpdateCylinderController UpdateCylCtrl = new UpdateCylinderController();
                     UpdateCylCtrl.SendToWorkflowOrStep(new Guid(hidCylinderId.Value), base.GetCurentUser(), new Guid(ddlStep.SelectedValue.ToString()), txtRemark.Text);
+                    Common.Utility.ShowMessage("Cylinder has been sent successfully.", Page);
                 }
             }
             catch

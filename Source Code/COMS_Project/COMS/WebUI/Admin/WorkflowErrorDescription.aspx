@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
 <ul>
         <li><asp:LinkButton ID="lnkSearch" runat="server">Search</asp:LinkButton></li>
-        <li><asp:LinkButton ID="lnkSave" runat="server">Save</asp:LinkButton></li>
+        <li><asp:LinkButton ID="lnkSave" runat="server" onclick="lnkSave_Click">Save</asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkDelete" runat="server">Delete</asp:LinkButton></li>
 </ul>
 </asp:Content>

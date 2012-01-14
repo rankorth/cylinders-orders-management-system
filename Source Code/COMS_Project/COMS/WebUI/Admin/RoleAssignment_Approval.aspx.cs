@@ -42,7 +42,12 @@ namespace WebUI.Admin
         {
             try
             {
+                if (GetSelectedIDs().Count() <= 0)
+                {
+                    return;
+                }
                 RoleCtrl.Approve_Assign_Roles(GetSelectedIDs());
+               
                 load_data();
                 Common.Utility.ShowMessage("Assigned Role has been approved", Page);
             }
@@ -54,7 +59,10 @@ namespace WebUI.Admin
 
         protected void lnkReject_Click(object sender, EventArgs e)
         {
-           
+            if((GetSelectedIDs().Count()<=0))
+            {
+                return;
+            }
             RoleCtrl.Reject_Assign_Roles(GetSelectedIDs());
             load_data();
             Common.Utility.ShowMessage("Selected Role has been rejected", Page);
