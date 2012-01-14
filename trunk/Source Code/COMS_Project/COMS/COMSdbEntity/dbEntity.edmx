@@ -117,7 +117,7 @@
           <Property Name="rightsId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="module_name" Type="nvarchar" MaxLength="50" />
-          <Property Name="action" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="action" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
@@ -168,7 +168,7 @@
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
-          <Property Name="status" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="Cylinder_Log">
           <Key>
@@ -185,8 +185,8 @@
           <Property Name="error_desc" Type="nvarchar" MaxLength="255" />
           <Property Name="stepId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="remark" Type="nvarchar" MaxLength="50" />
-          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="255" />
+          <Property Name="status" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -263,21 +263,21 @@
           <Property Name="customer_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="customer_rep" Type="nvarchar" MaxLength="50" />
           <Property Name="product_name" Type="nvarchar" MaxLength="255" />
-          <Property Name="price_type" Type="nvarchar" MaxLength="10" />
-          <Property Name="redo_pct" Type="int" />
+          <Property Name="price_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="redo_pct" Type="decimal" Scale="2" />
           <Property Name="old_core" Type="bit" />
           <Property Name="delivery_date" Type="datetime" />
-          <Property Name="order_type" Type="nvarchar" MaxLength="5" />
-          <Property Name="status" Type="nvarchar" MaxLength="5" />
-          <Property Name="set_code" Type="nvarchar" MaxLength="10" />
-          <Property Name="cylinder_type" Type="nvarchar" MaxLength="5" />
-          <Property Name="old_order_code" Type="nvarchar" MaxLength="10" />
-          <Property Name="priority" Type="nvarchar" MaxLength="5" />
+          <Property Name="order_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="set_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="cylinder_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="old_order_code" Type="nvarchar" MaxLength="50" />
+          <Property Name="priority" Type="nvarchar" MaxLength="50" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="created_by" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="updated_date" Type="datetime" />
           <Property Name="updated_by" Type="nvarchar" MaxLength="50" />
-          <Property Name="belong_to_set" Type="nvarchar" MaxLength="10" />
+          <Property Name="belong_to_set" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Order_Detail">
           <Key>
@@ -294,29 +294,29 @@
           <Property Name="prod_width_stretch" Type="decimal" Scale="2" />
           <Property Name="prod_print_height" Type="decimal" Scale="2" />
           <Property Name="prod_height_stretch" Type="decimal" Scale="2" />
-          <Property Name="length_dir_repeat" Type="int" />
-          <Property Name="circum_dir_repeat" Type="int" />
-          <Property Name="web_print_width" Type="int" />
-          <Property Name="web_total_width" Type="int" />
+          <Property Name="length_dir_repeat" Type="decimal" Scale="2" />
+          <Property Name="circum_dir_repeat" Type="decimal" Scale="2" />
+          <Property Name="web_print_width" Type="decimal" Scale="2" />
+          <Property Name="web_total_width" Type="decimal" Scale="2" />
           <Property Name="cyl_length" Type="decimal" Scale="2" />
           <Property Name="cyl_diameter" Type="decimal" Scale="2" />
-          <Property Name="eyemark_height" Type="int" />
-          <Property Name="eyemark_width" Type="int" />
+          <Property Name="eyemark_height" Type="decimal" Scale="2" />
+          <Property Name="eyemark_width" Type="decimal" Scale="2" />
           <Property Name="eyemark_color" Type="nvarchar" MaxLength="10" />
           <Property Name="eyemark_sign" Type="nvarchar" MaxLength="10" />
           <Property Name="eyemark_location" Type="nvarchar" MaxLength="10" />
           <Property Name="keyhole_type" Type="nvarchar" MaxLength="10" />
-          <Property Name="keyhole_inner_dia" Type="int" />
-          <Property Name="keyhole_outer_dia" Type="int" />
-          <Property Name="keyhole_angle" Type="int" />
+          <Property Name="keyhole_inner_dia" Type="decimal" Scale="2" />
+          <Property Name="keyhole_outer_dia" Type="decimal" Scale="2" />
+          <Property Name="keyhole_angle" Type="decimal" Scale="2" />
           <Property Name="keyhole_keyway" Type="nvarchar" MaxLength="10" />
-          <Property Name="color_count" Type="int" />
+          <Property Name="color_count" Type="decimal" Scale="2" />
           <Property Name="color_list" Type="nvarchar" MaxLength="12" />
-          <Property Name="new_cyl_count" Type="int" />
-          <Property Name="used_cyl_count" Type="int" />
+          <Property Name="new_cyl_count" Type="decimal" Scale="2" />
+          <Property Name="used_cyl_count" Type="decimal" Scale="2" />
           <Property Name="print_method" Type="nvarchar" MaxLength="5" />
           <Property Name="reg_mark_type" Type="nvarchar" MaxLength="10" />
-          <Property Name="splitline_size" Type="int" />
+          <Property Name="splitline_size" Type="decimal" Scale="2" />
           <Property Name="splitline_type" Type="nvarchar" MaxLength="10" />
           <Property Name="splitline_color" Type="nvarchar" MaxLength="10" />
           <Property Name="print_material" Type="nvarchar" MaxLength="10" />
@@ -688,6 +688,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="COMSModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="COMSEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="GenerateNewID" ReturnType="Collection(COMSModel.GenerateNewID_Result)" />
           <EntitySet Name="Access_Right" EntityType="COMSModel.Access_Right" />
           <EntitySet Name="AutoIDs" EntityType="COMSModel.AutoID" />
           <EntitySet Name="Customers" EntityType="COMSModel.Customer" />
@@ -697,6 +698,7 @@
           <EntitySet Name="Emp_Role_ref" EntityType="COMSModel.Emp_Role_ref" />
           <EntitySet Name="Employees" EntityType="COMSModel.Employee" />
           <EntitySet Name="Errors" EntityType="COMSModel.Error" />
+          <EntitySet Name="Formulae" EntityType="COMSModel.Formula" />
           <EntitySet Name="Orders" EntityType="COMSModel.Order" />
           <EntitySet Name="Order_Detail" EntityType="COMSModel.Order_Detail" />
           <EntitySet Name="Order_Log" EntityType="COMSModel.Order_Log" />
@@ -754,6 +756,10 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="Emp_Role_ref" EntitySet="Emp_Role_ref" />
           </AssociationSet>
+          <AssociationSet Name="FK_Formula_Step" Association="COMSModel.FK_Formula_Step">
+            <End Role="Step" EntitySet="Steps" />
+            <End Role="Formula" EntitySet="Formulae" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_Detail_Order" Association="COMSModel.FK_Order_Detail_Order">
             <End Role="Order" EntitySet="Orders" />
             <End Role="Order_Detail" EntitySet="Order_Detail" />
@@ -786,13 +792,10 @@
             <End Role="Workflow" EntitySet="Workflows" />
             <End Role="Step_ref" EntitySet="Step_ref" />
           </AssociationSet>
-          <FunctionImport Name="GenerateNewID" ReturnType="Collection(COMSModel.GenerateNewID_Result)" />
-          <EntitySet Name="Formulae" EntityType="COMSModel.Formula" />
-          <AssociationSet Name="FK_Formula_Step" Association="COMSModel.FK_Formula_Step">
-            <End Role="Step" EntitySet="Steps" />
-            <End Role="Formula" EntitySet="Formulae" />
-          </AssociationSet>
         </EntityContainer>
+        <ComplexType Name="GenerateNewID_Result">
+          <Property Type="Int64" Name="SequenceCode" Nullable="true" />
+        </ComplexType>
         <EntityType Name="Access_Right">
           <Key>
             <PropertyRef Name="rightsId" />
@@ -800,7 +803,7 @@
           <Property Type="Guid" Name="rightsId" Nullable="false" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="module_name" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="action" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="action" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="created_date" Nullable="false" />
           <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -854,7 +857,7 @@
           <Property Type="DateTime" Name="created_date" Nullable="false" />
           <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="updated_date" />
-          <Property Type="String" Name="status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="status" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Cylinder" FromRole="Cylinder" ToRole="Cylinder_Log" />
           <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Cylinder_Order_Detail" FromRole="Cylinder" ToRole="Order_Detail" />
           <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Cylinder_Workflow" FromRole="Cylinder" ToRole="Workflow" />
@@ -874,8 +877,8 @@
           <Property Type="String" Name="error_desc" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Guid" Name="stepId" Nullable="false" />
           <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="remark" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="remark" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="status" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cylinder" Relationship="COMSModel.FK_Cylinder_Log_Cylinder" FromRole="Cylinder_Log" ToRole="Cylinder" />
           <NavigationProperty Name="Employee" Relationship="COMSModel.FK_Cylinder_Log_Employee" FromRole="Cylinder_Log" ToRole="Employee" />
           <NavigationProperty Name="Step" Relationship="COMSModel.FK_Cylinder_Log_Step" FromRole="Cylinder_Log" ToRole="Step" />
@@ -938,6 +941,22 @@
           <Property Type="Guid" Name="errorId" Nullable="false" />
           <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Formula">
+          <Key>
+            <PropertyRef Name="formulaId" />
+          </Key>
+          <Property Type="Guid" Name="formulaId" Nullable="false" />
+          <Property Type="Guid" Name="stepId" Nullable="false" />
+          <Property Type="String" Name="formula1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="coef1" Nullable="false" />
+          <Property Type="Int32" Name="coef2" Nullable="false" />
+          <Property Type="Int32" Name="coef3" Nullable="false" />
+          <Property Type="Int32" Name="coef4" Nullable="false" />
+          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="created_date" Nullable="false" />
+          <Property Type="Boolean" Name="isactive" Nullable="false" />
+          <NavigationProperty Name="Step" Relationship="COMSModel.FK_Formula_Step" FromRole="Formula" ToRole="Step" />
+        </EntityType>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="orderId" />
@@ -947,21 +966,21 @@
           <Property Type="Guid" Name="customer_id" Nullable="false" />
           <Property Type="String" Name="customer_rep" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="product_name" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="price_type" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="redo_pct" />
+          <Property Type="String" Name="price_type" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="redo_pct" Precision="18" Scale="2" />
           <Property Type="Boolean" Name="old_core" />
           <Property Type="DateTime" Name="delivery_date" />
-          <Property Type="String" Name="order_type" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="status" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="set_code" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="cylinder_type" MaxLength="5" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="old_order_code" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="priority" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="order_type" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="status" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="set_code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="cylinder_type" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="old_order_code" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="priority" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="created_date" Nullable="false" />
           <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="updated_date" />
           <Property Type="String" Name="updated_by" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="belong_to_set" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="belong_to_set" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customer" Relationship="COMSModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="Order_Detail" Relationship="COMSModel.FK_Order_Detail_Order" FromRole="Order" ToRole="Order_Detail" />
           <NavigationProperty Name="Order_Log" Relationship="COMSModel.FK_Order_Log_Order" FromRole="Order" ToRole="Order_Log" />
@@ -981,29 +1000,29 @@
           <Property Type="Decimal" Name="prod_width_stretch" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="prod_print_height" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="prod_height_stretch" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="length_dir_repeat" />
-          <Property Type="Int32" Name="circum_dir_repeat" />
-          <Property Type="Int32" Name="web_print_width" />
-          <Property Type="Int32" Name="web_total_width" />
+          <Property Type="Decimal" Name="length_dir_repeat" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="circum_dir_repeat" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="web_print_width" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="web_total_width" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="cyl_length" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="cyl_diameter" Precision="18" Scale="2" />
-          <Property Type="Int32" Name="eyemark_height" />
-          <Property Type="Int32" Name="eyemark_width" />
+          <Property Type="Decimal" Name="eyemark_height" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="eyemark_width" Precision="18" Scale="2" />
           <Property Type="String" Name="eyemark_color" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="eyemark_sign" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="eyemark_location" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="keyhole_type" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="keyhole_inner_dia" />
-          <Property Type="Int32" Name="keyhole_outer_dia" />
-          <Property Type="Int32" Name="keyhole_angle" />
+          <Property Type="Decimal" Name="keyhole_inner_dia" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="keyhole_outer_dia" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="keyhole_angle" Precision="18" Scale="2" />
           <Property Type="String" Name="keyhole_keyway" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="color_count" />
+          <Property Type="Decimal" Name="color_count" Precision="18" Scale="2" />
           <Property Type="String" Name="color_list" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="new_cyl_count" />
-          <Property Type="Int32" Name="used_cyl_count" />
+          <Property Type="Decimal" Name="new_cyl_count" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="used_cyl_count" Precision="18" Scale="2" />
           <Property Type="String" Name="print_method" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="reg_mark_type" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="splitline_size" />
+          <Property Type="Decimal" Name="splitline_size" Precision="18" Scale="2" />
           <Property Type="String" Name="splitline_type" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="splitline_color" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="print_material" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -1098,10 +1117,10 @@
           <Property Type="Boolean" Name="isStep" Nullable="false" />
           <Property Type="Boolean" Name="isBegin" Nullable="false" />
           <NavigationProperty Name="Cylinder_Log" Relationship="COMSModel.FK_Cylinder_Log_Step" FromRole="Step" ToRole="Cylinder_Log" />
+          <NavigationProperty Name="Formulae" Relationship="COMSModel.FK_Formula_Step" FromRole="Step" ToRole="Formula" />
           <NavigationProperty Name="Step_ref" Relationship="COMSModel.FK_Step_ref_Step" FromRole="Step" ToRole="Step_ref" />
           <NavigationProperty Name="Step_ref1" Relationship="COMSModel.FK_Step_ref_Step1" FromRole="Step" ToRole="Step_ref" />
           <NavigationProperty Name="Workflow" Relationship="COMSModel.FK_Step_Workflow" FromRole="Step" ToRole="Workflow" />
-          <NavigationProperty Name="Formulae" Relationship="COMSModel.FK_Formula_Step" FromRole="Step" ToRole="Formula" />
         </EntityType>
         <EntityType Name="Step_ref">
           <Key>
@@ -1283,6 +1302,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Formula_Step">
+          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
+          <End Type="COMSModel.Formula" Role="Formula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="stepId" />
+            </Principal>
+            <Dependent Role="Formula">
+              <PropertyRef Name="stepId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_Detail_Order">
           <End Type="COMSModel.Order" Role="Order" Multiplicity="1" />
           <End Type="COMSModel.Order_Detail" Role="Order_Detail" Multiplicity="*" />
@@ -1379,43 +1410,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="GenerateNewID_Result">
-          <Property Type="Int64" Name="SequenceCode" Nullable="true" />
-        </ComplexType>
-        <EntityType Name="Formula">
-          <Key>
-            <PropertyRef Name="formulaId" />
-          </Key>
-          <Property Type="Guid" Name="formulaId" Nullable="false" />
-          <Property Type="Guid" Name="stepId" Nullable="false" />
-          <Property Type="String" Name="formula1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="coef1" Nullable="false" />
-          <Property Type="Int32" Name="coef2" Nullable="false" />
-          <Property Type="Int32" Name="coef3" Nullable="false" />
-          <Property Type="Int32" Name="coef4" Nullable="false" />
-          <Property Type="String" Name="created_by" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="created_date" Nullable="false" />
-          <Property Type="Boolean" Name="isactive" Nullable="false" />
-          <NavigationProperty Name="Step" Relationship="COMSModel.FK_Formula_Step" FromRole="Formula" ToRole="Step" />
-        </EntityType>
-        <Association Name="FK_Formula_Step">
-          <End Type="COMSModel.Step" Role="Step" Multiplicity="1" />
-          <End Type="COMSModel.Formula" Role="Formula" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Step">
-              <PropertyRef Name="stepId" />
-            </Principal>
-            <Dependent Role="Formula">
-              <PropertyRef Name="stepId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="COMSModelStoreContainer" CdmEntityContainer="COMSEntities">
+          <FunctionImportMapping FunctionImportName="GenerateNewID" FunctionName="COMSModel.Store.GenerateNewID" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="COMSModel.GenerateNewID_Result">
+                <ScalarProperty Name="SequenceCode" ColumnName="SequenceCode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="Access_Right">
             <EntityTypeMapping TypeName="COMSModel.Access_Right">
               <MappingFragment StoreEntitySet="Access_Right">
@@ -1551,6 +1558,22 @@
               <MappingFragment StoreEntitySet="Error">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="errorId" ColumnName="errorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Formulae">
+            <EntityTypeMapping TypeName="COMSModel.Formula">
+              <MappingFragment StoreEntitySet="Formula">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="coef4" ColumnName="coef4" />
+                <ScalarProperty Name="coef3" ColumnName="coef3" />
+                <ScalarProperty Name="coef2" ColumnName="coef2" />
+                <ScalarProperty Name="coef1" ColumnName="coef1" />
+                <ScalarProperty Name="formula1" ColumnName="formula" />
+                <ScalarProperty Name="stepId" ColumnName="stepId" />
+                <ScalarProperty Name="formulaId" ColumnName="formulaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1739,29 +1762,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GenerateNewID" FunctionName="COMSModel.Store.GenerateNewID" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="COMSModel.GenerateNewID_Result">
-                <ScalarProperty Name="SequenceCode" ColumnName="SequenceCode" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <EntitySetMapping Name="Formulae">
-            <EntityTypeMapping TypeName="COMSModel.Formula">
-              <MappingFragment StoreEntitySet="Formula">
-                <ScalarProperty Name="isactive" ColumnName="isactive" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-                <ScalarProperty Name="created_by" ColumnName="created_by" />
-                <ScalarProperty Name="coef4" ColumnName="coef4" />
-                <ScalarProperty Name="coef3" ColumnName="coef3" />
-                <ScalarProperty Name="coef2" ColumnName="coef2" />
-                <ScalarProperty Name="coef1" ColumnName="coef1" />
-                <ScalarProperty Name="formula1" ColumnName="formula" />
-                <ScalarProperty Name="stepId" ColumnName="stepId" />
-                <ScalarProperty Name="formulaId" ColumnName="formulaId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1783,28 +1783,29 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="dbEntity" ZoomLevel="85">
-        <EntityTypeShape EntityType="COMSModel.Access_Right" Width="1.5" PointX="3" PointY="1" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="COMSModel.AutoID" Width="1.5" PointX="5.75" PointY="0.75" Height="1.4033821614583246" />
+        <EntityTypeShape EntityType="COMSModel.Access_Right" Width="1.5" PointX="3" PointY="1.125" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="COMSModel.AutoID" Width="1.5" PointX="5.75" PointY="0.75" Height="1.4033821614583388" />
         <EntityTypeShape EntityType="COMSModel.Customer" Width="1.5" PointX="1.5" PointY="30.875" Height="4.0956022135416674" />
-        <EntityTypeShape EntityType="COMSModel.Cylinder" Width="1.5" PointX="5.25" PointY="14.625" Height="4.480205078124996" />
+        <EntityTypeShape EntityType="COMSModel.Cylinder" Width="1.5" PointX="5.25" PointY="14.625" Height="4.48020507812501" />
         <EntityTypeShape EntityType="COMSModel.Cylinder_Log" Width="1.5" PointX="7.5" PointY="16.875" Height="4.0956022135416674" />
         <EntityTypeShape EntityType="COMSModel.Department" Width="1.5" PointX="0.75" PointY="13" Height="2.7494921875000102" />
-        <EntityTypeShape EntityType="COMSModel.Emp_Role_ref" Width="1.5" PointX="5.25" PointY="10" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="COMSModel.Employee" Width="1.5" PointX="3" PointY="9.375" Height="4.2879036458333246" />
+        <EntityTypeShape EntityType="COMSModel.Emp_Role_ref" Width="1.5" PointX="5.25" PointY="10.125" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="COMSModel.Employee" Width="1.5" PointX="3" PointY="9.5" Height="4.2879036458333246" />
         <EntityTypeShape EntityType="COMSModel.Error" Width="1.5" PointX="7.75" PointY="0.75" Height="1.4033821614583246" />
+        <EntityTypeShape EntityType="COMSModel.Formula" Width="1.5" PointX="7.5" PointY="24.5" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="COMSModel.Order" Width="1.5" PointX="0.75" PointY="22.25" Height="5.4417122395833246" />
-        <EntityTypeShape EntityType="COMSModel.Order_Detail" Width="1.5" PointX="3" PointY="20.125" Height="9.6723437499999818" />
-        <EntityTypeShape EntityType="COMSModel.Order_Log" Width="1.5" PointX="8.25" PointY="12.375" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="COMSModel.Order_Detail" Width="1.5" PointX="3" PointY="20.125" Height="9.67234375000001" />
+        <EntityTypeShape EntityType="COMSModel.Order_Log" Width="1.5" PointX="8.25" PointY="12.375" Height="3.1340950520833388" />
         <EntityTypeShape EntityType="COMSModel.Printer" Width="1.5" PointX="3.75" PointY="31.125" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="COMSModel.Role" Width="1.5" PointX="3" PointY="5.125" Height="2.7494921874999818" />
-        <EntityTypeShape EntityType="COMSModel.Role_Right_ref" Width="1.5" PointX="5.25" PointY="5.125" Height="2.7494921874999818" />
-        <EntityTypeShape EntityType="COMSModel.Step" Width="1.5" PointX="5.25" PointY="23.5" Height="4.8648079427083388" />
-        <EntityTypeShape EntityType="COMSModel.Step_ref" Width="1.5" PointX="10.5" PointY="20.25" Height="3.1340950520833246" />
-        <EntityTypeShape EntityType="COMSModel.Workflow" Width="1.5" PointX="3" PointY="15" Height="3.9033007812499818" />
+        <EntityTypeShape EntityType="COMSModel.Role" Width="1.5" PointX="3" PointY="5.25" Height="2.7494921875000102" />
+        <EntityTypeShape EntityType="COMSModel.Role_Right_ref" Width="1.5" PointX="5.25" PointY="5.25" Height="2.7494921875000102" />
+        <EntityTypeShape EntityType="COMSModel.Step" Width="1.5" PointX="5.25" PointY="23.625" Height="4.8648079427083388" />
+        <EntityTypeShape EntityType="COMSModel.Step_ref" Width="1.5" PointX="10.5" PointY="20.125" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="COMSModel.Workflow" Width="1.5" PointX="3" PointY="15" Height="3.9033007812500102" />
         <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Access_Right" >
-          <ConnectorPoint PointX="4.5" PointY="3.078837890624996" />
-          <ConnectorPoint PointX="5.46875" PointY="3.078837890624996" />
-          <ConnectorPoint PointX="5.46875" PointY="5.125" />
+          <ConnectorPoint PointX="4.5" PointY="3.1413378906250031" />
+          <ConnectorPoint PointX="5.46875" PointY="3.1413378906250031" />
+          <ConnectorPoint PointX="5.46875" PointY="5.25" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Order_Customer" >
           <ConnectorPoint PointX="1.875" PointY="30.875" />
@@ -1815,110 +1816,114 @@
           <ConnectorPoint PointX="3.75" PointY="32.884348958333334" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Cylinder" >
-          <ConnectorPoint PointX="6.75" PointY="17.990102539062498" />
-          <ConnectorPoint PointX="7.5" PointY="17.990102539062498" />
+          <ConnectorPoint PointX="6.75" PointY="17.990102539062505" />
+          <ConnectorPoint PointX="7.5" PointY="17.990102539062505" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Order_Detail" >
           <ConnectorPoint PointX="4.5" PointY="20.126152846153843" />
           <ConnectorPoint PointX="4.875" PointY="19.751152846153843" />
-          <ConnectorPoint PointX="4.875" PointY="16.865102539062498" />
-          <ConnectorPoint PointX="5.25" PointY="16.865102539062498" />
+          <ConnectorPoint PointX="4.875" PointY="16.865102539062505" />
+          <ConnectorPoint PointX="5.25" PointY="16.865102539062505" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="17.94670166015624" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="17.94670166015624" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="17.94670166015624" />
-          <ConnectorPoint PointX="5.25" PointY="17.94670166015624" />
+          <ConnectorPoint PointX="4.5" PointY="17.946701660156258" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="17.946701660156258" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="17.946701660156258" />
+          <ConnectorPoint PointX="5.25" PointY="17.946701660156258" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Employee" >
-          <ConnectorPoint PointX="4.5" PointY="9.65625" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="9.65625" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="9.65625" />
-          <ConnectorPoint PointX="7.84375" PointY="9.65625" />
+          <ConnectorPoint PointX="4.5" PointY="9.78125" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="9.78125" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="9.78125" />
+          <ConnectorPoint PointX="7.84375" PointY="9.78125" />
           <ConnectorPoint PointX="7.84375" PointY="16.875" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Cylinder_Log_Step" >
-          <ConnectorPoint PointX="6.75" PointY="23.501152846153843" />
-          <ConnectorPoint PointX="7.125" PointY="23.126152846153843" />
-          <ConnectorPoint PointX="7.125" PointY="18.922801106770834" />
-          <ConnectorPoint PointX="7.5" PointY="18.922801106770834" />
+          <ConnectorPoint PointX="6.75" PointY="23.626152846153843" />
+          <ConnectorPoint PointX="7.125" PointY="23.251152846153843" />
+          <ConnectorPoint PointX="7.125" PointY="19.511604376302081" />
+          <ConnectorPoint PointX="7.5" PointY="19.511604376302081" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Employee_Department" >
-          <ConnectorPoint PointX="2.25" PointY="13.331451822916662" />
-          <ConnectorPoint PointX="3" PointY="13.331451822916662" />
+          <ConnectorPoint PointX="2.25" PointY="13.393951822916662" />
+          <ConnectorPoint PointX="3" PointY="13.393951822916662" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Workflow_Department" >
           <ConnectorPoint PointX="2.25" PointY="15.374746093750005" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="15.374746093750005" />
-          <ConnectorPoint PointX="2.7083333333333335" PointY="15.374746093750005" />
+          <ConnectorPoint PointX="2.6666666666666665" PointY="15.374746093750005" />
+          <ConnectorPoint PointX="2.8333333333333335" PointY="15.374746093750005" />
           <ConnectorPoint PointX="3" PointY="15.374746093750005" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Employee" >
-          <ConnectorPoint PointX="4.5" PointY="11.470896809895834" />
-          <ConnectorPoint PointX="5.25" PointY="11.470896809895834" />
+          <ConnectorPoint PointX="4.5" PointY="11.595896809895834" />
+          <ConnectorPoint PointX="5.25" PointY="11.595896809895834" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Emp_Role_ref_Role" >
-          <ConnectorPoint PointX="4.5" PointY="7.8744921874999818" />
-          <ConnectorPoint PointX="4.875" PointY="8.2494921874999818" />
-          <ConnectorPoint PointX="4.875" PointY="10.704196404947922" />
-          <ConnectorPoint PointX="5.25" PointY="10.704196404947922" />
+          <ConnectorPoint PointX="4.5" PointY="7.99949218750001" />
+          <ConnectorPoint PointX="4.875" PointY="8.37449218750001" />
+          <ConnectorPoint PointX="4.875" PointY="10.829196404947922" />
+          <ConnectorPoint PointX="5.25" PointY="10.829196404947922" />
+        </AssociationConnector>
+        <AssociationConnector Association="COMSModel.FK_Formula_Step" >
+          <ConnectorPoint PointX="6.75" PointY="26.067047526041662" />
+          <ConnectorPoint PointX="7.5" PointY="26.067047526041662" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Order_Detail_Order" >
           <ConnectorPoint PointX="2.25" PointY="24.970856119791662" />
           <ConnectorPoint PointX="3" PointY="24.970856119791662" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Order_Log_Order" >
-          <ConnectorPoint PointX="2.25" PointY="22.251152846153843" />
-          <ConnectorPoint PointX="2.625" PointY="21.876152846153843" />
-          <ConnectorPoint PointX="2.625" PointY="14.143951822916662" />
-          <ConnectorPoint PointX="4.791666666666667" PointY="14.143951822916662" />
-          <ConnectorPoint PointX="4.958333333333333" PointY="14.143951822916662" />
-          <ConnectorPoint PointX="7.760416666666667" PointY="14.143951822916662" />
-          <ConnectorPoint PointX="7.927083333333333" PointY="14.143951822916662" />
-          <ConnectorPoint PointX="8.25" PointY="14.143951822916662" />
+          <ConnectorPoint PointX="1.5" PointY="22.25" />
+          <ConnectorPoint PointX="1.5" PointY="15.99949218750001" />
+          <ConnectorPoint PointX="2.75" PointY="15.99949218750001" />
+          <ConnectorPoint PointX="2.75" PointY="14.206451822916662" />
+          <ConnectorPoint PointX="4.791666666666667" PointY="14.206451822916662" />
+          <ConnectorPoint PointX="4.958333333333333" PointY="14.206451822916662" />
+          <ConnectorPoint PointX="7.760416666666667" PointY="14.206451822916662" />
+          <ConnectorPoint PointX="7.927083333333333" PointY="14.206451822916662" />
+          <ConnectorPoint PointX="8.25" PointY="14.206451822916662" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Order_Log_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="15.932551769531248" />
-          <ConnectorPoint PointX="4.875" PointY="15.932551769531248" />
-          <ConnectorPoint PointX="4.875" PointY="13.542870221354171" />
-          <ConnectorPoint PointX="7.760416666666667" PointY="13.542870221354171" />
-          <ConnectorPoint PointX="7.927083333333333" PointY="13.542870221354171" />
-          <ConnectorPoint PointX="8.25" PointY="13.542870221354171" />
+          <ConnectorPoint PointX="4.5" PointY="15.932551769531251" />
+          <ConnectorPoint PointX="4.875" PointY="15.932551769531251" />
+          <ConnectorPoint PointX="4.875" PointY="13.636620221354171" />
+          <ConnectorPoint PointX="7.760416666666667" PointY="13.636620221354171" />
+          <ConnectorPoint PointX="7.927083333333333" PointY="13.636620221354171" />
+          <ConnectorPoint PointX="8.25" PointY="13.636620221354171" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Role_Right_ref_Role" >
-          <ConnectorPoint PointX="4.5" PointY="6.4684935937499972" />
-          <ConnectorPoint PointX="5.25" PointY="6.4684935937499972" />
+          <ConnectorPoint PointX="4.5" PointY="6.5934935937500114" />
+          <ConnectorPoint PointX="5.25" PointY="6.5934935937500114" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_ref_Step" >
-          <ConnectorPoint PointX="6.75" PointY="27.968201497395839" />
-          <ConnectorPoint PointX="11.5039078125" PointY="27.968201497395839" />
-          <ConnectorPoint PointX="11.5039078125" PointY="23.384095052083325" />
+          <ConnectorPoint PointX="6.75" PointY="28.093201497395832" />
+          <ConnectorPoint PointX="11.25" PointY="28.093201497395832" />
+          <ConnectorPoint PointX="11.25" PointY="23.259095052083325" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_ref_Step1" >
-          <ConnectorPoint PointX="6.75" PointY="23.938078923076915" />
-          <ConnectorPoint PointX="10.97070140625" PointY="23.938078923076915" />
-          <ConnectorPoint PointX="10.97070140625" PointY="23.384095052083325" />
+          <ConnectorPoint PointX="6.75" PointY="24.063078923076915" />
+          <ConnectorPoint PointX="10.8437475" PointY="24.063078923076915" />
+          <ConnectorPoint PointX="10.8437475" PointY="23.259095052083325" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="18.872145935096135" />
-          <ConnectorPoint PointX="4.90625" PointY="19.278395935096135" />
-          <ConnectorPoint PointX="4.90625" PointY="25.932403971354169" />
-          <ConnectorPoint PointX="5.25" PointY="25.932403971354169" />
+          <ConnectorPoint PointX="4.47576923076923" PointY="18.90330078125001" />
+          <ConnectorPoint PointX="4.8160744349011217" PointY="19.2436059853819" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="19.361457115579658" />
+          <ConnectorPoint PointX="5.0625" PointY="19.490031550480779" />
+          <ConnectorPoint PointX="5.0625" PointY="26.057403971354169" />
+          <ConnectorPoint PointX="5.25" PointY="26.057403971354169" />
         </AssociationConnector>
         <AssociationConnector Association="COMSModel.FK_Step_ref_Workflow" >
-          <ConnectorPoint PointX="4.5" PointY="18.846761319711518" />
-          <ConnectorPoint PointX="4.8154304978679043" PointY="19.155334632843164" />
-          <ConnectorPoint PointX="4.9345695021320957" PointY="19.271883658753787" />
-          <ConnectorPoint PointX="4.979166666666667" PointY="19.315511319711518" />
-          <ConnectorPoint PointX="4.979166666666667" PointY="22.208598132812497" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="22.208598132812497" />
-          <ConnectorPoint PointX="7.208333333333333" PointY="22.208598132812497" />
-          <ConnectorPoint PointX="10.5" PointY="22.208598132812497" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="COMSModel.Formula" Width="1.5" PointX="7.5" PointY="24.375" Height="3.1340950520833388" />
-        <AssociationConnector Association="COMSModel.FK_Formula_Step" >
-          <ConnectorPoint PointX="6.75" PointY="25.942047526041669" />
-          <ConnectorPoint PointX="7.5" PointY="25.942047526041669" />
+          <ConnectorPoint PointX="4.5" PointY="18.846761319711547" />
+          <ConnectorPoint PointX="4.8160744349011217" PointY="19.162835754612669" />
+          <ConnectorPoint PointX="4.9339255650988791" PointY="19.280686884810425" />
+          <ConnectorPoint PointX="4.96875" PointY="19.315511319711547" />
+          <ConnectorPoint PointX="4.96875" PointY="22.146098132812497" />
+          <ConnectorPoint PointX="4.979166666666667" PointY="22.146098132812497" />
+          <ConnectorPoint PointX="5.145833333333333" PointY="22.146098132812497" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="22.146098132812497" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="22.146098132812497" />
+          <ConnectorPoint PointX="10.5" PointY="22.146098132812497" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

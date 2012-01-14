@@ -183,57 +183,75 @@ namespace WebUI.Admin
 
         protected void lnkDelete_Click(object sender, EventArgs e)
         {
-            foreach (Guid ID in GetSelectedIDs())
+            try
             {
-                mainctrl.deleteEmployee(ID);
-            }
+                foreach (Guid ID in GetSelectedIDs())
+                {
+                    mainctrl.deleteEmployee(ID);
+                }
 
-            load_data();
-            load_Roles_data();
-            CleanPageState();
+                load_data();
+                load_Roles_data();
+                CleanPageState();
+                Common.Utility.ShowMessage("User has been deleted successfully.", Page);
+            }
+            catch (Exception ex)
+            {
+                Common.Utility.ShowMessage("System error has occured. Please contact system administrator.", Page);
+            }
         }
 
         protected void lnkSave_Click(object sender, EventArgs e)
         {
-            if (!ValidateInput())
+            try
             {
-                LitStatus.Text = "";
-                return;
-            }
+                if (!ValidateInput())
+                {
+                    LitStatus.Text = "";
+                    return;
+                }
 
-            Employee newEmployee = new Employee();
-            newEmployee.employeeId = Guid.NewGuid();
-            newEmployee.barcode = txtBarCode.Text.Trim();
-            newEmployee.given_name = txtName.Text.Trim();
-            newEmployee.surname = txtSurname.Text.Trim();
-            newEmployee.barcode = txtBarCode.Text.Trim();
-            newEmployee.position = txtPosition.Text.Trim();
-            newEmployee.staff_code = txtStaffCode.Text.Trim();
-            newEmployee.username = txtUsername.Text.Trim();
-            newEmployee.password = txtPassword.Text.Trim();
-            newEmployee.created_date = DateTime.Today;
-            newEmployee.isactive = true;
-            newEmployee.created_by = base.GetCurentUser().username;
-            newEmployee.departmentId = new Guid(DepartmentList.SelectedValue);
+                Employee newEmployee = new Employee();
+                newEmployee.employeeId = Guid.NewGuid();
+                newEmployee.barcode = txtBarCode.Text.Trim();
+                newEmployee.given_name = txtName.Text.Trim();
+                newEmployee.surname = txtSurname.Text.Trim();
+                newEmployee.barcode = txtBarCode.Text.Trim();
+                newEmployee.position = txtPosition.Text.Trim();
+                newEmployee.staff_code = txtStaffCode.Text.Trim();
+                newEmployee.username = txtUsername.Text.Trim();
+                newEmployee.password = txtPassword.Text.Trim();
+                newEmployee.created_date = DateTime.Today;
+                newEmployee.isactive = true;
+                newEmployee.created_by = base.GetCurentUser().username;
+                newEmployee.departmentId = new Guid(DepartmentList.SelectedValue);
 
-            if (hPageState.Value.Equals(Common.PageState.New))
-            {
-                mainctrl.createEmployee(newEmployee);
-                List<Guid> selectedRoleID = GetSelectedRolesIDs();
-                mainctrl.assignNewRole(newEmployee.employeeId, selectedRoleID, base.GetCurentUser().username, DateTime.Today);
+                if (hPageState.Value.Equals(Common.PageState.New))
+                {
+                    mainctrl.createEmployee(newEmployee);
+                    List<Guid> selectedRoleID = GetSelectedRolesIDs();
+                    mainctrl.assignNewRole(newEmployee.employeeId, selectedRoleID, base.GetCurentUser().username, DateTime.Today);
+                    Common.Utility.ShowMessage("New User has been added.",Page);
+                }
+                if (hPageState.Value.Equals(Common.PageState.Update))
+                {
+                    newEmployee.employeeId = new Guid(hUpdateID.Value);
+                    newEmployee.updated_by = base.GetCurentUser().username;
+                    newEmployee.updated_date = DateTime.Today;
+                    mainctrl.updateEmployee(newEmployee);
+                    List<Guid> selectedRoleID = GetSelectedRolesIDs();
+                    mainctrl.updateRole(new Guid(hUpdateID.Value), selectedRoleID, base.GetCurentUser().username, DateTime.Today);
+                    Common.Utility.ShowMessage("User data has been updated.", Page);
+                }
+                load_data();
+                CleanPageState();
+                load_Roles_data();
+                
             }
-            if (hPageState.Value.Equals(Common.PageState.Update))
+            catch (Exception ex)
             {
-                newEmployee.employeeId = new Guid(hUpdateID.Value);
-                newEmployee.updated_by = base.GetCurentUser().username;
-                newEmployee.updated_date = DateTime.Today;
-                mainctrl.updateEmployee(newEmployee);
-                List<Guid> selectedRoleID = GetSelectedRolesIDs();
-                mainctrl.updateRole(new Guid(hUpdateID.Value), selectedRoleID, base.GetCurentUser().username, DateTime.Today);
+                Common.Utility.ShowMessage("System error has occured, Please contact administrator.", Page);
             }
-            load_data();
-            CleanPageState();
-            load_Roles_data();
         }
 
         private List<Guid> GetSelectedIDs()

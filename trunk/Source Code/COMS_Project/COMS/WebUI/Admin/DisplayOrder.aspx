@@ -139,7 +139,7 @@
                     ControlToValidate="txtLengthRepeats" SetFocusOnError="True" ForeColor="Red"/>
                 <asp:RangeValidator ID="vldTxtLengthRepeats" runat="server" 
                     ControlToValidate="txtLengthRepeats" ErrorMessage="*Must be number"  MaximumValue="99999" 
-                    MinimumValue="0" Type="Integer" SetFocusOnError="True" ForeColor="Red"/>
+                    MinimumValue="0" Type="Double" SetFocusOnError="True" ForeColor="Red"/>
             </td>
              <td class="entry_label" style="width: 80px">Circum. Dir. Repeats</td>
             <td class="entry_data" style="width: 80px">
@@ -149,7 +149,7 @@
                     ControlToValidate="txtCircumRepeats" SetFocusOnError="True" ForeColor="Red"/>
                 <asp:RangeValidator ID="vldTxtCircumRepeats" runat="server" 
                     ControlToValidate="txtCircumRepeats" ErrorMessage="*Must be number"  MaximumValue="99999" 
-                    MinimumValue="0" Type="Integer" SetFocusOnError="True" ForeColor="Red"/>
+                    MinimumValue="0" Type="Double" SetFocusOnError="True" ForeColor="Red"/>
             </td>
         </tr>
         <tr>
@@ -231,15 +231,15 @@
                 Inner Dia:<asp:TextBox ID="txtKHInnerDia" Width="40px" runat="server" BorderWidth="1" MaxLength="4"/> 
                 <asp:RangeValidator ID="vldTxtKHInnerDia" runat="server" 
                     ControlToValidate="txtKHInnerDia" ErrorMessage="*Must be number"  MaximumValue="99999" 
-                    MinimumValue="0" Type="Integer" SetFocusOnError="True" ForeColor="Red"/>
+                    MinimumValue="0" Type="Double" SetFocusOnError="True" ForeColor="Red"/>
                 Outer Dia:<asp:TextBox ID="txtKHOuterDia" Width="40px" runat="server" BorderWidth="1" MaxLength="4"/> 
                 <asp:RangeValidator ID="vldTxtKHOuterDia" runat="server" 
                     ControlToValidate="txtKHOuterDia" ErrorMessage="*Must be number"  MaximumValue="99999" 
-                    MinimumValue="0" Type="Integer" SetFocusOnError="True" ForeColor="Red"/>
+                    MinimumValue="0" Type="Double" SetFocusOnError="True" ForeColor="Red"/>
                 Angle:<asp:TextBox ID="txtKHAngle" Width="40px" runat="server" BorderWidth="1" MaxLength="4"/>
                 <asp:RangeValidator ID="vldTxtKHAngle" runat="server" 
                     ControlToValidate="txtKHAngle" ErrorMessage="*Must be number"  MaximumValue="99999" 
-                    MinimumValue="0" Type="Integer" SetFocusOnError="True" ForeColor="Red"/>
+                    MinimumValue="0" Type="Double" SetFocusOnError="True" ForeColor="Red"/>
                 Keyway: <asp:TextBox ID="txtKHKeyway" Width="60px" runat="server" BorderWidth="1" MaxLength="9"/>
             </td>
         </tr>
@@ -252,7 +252,7 @@
                     ControlToValidate="txtColorCount" SetFocusOnError="True" ForeColor="Red"/>
                 <asp:RangeValidator ID="vldTxtColorCount" runat="server" 
                     ControlToValidate="txtColorCount" ErrorMessage="*Must be from 1 to 12"  MaximumValue="12" 
-                    MinimumValue="1" Type="Integer" SetFocusOnError="True" ForeColor="Red"/>
+                    MinimumValue="1" Type="Double" SetFocusOnError="True" ForeColor="Red"/>
             </td>
              <td class="entry_label" style="width: 70px">Cyl. Count: </td>
              <td class="entry_data" style="width: 101px"><asp:TextBox ID="txtCylCount" 
@@ -263,7 +263,7 @@
                     ControlToValidate="txtCylCount" SetFocusOnError="True" ForeColor="Red"/>
                 <asp:RangeValidator ID="vldTxtCylCount" runat="server" 
                     ControlToValidate="txtCylCount" ErrorMessage="*Must be from 1 to 12"  MaximumValue="12" 
-                    MinimumValue="1" Type="Integer" SetFocusOnError="True" ForeColor="Red"/>
+                    MinimumValue="1" Type="Double" SetFocusOnError="True" ForeColor="Red"/>
             </td>
              <td class="entry_label" style="width: 80px">12.Print Method: </td>
              <td class="entry_data" style="width: 80px">

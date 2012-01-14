@@ -19,7 +19,8 @@ namespace WebUI.Reports
             base.PageLoad(Page);
             if (!IsPostBack)
             {
-
+                txtEndDate.Attributes.Add("readonly", "readonly");
+                txtStartDate.Attributes.Add("readonly", "readonly");
             }
         }
 
@@ -54,6 +55,10 @@ namespace WebUI.Reports
                 CylinderLogsInfoTable.AddCylinderLogInfoRow(row);
             }
 
+            if (CylinderLogsInfoTable.Rows.Count <= 0)
+            {
+                Common.Utility.ShowMessage("There is no search result to show.", Page);
+            }
             ReportParameter GivenName = new ReportParameter("GivenName", employee.given_name);
             ReportParameter StaffCode = new ReportParameter("StaffCode", employee.staff_code);
             ReportParameter Position = new ReportParameter("Position", employee.position);
@@ -74,7 +79,14 @@ namespace WebUI.Reports
 
         protected void lnkSearch_Click(object sender, EventArgs e)
         {
-            load_report();
+            try
+            {
+                load_report();
+            }
+            catch
+            {
+                Common.Utility.ShowMessage("There has been error in input data or System error found.", Page);
+            }
         }
 
     }

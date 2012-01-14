@@ -30,6 +30,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Workflow_Department", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Department), "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Workflow), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Employee", "Employee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Employee), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Emp_Role_ref_Role", "Role", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Role), "Emp_Role_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Emp_Role_ref), true)]
+[assembly: EdmRelationshipAttribute("COMSModel", "FK_Formula_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Formula", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Formula), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Detail_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Detail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Detail), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Log_Order", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Order), "Order_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Log), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Order_Log_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Order_Log", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Order_Log), true)]
@@ -38,7 +39,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Step1", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step), true)]
 [assembly: EdmRelationshipAttribute("COMSModel", "FK_Step_ref_Workflow", "Workflow", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Workflow), "Step_ref", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Step_ref), true)]
-[assembly: EdmRelationshipAttribute("COMSModel", "FK_Formula_Step", "Step", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(COMSdbEntity.Step), "Formula", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(COMSdbEntity.Formula), true)]
 
 #endregion
 
@@ -237,6 +237,22 @@ namespace COMSdbEntity
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Formula> Formulae
+        {
+            get
+            {
+                if ((_Formulae == null))
+                {
+                    _Formulae = base.CreateObjectSet<Formula>("Formulae");
+                }
+                return _Formulae;
+            }
+        }
+        private ObjectSet<Formula> _Formulae;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Order> Orders
         {
             get
@@ -377,22 +393,6 @@ namespace COMSdbEntity
             }
         }
         private ObjectSet<Workflow> _Workflows;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Formula> Formulae
-        {
-            get
-            {
-                if ((_Formulae == null))
-                {
-                    _Formulae = base.CreateObjectSet<Formula>("Formulae");
-                }
-                return _Formulae;
-            }
-        }
-        private ObjectSet<Formula> _Formulae;
 
         #endregion
         #region AddTo Methods
@@ -470,6 +470,14 @@ namespace COMSdbEntity
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Formulae EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFormulae(Formula formula)
+        {
+            base.AddObject("Formulae", formula);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Orders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToOrders(Order order)
@@ -539,14 +547,6 @@ namespace COMSdbEntity
         public void AddToWorkflows(Workflow workflow)
         {
             base.AddObject("Workflows", workflow);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Formulae EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToFormulae(Formula formula)
-        {
-            base.AddObject("Formulae", formula);
         }
 
         #endregion
@@ -3948,7 +3948,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> redo_pct
+        public Nullable<global::System.Decimal> redo_pct
         {
             get
             {
@@ -3963,8 +3963,8 @@ namespace COMSdbEntity
                 Onredo_pctChanged();
             }
         }
-        private Nullable<global::System.Int32> _redo_pct;
-        partial void Onredo_pctChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _redo_pct;
+        partial void Onredo_pctChanging(Nullable<global::System.Decimal> value);
         partial void Onredo_pctChanged();
     
         /// <summary>
@@ -4670,7 +4670,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> length_dir_repeat
+        public Nullable<global::System.Decimal> length_dir_repeat
         {
             get
             {
@@ -4685,8 +4685,8 @@ namespace COMSdbEntity
                 Onlength_dir_repeatChanged();
             }
         }
-        private Nullable<global::System.Int32> _length_dir_repeat;
-        partial void Onlength_dir_repeatChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _length_dir_repeat;
+        partial void Onlength_dir_repeatChanging(Nullable<global::System.Decimal> value);
         partial void Onlength_dir_repeatChanged();
     
         /// <summary>
@@ -4694,7 +4694,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> circum_dir_repeat
+        public Nullable<global::System.Decimal> circum_dir_repeat
         {
             get
             {
@@ -4709,8 +4709,8 @@ namespace COMSdbEntity
                 Oncircum_dir_repeatChanged();
             }
         }
-        private Nullable<global::System.Int32> _circum_dir_repeat;
-        partial void Oncircum_dir_repeatChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _circum_dir_repeat;
+        partial void Oncircum_dir_repeatChanging(Nullable<global::System.Decimal> value);
         partial void Oncircum_dir_repeatChanged();
     
         /// <summary>
@@ -4718,7 +4718,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> web_print_width
+        public Nullable<global::System.Decimal> web_print_width
         {
             get
             {
@@ -4733,8 +4733,8 @@ namespace COMSdbEntity
                 Onweb_print_widthChanged();
             }
         }
-        private Nullable<global::System.Int32> _web_print_width;
-        partial void Onweb_print_widthChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _web_print_width;
+        partial void Onweb_print_widthChanging(Nullable<global::System.Decimal> value);
         partial void Onweb_print_widthChanged();
     
         /// <summary>
@@ -4742,7 +4742,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> web_total_width
+        public Nullable<global::System.Decimal> web_total_width
         {
             get
             {
@@ -4757,8 +4757,8 @@ namespace COMSdbEntity
                 Onweb_total_widthChanged();
             }
         }
-        private Nullable<global::System.Int32> _web_total_width;
-        partial void Onweb_total_widthChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _web_total_width;
+        partial void Onweb_total_widthChanging(Nullable<global::System.Decimal> value);
         partial void Onweb_total_widthChanged();
     
         /// <summary>
@@ -4814,7 +4814,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> eyemark_height
+        public Nullable<global::System.Decimal> eyemark_height
         {
             get
             {
@@ -4829,8 +4829,8 @@ namespace COMSdbEntity
                 Oneyemark_heightChanged();
             }
         }
-        private Nullable<global::System.Int32> _eyemark_height;
-        partial void Oneyemark_heightChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _eyemark_height;
+        partial void Oneyemark_heightChanging(Nullable<global::System.Decimal> value);
         partial void Oneyemark_heightChanged();
     
         /// <summary>
@@ -4838,7 +4838,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> eyemark_width
+        public Nullable<global::System.Decimal> eyemark_width
         {
             get
             {
@@ -4853,8 +4853,8 @@ namespace COMSdbEntity
                 Oneyemark_widthChanged();
             }
         }
-        private Nullable<global::System.Int32> _eyemark_width;
-        partial void Oneyemark_widthChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _eyemark_width;
+        partial void Oneyemark_widthChanging(Nullable<global::System.Decimal> value);
         partial void Oneyemark_widthChanged();
     
         /// <summary>
@@ -4958,7 +4958,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> keyhole_inner_dia
+        public Nullable<global::System.Decimal> keyhole_inner_dia
         {
             get
             {
@@ -4973,8 +4973,8 @@ namespace COMSdbEntity
                 Onkeyhole_inner_diaChanged();
             }
         }
-        private Nullable<global::System.Int32> _keyhole_inner_dia;
-        partial void Onkeyhole_inner_diaChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _keyhole_inner_dia;
+        partial void Onkeyhole_inner_diaChanging(Nullable<global::System.Decimal> value);
         partial void Onkeyhole_inner_diaChanged();
     
         /// <summary>
@@ -4982,7 +4982,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> keyhole_outer_dia
+        public Nullable<global::System.Decimal> keyhole_outer_dia
         {
             get
             {
@@ -4997,8 +4997,8 @@ namespace COMSdbEntity
                 Onkeyhole_outer_diaChanged();
             }
         }
-        private Nullable<global::System.Int32> _keyhole_outer_dia;
-        partial void Onkeyhole_outer_diaChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _keyhole_outer_dia;
+        partial void Onkeyhole_outer_diaChanging(Nullable<global::System.Decimal> value);
         partial void Onkeyhole_outer_diaChanged();
     
         /// <summary>
@@ -5006,7 +5006,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> keyhole_angle
+        public Nullable<global::System.Decimal> keyhole_angle
         {
             get
             {
@@ -5021,8 +5021,8 @@ namespace COMSdbEntity
                 Onkeyhole_angleChanged();
             }
         }
-        private Nullable<global::System.Int32> _keyhole_angle;
-        partial void Onkeyhole_angleChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _keyhole_angle;
+        partial void Onkeyhole_angleChanging(Nullable<global::System.Decimal> value);
         partial void Onkeyhole_angleChanged();
     
         /// <summary>
@@ -5054,7 +5054,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> color_count
+        public Nullable<global::System.Decimal> color_count
         {
             get
             {
@@ -5069,8 +5069,8 @@ namespace COMSdbEntity
                 Oncolor_countChanged();
             }
         }
-        private Nullable<global::System.Int32> _color_count;
-        partial void Oncolor_countChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _color_count;
+        partial void Oncolor_countChanging(Nullable<global::System.Decimal> value);
         partial void Oncolor_countChanged();
     
         /// <summary>
@@ -5102,7 +5102,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> new_cyl_count
+        public Nullable<global::System.Decimal> new_cyl_count
         {
             get
             {
@@ -5117,8 +5117,8 @@ namespace COMSdbEntity
                 Onnew_cyl_countChanged();
             }
         }
-        private Nullable<global::System.Int32> _new_cyl_count;
-        partial void Onnew_cyl_countChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _new_cyl_count;
+        partial void Onnew_cyl_countChanging(Nullable<global::System.Decimal> value);
         partial void Onnew_cyl_countChanged();
     
         /// <summary>
@@ -5126,7 +5126,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> used_cyl_count
+        public Nullable<global::System.Decimal> used_cyl_count
         {
             get
             {
@@ -5141,8 +5141,8 @@ namespace COMSdbEntity
                 Onused_cyl_countChanged();
             }
         }
-        private Nullable<global::System.Int32> _used_cyl_count;
-        partial void Onused_cyl_countChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _used_cyl_count;
+        partial void Onused_cyl_countChanging(Nullable<global::System.Decimal> value);
         partial void Onused_cyl_countChanged();
     
         /// <summary>
@@ -5198,7 +5198,7 @@ namespace COMSdbEntity
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> splitline_size
+        public Nullable<global::System.Decimal> splitline_size
         {
             get
             {
@@ -5213,8 +5213,8 @@ namespace COMSdbEntity
                 Onsplitline_sizeChanged();
             }
         }
-        private Nullable<global::System.Int32> _splitline_size;
-        partial void Onsplitline_sizeChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.Decimal> _splitline_size;
+        partial void Onsplitline_sizeChanging(Nullable<global::System.Decimal> value);
         partial void Onsplitline_sizeChanged();
     
         /// <summary>
@@ -7171,6 +7171,28 @@ namespace COMSdbEntity
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Formula_Step", "Formula")]
+        public EntityCollection<Formula> Formulae
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Formula>("COMSModel.FK_Formula_Step", "Formula");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Formula>("COMSModel.FK_Formula_Step", "Formula", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Step_ref_Step", "Step_ref")]
         public EntityCollection<Step_ref> Step_ref
         {
@@ -7243,28 +7265,6 @@ namespace COMSdbEntity
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Workflow>("COMSModel.FK_Step_Workflow", "Workflow", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("COMSModel", "FK_Formula_Step", "Formula")]
-        public EntityCollection<Formula> Formulae
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Formula>("COMSModel.FK_Formula_Step", "Formula");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Formula>("COMSModel.FK_Formula_Step", "Formula", value);
                 }
             }
         }

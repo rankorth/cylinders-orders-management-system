@@ -31,6 +31,8 @@ namespace WebUI.Admin
             if (!IsPostBack)
             {
                 Authorize();
+                txtCreateDate.Attributes.Add("readonly", "readonly");
+                txtDeliveryDate.Attributes.Add("readonly", "readonly");
                 load_customers();
                 load_priorities();
                 load_coreType();
@@ -85,7 +87,7 @@ namespace WebUI.Admin
         //load new data into web form
         private void load_new_data()
         {
-            txtCreateDate.Text = DateTime.Now.ToShortDateString();
+            txtCreateDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
             load_status(NAME_NEW, null);
         }
 
