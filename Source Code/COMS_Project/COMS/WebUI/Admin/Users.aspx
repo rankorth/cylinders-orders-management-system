@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
     <ul>
         <li><asp:TextBox ID="txtBxSearchKey" runat="server" 
-                Width="150px" ToolTip="Search by staff code" /></li>
+                Width="150px" ToolTip="Search by staff code" MaxLength="50" /></li>
         <li><asp:LinkButton ID="lnkSearch" runat="server" OnClick="lnkSearch_Click">Search</asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkSave" runat="server" OnClick="lnkSave_Click">Save</asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkDelete" runat="server" onclick="lnkDelete_Click">Delete</asp:LinkButton></li>
@@ -47,13 +47,15 @@
                 Name
             </td>
             <td class="entry_data">
-            <asp:TextBox BorderColor="black" ID="txtName" style="width:200px;" runat="server"></asp:TextBox>
+            <asp:TextBox BorderColor="black" ID="txtName" style="width:200px;" runat="server" 
+                    MaxLength="50"></asp:TextBox>
             </td>
             <td class="entry_label">
                 Surname
             </td>
             <td class="entry_data">
-            <asp:TextBox BorderColor="black" ID="txtSurname" style="width:200px;" runat="server"></asp:TextBox>
+            <asp:TextBox BorderColor="black" ID="txtSurname" style="width:200px;" 
+                    runat="server" MaxLength="50"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -61,25 +63,27 @@
                 Staff Code<span class="errorMsg" style="font-family: Arial">*</span></td>
             <td class="entry_data">
             <asp:TextBox BorderColor="black" ID="txtStaffCode" style="width:200px;" 
-                    runat="server" ToolTip="Compulsory field"></asp:TextBox>
+                    runat="server" ToolTip="Compulsory field" MaxLength="50"></asp:TextBox>
             </td>
             <td class="entry_label">
                 Bar Code</td>
             <td class="entry_data">
-             <asp:TextBox BorderColor="black" ID="txtBarCode" style="width:200px;" runat="server"></asp:TextBox>
+             <asp:TextBox BorderColor="black" ID="txtBarCode" style="width:200px;" 
+                    runat="server" MaxLength="50"></asp:TextBox>
              </td>
         </tr>
         <tr>
             <td class="entry_label">
                 Department</td>
             <td class="entry_data" style="table-layout: fixed">
-                <asp:DropDownList ID="DepartmentList" runat="server">
+                <asp:DropDownList ID="DepartmentList" runat="server" Width="90%">
                 </asp:DropDownList>
             </td>
             <td class="entry_label">
                 Position</td>
             <td class="entry_data">
-            <asp:TextBox BorderColor="black" ID="txtPosition" style="width:200px;" runat="server"></asp:TextBox>
+            <asp:TextBox BorderColor="black" ID="txtPosition" style="width:200px;" 
+                    runat="server" MaxLength="50"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -87,14 +91,14 @@
                 Username<span class="errorMsg" style="font-family: Arial">*</span></td>
             <td class="entry_data">
             <asp:TextBox BorderColor="black" ID="txtUsername" style="width:200px;" 
-                    runat="server" ToolTip="Compulsory field"></asp:TextBox>
+                    runat="server" ToolTip="Compulsory field" MaxLength="50"></asp:TextBox>
             </td>
             <td class="entry_label">
                 Password<span class="errorMsg" style="font-family: Arial">*</span>
             </td>
             <td class="entry_data">
             <asp:TextBox BorderColor="black" ID="txtPassword" style="width:200px;" 
-                    runat="server" TextMode="Password"></asp:TextBox>
+                    runat="server" TextMode="Password" MaxLength="15"></asp:TextBox>
             </td>
         </tr>
         </table>

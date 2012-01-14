@@ -40,14 +40,24 @@ namespace WebUI.Admin
 
         protected void lnkApprove_Click(object sender, EventArgs e)
         {
-            RoleCtrl.Approve_Assign_Roles(GetSelectedIDs());
-            load_data();
+            try
+            {
+                RoleCtrl.Approve_Assign_Roles(GetSelectedIDs());
+                load_data();
+                Common.Utility.ShowMessage("Assigned Role has been approved", Page);
+            }
+            catch (Exception ex)
+            {
+                Common.Utility.ShowMessage("Production has been started now.", Page);
+            }
         }
 
         protected void lnkReject_Click(object sender, EventArgs e)
         {
+           
             RoleCtrl.Reject_Assign_Roles(GetSelectedIDs());
             load_data();
+            Common.Utility.ShowMessage("Selected Role has been rejected", Page);
         }
 
         private List<Guid> GetSelectedIDs()

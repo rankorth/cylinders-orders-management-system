@@ -259,54 +259,63 @@ namespace WebUI.Admin
 
         protected void lnkSave_Click(object sender, EventArgs e)
         {
-            Order order = null;
-            //Tin 
-            Employee user = base.GetCurentUser();
-            if (NAME_NEW.Equals(ltrModule_name.Text)) {
-                order = new Order();
-                order.orderId = Guid.NewGuid(); //generate new guid as primary key.
-                order.order_code = mainCtrl.getNextOrderBarCode();
-                order.created_by = txtCreatedBy.Text;
-                //order.created_date = Convert.ToDateTime(txtCreateDate_CalendarExtender.SelectedDate);
-                //order.created_date = Convert.ToDateTime(txtCreateDate.Text);
-                order.created_date = DateTime.ParseExact(txtCreateDate.Text, "dd/MM/yyyy", null);
-                populate_order(order, user);
-
-                Order_Detail orderDetail = new Order_Detail();
-                orderDetail.order_detailId = Guid.NewGuid();
-                orderDetail.orderId = order.orderId;
-                orderDetail.created_by = order.created_by;
-                orderDetail.created_date = order.created_date;
-                populate_orderDetail(order, orderDetail);
-
-                //add orderDetail to order
-                order.Order_Detail.Add(orderDetail);
-
-                mainCtrl.createSalesOrder(order, user);
-                lblMsg.Text = "Order created successfully. Please click Print Barcode to print out the barcode on the paper order.";
-                lblMsg.CssClass = "okMsg";
-                //create Print Barcode button
-                lnkPrintBarcode.Visible = true;
-                lnkPrintBarcode.Attributes.Add("href", "/Admin/PrintOrderBarcode.aspx?code=" + order.order_code);
-                lnkPrintBarcode.Attributes.Add("target", "_blank");
-            }
-            else if (NAME_UPDATE.Equals(ltrModule_name.Text))
+            try
             {
-                order = mainCtrl.getSalesOrder(new Guid(hdOrderId.Value));
-                populate_order(order, user);
+                Order order = null;
+                //Tin 
+                Employee user = base.GetCurentUser();
+                if (NAME_NEW.Equals(ltrModule_name.Text))
+                {
+                    order = new Order();
+                    order.orderId = Guid.NewGuid(); //generate new guid as primary key.
+                    order.order_code = mainCtrl.getNextOrderBarCode();
+                    order.created_by = txtCreatedBy.Text;
+                    //order.created_date = Convert.ToDateTime(txtCreateDate_CalendarExtender.SelectedDate);
+                    //order.created_date = Convert.ToDateTime(txtCreateDate.Text);
+                    order.created_date = DateTime.ParseExact(txtCreateDate.Text, "dd/MM/yyyy", null);
+                    populate_order(order, user);
 
-                Order_Detail orderDetail = order.Order_Detail.SingleOrDefault();
-                populate_orderDetail(order, orderDetail);
+                    Order_Detail orderDetail = new Order_Detail();
+                    orderDetail.order_detailId = Guid.NewGuid();
+                    orderDetail.orderId = order.orderId;
+                    orderDetail.created_by = order.created_by;
+                    orderDetail.created_date = order.created_date;
+                    populate_orderDetail(order, orderDetail);
 
-                mainCtrl.updateSalesOrder(order, user);
-                //lblMsg.Text = "Order updated successfully.";
-                //lblMsg.CssClass = "okMsg";
+                    //add orderDetail to order
+                    order.Order_Detail.Add(orderDetail);
 
-                //in update case, need to redirect to ManageOrders.aspx
-                Response.Redirect(Common.PageUrls.ManageOrdersPage + "?"+ManageOrders.REQ_MSG+"=" + MSG_UPDATE_OK);
+                    mainCtrl.createSalesOrder(order, user);
+                    lblMsg.Text = "Order created successfully. Please click Print Barcode to print out the barcode on the paper order.";
+                    lblMsg.CssClass = "okMsg";
+                    //create Print Barcode button
+                    lnkPrintBarcode.Visible = true;
+                    lnkPrintBarcode.Attributes.Add("href", "/Admin/PrintOrderBarcode.aspx?code=" + order.order_code);
+                    lnkPrintBarcode.Attributes.Add("target", "_blank");
+                }
+                else if (NAME_UPDATE.Equals(ltrModule_name.Text))
+                {
+                    order = mainCtrl.getSalesOrder(new Guid(hdOrderId.Value));
+                    populate_order(order, user);
+
+                    Order_Detail orderDetail = order.Order_Detail.SingleOrDefault();
+                    populate_orderDetail(order, orderDetail);
+
+                    mainCtrl.updateSalesOrder(order, user);
+                    //lblMsg.Text = "Order updated successfully.";
+                    //lblMsg.CssClass = "okMsg";
+
+                    //in update case, need to redirect to ManageOrders.aspx
+                    Response.Redirect(Common.PageUrls.ManageOrdersPage + "?" + ManageOrders.REQ_MSG + "=" + MSG_UPDATE_OK);
+                }
+
+                lnkSave.Enabled = false;
+                Common.Utility.ShowMessage("Order has been placed successfully", Page);
             }
-
-            lnkSave.Enabled = false;
+            catch (Exception ex)
+            {
+                Common.Utility.ShowMessage("System error occured, please contact system administrator", Page);
+            }
         }
 
         //convert web form data into order object
@@ -438,28 +447,50 @@ namespace WebUI.Admin
 
         protected void lnkStartProd_Click(object sender, EventArgs e)
         {
-            mainCtrl.startCylinderProd(new Guid(hdOrderId.Value), base.GetCurentUser());
-
-            //in start production case, need to redirect to ManageOrders.aspx
-            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?" + ManageOrders.REQ_MSG + "=" + MSG_STARTPROD_OK 
-                                + "&" + ManageOrders .REQ_ORDERCODE+ "=" + hdOrderCode.Value);
+            try
+            {
+                mainCtrl.startCylinderProd(new Guid(hdOrderId.Value), base.GetCurentUser());
+                Common.Utility.ShowMessage("Production has been started now.", Page);
+                //in start production case, need to redirect to ManageOrders.aspx
+                Response.Redirect(Common.PageUrls.ManageOrdersPage + "?" + ManageOrders.REQ_MSG + "=" + MSG_STARTPROD_OK
+                                    + "&" + ManageOrders.REQ_ORDERCODE + "=" + hdOrderCode.Value);
+                
+            }
+            catch (Exception ex)
+            {
+                Common.Utility.ShowMessage("System error occured, Please contact Administrator", Page);
+            }
         }
 
         protected void lnkStopProd_Click(object sender, EventArgs e)
         {
-            mainCtrl.stopCylinderProd(new Guid(hdOrderId.Value), base.GetCurentUser());
-
-            //in start production case, need to redirect to ManageOrders.aspx
-            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?"+ManageOrders.REQ_MSG+"=" + MSG_STOPPROD_OK);
+            try
+            {
+                mainCtrl.stopCylinderProd(new Guid(hdOrderId.Value), base.GetCurentUser());
+                Common.Utility.ShowMessage("Production has been Stopped now.", Page);
+                //in start production case, need to redirect to ManageOrders.aspx
+                Response.Redirect(Common.PageUrls.ManageOrdersPage + "?" + ManageOrders.REQ_MSG + "=" + MSG_STOPPROD_OK);
+            }
+            catch (Exception ex)
+            {
+                Common.Utility.ShowMessage("System error occured, Please contact Administrator", Page);
+            }
         }
 
         protected void lnkDelete_Click(object sender, EventArgs e)
         {
-            mainCtrl.deleteSpecificOrder(new Guid(hdOrderId.Value), base.GetCurentUser());
-
-            //in cancel case, need to redirect to ManageOrders.aspx
-            Response.Redirect(Common.PageUrls.ManageOrdersPage + "?"+ManageOrders.REQ_MSG+"=" + MSG_DELETE_OK
-							+ "&" + ManageOrders.REQ_ORDERCODE + "=" + hdOrderCode.Value);
+            try
+            {
+                mainCtrl.deleteSpecificOrder(new Guid(hdOrderId.Value), base.GetCurentUser());
+                Common.Utility.ShowMessage("Order has Cancelled now.", Page);
+                //in cancel case, need to redirect to ManageOrders.aspx
+                Response.Redirect(Common.PageUrls.ManageOrdersPage + "?" + ManageOrders.REQ_MSG + "=" + MSG_DELETE_OK
+                                + "&" + ManageOrders.REQ_ORDERCODE + "=" + hdOrderCode.Value);
+            }
+            catch (Exception ex)
+            {
+                Common.Utility.ShowMessage("Production has been started now.", Page);
+            }
 
         }
 

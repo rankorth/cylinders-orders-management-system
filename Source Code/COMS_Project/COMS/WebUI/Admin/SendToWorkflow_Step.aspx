@@ -37,7 +37,7 @@
 &nbsp;</td>
             <td class="entry_data">
                 <asp:TextBox ID="txtCylinderBarCode" runat="server" ReadOnly="True" 
-                    Width="250px"></asp:TextBox>
+                    Width="250px" MaxLength="50"></asp:TextBox>
             </td>
         </tr>
         <tr>
