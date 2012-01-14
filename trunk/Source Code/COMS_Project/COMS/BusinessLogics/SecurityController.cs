@@ -59,7 +59,10 @@ namespace BusinessLogics
             {
                 foreach (Emp_Role_ref rf in emp.Emp_Role_ref)
                 {
-                    roles.Add(rf.Role);
+                    if (rf.isapproved == true)
+                    {
+                        roles.Add(rf.Role);
+                    }
                 }
             }
             return roles;
