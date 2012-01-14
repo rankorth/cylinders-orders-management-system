@@ -16,6 +16,7 @@ namespace WorkflowManagement
 {
     public partial class Main : Form
     {
+        public static bool isAuthenticated=false;
         public static VsaEngine _engine = VsaEngine.CreateEngine();
         private int childFormNumber = 0;
         //private int currentActiveChildNo=-1;
@@ -223,6 +224,20 @@ namespace WorkflowManagement
 
         private void OpenWorkflow()
         {
+            Login LoginDiag = new Login();
+            if (isAuthenticated == false)
+            {
+                if (LoginDiag.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                {
+                    isAuthenticated = true;
+                }
+                else
+                {
+                    isAuthenticated = false;
+                    return;
+                }
+            }
+
             OpenDialog Open = new OpenDialog();
 
             if (Open.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
