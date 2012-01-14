@@ -42,6 +42,7 @@ namespace WorkflowManagement
                 if (ar.module_name == "Workflow" && ar.isactive == true && (ar.action == "Add" || ar.action == "Edit" || ar.action == "Delete" || ar.action == "View"))
                 {
                     IsAuthorized = true;
+                    this.Owner.Text += " { Welcome : " + User.username + " }";
                 }
             }
 
