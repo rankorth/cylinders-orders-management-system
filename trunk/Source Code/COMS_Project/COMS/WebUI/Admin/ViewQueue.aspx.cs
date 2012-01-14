@@ -24,13 +24,14 @@ namespace WebUI.Admin
                 {
                     ddlWorkflow.Items.Add(new ListItem(wf.name, wf.workflowId.ToString()));
                 }
+                lnkExportQueue.Visible = false; //don't allow to export queue if a queue hasn't been retrieved
             }
         }
 
         protected void lnkViewQueue_Click(object sender, EventArgs e)
         {
             List<Order> orderList = mainCtrl.viewQueue(new Guid(ddlWorkflow.SelectedValue));
-            if (orderList != null)
+            if (orderList != null && orderList.Count() > 0)
             {
                 gvOrders.DataSource = orderList;
                 gvOrders.AutoGenerateColumns = false;
@@ -38,6 +39,7 @@ namespace WebUI.Admin
                 lblMsg.Text = "Search found " + orderList.Count() + " result(s).";
                 lblMsg.CssClass = "okMsg";
                 hdWorkflowName.Value = ddlWorkflow.SelectedItem.Text;
+                lnkExportQueue.Visible = true; //allow to export queue if a queue has been retrieved
             }
             else
             {
