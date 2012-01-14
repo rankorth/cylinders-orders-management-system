@@ -29,6 +29,7 @@ namespace WebUI.Common
                 {
                     Session.Add(userobj, User);
                     IsLogin = true;
+
                 }
                 else
                 {
@@ -114,6 +115,8 @@ namespace WebUI.Common
 
                 menu_panel.Controls.Add(lnkButton);
             }
+
+            
 
         }
 
