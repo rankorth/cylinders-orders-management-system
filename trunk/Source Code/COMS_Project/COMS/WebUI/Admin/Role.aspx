@@ -12,7 +12,7 @@
     <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td class="entry_label">
-                Role Name
+                <asp:Literal ID="ltrRoleName" runat="server" ></asp:Literal>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                     ControlToValidate="txtRoleName" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td class="entry_label">
-                Active
+                <asp:Literal ID="ltrActive" runat="server"></asp:Literal>
             </td>
             <td class="entry_data">
                 <asp:CheckBox ID="chkIsActive" runat="server" Text="Is This Role Active?" />
@@ -30,8 +30,8 @@
         </tr>
         <tr>
             <td class="entry_label">
-                Access Rights
-            </td>
+                <asp:Literal ID="ltrAccessRights" runat="server"></asp:Literal>
+&nbsp;</td>
             <td class="entry_data">
                 <br />
                 <div style="width: 100%; height: 150px; overflow: scroll;">

@@ -16,6 +16,7 @@ namespace WebUI.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             base.PageLoad(Page);
+            LoadResources();
             if (!IsPostBack)
             {
                 Authorize();
@@ -114,6 +115,9 @@ namespace WebUI.Admin
             gvAccess.DataSource = RoleCtrl.GetAllAccessRights();
             gvAccess.AutoGenerateColumns = false;
             gvAccess.DataBind();
+
+            gvAccess.Columns[0].HeaderText = GetResource("Role", "rights");
+            gvAccess.Columns[1].HeaderText = GetResource("Role", "actions");
         }
         private void load_roles_data()
         {
@@ -122,6 +126,9 @@ namespace WebUI.Admin
             gvResult.DataSource = rolectrl.GetRoles();
             gvResult.AutoGenerateColumns = false;
             gvResult.DataBind();
+
+            gvResult.Columns[0].HeaderText = GetResource("Role", "name");
+            
         }
         protected void lnkDelete_Click(object sender, EventArgs e)
         {
@@ -214,6 +221,13 @@ namespace WebUI.Admin
                 CheckBox chkSelected = (CheckBox)e.Row.FindControl("chkSelected");
                 chkSelected.InputAttributes.Add("ID", ID.ToString());
             }
+        }
+
+        private void LoadResources()
+        {
+            ltrRoleName.Text = GetResource("Role", "name");
+            ltrActive.Text = GetResource("Role", "active");
+            ltrAccessRights.Text = GetResource("Role", "rights");
         }
     }
 }
