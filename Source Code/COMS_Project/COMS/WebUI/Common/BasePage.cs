@@ -182,6 +182,10 @@ namespace WebUI.Common
             
             }
         }
+        public string GetResource(string ResourceFileName, string ResourceKeyName)
+        {
+            return GetGlobalResourceObject(ResourceFileName, "actions").ToString();
+        }
 
 
     }
