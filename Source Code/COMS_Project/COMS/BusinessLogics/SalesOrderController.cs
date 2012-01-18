@@ -225,28 +225,6 @@ namespace BusinessLogics
             dest.updated_date = src.updated_date;
 
             dest.status = src.status;
-            //--commented to use simpler approach
-            ////dest status can be a String or the form a-b, a is Sales status, b is Graphic status
-            ////src status is the int values from OrderConst.STATUS_ABC passed in by web form
-            //int srcStatus = Convert.ToInt32(src.status);
-            //int destSalesStatus = Convert.ToInt32(dest.status.Substring(0, 1));
-            //int destGraphicStatus = Convert.ToInt32(dest.status.Substring(2, 1));
-
-            ////if user changed order status
-            //if (srcStatus != destSalesStatus && srcStatus != destGraphicStatus) 
-            //{
-            //    switch (srcStatus)
-            //    {
-            //        case OrderConst.STATUS_SENT_TO_GRPH:
-            //        case OrderConst.STATUS_SENT_TO_MECH:
-            //            dest.status = "" + srcStatus + "-" + destGraphicStatus; //update a in a-b
-            //            break;
-            //        case OrderConst.STATUS_GRPH_EDITED:
-            //        case OrderConst.STATUS_GRPH_VERIFIED:
-            //            dest.status = "" + destSalesStatus + "-" + srcStatus; //update b in a-b
-            //            break;
-            //    }
-            //}
         }
 
         //for update method, copy one order_detail object to another
