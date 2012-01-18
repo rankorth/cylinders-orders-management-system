@@ -329,7 +329,7 @@ namespace WebUI.Admin
             order.customer_rep = txtCustomerRep.Text;
             order.product_name = txtProdName.Text;
             order.price_type = txtPriceType.Text;
-            order.redo_pct = (txtRedoPct.Text != "") ? Convert.ToInt32(txtRedoPct.Text) : 0;
+            order.redo_pct = (txtRedoPct.Text != "") ? Convert.ToDecimal(txtRedoPct.Text) : 0;
             //order.delivery_date = Convert.ToDateTime(txtDeliveryDate_CalendarExtender.SelectedDate);
             //order.delivery_date = Convert.ToDateTime(txtDeliveryDate.Text);
             order.delivery_date = DateTime.ParseExact(txtDeliveryDate.Text, "dd/MM/yyyy", null);
@@ -356,16 +356,16 @@ namespace WebUI.Admin
             orderDetail.prod_width_stretch = (txtWidthStretch.Text != "") ? Convert.ToDecimal(txtWidthStretch.Text) : 0;
             orderDetail.prod_print_height = Convert.ToDecimal(txtProdHeight.Text);
             orderDetail.prod_height_stretch = (txtHeightStretch.Text != "") ? Convert.ToDecimal(txtHeightStretch.Text) : 0;
-            orderDetail.length_dir_repeat = Convert.ToInt32(txtLengthRepeats.Text);
-            orderDetail.circum_dir_repeat = Convert.ToInt32(txtCircumRepeats.Text);
-            orderDetail.web_print_width = Convert.ToInt32(txtWebPrintWidth.Text);
-            orderDetail.web_total_width = Convert.ToInt32(txtWebTotalWidth.Text);
+            orderDetail.length_dir_repeat = Convert.ToDecimal(txtLengthRepeats.Text);
+            orderDetail.circum_dir_repeat = Convert.ToDecimal(txtCircumRepeats.Text);
+            orderDetail.web_print_width = Convert.ToDecimal(txtWebPrintWidth.Text);
+            orderDetail.web_total_width = Convert.ToDecimal(txtWebTotalWidth.Text);
             orderDetail.cyl_length = Convert.ToDecimal(txtCylLength.Text);
             orderDetail.cyl_diameter = Convert.ToDecimal(txtCylCircum.Text) / Convert.ToDecimal(3.1416);
             if (chkBxEyeMark.Checked)
             {
-                orderDetail.eyemark_height = Convert.ToInt32(txtEMHeight.Text);
-                orderDetail.eyemark_width = Convert.ToInt32(txtEMWidth.Text);
+                orderDetail.eyemark_height = Convert.ToDecimal(txtEMHeight.Text);
+                orderDetail.eyemark_width = Convert.ToDecimal(txtEMWidth.Text);
                 orderDetail.eyemark_color = txtEMColor.Text;
                 orderDetail.eyemark_sign = txtEMSign.Text;
             }
@@ -389,24 +389,24 @@ namespace WebUI.Admin
                 else
                 {
                     orderDetail.keyhole_type = OrderConst.KEYHOLE_OTHER;
-                    orderDetail.keyhole_inner_dia = Convert.ToInt32(txtKHInnerDia.Text);
-                    orderDetail.keyhole_outer_dia = Convert.ToInt32(txtKHOuterDia.Text);
-                    orderDetail.keyhole_angle = Convert.ToInt32(txtKHAngle.Text);
+                    orderDetail.keyhole_inner_dia = Convert.ToDecimal(txtKHInnerDia.Text);
+                    orderDetail.keyhole_outer_dia = Convert.ToDecimal(txtKHOuterDia.Text);
+                    orderDetail.keyhole_angle = Convert.ToDecimal(txtKHAngle.Text);
                     orderDetail.keyhole_keyway = txtKHKeyway.Text;
                 }
             }
-            orderDetail.color_count = Convert.ToInt32(txtColorCount.Text);
+            orderDetail.color_count = Convert.ToDecimal(txtColorCount.Text);
             orderDetail.color_list = txtColorList.Text;
 
             //the number of cylinders depends on whether old cores are being reused
             if (OrderConst.CORETYPE_USED.Equals(ddlCoreType.SelectedValue))
             {
                 orderDetail.new_cyl_count = 0;
-                orderDetail.used_cyl_count = Convert.ToInt32(txtCylCount.Text);
+                orderDetail.used_cyl_count = Convert.ToDecimal(txtCylCount.Text);
             }
             else
             {
-                orderDetail.new_cyl_count = Convert.ToInt32(txtCylCount.Text);
+                orderDetail.new_cyl_count = Convert.ToDecimal(txtCylCount.Text);
                 orderDetail.used_cyl_count = 0;
             }
 
@@ -416,7 +416,7 @@ namespace WebUI.Admin
 
             if (chkBxSplitLine.Checked)
             {
-                orderDetail.splitline_size = Convert.ToInt32(txtSplitLineSize.Text);
+                orderDetail.splitline_size = Convert.ToDecimal(txtSplitLineSize.Text);
                 orderDetail.splitline_type = (chkBxSplitLine2Side.Checked) ? OrderConst.SPLITLINE_2SIDE : OrderConst.SPLITLINE_1SIDE;
                 orderDetail.splitline_color = txtSplitLineColor.Text;
             }
