@@ -22,6 +22,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.LinkButton lnkSave;
         
         /// <summary>
+        /// ltrRoleName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrRoleName;
+        
+        /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtRoleName;
         
         /// <summary>
+        /// ltrActive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrActive;
+        
+        /// <summary>
         /// chkIsActive control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkIsActive;
+        
+        /// <summary>
+        /// ltrAccessRights control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrAccessRights;
         
         /// <summary>
         /// gvAccess control.
