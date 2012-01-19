@@ -44,14 +44,14 @@
 &nbsp;<table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td class="entry_label">
-                Name
-            </td>
+                <asp:Literal ID="ltrName" runat="server"></asp:Literal>
+&nbsp;</td>
             <td class="entry_data">
             <asp:TextBox BorderColor="black" ID="txtName" style="width:200px;" runat="server" 
                     MaxLength="50"></asp:TextBox>
             </td>
             <td class="entry_label">
-                Surname
+                <asp:Literal ID="ltrSurname" runat="server"></asp:Literal>
             </td>
             <td class="entry_data">
             <asp:TextBox BorderColor="black" ID="txtSurname" style="width:200px;" 
@@ -60,13 +60,15 @@
         </tr>
         <tr>
             <td class="entry_label">
-                Staff Code<span class="errorMsg" style="font-family: Arial">*</span></td>
+                <asp:Literal ID="ltrStaffCode" runat="server"></asp:Literal>
+                <span class="errorMsg" style="font-family: Arial">*</span></td>
             <td class="entry_data">
             <asp:TextBox BorderColor="black" ID="txtStaffCode" style="width:200px;" 
                     runat="server" ToolTip="Compulsory field" MaxLength="50"></asp:TextBox>
             </td>
             <td class="entry_label">
-                Bar Code</td>
+                <asp:Literal ID="ltrBarcode" runat="server"></asp:Literal>
+            </td>
             <td class="entry_data">
              <asp:TextBox BorderColor="black" ID="txtBarCode" style="width:200px;" 
                     runat="server" MaxLength="50"></asp:TextBox>
@@ -74,13 +76,15 @@
         </tr>
         <tr>
             <td class="entry_label">
-                Department</td>
+                <asp:Literal ID="ltrDepartment" runat="server"></asp:Literal>
+            </td>
             <td class="entry_data" style="table-layout: fixed">
                 <asp:DropDownList ID="DepartmentList" runat="server" Width="90%">
                 </asp:DropDownList>
             </td>
             <td class="entry_label">
-                Position</td>
+                <asp:Literal ID="ltrPosition" runat="server"></asp:Literal>
+            </td>
             <td class="entry_data">
             <asp:TextBox BorderColor="black" ID="txtPosition" style="width:200px;" 
                     runat="server" MaxLength="50"></asp:TextBox>
@@ -88,13 +92,15 @@
         </tr>
         <tr>
             <td class="entry_label">
-                Username<span class="errorMsg" style="font-family: Arial">*</span></td>
+                <asp:Literal ID="ltrUserName" runat="server"></asp:Literal>
+                <span class="errorMsg" style="font-family: Arial">*</span></td>
             <td class="entry_data">
             <asp:TextBox BorderColor="black" ID="txtUsername" style="width:200px;" 
                     runat="server" ToolTip="Compulsory field" MaxLength="50"></asp:TextBox>
             </td>
             <td class="entry_label">
-                Password<span class="errorMsg" style="font-family: Arial">*</span>
+                <asp:Literal ID="ltrPassword" runat="server"></asp:Literal>
+                <span class="errorMsg" style="font-family: Arial">*</span>
             </td>
             <td class="entry_data">
             <asp:TextBox BorderColor="black" ID="txtPassword" style="width:200px;" 

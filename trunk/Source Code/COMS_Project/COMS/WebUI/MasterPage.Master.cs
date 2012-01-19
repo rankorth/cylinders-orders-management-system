@@ -14,8 +14,7 @@ namespace WebUI
         protected void Page_Load(object sender, EventArgs e)
         {
                 Common.BasePage bp = new Common.BasePage();
-                
-                
+
                 if (module_panel.Controls.Count < 1)
                 {
                     lblLoginUserName.Text = "";
@@ -23,8 +22,10 @@ namespace WebUI
                     {
                         lblLoginUserName.Text = "Welcome : " + bp.GetCurentUser().username;
                         bp.GenerateMenu(module_panel);
+                        lnkLogout.Text = bp.GetResource("ModuleName", "Logout");
                     }
                 }
+                
 
         }
 
@@ -35,6 +36,8 @@ namespace WebUI
             bp.RedirectToLoginPage(Page);
             
         }
+
+       
 
         
         

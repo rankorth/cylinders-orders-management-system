@@ -107,8 +107,7 @@ a:hover
 .module_menu
 {
     line-height:38px;
-    width:100%;
-    background-image:url(Images/Menu/menu_bg.png);
+    background-image:url('Images/Menu/menu_bg.png');
     vertical-align:middle;
     display:block;
     text-align:center;

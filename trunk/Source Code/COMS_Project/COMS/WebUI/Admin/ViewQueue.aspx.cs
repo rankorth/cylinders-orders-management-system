@@ -17,6 +17,7 @@ namespace WebUI.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             base.PageLoad(Page);
+            LoadResources();
             if (!IsPostBack)
             {
                 IQueryable<Workflow> workflowList = mainCtrl.getAllWorkflow();
@@ -88,6 +89,22 @@ namespace WebUI.Admin
                 Label lblLength = (Label)e.Row.FindControl("lblLength");
                 lblLength.Text = detail.cyl_length.ToString();
             }
+        }
+        private void LoadResources()
+        {
+            lnkExportQueue.Text = GetResource("Menu", "ExportQueue");
+            lnkViewQueue.Text = GetResource("Menu", "ViewQueue");
+            ltrWorkflow.Text = GetResource("Menu", "Workflow");
+
+            gvOrders.Columns[0].HeaderText = GetResource("ViewQueue", "Priority");
+            gvOrders.Columns[1].HeaderText = GetResource("ViewQueue", "SetCode");
+            gvOrders.Columns[2].HeaderText = GetResource("ViewQueue", "ProductName");
+            gvOrders.Columns[3].HeaderText = GetResource("ViewQueue", "Customer");
+            gvOrders.Columns[4].HeaderText = GetResource("ViewQueue", "DeliveryDate");
+            gvOrders.Columns[5].HeaderText = GetResource("ViewQueue", "NewCylinders");
+            gvOrders.Columns[6].HeaderText = GetResource("ViewQueue", "UserdCylinders");
+            gvOrders.Columns[7].HeaderText = GetResource("ViewQueue", "Diameter");
+            gvOrders.Columns[8].HeaderText = GetResource("ViewQueue", "Length");
         }
     }
 }

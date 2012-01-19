@@ -17,6 +17,7 @@ namespace WebUI.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             base.PageLoad(Page);
+            LoadResource();
             if (!IsPostBack)
             {
                 Authorize();
@@ -88,5 +89,16 @@ namespace WebUI.Admin
             }
             return selectedIDs;
         }
+
+        private void LoadResource()
+        {
+            lnkApprove.Text = GetResource("Menu", "Approve");
+            lnkReject.Text = GetResource("Menu", "Reject");
+
+            gvResults.Columns[1].HeaderText = GetResource("RoleAssignment_Approval", "Employee");
+            gvResults.Columns[2].HeaderText = GetResource("RoleAssignment_Approval", "AssignedRole");
+        }
     }
+
+    
 }

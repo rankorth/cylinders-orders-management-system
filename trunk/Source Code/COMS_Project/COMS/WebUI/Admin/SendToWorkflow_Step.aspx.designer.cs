@@ -22,6 +22,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.LinkButton lnkSend;
         
         /// <summary>
+        /// ltrSendToWorkflow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrSendToWorkflow;
+        
+        /// <summary>
         /// ddlWorkflow control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.HiddenField hidCylinderId;
         
         /// <summary>
+        /// ltrSendToStep control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrSendToStep;
+        
+        /// <summary>
         /// ddlStep control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStep;
+        
+        /// <summary>
+        /// ltrCylinderBarCodeToSend control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrCylinderBarCodeToSend;
         
         /// <summary>
         /// RequiredFieldValidator2 control.
@@ -65,6 +92,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCylinderBarCode;
+        
+        /// <summary>
+        /// ltrRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrRemarks;
         
         /// <summary>
         /// RequiredFieldValidator1 control.

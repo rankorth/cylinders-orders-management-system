@@ -16,6 +16,7 @@ namespace WebUI.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             base.PageLoad(Page);
+            LoadResources();
             if (!IsPostBack)
             {
                 Authorize();
@@ -309,6 +310,28 @@ namespace WebUI.Admin
                     }
                 }
             }
+        }
+        private void LoadResources()
+        {
+            lnkDelete.Text = GetResource("Menu", "Delete");
+            lnkSave.Text = GetResource("Menu", "Save");
+            lnkSearch.Text = GetResource("Menu", "Search");
+
+            ltrBarcode.Text = GetResource("Users", "BarCode");
+            ltrDepartment.Text = GetResource("Users", "Department");
+            ltrName.Text = GetResource("Users", "Name");
+            ltrPassword.Text = GetResource("Users", "Password");
+            ltrPosition.Text = GetResource("Users", "Position");
+            ltrStaffCode.Text = GetResource("Users", "StaffCode");
+            ltrSurname.Text = GetResource("Users", "Surname");
+            ltrUserName.Text = GetResource("Users", "Username");
+
+            gvUserInfo.Columns[1].HeaderText = GetResource("Users", "StaffCode");
+            gvUserInfo.Columns[2].HeaderText = GetResource("Users", "BarCode");
+            gvUserInfo.Columns[3].HeaderText = GetResource("Users", "Surname");
+            gvUserInfo.Columns[4].HeaderText = GetResource("Users", "Name");
+
+            gvAccess.Columns[1].HeaderText = GetResource("Users", "AssignedRoles");
         }
     }
 }

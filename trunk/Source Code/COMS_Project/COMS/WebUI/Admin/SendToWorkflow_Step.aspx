@@ -12,7 +12,7 @@
     <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td class="entry_label">
-                Send to Workflow
+                <asp:Literal ID="ltrSendToWorkflow" runat="server"></asp:Literal>
             </td>
             <td class="entry_data">
                 <asp:DropDownList ID="ddlWorkflow" runat="server" AutoPostBack="True" 
@@ -23,7 +23,8 @@
         </tr>
         <tr>
             <td class="entry_label">
-                Send to Step</td>
+                <asp:Literal ID="ltrSendToStep" runat="server"></asp:Literal>
+            </td>
             <td class="entry_data">
                 <asp:DropDownList ID="ddlStep" runat="server" Width="250px">
                 </asp:DropDownList>
@@ -31,10 +32,11 @@
         </tr>
         <tr>
             <td class="entry_label">
-                Cylinder Barcode To Send<asp:RequiredFieldValidator 
+&nbsp;<asp:Literal ID="ltrCylinderBarCodeToSend" runat="server"></asp:Literal>
+                <asp:RequiredFieldValidator 
                     ID="RequiredFieldValidator2" runat="server" 
                     ControlToValidate="txtCylinderBarCode" ErrorMessage=" *" ForeColor="Red"></asp:RequiredFieldValidator>
-&nbsp;</td>
+            </td>
             <td class="entry_data">
                 <asp:TextBox ID="txtCylinderBarCode" runat="server" ReadOnly="True" 
                     Width="250px" MaxLength="50"></asp:TextBox>
@@ -42,7 +44,8 @@
         </tr>
         <tr>
             <td class="entry_label">
-                Remark<asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                <asp:Literal ID="ltrRemarks" runat="server"></asp:Literal>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                     ControlToValidate="txtRemark" ErrorMessage=" *" ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
             <td class="entry_data">

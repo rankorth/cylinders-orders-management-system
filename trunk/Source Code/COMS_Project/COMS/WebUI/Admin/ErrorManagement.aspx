@@ -12,7 +12,8 @@
     <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td class="entry_label">
-                Error Code Message</td>
+                <asp:Literal ID="ltrErrorMessage" runat="server"></asp:Literal>
+            </td>
             <td class="entry_data">
                 <asp:TextBox BorderColor="black" maxlength="100" 
                     style="border-color:Black;width:336px;" ID="txtErrorCode" runat="server"></asp:TextBox>

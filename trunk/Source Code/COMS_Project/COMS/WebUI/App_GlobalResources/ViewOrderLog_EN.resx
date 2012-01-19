@@ -117,22 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="actions" xml:space="preserve">
-    <value>Allowed Actions</value>
+  <data name="Department" xml:space="preserve">
+    <value>Department</value>
   </data>
-  <data name="active" xml:space="preserve">
-    <value>Active</value>
+  <data name="OrderCode" xml:space="preserve">
+    <value>Order Code</value>
   </data>
-  <data name="edit" xml:space="preserve">
-    <value>edit</value>
+  <data name="PerformedBy" xml:space="preserve">
+    <value>Performed By</value>
   </data>
-  <data name="name" xml:space="preserve">
-    <value>Role Name</value>
+  <data name="ProductName" xml:space="preserve">
+    <value>Product Name</value>
   </data>
-  <data name="rights" xml:space="preserve">
-    <value>Access Rights</value>
+  <data name="RelatedCylinders" xml:space="preserve">
+    <value>Related Cylinders</value>
   </data>
-  <data name="rightsname" xml:space="preserve">
-    <value>Access Rights Name</value>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
   </data>
 </root>

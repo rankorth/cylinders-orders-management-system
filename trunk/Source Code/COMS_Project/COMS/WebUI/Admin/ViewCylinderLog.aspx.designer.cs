@@ -49,6 +49,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.HiddenField hdCylinderId;
         
         /// <summary>
+        /// ltrCylNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrCylNo;
+        
+        /// <summary>
         /// lblCylNo control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.Label lblColorNo;
         
         /// <summary>
+        /// ltrBarcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrBarcode;
+        
+        /// <summary>
         /// lblCylCode control.
         /// </summary>
         /// <remarks>
@@ -74,6 +92,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCylCode;
+        
+        /// <summary>
+        /// ltrCoreType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrCoreType;
         
         /// <summary>
         /// lblCoreType control.
@@ -92,6 +119,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDiameter;
+        
+        /// <summary>
+        /// ltrLength control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrLength;
         
         /// <summary>
         /// lblLength control.

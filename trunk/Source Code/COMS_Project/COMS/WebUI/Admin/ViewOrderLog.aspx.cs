@@ -17,6 +17,7 @@ namespace WebUI.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             base.PageLoad(Page);
+            LoadResources();
             if (!IsPostBack)
             {
                 Guid orderId = new Guid(Request["orderId"]);
@@ -56,6 +57,21 @@ namespace WebUI.Admin
                 Label lblOrderStatus = (Label)e.Row.FindControl("lblOrderStatus");
                 lblOrderStatus.Text = OrderConst.DispStatusDict[log.order_status];
             }
+        }
+
+        private void LoadResources()
+        {
+            linkBack.Text = GetResource("Menu", "Back");
+
+            ltrOrderCode.Text = GetResource("ViewOrderLog", "OrderCode");
+            ltrProductName.Text = GetResource("ViewOrderLog", "ProductName");
+
+            gvOrderLogs.Columns[0].HeaderText = GetResource("ViewOrderLog", "Department");
+            gvOrderLogs.Columns[1].HeaderText = GetResource("ViewOrderLog", "PerformedBy");
+            gvOrderLogs.Columns[2].HeaderText = GetResource("ViewOrderLog", "Time");
+            gvOrderLogs.Columns[3].HeaderText = GetResource("ViewOrderLog", "Status");
+            gvOrderLogs.Columns[4].HeaderText = GetResource("ViewOrderLog", "RelatedCylinders");
+            gvOrderLogs.Columns[5].HeaderText = GetResource("ViewOrderLog", "Remarks");
         }
     }
 }

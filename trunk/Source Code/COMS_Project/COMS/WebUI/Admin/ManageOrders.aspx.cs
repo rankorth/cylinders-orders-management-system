@@ -15,10 +15,13 @@ namespace WebUI.Admin
         MainController mainctrl = new MainController();
         public const String REQ_MSG = "msg";
         public const String REQ_ORDERCODE = "orderCode";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             base.PageLoad(Page);
             ltrModule_name.Text = "Orders Management";
+            LoadResource();
             if (Request[REQ_MSG] != null) {
                 if (DisplayOrder.MSG_UPDATE_OK.Equals(Request[REQ_MSG]))
                 {
@@ -45,7 +48,9 @@ namespace WebUI.Admin
             if (!IsPostBack)
             {
                 Authorize();
+                
             }
+            
         }
         //Tin 14-jan-2012
         private void Authorize()
@@ -164,6 +169,28 @@ namespace WebUI.Admin
         {
             gvCylinders.DataSource = null;
             gvCylinders.DataBind();
+        }
+
+        private void LoadResource()
+        {
+            lnkAddOrder.Text = GetResource("Menu", "NewOrder");
+            lnkSearch.Text = GetResource("Menu", "Search");
+
+            gvOrders.Columns[0].HeaderText = GetResource("ManageOrders","OrderCode");
+            gvOrders.Columns[1].HeaderText = GetResource("ManageOrders","ProductName");
+            gvOrders.Columns[2].HeaderText = GetResource("ManageOrders","SetCode");
+            gvOrders.Columns[3].HeaderText = GetResource("ManageOrders","Status");
+            gvOrders.Columns[4].HeaderText = GetResource("ManageOrders", "Progress");
+            gvOrders.Columns[5].HeaderText = GetResource("ManageOrders", "Cylinders");
+
+            gvCylinders.Columns[0].HeaderText = GetResource("ManageOrders", "CylinderNo");
+            gvCylinders.Columns[1].HeaderText = GetResource("ManageOrders", "BarCode");
+            gvCylinders.Columns[2].HeaderText = GetResource("ManageOrders", "ColorNo");
+            gvCylinders.Columns[3].HeaderText = GetResource("ManageOrders", "CoreType");
+            gvCylinders.Columns[4].HeaderText = GetResource("ManageOrders", "Diameter");
+            gvCylinders.Columns[5].HeaderText = GetResource("ManageOrders", "Length");
+            gvCylinders.Columns[6].HeaderText = GetResource("ManageOrders", "PrintInfo");
+            gvCylinders.Columns[7].HeaderText = GetResource("ManageOrders", "Progress");
         }
     }
 }

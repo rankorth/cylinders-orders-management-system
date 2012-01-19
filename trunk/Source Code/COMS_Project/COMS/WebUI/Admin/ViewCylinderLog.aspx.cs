@@ -17,6 +17,7 @@ namespace WebUI.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             base.PageLoad(Page);
+            LoadResources();
             if (!IsPostBack)
             {
                 Guid cylinderId = new Guid(Request["cylinderId"]);
@@ -48,6 +49,25 @@ namespace WebUI.Admin
         protected void linkBack_Click(object sender, EventArgs e)
         {
             Response.Redirect(Common.PageUrls.ManageOrdersPage);
+        }
+
+        private void LoadResources()
+        {
+            linkBack.Text = GetResource("Menu", "Back");
+
+            ltrBarcode.Text = GetResource("ViewCylinderLog", "Barcode");
+            ltrCoreType.Text = GetResource("ViewCylinderLog", "CoreType");
+            ltrCylNo.Text = GetResource("ViewCylinderLog", "CylNo");
+            ltrLength.Text = GetResource("ViewCylinderLog", "Length");
+
+            gvCylLogs.Columns[0].HeaderText = GetResource("ViewCylinderLog", "Department");
+            gvCylLogs.Columns[1].HeaderText = GetResource("ViewCylinderLog", "PerformedBy");
+            gvCylLogs.Columns[2].HeaderText = GetResource("ViewCylinderLog", "Starttime");
+            gvCylLogs.Columns[3].HeaderText = GetResource("ViewCylinderLog", "Endtime");
+            gvCylLogs.Columns[4].HeaderText = GetResource("ViewCylinderLog", "Description");
+            gvCylLogs.Columns[5].HeaderText = GetResource("ViewCylinderLog", "Remarks");
+
+
         }
     }
 }
