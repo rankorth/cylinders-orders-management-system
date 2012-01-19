@@ -58,6 +58,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.GridView gvUserInfo;
         
         /// <summary>
+        /// ltrName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrName;
+        
+        /// <summary>
         /// txtName control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
+        
+        /// <summary>
+        /// ltrSurname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrSurname;
         
         /// <summary>
         /// txtSurname control.
@@ -76,6 +94,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtSurname;
         
         /// <summary>
+        /// ltrStaffCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrStaffCode;
+        
+        /// <summary>
         /// txtStaffCode control.
         /// </summary>
         /// <remarks>
@@ -83,6 +110,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStaffCode;
+        
+        /// <summary>
+        /// ltrBarcode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrBarcode;
         
         /// <summary>
         /// txtBarCode control.
@@ -94,6 +130,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtBarCode;
         
         /// <summary>
+        /// ltrDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrDepartment;
+        
+        /// <summary>
         /// DepartmentList control.
         /// </summary>
         /// <remarks>
@@ -101,6 +146,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DepartmentList;
+        
+        /// <summary>
+        /// ltrPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrPosition;
         
         /// <summary>
         /// txtPosition control.
@@ -112,6 +166,15 @@ namespace WebUI.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtPosition;
         
         /// <summary>
+        /// ltrUserName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrUserName;
+        
+        /// <summary>
         /// txtUsername control.
         /// </summary>
         /// <remarks>
@@ -119,6 +182,15 @@ namespace WebUI.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUsername;
+        
+        /// <summary>
+        /// ltrPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrPassword;
         
         /// <summary>
         /// txtPassword control.

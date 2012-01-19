@@ -15,6 +15,7 @@ namespace WebUI.Common
         private string userobj = "userobj";
         protected void PageLoad(Page CurrentPage)
         {
+            
             CheckAuthentication(CurrentPage);
         }
         public bool login(string username, string password)
@@ -70,34 +71,37 @@ namespace WebUI.Common
 
 
             if (Permission.CheckModuleAccess(Permission.ModuleName_Order, User))
-                module.Add("Orders", "/Admin/ManageOrders.aspx");
+                module.Add(GetResource("ModuleName","Orders"), "/Admin/ManageOrders.aspx");
 
-            if (Permission.CheckModuleAccess(Permission.ModuleName_Role, User)) 
-                module.Add("Roles", "/Admin/Role.aspx");
+            if (Permission.CheckModuleAccess(Permission.ModuleName_Role, User))
+                module.Add(GetResource("ModuleName", "Roles"), "/Admin/Role.aspx");
 
-            if (Permission.CheckModuleAccess(Permission.ModuleName_Employee, User)) 
-                module.Add("Employee", "/Admin/Users.aspx");
+            if (Permission.CheckModuleAccess(Permission.ModuleName_Employee, User))
+                module.Add(GetResource("ModuleName", "Employee"), "/Admin/Users.aspx");
 
            // if (Permission.CheckModuleAccess(Permission.ModuleName_Customer, User)) 
            //     module.Add("Customer", "/Admin/Customers.aspx");
 
-            if (Permission.CheckModuleAccess(Permission.ModuleName_RoleApproval, User)) 
-                module.Add("Approve Assign Roles", "/Admin/RoleAssignment_Approval.aspx");
+            if (Permission.CheckModuleAccess(Permission.ModuleName_RoleApproval, User))
+                module.Add(GetResource("ModuleName", "ApproveAssignRoles"), "/Admin/RoleAssignment_Approval.aspx");
 
-            if (Permission.CheckModuleAccess(Permission.ModuleName_WorkflowError, User)) 
-                module.Add("Workflow Error Message", "/Admin/ErrorManagement.aspx");
+            if (Permission.CheckModuleAccess(Permission.ModuleName_WorkflowError, User))
+                module.Add(GetResource("ModuleName", "WorkflowErrorMessage"), "/Admin/ErrorManagement.aspx");
 
-            if (Permission.CheckModuleAccess(Permission.ModuleName_ViewQue, User)) 
-                module.Add("View Current Queue", "/Admin/ViewQueue.aspx");
+            if (Permission.CheckModuleAccess(Permission.ModuleName_ViewQue, User))
+                module.Add(GetResource("ModuleName", "ViewCurrentQueue"), "/Admin/ViewQueue.aspx");
 
            // if (Permission.CheckModuleAccess(Permission.ModuleName_CylinderInfo, User)) 
           //      module.Add("Cylinder Info", "/Admin/CylinderInfo.aspx");
 
             if (Permission.CheckModuleAccess(Permission.ModuleName_Report, User))
-                module.Add("Reports", "/Admin/Reports.aspx");
+                module.Add(GetResource("ModuleName", "Reports"), "/Admin/Reports.aspx");
 
             if (Permission.CheckModuleAccess(Permission.ModuleName_SendToWorkflow, User))
-                module.Add("Send Cylinder to Workflow/Step", "/Admin/SendToWorkflow_Step.aspx");
+                module.Add(GetResource("ModuleName", "SendCylindertoWorkflow"), "/Admin/SendToWorkflow_Step.aspx");
+
+            if (User!=null)
+                module.Add(GetResource("ModuleName","Language"), "/SetLanguage.aspx");
 
             Employee user = GetCurentUser();
             SecurityController SecurityCtrl = new SecurityController();
@@ -182,11 +186,31 @@ namespace WebUI.Common
             
             }
         }
+
+        public string GetCurrentLanguage()
+        {
+            Employee User = GetCurentUser();
+            string language = "EN";
+            if (string.IsNullOrEmpty(User.language))
+            {
+                language = "EN";
+            }
+            else
+            {
+                language = "VN";
+            }
+            return GetCurentUser().language;
+        }
         public string GetResource(string ResourceFileName, string ResourceKeyName)
         {
-            return GetGlobalResourceObject(ResourceFileName, "actions").ToString();
+            ResourceFileName += "_" + GetCurrentLanguage();
+            return GetGlobalResourceObject(ResourceFileName, ResourceKeyName).ToString();
         }
-
+        public void SetCurrentUser(Employee User)
+        {
+            Session.Clear();
+            Session.Add(userobj, User);
+        }
 
     }
 }

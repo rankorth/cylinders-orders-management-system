@@ -15,10 +15,12 @@ namespace WebUI.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             base.PageLoad(Page);
+            LoadResource();
             if (!IsPostBack)
             {
                 load_reports_list();
             }
+
         }
 
         private void load_reports_list()
@@ -41,6 +43,11 @@ namespace WebUI.Admin
             {
                 Response.Redirect(ddlReports.SelectedValue);
             }
+        }
+
+        private void LoadResource()
+        {
+            btnShowReports.Text = GetResource("Reports", "Show");
         }
     }
 }

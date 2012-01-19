@@ -18,6 +18,7 @@ namespace WebUI.Admin
             if (!IsPostBack)
             {
                 Authorize();
+                LoadResource();
                 hPageState.Value = Common.PageState.New;
                 load_data();
             }
@@ -78,6 +79,8 @@ namespace WebUI.Admin
         private void load_data()
         {
             IQueryable<Error> errmessages = mainctrl.retrieveAllErrors();
+
+            gvErrorMsgs.Columns[1].HeaderText = GetResource("ErrorManagement", "ErrorMessage");
             gvErrorMsgs.DataSource = errmessages;
             gvErrorMsgs.AutoGenerateColumns = false;
             gvErrorMsgs.DataBind();
@@ -142,6 +145,13 @@ namespace WebUI.Admin
                 hUpdateID.Value = e.CommandArgument.ToString();
                 txtErrorCode.Text = mainctrl.retrieveError(new Guid(e.CommandArgument.ToString())).name;
             }
+        }
+
+        private void LoadResource()
+        {
+            lnkSave.Text = GetResource("Menu", "Save");
+            lnkDelete.Text = GetResource("Menu", "Delete");
+            ltrErrorMessage.Text = GetResource("ErrorManagement", "ErrorMessage");
         }
     }
 }

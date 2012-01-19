@@ -16,8 +16,12 @@
 
 <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
     <tr>
-        <td class="entry_label" align="left">Order Code: <asp:Label ID="lblOrderCode" runat="server" /></td>
-        <td class="entry_data" align="left">Product Name: <asp:Label ID="lblProductName" runat="server" /></td>
+        <td class="entry_label" align="left">
+            <asp:Literal ID="ltrOrderCode" runat="server"></asp:Literal>
+            : <asp:Label ID="lblOrderCode" runat="server" /></td>
+        <td class="entry_data" align="left">
+            <asp:Literal ID="ltrProductName" runat="server"></asp:Literal>
+            : <asp:Label ID="lblProductName" runat="server" /></td>
     </tr>
 </table>
 

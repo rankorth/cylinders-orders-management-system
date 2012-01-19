@@ -16,14 +16,22 @@
 <asp:HiddenField ID="hdCylinderId" runat="server" />
 <table class="entry_table" border="0" cellpadding="0" cellspacing="0">
     <tr>
-        <td class="entry_label" align="left">Cyl No: <asp:Label ID="lblCylNo" runat="server" /></td>
+        <td class="entry_label" align="left">
+            <asp:Literal ID="ltrCylNo" runat="server"></asp:Literal>
+&nbsp;<asp:Label ID="lblCylNo" runat="server" /></td>
         <td class="entry_data" align="left">Color No: <asp:Label ID="lblColorNo" runat="server" /></td>
-        <td class="entry_label" align="left">Barcode: <asp:Label ID="lblCylCode" runat="server" /></td>
+        <td class="entry_label" align="left">
+            <asp:Literal ID="ltrBarcode" runat="server"></asp:Literal>
+&nbsp;<asp:Label ID="lblCylCode" runat="server" /></td>
     </tr>
     <tr>
-        <td class="entry_label" align="left">Core Type: <asp:Label ID="lblCoreType" runat="server" /></td>
+        <td class="entry_label" align="left">
+            <asp:Literal ID="ltrCoreType" runat="server"></asp:Literal>
+&nbsp;<asp:Label ID="lblCoreType" runat="server" /></td>
         <td class="entry_data" align="left">Diameter: <asp:Label ID="lblDiameter" runat="server" /></td>
-        <td class="entry_label" align="left">Length: <asp:Label ID="lblLength" runat="server" /></td>
+        <td class="entry_label" align="left">
+            <asp:Literal ID="ltrLength" runat="server"></asp:Literal>
+&nbsp;<asp:Label ID="lblLength" runat="server" /></td>
     </tr>
 </table>
 

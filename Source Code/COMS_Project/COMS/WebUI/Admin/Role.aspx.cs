@@ -112,22 +112,24 @@ namespace WebUI.Admin
         private void load_access_rights()
         {
             RoleController RoleCtrl = new RoleController();
+            gvAccess.Columns[1].HeaderText = GetResource("Role", "rights");
+            gvAccess.Columns[2].HeaderText = GetResource("Role", "actions");
             gvAccess.DataSource = RoleCtrl.GetAllAccessRights();
             gvAccess.AutoGenerateColumns = false;
             gvAccess.DataBind();
 
-            gvAccess.Columns[0].HeaderText = GetResource("Role", "rights");
-            gvAccess.Columns[1].HeaderText = GetResource("Role", "actions");
+            
         }
         private void load_roles_data()
         {
             RoleController rolectrl =new  RoleController();
 
+            gvResult.Columns[1].HeaderText = GetResource("Role", "name");
             gvResult.DataSource = rolectrl.GetRoles();
             gvResult.AutoGenerateColumns = false;
             gvResult.DataBind();
 
-            gvResult.Columns[0].HeaderText = GetResource("Role", "name");
+            
             
         }
         protected void lnkDelete_Click(object sender, EventArgs e)
@@ -224,10 +226,12 @@ namespace WebUI.Admin
         }
 
         private void LoadResources()
-        {
+        {            
+
             ltrRoleName.Text = GetResource("Role", "name");
             ltrActive.Text = GetResource("Role", "active");
             ltrAccessRights.Text = GetResource("Role", "rights");
+            lnkSave.Text = GetResource("Menu", "Save");
         }
     }
 }

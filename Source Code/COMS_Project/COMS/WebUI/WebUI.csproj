@@ -103,6 +103,7 @@
     <Content Include="Index.aspx" />
     <Content Include="Reports\EmployeePerformance.aspx" />
     <Content Include="Reports\StepList.aspx" />
+    <Content Include="SetLanguage.aspx" />
     <Content Include="Styles\Images\Background\logo.png" />
     <Content Include="Styles\Images\Background\metallic_bg.png" />
     <Content Include="Styles\Images\Menu\menu_bg.png" />
@@ -247,6 +248,121 @@
     <Compile Include="Admin\WorkflowErrorDescription.aspx.designer.cs">
       <DependentUpon>WorkflowErrorDescription.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\ModuleName_VN.designer.cs">
+      <DependentUpon>ModuleName_VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\ModuleName_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModuleName_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ViewQueue_VN.designer.cs">
+      <DependentUpon>ViewQueue_VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\ViewOrderLog_VN.designer.cs">
+      <DependentUpon>ViewOrderLog_VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\ViewCylinderLog_VN.designer.cs">
+      <DependentUpon>ViewCylinderLog_VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Users_VN.designer.cs">
+      <DependentUpon>Users_VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\SendToWorkflow_Step_EN.designer.cs">
+      <DependentUpon>SendToWorkflow_Step_EN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\RoleAssignment_Approval_VN.designer.cs">
+      <DependentUpon>RoleAssignment_Approval_VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Reports_VN.designer.cs">
+      <DependentUpon>Reports_VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\ManageOrders_VN.designer.cs">
+      <DependentUpon>ManageOrders_VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\ErrorManagement_VN.designer.cs">
+      <DependentUpon>ErrorManagement_VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\ErrorManagement_EN.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorManagement_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ManageOrders_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ManageOrders_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Menu_VN.designer.cs">
+      <DependentUpon>Menu_VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Menu_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Menu_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Reports_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reports_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RoleAssignment_Approval_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RoleAssignment_Approval_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Role_VN.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Role_VN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\SendToWorkflow_Step_VN.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SendToWorkflow_Step_VN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Users_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Users_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ViewCylinderLog_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewCylinderLog_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ViewOrderLog_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewOrderLog_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ViewQueue_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewQueue_EN.resx</DependentUpon>
+    </Compile>
     <Compile Include="Blank.aspx.cs">
       <DependentUpon>Blank.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -299,6 +415,13 @@
     <Compile Include="Reports\StepList.aspx.designer.cs">
       <DependentUpon>StepList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SetLanguage.aspx.cs">
+      <DependentUpon>SetLanguage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SetLanguage.aspx.designer.cs">
+      <DependentUpon>SetLanguage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="template.aspx.cs">
       <DependentUpon>template.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -316,7 +439,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="App_LocalResources\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogics\BusinessLogics.csproj">
@@ -332,6 +454,99 @@
     <Content Include="MasterPage.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_GlobalResources\Role_EN.resx" />
+    <Content Include="App_GlobalResources\Role_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Role_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Menu_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Menu_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Menu_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Menu_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ErrorManagement_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ErrorManagement_EN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ErrorManagement_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ErrorManagement_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ManageOrders_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ManageOrders_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ManageOrders_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ManageOrders_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Reports_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Reports_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Reports_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Reports_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\RoleAssignment_Approval_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RoleAssignment_Approval_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\RoleAssignment_Approval_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RoleAssignment_Approval_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\SendToWorkflow_Step_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>SendToWorkflow_Step_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\SendToWorkflow_Step_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>SendToWorkflow_Step_EN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Users_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Users_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Users_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Users_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ViewCylinderLog_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ViewCylinderLog_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ViewCylinderLog_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ViewCylinderLog_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ViewOrderLog_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ViewOrderLog_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ViewOrderLog_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ViewOrderLog_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ViewQueue_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ViewQueue_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ViewQueue_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ViewQueue_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ModuleName_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ModuleName_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ModuleName_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ModuleName_VN.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Reports\Report_Files\CylinderInfo.rdlc" />
     <EmbeddedResource Include="Reports\Report_Files\Performance.rdlc" />
     <EmbeddedResource Include="Reports\Report_Files\Steps.rdlc" />

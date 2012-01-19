@@ -4,7 +4,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MenuPlaceHolder" runat="server">
     <ul>
-        <li>Workflow: <asp:DropDownList ID="ddlWorkflow" runat="server"/></li>
+        <li>
+            <asp:Literal ID="ltrWorkflow" runat="server"></asp:Literal>
+            : <asp:DropDownList ID="ddlWorkflow" runat="server"/></li>
         <li><asp:LinkButton ID="lnkViewQueue" runat="server" onclick="lnkViewQueue_Click">View Queue</asp:LinkButton></li>
         <li><asp:LinkButton ID="lnkExportQueue" runat="server" 
                 onclick="lnkExportQueue_Click">Export Queue</asp:LinkButton></li>

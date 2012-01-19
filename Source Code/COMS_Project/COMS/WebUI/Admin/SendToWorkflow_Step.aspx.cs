@@ -14,6 +14,7 @@ namespace WebUI.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             base.PageLoad(Page);
+            LoadResource();
             if (!IsPostBack)
             {
                 Authorize();
@@ -136,7 +137,21 @@ namespace WebUI.Admin
             }
         }
 
-        
+        private void LoadResource()
+        {
+            lnkSend.Text = GetResource("Menu", "Send");
+            ltrCylinderBarCodeToSend.Text = GetResource("SendToWorkflow_Step", "CylinderBarCodeToSend");
+            ltrRemarks.Text = GetResource("SendToWorkflow_Step", "Remark");
+            ltrSendToStep.Text = GetResource("SendToWorkflow_Step", "SendToStep");
+            ltrSendToWorkflow.Text = GetResource("SendToWorkflow_Step", "SendToWorkflow");
+
+            gvResult.Columns[1].HeaderText = GetResource("SendToWorkflow_Step", "CylinderBarCode");
+            gvResult.Columns[2].HeaderText = GetResource("SendToWorkflow_Step", "Department");
+            gvResult.Columns[3].HeaderText = GetResource("SendToWorkflow_Step", "ErrorDescription");
+            gvResult.Columns[4].HeaderText = GetResource("SendToWorkflow_Step", "Remark");
+            gvResult.Columns[5].HeaderText = GetResource("SendToWorkflow_Step", "Status");
+            
+        }
     }
         class ResultDAO
         {
