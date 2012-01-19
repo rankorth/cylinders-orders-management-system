@@ -2908,7 +2908,8 @@ namespace COMSdbEntity
         /// <param name="created_by">Initial value of the created_by property.</param>
         /// <param name="created_date">Initial value of the created_date property.</param>
         /// <param name="isactive">Initial value of the isactive property.</param>
-        public static Employee CreateEmployee(global::System.Guid employeeId, global::System.Guid departmentId, global::System.String staff_code, global::System.String username, global::System.String password, global::System.String created_by, global::System.DateTime created_date, global::System.Boolean isactive)
+        /// <param name="language">Initial value of the language property.</param>
+        public static Employee CreateEmployee(global::System.Guid employeeId, global::System.Guid departmentId, global::System.String staff_code, global::System.String username, global::System.String password, global::System.String created_by, global::System.DateTime created_date, global::System.Boolean isactive, global::System.String language)
         {
             Employee employee = new Employee();
             employee.employeeId = employeeId;
@@ -2919,6 +2920,7 @@ namespace COMSdbEntity
             employee.created_by = created_by;
             employee.created_date = created_date;
             employee.isactive = isactive;
+            employee.language = language;
             return employee;
         }
 
@@ -3263,6 +3265,30 @@ namespace COMSdbEntity
         private global::System.Boolean _isactive;
         partial void OnisactiveChanging(global::System.Boolean value);
         partial void OnisactiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String language
+        {
+            get
+            {
+                return _language;
+            }
+            set
+            {
+                OnlanguageChanging(value);
+                ReportPropertyChanging("language");
+                _language = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("language");
+                OnlanguageChanged();
+            }
+        }
+        private global::System.String _language;
+        partial void OnlanguageChanging(global::System.String value);
+        partial void OnlanguageChanged();
 
         #endregion
     
