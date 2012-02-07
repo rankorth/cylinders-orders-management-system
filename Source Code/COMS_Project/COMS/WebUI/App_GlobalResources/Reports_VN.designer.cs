@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show(vn).
+        ///   Looks up a localized string similar to Xem.
         /// </summary>
         internal static string Show {
             get {

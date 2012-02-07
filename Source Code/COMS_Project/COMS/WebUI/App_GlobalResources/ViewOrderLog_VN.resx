@@ -118,27 +118,27 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Department" xml:space="preserve">
-    <value>Department(vn)</value>
+    <value>Bộ Phận</value>
   </data>
   <data name="OrderCode" xml:space="preserve">
-    <value>Order Code(vn)</value>
+    <value>Mã Đơn Hàng</value>
   </data>
   <data name="PerformedBy" xml:space="preserve">
-    <value>Performed By(vn)</value>
+    <value>Thao Tác Bởi</value>
   </data>
   <data name="ProductName" xml:space="preserve">
-    <value>Product Name(vn)</value>
+    <value>Tên Sản Phẩm</value>
   </data>
   <data name="RelatedCylinders" xml:space="preserve">
-    <value>Related Cylinders(vn)</value>
+    <value>Trục Liên Quan</value>
   </data>
   <data name="Remarks" xml:space="preserve">
-    <value>Remarks(vn)</value>
+    <value>Ghi Chú</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Status(vn)</value>
+    <value>Tình Trạng</value>
   </data>
   <data name="Time" xml:space="preserve">
-    <value>Time(vn)</value>
+    <value>Thời Gian</value>
   </data>
 </root>

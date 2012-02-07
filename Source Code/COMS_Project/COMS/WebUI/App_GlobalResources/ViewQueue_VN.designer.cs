@@ -61,16 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customer(vn).
-        /// </summary>
-        internal static string Customer {
-            get {
-                return ResourceManager.GetString("Customer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delivery Date(vn).
+        ///   Looks up a localized string similar to Ngày Giao Hàng.
         /// </summary>
         internal static string DeliveryDate {
             get {
@@ -79,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diameter(vn).
+        ///   Looks up a localized string similar to Đường Kính.
         /// </summary>
         internal static string Diameter {
             get {
@@ -88,7 +79,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Length(vn).
+        ///   Looks up a localized string similar to Khách Hàng.
+        /// </summary>
+        internal static string e {
+            get {
+                return ResourceManager.GetString("e", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chiều Dài.
         /// </summary>
         internal static string Length {
             get {
@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Cylinders(vn).
+        ///   Looks up a localized string similar to Trục Mới.
         /// </summary>
         internal static string NewCylinders {
             get {
@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Priority(vn).
+        ///   Looks up a localized string similar to Ưu Tiên.
         /// </summary>
         internal static string Priority {
             get {
@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Product Name(vn).
+        ///   Looks up a localized string similar to Tên Sản Phẩm.
         /// </summary>
         internal static string ProductName {
             get {
@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set Code(vn).
+        ///   Looks up a localized string similar to Mã Số Trục.
         /// </summary>
         internal static string SetCode {
             get {
@@ -133,7 +133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Userd Cylinders(vn).
+        ///   Looks up a localized string similar to Trục Cũ.
         /// </summary>
         internal static string UserdCylinders {
             get {

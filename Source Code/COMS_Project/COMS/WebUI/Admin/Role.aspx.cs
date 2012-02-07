@@ -219,6 +219,8 @@ namespace WebUI.Admin
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                Access_Right ar = (Access_Right)e.Row.DataItem;
+                ar.name = GetResource("AccessRights", ar.name);
                 ID = ((Access_Right)e.Row.DataItem).rightsId;
                 CheckBox chkSelected = (CheckBox)e.Row.FindControl("chkSelected");
                 chkSelected.InputAttributes.Add("ID", ID.ToString());

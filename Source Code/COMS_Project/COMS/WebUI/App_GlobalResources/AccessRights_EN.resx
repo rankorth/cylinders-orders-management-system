@@ -117,28 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CylinderBarCode" xml:space="preserve">
-    <value>Barcode Trục</value>
+  <data name="Approve Assign Roles" xml:space="preserve">
+    <value>Approve Assign Roles</value>
   </data>
-  <data name="CylinderBarCodeToSend" xml:space="preserve">
-    <value>Barcode Trục Để Gửi</value>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
   </data>
-  <data name="Department" xml:space="preserve">
-    <value>Bộ Phận</value>
+  <data name="Cylinder Info" xml:space="preserve">
+    <value>Cylinder Info</value>
   </data>
-  <data name="ErrorDescription" xml:space="preserve">
-    <value>Chi Tiết Lỗi</value>
+  <data name="Employee Management" xml:space="preserve">
+    <value>Employee Management</value>
   </data>
-  <data name="Remark" xml:space="preserve">
-    <value>Ghi Chú</value>
+  <data name="Employee Performance" xml:space="preserve">
+    <value>Employee Performance</value>
   </data>
-  <data name="SendToStep" xml:space="preserve">
-    <value>Gửi Đến Bước</value>
+  <data name="Order Management" xml:space="preserve">
+    <value>Order Management</value>
   </data>
-  <data name="SendToWorkflow" xml:space="preserve">
-    <value>Gửi Đến Quy Trình SX</value>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Tình Trạng</value>
+  <data name="Role Assignment Approval" xml:space="preserve">
+    <value>Role Assignment Approval</value>
+  </data>
+  <data name="Role Management" xml:space="preserve">
+    <value>Role Management</value>
+  </data>
+  <data name="Send to workflow/step" xml:space="preserve">
+    <value>Send to workflow/step</value>
+  </data>
+  <data name="Step List" xml:space="preserve">
+    <value>Step List</value>
+  </data>
+  <data name="View Current Queue" xml:space="preserve">
+    <value>View Current Queue</value>
+  </data>
+  <data name="Workflow Error" xml:space="preserve">
+    <value>Workflow Error</value>
+  </data>
+  <data name="Workflow Management" xml:space="preserve">
+    <value>Workflow Management</value>
   </data>
 </root>

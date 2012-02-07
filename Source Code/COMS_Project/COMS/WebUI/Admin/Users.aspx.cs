@@ -137,7 +137,7 @@ namespace WebUI.Admin
             DepartmentList.Items.Clear();
             foreach (Department dep in mainctrl.retrieveDepartments())
             {
-                ListItem item = new ListItem(dep.name, (dep.departmentId).ToString());
+                ListItem item = new ListItem(GetResource("Departments", dep.name), (dep.departmentId).ToString());
                 DepartmentList.Items.Add(item);
             }
         }

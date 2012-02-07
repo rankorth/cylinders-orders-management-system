@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Barcode" xml:space="preserve">
-    <value>Barcode : (vn)</value>
+    <value>Barcode Trục :</value>
   </data>
   <data name="CoreType" xml:space="preserve">
-    <value>Core Type : (vn)</value>
+    <value>Loại Ống :</value>
   </data>
   <data name="CylNo" xml:space="preserve">
-    <value>Cyl No : (vn)</value>
+    <value>Số Trục :</value>
   </data>
   <data name="Department" xml:space="preserve">
-    <value>Department(vn)</value>
+    <value>Bộ Phận :</value>
   </data>
   <data name="Description" xml:space="preserve">
-    <value>Description(vn)</value>
+    <value>Chi Tiết :</value>
   </data>
   <data name="Endtime" xml:space="preserve">
-    <value>End Time(vn)</value>
+    <value>Kết Thúc</value>
   </data>
   <data name="Length" xml:space="preserve">
-    <value>Length : (vn)</value>
+    <value>Chiều Dài :</value>
   </data>
   <data name="PerformedBy" xml:space="preserve">
-    <value>Performed By(vn)</value>
+    <value>Thao Tác Bởi :</value>
   </data>
   <data name="Remarks" xml:space="preserve">
-    <value>Remarks(vn)</value>
+    <value>Ghi Chú :</value>
   </data>
   <data name="Starttime" xml:space="preserve">
-    <value>Start Time(vn)</value>
+    <value>Bắt Đầu</value>
   </data>
 </root>

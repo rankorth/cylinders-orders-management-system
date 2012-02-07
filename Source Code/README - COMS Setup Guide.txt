@@ -1,8 +1,8 @@
 1. COMS Database Setup
 - Install Microsoft SQL Server 2008 with Management Studio.
 - Open Management Studio, connect to SQL Server.
-- Open script "Source Code\COMS_Project\DataBase\COMS_data_14 Jan.sql"
-- Change "F:\mtech_svn\COMS_Database\COMS.mdf" and "F:\mtech_svn\COMS_Database\COMS_log.ldf" to locations where you would like to place the COMS database file.
+- Open script "Source Code\COMS_Project\DataBase\COMS_data_20 Jan.sql"
+- Change "C:\COMS.mdf" and "C:\COMS_log.ldf" to locations where you would like to place the COMS database file.
 -Run the script.
 
 2. COMS Application Setup

@@ -132,6 +132,9 @@
   <data name="ExportQueue" xml:space="preserve">
     <value>Export Queue</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
   <data name="NewOrder" xml:space="preserve">
     <value>New Order</value>
   </data>

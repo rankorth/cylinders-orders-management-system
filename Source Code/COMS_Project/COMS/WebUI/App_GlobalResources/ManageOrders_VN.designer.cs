@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bar Code(vn).
+        ///   Looks up a localized string similar to Barcode Trục.
         /// </summary>
         internal static string BarCode {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Color No(vn).
+        ///   Looks up a localized string similar to Số Màu.
         /// </summary>
         internal static string ColorNo {
             get {
@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Core Type(vn).
+        ///   Looks up a localized string similar to Loại Ống.
         /// </summary>
         internal static string CoreType {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cylinder No(vn).
+        ///   Looks up a localized string similar to Số Trục.
         /// </summary>
         internal static string CylinderNo {
             get {
@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cylinders(vn).
+        ///   Looks up a localized string similar to Trục.
         /// </summary>
         internal static string Cylinders {
             get {
@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diameter(vn).
+        ///   Looks up a localized string similar to Đường Kính.
         /// </summary>
         internal static string Diameter {
             get {
@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Length(vn).
+        ///   Looks up a localized string similar to Chiều Dài.
         /// </summary>
         internal static string Length {
             get {
@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Order Code(vn).
+        ///   Looks up a localized string similar to Mã Đơn Hàng.
         /// </summary>
         internal static string OrderCode {
             get {
@@ -133,7 +133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Print Info(vn).
+        ///   Looks up a localized string similar to In Phiếu Trục.
         /// </summary>
         internal static string PrintInfo {
             get {
@@ -142,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Product Name(vn).
+        ///   Looks up a localized string similar to Tên Sản Phẩm.
         /// </summary>
         internal static string ProductName {
             get {
@@ -151,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Progress(vn).
+        ///   Looks up a localized string similar to Tiến Độ.
         /// </summary>
         internal static string Progress {
             get {
@@ -160,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SetCode(vn).
+        ///   Looks up a localized string similar to Mã Trục.
         /// </summary>
         internal static string SetCode {
             get {
@@ -169,7 +169,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status(vn).
+        ///   Looks up a localized string similar to Tình Trạng.
         /// </summary>
         internal static string Status {
             get {

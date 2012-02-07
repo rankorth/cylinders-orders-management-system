@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cylinder Barcode(vn).
+        ///   Looks up a localized string similar to Barcode Trục.
         /// </summary>
         internal static string CylinderBarCode {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cylinder Barcode to Send(vn).
+        ///   Looks up a localized string similar to Barcode Trục Để Gửi.
         /// </summary>
         internal static string CylinderBarCodeToSend {
             get {
@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department(vn).
+        ///   Looks up a localized string similar to Bộ Phận.
         /// </summary>
         internal static string Department {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error Description(vn).
+        ///   Looks up a localized string similar to Chi Tiết Lỗi.
         /// </summary>
         internal static string ErrorDescription {
             get {
@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remark(vn).
+        ///   Looks up a localized string similar to Ghi Chú.
         /// </summary>
         internal static string Remark {
             get {
@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send to Step(vn).
+        ///   Looks up a localized string similar to Gửi Đến Bước.
         /// </summary>
         internal static string SendToStep {
             get {
@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send to Workflow(vn).
+        ///   Looks up a localized string similar to Gửi Đến Quy Trình SX.
         /// </summary>
         internal static string SendToWorkflow {
             get {
@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status(vn).
+        ///   Looks up a localized string similar to Tình Trạng.
         /// </summary>
         internal static string Status {
             get {

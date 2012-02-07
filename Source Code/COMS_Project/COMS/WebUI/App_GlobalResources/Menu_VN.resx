@@ -118,42 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Approve" xml:space="preserve">
-    <value>Approve(vn)</value>
+    <value>Duyệt</value>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back(vn)</value>
+    <value>Quay Về</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel(vn)</value>
+    <value>Hủy</value>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete(vn)</value>
+    <value>Xóa</value>
   </data>
   <data name="ExportQueue" xml:space="preserve">
-    <value>Export Queue(vn)</value>
+    <value>Xuất Lịch SX</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Đăng Nhập</value>
   </data>
   <data name="NewOrder" xml:space="preserve">
-    <value>New Order(vn)</value>
+    <value>Đơn Hàng Mới</value>
   </data>
   <data name="Reject" xml:space="preserve">
-    <value>Reject(vn)</value>
+    <value>Từ Chối</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save(vn)</value>
+    <value>Lưu</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Search(vn)</value>
+    <value>Tìm Kiếm</value>
   </data>
   <data name="Send" xml:space="preserve">
-    <value>Send(vn)</value>
+    <value>Gửi</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>Update(vn)</value>
+    <value>Thay Đổi</value>
   </data>
   <data name="ViewQueue" xml:space="preserve">
-    <value>View Queue(vn)</value>
+    <value>Xem Lịch SX</value>
   </data>
   <data name="Workflow" xml:space="preserve">
-    <value>Workflow(vn)</value>
+    <value>Quy Trình SX</value>
   </data>
 </root>

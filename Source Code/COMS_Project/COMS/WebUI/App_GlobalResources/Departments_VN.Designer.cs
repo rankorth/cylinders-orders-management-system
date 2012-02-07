@@ -22,14 +22,14 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "10.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class RoleAssignment_Approval_VN {
+    internal class Departments_VN {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal RoleAssignment_Approval_VN() {
+        internal Departments_VN() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.RoleAssignment_Approval_VN", global::System.Reflection.Assembly.Load("App_GlobalResources"));
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.Departments_VN", global::System.Reflection.Assembly.Load("App_GlobalResources"));
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,74 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Quyền Được Giao.
+        ///   Looks up a localized string similar to Khắc-Laser.
         /// </summary>
-        internal static string AssignedRole {
+        internal static string Engraving_Lasering_Dept {
             get {
-                return ResourceManager.GetString("AssignedRole", resourceCulture);
+                return ResourceManager.GetString("Engraving-Lasering Dept", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nhân Viên.
+        ///   Looks up a localized string similar to Đồ Họa.
         /// </summary>
-        internal static string Employee {
+        internal static string Graphic_Repro_Dept {
             get {
-                return ResourceManager.GetString("Employee", resourceCulture);
+                return ResourceManager.GetString("Graphic-Repro Dept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xưởng Cơ Khí.
+        /// </summary>
+        internal static string Mechanical_Dept {
+            get {
+                return ResourceManager.GetString("Mechanical Dept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xưởng In.
+        /// </summary>
+        internal static string Printing_Dept {
+            get {
+                return ResourceManager.GetString("Printing Dept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xưởng Ống.
+        /// </summary>
+        internal static string Production_Dept {
+            get {
+                return ResourceManager.GetString("Production Dept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Điều Hành SX.
+        /// </summary>
+        internal static string Production_Mgmt_Dept {
+            get {
+                return ResourceManager.GetString("Production Mgmt Dept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to KCS 2.
+        /// </summary>
+        internal static string Quality_Control_2_Dept {
+            get {
+                return ResourceManager.GetString("Quality Control 2 Dept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kinh Doanh.
+        /// </summary>
+        internal static string Sales_Dept {
+            get {
+                return ResourceManager.GetString("Sales Dept", resourceCulture);
             }
         }
     }

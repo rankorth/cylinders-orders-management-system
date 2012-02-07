@@ -22,14 +22,14 @@ namespace Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Web.Application.StronglyTypedResourceProxyBuilder", "10.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ViewCylinderLog_VN {
+    internal class AccessRights_EN {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ViewCylinderLog_VN() {
+        internal AccessRights_EN() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.ViewCylinderLog_VN", global::System.Reflection.Assembly.Load("App_GlobalResources"));
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.AccessRights_EN", global::System.Reflection.Assembly.Load("App_GlobalResources"));
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,92 +61,128 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Barcode Trục :.
+        ///   Looks up a localized string similar to Approve Assign Roles.
         /// </summary>
-        internal static string Barcode {
+        internal static string Approve_Assign_Roles {
             get {
-                return ResourceManager.GetString("Barcode", resourceCulture);
+                return ResourceManager.GetString("Approve Assign Roles", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Loại Ống :.
+        ///   Looks up a localized string similar to Customer.
         /// </summary>
-        internal static string CoreType {
+        internal static string Customer {
             get {
-                return ResourceManager.GetString("CoreType", resourceCulture);
+                return ResourceManager.GetString("Customer", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Số Trục :.
+        ///   Looks up a localized string similar to Cylinder Info.
         /// </summary>
-        internal static string CylNo {
+        internal static string Cylinder_Info {
             get {
-                return ResourceManager.GetString("CylNo", resourceCulture);
+                return ResourceManager.GetString("Cylinder Info", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bộ Phận :.
+        ///   Looks up a localized string similar to Employee Management.
         /// </summary>
-        internal static string Department {
+        internal static string Employee_Management {
             get {
-                return ResourceManager.GetString("Department", resourceCulture);
+                return ResourceManager.GetString("Employee Management", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chi Tiết :.
+        ///   Looks up a localized string similar to Employee Performance.
         /// </summary>
-        internal static string Description {
+        internal static string Employee_Performance {
             get {
-                return ResourceManager.GetString("Description", resourceCulture);
+                return ResourceManager.GetString("Employee Performance", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kết Thúc.
+        ///   Looks up a localized string similar to Order Management.
         /// </summary>
-        internal static string Endtime {
+        internal static string Order_Management {
             get {
-                return ResourceManager.GetString("Endtime", resourceCulture);
+                return ResourceManager.GetString("Order Management", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chiều Dài :.
+        ///   Looks up a localized string similar to Report.
         /// </summary>
-        internal static string Length {
+        internal static string Report {
             get {
-                return ResourceManager.GetString("Length", resourceCulture);
+                return ResourceManager.GetString("Report", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thao Tác Bởi :.
+        ///   Looks up a localized string similar to Role Assignment Approval.
         /// </summary>
-        internal static string PerformedBy {
+        internal static string Role_Assignment_Approval {
             get {
-                return ResourceManager.GetString("PerformedBy", resourceCulture);
+                return ResourceManager.GetString("Role Assignment Approval", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ghi Chú :.
+        ///   Looks up a localized string similar to Role Management.
         /// </summary>
-        internal static string Remarks {
+        internal static string Role_Management {
             get {
-                return ResourceManager.GetString("Remarks", resourceCulture);
+                return ResourceManager.GetString("Role Management", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bắt Đầu.
+        ///   Looks up a localized string similar to Send to workflow/step.
         /// </summary>
-        internal static string Starttime {
+        internal static string Send_to_workflow_step {
             get {
-                return ResourceManager.GetString("Starttime", resourceCulture);
+                return ResourceManager.GetString("Send to workflow/step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step List.
+        /// </summary>
+        internal static string Step_List {
+            get {
+                return ResourceManager.GetString("Step List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Current Queue.
+        /// </summary>
+        internal static string View_Current_Queue {
+            get {
+                return ResourceManager.GetString("View Current Queue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Workflow Error.
+        /// </summary>
+        internal static string Workflow_Error {
+            get {
+                return ResourceManager.GetString("Workflow Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Workflow Management.
+        /// </summary>
+        internal static string Workflow_Management {
+            get {
+                return ResourceManager.GetString("Workflow Management", resourceCulture);
             }
         }
     }
