@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ApproveAssignRoles" xml:space="preserve">
-    <value>Approve Assign Roles(vn)</value>
+    <value>Duyệt Cấp Quyền</value>
   </data>
   <data name="Employee" xml:space="preserve">
-    <value>Employee(vn)</value>
+    <value>Nhân Viên</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language(vn)</value>
+    <value>Ngôn Ngữ</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>Logout(vn)</value>
+    <value>Đăng Xuất</value>
   </data>
   <data name="Orders" xml:space="preserve">
-    <value>Orders(vn)</value>
+    <value>Đơn Hàng</value>
   </data>
   <data name="Reports" xml:space="preserve">
-    <value>Reports(vn)</value>
+    <value>Báo Cáo</value>
   </data>
   <data name="Roles" xml:space="preserve">
-    <value>Roles(vn)</value>
+    <value>Vai Trò</value>
   </data>
   <data name="SendCylindertoWorkflow" xml:space="preserve">
-    <value>Send Cylinder to Workflow/Step(vn)</value>
+    <value>Chuyển Trục Đến Bước Khác</value>
   </data>
   <data name="ViewCurrentQueue" xml:space="preserve">
-    <value>View Current Queue(vn)</value>
+    <value>Xem Lịch Sản Xuất</value>
   </data>
   <data name="WorkflowErrorMessage" xml:space="preserve">
-    <value>Workflow Error Message(vn)</value>
+    <value>Lỗi Công Việc</value>
   </data>
 </root>

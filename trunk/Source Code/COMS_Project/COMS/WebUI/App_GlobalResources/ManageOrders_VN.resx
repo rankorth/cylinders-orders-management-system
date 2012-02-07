@@ -118,42 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BarCode" xml:space="preserve">
-    <value>Bar Code(vn)</value>
+    <value>Barcode Trục</value>
   </data>
   <data name="ColorNo" xml:space="preserve">
-    <value>Color No(vn)</value>
+    <value>Số Màu</value>
   </data>
   <data name="CoreType" xml:space="preserve">
-    <value>Core Type(vn)</value>
+    <value>Loại Ống</value>
   </data>
   <data name="CylinderNo" xml:space="preserve">
-    <value>Cylinder No(vn)</value>
+    <value>Số Trục</value>
   </data>
   <data name="Cylinders" xml:space="preserve">
-    <value>Cylinders(vn)</value>
+    <value>Trục</value>
   </data>
   <data name="Diameter" xml:space="preserve">
-    <value>Diameter(vn)</value>
+    <value>Đường Kính</value>
   </data>
   <data name="Length" xml:space="preserve">
-    <value>Length(vn)</value>
+    <value>Chiều Dài</value>
   </data>
   <data name="OrderCode" xml:space="preserve">
-    <value>Order Code(vn)</value>
+    <value>Mã Đơn Hàng</value>
   </data>
   <data name="PrintInfo" xml:space="preserve">
-    <value>Print Info(vn)</value>
+    <value>In Phiếu Trục</value>
   </data>
   <data name="ProductName" xml:space="preserve">
-    <value>Product Name(vn)</value>
+    <value>Tên Sản Phẩm</value>
   </data>
   <data name="Progress" xml:space="preserve">
-    <value>Progress(vn)</value>
+    <value>Tiến Độ</value>
   </data>
   <data name="SetCode" xml:space="preserve">
-    <value>SetCode(vn)</value>
+    <value>Mã Trục</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value>Status(vn)</value>
+    <value>Tình Trạng</value>
   </data>
 </root>

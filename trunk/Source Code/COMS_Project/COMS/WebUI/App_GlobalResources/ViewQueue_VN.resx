@@ -117,31 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Customer" xml:space="preserve">
-    <value>Customer(vn)</value>
-  </data>
   <data name="DeliveryDate" xml:space="preserve">
-    <value>Delivery Date(vn)</value>
+    <value>Ngày Giao Hàng</value>
   </data>
   <data name="Diameter" xml:space="preserve">
-    <value>Diameter(vn)</value>
+    <value>Đường Kính</value>
+  </data>
+  <data name="e" xml:space="preserve">
+    <value>Khách Hàng</value>
   </data>
   <data name="Length" xml:space="preserve">
-    <value>Length(vn)</value>
+    <value>Chiều Dài</value>
   </data>
   <data name="NewCylinders" xml:space="preserve">
-    <value>New Cylinders(vn)</value>
+    <value>Trục Mới</value>
   </data>
   <data name="Priority" xml:space="preserve">
-    <value>Priority(vn)</value>
+    <value>Ưu Tiên</value>
   </data>
   <data name="ProductName" xml:space="preserve">
-    <value>Product Name(vn)</value>
+    <value>Tên Sản Phẩm</value>
   </data>
   <data name="SetCode" xml:space="preserve">
-    <value>Set Code(vn)</value>
+    <value>Mã Số Trục</value>
   </data>
   <data name="UserdCylinders" xml:space="preserve">
-    <value>Userd Cylinders(vn)</value>
+    <value>Trục Cũ</value>
   </data>
 </root>

@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Approve(vn).
+        ///   Looks up a localized string similar to Duyệt.
         /// </summary>
         internal static string Approve {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Back(vn).
+        ///   Looks up a localized string similar to Quay Về.
         /// </summary>
         internal static string Back {
             get {
@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel(vn).
+        ///   Looks up a localized string similar to Hủy.
         /// </summary>
         internal static string Cancel {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete(vn).
+        ///   Looks up a localized string similar to Xóa.
         /// </summary>
         internal static string Delete {
             get {
@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Export Queue(vn).
+        ///   Looks up a localized string similar to Xuất Lịch SX.
         /// </summary>
         internal static string ExportQueue {
             get {
@@ -106,7 +106,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Order(vn).
+        ///   Looks up a localized string similar to Đăng Nhập.
+        /// </summary>
+        internal static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đơn Hàng Mới.
         /// </summary>
         internal static string NewOrder {
             get {
@@ -115,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reject(vn).
+        ///   Looks up a localized string similar to Từ Chối.
         /// </summary>
         internal static string Reject {
             get {
@@ -124,7 +133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save(vn).
+        ///   Looks up a localized string similar to Lưu.
         /// </summary>
         internal static string Save {
             get {
@@ -133,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search(vn).
+        ///   Looks up a localized string similar to Tìm Kiếm.
         /// </summary>
         internal static string Search {
             get {
@@ -142,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send(vn).
+        ///   Looks up a localized string similar to Gửi.
         /// </summary>
         internal static string Send {
             get {
@@ -151,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update(vn).
+        ///   Looks up a localized string similar to Thay Đổi.
         /// </summary>
         internal static string Update {
             get {
@@ -160,7 +169,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View Queue(vn).
+        ///   Looks up a localized string similar to Xem Lịch SX.
         /// </summary>
         internal static string ViewQueue {
             get {
@@ -169,7 +178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Workflow(vn).
+        ///   Looks up a localized string similar to Quy Trình SX.
         /// </summary>
         internal static string Workflow {
             get {

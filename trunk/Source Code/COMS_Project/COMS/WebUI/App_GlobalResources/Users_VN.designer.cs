@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assigned Roles(vn).
+        ///   Looks up a localized string similar to Quyền Được Giao.
         /// </summary>
         internal static string AssignedRoles {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bar Code(vn).
+        ///   Looks up a localized string similar to Barcode Nhân Viên.
         /// </summary>
         internal static string BarCode {
             get {
@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department(vn).
+        ///   Looks up a localized string similar to Bộ Phận.
         /// </summary>
         internal static string Department {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name(vn).
+        ///   Looks up a localized string similar to Tên.
         /// </summary>
         internal static string Name {
             get {
@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password.
+        ///   Looks up a localized string similar to Mật Mã.
         /// </summary>
         internal static string Password {
             get {
@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Position(vn).
+        ///   Looks up a localized string similar to Chức Vụ.
         /// </summary>
         internal static string Position {
             get {
@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Staff Code(vn).
+        ///   Looks up a localized string similar to Mã Nhân Viên.
         /// </summary>
         internal static string StaffCode {
             get {
@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Surname(vn).
+        ///   Looks up a localized string similar to Tên Họ.
         /// </summary>
         internal static string Surname {
             get {
@@ -133,7 +133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Username(vn).
+        ///   Looks up a localized string similar to Tên Đăng Nhập.
         /// </summary>
         internal static string Username {
             get {

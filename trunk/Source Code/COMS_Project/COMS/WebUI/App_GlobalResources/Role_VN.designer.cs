@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Allowed Actions(vn).
+        ///   Looks up a localized string similar to Quyền Cho Phép.
         /// </summary>
         internal static string actions {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Active(vn).
+        ///   Looks up a localized string similar to Có Hiệu Lực.
         /// </summary>
         internal static string active {
             get {
@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to edit(vn).
+        ///   Looks up a localized string similar to Thay Đổi.
         /// </summary>
         internal static string edit {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Role Name(vn).
+        ///   Looks up a localized string similar to Tên.
         /// </summary>
         internal static string name {
             get {
@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Access Rights(vn).
+        ///   Looks up a localized string similar to Quyền.
         /// </summary>
         internal static string rights {
             get {
@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Access Rights Name(vn).
+        ///   Looks up a localized string similar to Tên Quyền.
         /// </summary>
         internal static string rightsname {
             get {

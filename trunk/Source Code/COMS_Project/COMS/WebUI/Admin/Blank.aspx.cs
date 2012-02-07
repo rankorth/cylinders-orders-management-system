@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace WebUI.Admin
 {
-    public partial class Blank : System.Web.UI.Page
+    public partial class Blank : Common.BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            ltrGuide.Text = GetResource("Blank", ltrGuide.ID);
         }
     }
 }

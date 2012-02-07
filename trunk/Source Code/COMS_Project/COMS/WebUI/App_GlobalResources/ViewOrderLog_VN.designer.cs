@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department(vn).
+        ///   Looks up a localized string similar to Bộ Phận.
         /// </summary>
         internal static string Department {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Order Code(vn).
+        ///   Looks up a localized string similar to Mã Đơn Hàng.
         /// </summary>
         internal static string OrderCode {
             get {
@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Performed By(vn).
+        ///   Looks up a localized string similar to Thao Tác Bởi.
         /// </summary>
         internal static string PerformedBy {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Product Name(vn).
+        ///   Looks up a localized string similar to Tên Sản Phẩm.
         /// </summary>
         internal static string ProductName {
             get {
@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Related Cylinders(vn).
+        ///   Looks up a localized string similar to Trục Liên Quan.
         /// </summary>
         internal static string RelatedCylinders {
             get {
@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Remarks(vn).
+        ///   Looks up a localized string similar to Ghi Chú.
         /// </summary>
         internal static string Remarks {
             get {
@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Status(vn).
+        ///   Looks up a localized string similar to Tình Trạng.
         /// </summary>
         internal static string Status {
             get {
@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Time(vn).
+        ///   Looks up a localized string similar to Thời Gian.
         /// </summary>
         internal static string Time {
             get {

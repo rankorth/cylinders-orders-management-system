@@ -248,6 +248,26 @@
     <Compile Include="Admin\WorkflowErrorDescription.aspx.designer.cs">
       <DependentUpon>WorkflowErrorDescription.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\AccessRights_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccessRights_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\AccessRights_VN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccessRights_VN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Departments_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Departments_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Departments_VN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Departments_VN.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_GlobalResources\ModuleName_VN.designer.cs">
       <DependentUpon>ModuleName_VN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -257,6 +277,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModuleName_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Blank_EN.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Blank_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Blank_VN.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Blank_VN.resx</DependentUpon>
     </Compile>
     <Compile Include="App_GlobalResources\ViewQueue_VN.designer.cs">
       <DependentUpon>ViewQueue_VN.resx</DependentUpon>
@@ -546,6 +576,30 @@
     <Content Include="App_GlobalResources\ModuleName_VN.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>ModuleName_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Blank_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Blank_EN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Blank_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Blank_VN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Departments_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Departments_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Departments_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Departments_VN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\AccessRights_EN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>AccessRights_EN.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\AccessRights_VN.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>AccessRights_VN.Designer.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="Reports\Report_Files\CylinderInfo.rdlc" />
     <EmbeddedResource Include="Reports\Report_Files\Performance.rdlc" />

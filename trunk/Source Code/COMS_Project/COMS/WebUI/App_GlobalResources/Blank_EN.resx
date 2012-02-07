@@ -117,28 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CylinderBarCode" xml:space="preserve">
-    <value>Barcode Trục</value>
-  </data>
-  <data name="CylinderBarCodeToSend" xml:space="preserve">
-    <value>Barcode Trục Để Gửi</value>
-  </data>
-  <data name="Department" xml:space="preserve">
-    <value>Bộ Phận</value>
-  </data>
-  <data name="ErrorDescription" xml:space="preserve">
-    <value>Chi Tiết Lỗi</value>
-  </data>
-  <data name="Remark" xml:space="preserve">
-    <value>Ghi Chú</value>
-  </data>
-  <data name="SendToStep" xml:space="preserve">
-    <value>Gửi Đến Bước</value>
-  </data>
-  <data name="SendToWorkflow" xml:space="preserve">
-    <value>Gửi Đến Quy Trình SX</value>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>Tình Trạng</value>
+  <data name="ltrGuide" xml:space="preserve">
+    <value>Please select functions at the left panel</value>
   </data>
 </root>

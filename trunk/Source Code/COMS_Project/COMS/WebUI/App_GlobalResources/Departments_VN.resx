@@ -117,28 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CylinderBarCode" xml:space="preserve">
-    <value>Barcode Trục</value>
+  <data name="Engraving-Lasering Dept" xml:space="preserve">
+    <value>Khắc-Laser</value>
   </data>
-  <data name="CylinderBarCodeToSend" xml:space="preserve">
-    <value>Barcode Trục Để Gửi</value>
+  <data name="Graphic-Repro Dept" xml:space="preserve">
+    <value>Đồ Họa</value>
   </data>
-  <data name="Department" xml:space="preserve">
-    <value>Bộ Phận</value>
+  <data name="Mechanical Dept" xml:space="preserve">
+    <value>Xưởng Cơ Khí</value>
   </data>
-  <data name="ErrorDescription" xml:space="preserve">
-    <value>Chi Tiết Lỗi</value>
+  <data name="Printing Dept" xml:space="preserve">
+    <value>Xưởng In</value>
   </data>
-  <data name="Remark" xml:space="preserve">
-    <value>Ghi Chú</value>
+  <data name="Production Dept" xml:space="preserve">
+    <value>Xưởng Ống</value>
   </data>
-  <data name="SendToStep" xml:space="preserve">
-    <value>Gửi Đến Bước</value>
+  <data name="Production Mgmt Dept" xml:space="preserve">
+    <value>Điều Hành SX</value>
   </data>
-  <data name="SendToWorkflow" xml:space="preserve">
-    <value>Gửi Đến Quy Trình SX</value>
+  <data name="Quality Control 2 Dept" xml:space="preserve">
+    <value>KCS 2</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Tình Trạng</value>
+  <data name="Sales Dept" xml:space="preserve">
+    <value>Kinh Doanh</value>
   </data>
 </root>

@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Approve Assign Roles(vn).
+        ///   Looks up a localized string similar to Duyệt Cấp Quyền.
         /// </summary>
         internal static string ApproveAssignRoles {
             get {
@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee(vn).
+        ///   Looks up a localized string similar to Nhân Viên.
         /// </summary>
         internal static string Employee {
             get {
@@ -79,7 +79,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Language(vn).
+        ///   Looks up a localized string similar to Ngôn Ngữ.
         /// </summary>
         internal static string Language {
             get {
@@ -88,7 +88,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logout(vn).
+        ///   Looks up a localized string similar to Đăng Xuất.
         /// </summary>
         internal static string Logout {
             get {
@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Orders(vn).
+        ///   Looks up a localized string similar to Đơn Hàng.
         /// </summary>
         internal static string Orders {
             get {
@@ -106,7 +106,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reports(vn).
+        ///   Looks up a localized string similar to Báo Cáo.
         /// </summary>
         internal static string Reports {
             get {
@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Roles(vn).
+        ///   Looks up a localized string similar to Vai Trò.
         /// </summary>
         internal static string Roles {
             get {
@@ -124,7 +124,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send Cylinder to Workflow/Step(vn).
+        ///   Looks up a localized string similar to Chuyển Trục Đến Bước Khác.
         /// </summary>
         internal static string SendCylindertoWorkflow {
             get {
@@ -133,7 +133,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View Current Queue(vn).
+        ///   Looks up a localized string similar to Xem Lịch Sản Xuất.
         /// </summary>
         internal static string ViewCurrentQueue {
             get {
@@ -142,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Workflow Error Message(vn).
+        ///   Looks up a localized string similar to Lỗi Công Việc.
         /// </summary>
         internal static string WorkflowErrorMessage {
             get {
